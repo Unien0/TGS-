@@ -57,8 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\Logic\Player.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Logic\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\Data\PlayerData_SO.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Logic\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\Data\EnemyData_SO.cs" />
   </ItemGroup>
   <ItemGroup>
