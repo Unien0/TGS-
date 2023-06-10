@@ -71,18 +71,18 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
             {
-                ATK = true;
-            }
-        if (ATK)
-        {
             time += Time.deltaTime;
             shotrote = new Vector2(Enemyobj.transform.position.x - this.transform.position.x, Enemyobj.transform.position.y - this.transform.position.y);
 
-            if (time >= 1)
-            {
-                time = 0;
-                ATK = false;
-            }
+            //if (time >= 1)
+            //{
+            //    time = 0;
+            //    ATK = false;
+            //}
+        //if (ATK)
+        //{
+            
+        //    }
         }
     }
 
