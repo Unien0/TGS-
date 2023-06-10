@@ -19,6 +19,10 @@ public class PlayerData_SO : ScriptableObject
     //¥ê¥º¥à¤ÎéL¤µ
     public float beatLengh;
 
+    [Header("´µ¤Ãïw¤Ð¤¹¤ÎÁ¦¤µ")]
+    //»ÆÉ«¤Î×´‘B¤Ï£ø¡¢¥ê¥º¥à¤òºÏ¤ï¤»¤ì¤Ð4±¶¡¢³à¥¨¥ê¥¢¤Ï8±¶
+    public float force;
+
 
     [Header("¥­¥ã¥é¥¯¥¿©`×´‘B")]
     //ËÀ¤ó¤À¤Î¤«
