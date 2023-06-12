@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e20181933e3046a5a33f0779535f5, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  Hp: 0
-  Speed: 0
+  maxHp: 0
+  hp: 0
+  speed: 5
   damage: 0
   beatLengh: 0
+  force: 0
   isDead: 0
   attackable: 0
   removable: 0
