@@ -18,8 +18,6 @@ public class EnemyData_SO : ScriptableObject
     public float blowTime;
     //д╓д├яwд╨д╣д╬╛рыx
     public float blowDistance;
-    //╦└═Ўссд╬┤ц╘┌Хrщg
-    public float existenceTime;
 
     [Header("енеуещепе┐й`╫┤СB")]
     //╦└дєд└д╬дл
