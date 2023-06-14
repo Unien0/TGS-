@@ -5,28 +5,28 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerData_SO playerData;
-    #region PlayerData変数
+    #region PlayerData曄悢
     private float maxHp
     {
-        //playerDataの中にmaxHpをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺MaxHP傪僎僢僩偡傞
         get { if (playerData != null) return playerData.maxHp; else return 0; }
 
     }
     private float hp
     {
-        //playerDataの中にhpをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺HP傪僎僢僩偡傞
         get { if (playerData != null) return playerData.hp; else return 0; }
 
     }
     private float damage
     {
-        //playerDataの中にdamageをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺僟儊乕僕抣傪庢摼偡傞
         get { if (playerData != null) return playerData.damage; else return 0; }
        
     }
     private float speed
     {
-        //playerDataの中にspeedをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺僗僺乕僪抣傪庢摼偡傞
         get { if (playerData != null) return playerData.speed; else return 0; }
 
     }
@@ -34,17 +34,19 @@ public class Player : MonoBehaviour
     public bool isDead
     {
         get { if (playerData != null) return playerData.isDead; else return false; }
-        set { playerData.isDead = value; }//setは自分の変数がplayerDataに送る
+        set { playerData.isDead = value; }//僾儗僀儎乕偑巰朣偟偨応崌偵峏怴
     }
     public bool attackable
     {
+        //僾儗僀儎乕偑峌寕偱偒傞偐偳偆偐傪敾抐偡傞
         get { if (playerData != null) return playerData.attackable; else return false; }
-        set { playerData.attackable = value; }//setは自分の変数がplayerDataに送る
+        set { playerData.attackable = value; }
     }
     public bool removable
     {
+        //僾儗僀儎乕偑堏摦偱偒傞偐偳偆偐傪敾抐偡傞
         get { if (playerData != null) return playerData.removable; else return false; }
-        set { playerData.removable = value; }//setは自分の変数がplayerDataに送る
+        set { playerData.removable = value; }
     }
 
     #endregion 

@@ -5,30 +5,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Data", menuName = "Data/Player Data")]
 public class PlayerData_SO : ScriptableObject
 {
-    [Header("基本属性")]
+    [Header("婎杮僾儘僷僥傿")]
     //MaxHP
     public float maxHp;
     //HP
     public float hp;
-    //移動速度
+    //僗僺乕僪
     public float speed;
-    //ダメージ
+    //僟儊乕僕
     public float damage;
 
-    [Header("リズムに関する")]
-    //リズムの長さ
+    [Header("儕僘儉憡娭")]
+    //儕僘儉帪娫
     public float beatLengh;
 
-    [Header("吹っ飛ばすの力さ")]
-    //黄色の状態はｘ、リズムを合わせれば4倍、赤エリアは8倍
+    [Header("悂偭旘偽偡偵娭偡傞僨乕僞")]
+    //悂偭旘偽偡偺椡
     public float force;
 
 
-    [Header("キャラクター状態")]
-    //死んだのか
+    [Header("儘乕儖僗僥乕僞僗")]
+    //巰朣偟偨偐偳偆偐
     public bool isDead;
-    //攻撃できる
+    //峌寕偱偒傞偐偳偆偐
     public bool attackable;
-    //移動できる
+    //堏摦壜擻偐偳偆偐
     public bool removable;
 }

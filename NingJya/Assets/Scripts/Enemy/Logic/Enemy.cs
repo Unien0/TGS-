@@ -5,67 +5,65 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public PlayerData_SO playerData;
-    #region PlayerData変数
+    #region PlayerData偺曄悢
     private float playerHp
     {
-        //playerDataの中にhpをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺HP傪僎僢僩偡傞
         get { if (playerData != null) return playerData.hp; else return 0; }
-        set { playerData.hp = value; }//playをあたらplayerのHPを減らす
+        set { playerData.hp = value; }//僟儊乕僕傪梌偊偨応崌偵Player偺寣検傪廋惓偡傞
     }
     private float playerDamage
     {
-        //playerDataの中にdamageをゲットして、自分の変数になる;もし探さなければ0になる
+        //Player偺僟儊乕僕抣傪庢摼偡傞
         get { if (playerData != null) return playerData.damage; else return 0; }
 
     }
     private float yellowForce
     {
-        //リズムを合わない、黄色エリアのとき
+        //墿怓僄儕傾偺椡
         get { if (playerData != null) return playerData.force; else return 0; }
     }
     private float whiteForce
     {
-        //リズム合うとき
+        //敀怓僄儕傾偺椡
         get { if (playerData != null) return playerData.force * 4; else return 0; }
     }
     private float redForce
     {
-        //赤エリアのとき
+        //愒僄儕傾偺椡
         get { if (playerData != null) return playerData.force * 8; else return 0; }
     }
     #endregion 
 
     public EnemyData_SO enemyData;
-    #region EnemyData変数
+    #region EnemyData偺曄悢
     private float enemyHp
     {
-        //enemyDataをゲット
+        //enemy偺hp傪僎僢僩偡傞
         get { if (enemyData != null) return enemyData.Hp; else return 0; }
         
     }
     private float enemyDamage
     {
-        //enemyDataをゲット
+        //enemy偺僟儊乕僕傪僎僢僩偡傞
         get { if (enemyData != null) return enemyData.damage; else return 0; }
-        set { enemyData.damage = value; }
+
     }
     private float yellowExistenceTime
     {
-        //enemyDataをゲット
+        //墿怓僄儕傾偱偺曐懚帪娫
         get { if (enemyData != null) return enemyData.existenceTime; else return 0; }
 
-    }
-    //リズムを合わせて敵を殺すれば4倍の存在時間があります
+    }    
     private float whiteExistenceTime
     {
-        //enemyDataをゲット
+        //敀怓僄儕傾偱偺曐懚帪娫
         get { if (enemyData != null) return enemyData.existenceTime*4; else return 0; }
 
     }
-    //赤エリアで敵を殺すれば8倍の存在時間があります
     private float redExistenceTime
     {
-        //enemyDataをゲット
+        //愒怓僄儕傾偱偺曐懚帪娫
         get { if (enemyData != null) return enemyData.existenceTime*8; else return 0; }
 
     }
@@ -73,22 +71,22 @@ public class Enemy : MonoBehaviour
 
     private bool attackable
     {
-        //penemyDataをゲット
+        //峌寕偺壜斲傪敾抐偡傞
         get { if (enemyData != null) return enemyData.attackable; else return false; }
     }
     private bool removable
     {
-        //penemyDataをゲット
+        //堏摦壜擻偐偳偆偐傪敾抐偡傞
         get { if (enemyData != null) return enemyData.removable; else return false; }
     }
     private bool blowable
     {
-        //penemyDataをゲット
+        //懪偪旘傋傞偐偳偆偐傪敾抐偡傞
         get { if (enemyData != null) return enemyData.blowable; else return false; }
     }
     private bool beingBlow
     {
-        //penemyDataをゲット
+        //旘偽偝傟偰偄傞偐偳偆偐傪敾抐偡傞
         get { if (enemyData != null) return enemyData.beingBlow; else return false; }
     }
     #endregion
@@ -110,6 +108,18 @@ public class Enemy : MonoBehaviour
     private Vector2 shotIt;
     private bool shoted;
 
+    private enum ATKAREATYPE
+    {
+        Null,
+        Red,
+        white,
+        yellow,
+        end
+    }
+
+    ATKAREATYPE AREA = ATKAREATYPE.Null;
+    float ForcePoint = 0;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -124,30 +134,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        actTime += Time.deltaTime;
-
-        // 擇昩宱夁帪
-        if (actTime >= 2.0f)
-        {
-            // 掆巭張棟偑峴傢傟偰偄側偄側傜
-            if (!stop)
-            {
-                // 堏摦偡傞
-                moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-                moveit.x = Mathf.Sign(moveint.x);
-                moveit.y = Mathf.Sign(moveint.y);
-                rb2d.velocity = moveit * 5;
-
-                // 掆巭丒弶婜壔偡傞
-                if (actTime >= 2.25f)
-                {
-                    rb2d.velocity = Vector2.zero;
-                    rb2d.angularVelocity = 0;
-                    actTime = 0;
-                }
-            }
-            else actTime = 0; ;
-        }
+        
 
         // 僾儗僀儎乕偺峌寕斖埻偵偄傞偲偒
         if (ATKAREA)
@@ -186,17 +173,79 @@ public class Enemy : MonoBehaviour
                 rb2d.angularVelocity = 0;
             }
         }
+        Move();
+
+        BlowAway();
     }
 
     /// <summary>
-    /// 敵を吹っ飛ばすエリアの判定
+    /// 堏摦偵娭偡傞
+    /// </summary>
+    private void Move()
+    {
+        actTime += Time.deltaTime;
+
+        // 擇昩宱夁帪
+        if (actTime >= 2.0f)
+        {
+            // 掆巭張棟偑峴傢傟偰偄側偄側傜
+            if (!stop)
+            {
+                // 堏摦偡傞
+                moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+                moveit.x = Mathf.Sign(moveint.x);
+                moveit.y = Mathf.Sign(moveint.y);
+                rb2d.velocity = moveit * 5;
+
+                // 掆巭丒弶婜壔偡傞
+                if (actTime >= 2.25f)
+                {
+                    rb2d.velocity = Vector2.zero;
+                    rb2d.angularVelocity = 0;
+                    actTime = 0;
+                }
+            }
+            else actTime = 0; ;
+        }
+    }
+
+    /// <summary>
+    /// 悂偭旘偽偡偵娭偡傞僾儘僌儔儉
     /// </summary>
     private void BlowAway()
     {
-        //1、敵の位置が黄色、白、赤のエリア内にあるかどうかを判断する
-        //2、プレイヤーは攻撃したかを判断する
-        //3、プレイヤーとの位置によって吹っ飛ばす方向を決める
-        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+        // 僾儗僀儎乕偺峌寕斖埻偵偄傞偲偒
+        if (ATKAREA)
+        {
+            //1丄僾儗僀儎乕偼峌寕偟偨偐傪敾抐偡傞
+            if (FindObjectOfType<Player>().ATK == true)
+            {
+                // 堏摦張棟傪峴傢側偄傛偆偵偡傞
+                stop = true;
+                fix = false;
+
+                //2丄揋偺埵抲偑墿怓丄敀丄愒偺僄儕傾撪偵偁傞偐偳偆偐傪敾抐偟丄埿椡傪曄偊傞丅
+                switch (AREA)
+                {
+                    case ATKAREATYPE.Red: ForcePoint = redForce; break;
+                    case ATKAREATYPE.white: ForcePoint = whiteForce; break;
+                    case ATKAREATYPE.yellow: ForcePoint = yellowForce; break;
+                }
+
+                //3丄僾儗僀儎乕偲偺埵抲偵傛偭偰悂偭旘偽偡曽岦傪寛傔傞
+                if (!shoted)
+                {
+                    // 傆偭偲偽偡
+                    shoted = true;
+                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                    shotIt.x = Mathf.Sign(shotrote.x);
+                    shotIt.y = Mathf.Sign(shotrote.y);
+
+                    //4丄尰嵼埵抲偵婎偯偄偰悂偭旘偽偡偺椡偲曐懚帪娫傪敾抐偟傑偡
+                    rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -205,15 +254,44 @@ public class Enemy : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             ATKAREA = true;
+
+            if (col.gameObject.name == "Red")
+            {
+                AREA = ATKAREATYPE.Red;
+            }
+            else if (col.gameObject.name == "white")
+            {
+                AREA = ATKAREATYPE.white;
+            }
+            else if (col.gameObject.name == "yellow")
+            {
+                AREA = ATKAREATYPE.yellow;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        // 僾儗僀儎乕偺峌寕斖埻偵擖偭偰偄偰丄
+        if (col.CompareTag("Player"))
+        {
+            if (col.gameObject.name == "Red")
+            {
+                AREA = ATKAREATYPE.Red;
+            }
+            else if (col.gameObject.name == "white")
+            {
+                AREA = ATKAREATYPE.white;
+            }
+            else if (col.gameObject.name == "yellow")
+            {
+                AREA = ATKAREATYPE.yellow;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        // 僾儗僀儎乕偺峌寕斖埻偐傜敳偗偨応崌
-        if (col.CompareTag("Player"))
-        {
-            ATKAREA = false;
-        }
+
     }
 }

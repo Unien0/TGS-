@@ -5,32 +5,32 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Data", menuName = "Data/Enemy Data")]
 public class EnemyData_SO : ScriptableObject
 {
-    [Header("基本属性")]
+    [Header("婎杮僾儘僷僥傿")]
     //HP
     public float Hp;
-    //移動速度
+    //僗僺乕僪
     public float Speed;
-    //ダメージ
+    //僟儊乕僕
     public float damage;
 
-    [Header("敵の特別数値")]
-    //ぶっ飛ばすの時間
+    [Header("悂偭旘偽偡偵娭偡傞僨乕僞")]
+    //悂偭旘偽偡偺惂尷帪娫
     public float blowTime;
-    //ぶっ飛ばすの距離
+    //悂偭旘偽偡偺惂尷嫍棧
     public float blowDistance;
-    //死亡後の存在時間
+    //懚嵼帪娫
     public float existenceTime;
 
-    [Header("キャラクター状態")]
-    //死んだのか
+    [Header("儘乕儖僗僥乕僞僗")]
+    //巰朣偟偨偐偳偆偐
     public bool isDead;
-    //攻撃できる
+    //峌寕偱偒傞偐偳偆偐
     public bool attackable;
-    //移動できる
+    //堏摦壜擻偐偳偆偐
     public bool removable;
-    //ぶっ飛ばすできる
+    //悂偭旘偽偡偱偒傞偐偳偆偐
     public bool blowable;
-    //ぶっ飛ばす中
+    //旘偽偝傟偰偄傞偐偳偆偐
     public bool beingBlow;
 
 }
