@@ -183,7 +183,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        actTime += Time.deltaTime;
+        actTime = GameManeger.Tempo;
 
         // “ñ•bŒo‰ßŽž
         if (actTime >= 2.0f)
