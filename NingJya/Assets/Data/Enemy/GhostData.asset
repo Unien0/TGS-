@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: GhostData
   m_EditorClassIdentifier: 
   Hp: 0
-  Speed: 0
+  Speed: 5
   damage: 0
   blowTime: 0
   blowDistance: 0
+  existenceTime: 0
   isDead: 0
   attackable: 0
   removable: 0

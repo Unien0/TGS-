@@ -49,23 +49,19 @@ public class GameManeger : MonoBehaviour
             Debug.Log(blow);
             time = 0;
         }
-        if (blow <4)
+        if (blow >=2)
         {
-            enemyRemovable = false;
-            Debug.Log("guan");
-        }
-        else
-        {
-            enemyRemovable = true;
-            StartCoroutine(ToRemoveable());            
-            blow = 0;            
+            StartCoroutine(ToRemoveable());
         }
         
     }
     private IEnumerator ToRemoveable()
     {
-        
-        Debug.Log("kai");
+        enemyRemovable = true;
+        blow = 0;
+        //Debug.Log("kai");
         yield return new WaitForSeconds(0.5f) ;
+        //Debug.Log("guan");
+        enemyRemovable = false;
     }
 }

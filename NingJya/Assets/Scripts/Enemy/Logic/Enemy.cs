@@ -43,6 +43,11 @@ public class Enemy : MonoBehaviour
         get { if (enemyData != null) return enemyData.Hp; else return 0; }
         
     }
+    private float enemySpeed
+    {
+        //enemy‚Ìhp‚ğƒQƒbƒg‚·‚é
+        get { if (enemyData != null) return enemyData.Speed; else return 0; }
+    }
     private float enemyDamage
     {
         //enemy‚Ìƒ_ƒ[ƒW‚ğƒQƒbƒg‚·‚é
@@ -183,30 +188,43 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        actTime = GameManeger.Tempo;
-
-        // “ñ•bŒo‰ß
-        if (actTime >= 2.0f)
+        if (removable)
         {
-            // ’â~ˆ—‚ªs‚í‚ê‚Ä‚¢‚È‚¢‚È‚ç
-            if (!stop)
-            {
-                // ˆÚ“®‚·‚é
-                moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-                moveit.x = Mathf.Sign(moveint.x);
-                moveit.y = Mathf.Sign(moveint.y);
-                rb2d.velocity = moveit * 5;
-
-                // ’â~E‰Šú‰»‚·‚é
-                if (actTime >= 2.25f)
-                {
-                    rb2d.velocity = Vector2.zero;
-                    rb2d.angularVelocity = 0;
-                    actTime = 0;
-                }
-            }
-            else actTime = 0; ;
+            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+            moveit.x = Mathf.Sign(moveint.x);
+            moveit.y = Mathf.Sign(moveint.y);
+            rb2d.velocity = moveit * enemySpeed;
         }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
+        }
+
+        //actTime = GameManeger.Tempo;
+
+        //// “ñ•bŒo‰ß
+        //if (actTime >= 2.0f)
+        //{
+        //    // ’â~ˆ—‚ªs‚í‚ê‚Ä‚¢‚È‚¢‚È‚ç
+        //    if (!stop)
+        //    {
+        //        // ˆÚ“®‚·‚é
+        //        moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+        //        moveit.x = Mathf.Sign(moveint.x);
+        //        moveit.y = Mathf.Sign(moveint.y);
+        //        rb2d.velocity = moveit * 5;
+
+        //        // ’â~E‰Šú‰»‚·‚é
+        //        if (actTime >= 2.25f)
+        //        {
+        //            rb2d.velocity = Vector2.zero;
+        //            rb2d.angularVelocity = 0;
+        //            actTime = 0;
+        //        }
+        //    }
+        //    else actTime = 0; ;
+        //}
     }
 
     /// <summary>
