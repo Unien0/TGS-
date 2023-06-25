@@ -29,8 +29,13 @@ public class Player : MonoBehaviour
         //Playerのスピード値を取得する
         get { if (playerData != null) return playerData.speed; else return 0; }
 
+    } 
+    private float attackCD
+    {
+        //PlayerのCDを取得する
+        get { if (playerData != null) return playerData.attackCD; else return 1; }
+
     }
-   
     public bool isDead
     {
         get { if (playerData != null) return playerData.isDead; else return false; }
@@ -48,7 +53,6 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.removable; else return false; }
         set { playerData.removable = value; }
     }
-
     #endregion 
 
     public Vector2 shotrote;
@@ -57,18 +61,15 @@ public class Player : MonoBehaviour
     private float time;
     private Rigidbody2D rb2d;
 
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
     }
 
     void Start()
     {
         
     }
-
     
     void Update()
     {
@@ -79,18 +80,18 @@ public class Player : MonoBehaviour
             // 攻撃処理
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ATK = true;
+                attackable = false;
             }
 
             // 攻撃処理
-            if (ATK)
+            if (!attackable)
             {
                 // クールダウンの確認
                 time += Time.deltaTime;
-                if (time >= 1)
+                if (time >= attackCD)
                 {
                     time = 0;
-                    ATK = false;
+                    attackable = true;
                 }
             }
         }        
@@ -101,7 +102,6 @@ public class Player : MonoBehaviour
         // 移動入力 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-
         // 移動処理
         rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
     }

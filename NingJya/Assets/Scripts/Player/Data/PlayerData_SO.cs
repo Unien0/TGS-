@@ -14,6 +14,8 @@ public class PlayerData_SO : ScriptableObject
     public float speed;
     //ダメージ
     public float damage;
+    //攻撃CD
+    public float attackCD;
 
     [Header("リズム相関")]
     //リズム時間

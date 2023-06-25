@@ -33,6 +33,11 @@ public class Enemy : MonoBehaviour
         //赤エリアの力
         get { if (playerData != null) return playerData.force * 8; else return 0; }
     }
+    public bool playerAttackable
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.attackable; else return false; }
+    }
     #endregion 
 
     public EnemyData_SO enemyData;
@@ -72,8 +77,6 @@ public class Enemy : MonoBehaviour
         get { if (enemyData != null) return enemyData.existenceTime*8; else return 0; }
 
     }
-
-
     private bool attackable
     {
         //攻撃の可否を判断する
@@ -96,9 +99,8 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-
     private Rigidbody2D rb2d;
-    private bool ATKAREA = false;
+    private bool inPlayerAttackRange = false;
     private GameObject PlayerObject;
     private Vector2 moveint;
     // moveintの結果を正負のみの値にする
@@ -108,12 +110,12 @@ public class Enemy : MonoBehaviour
     // 移動処理の停止
     private bool stop = false;
     private bool fix = false;
-    [SerializeField] private float speed;
     public Vector2 shotrote;
     private Vector2 shotIt;
-    private bool shoted;
+    private bool shoted;//吹っ飛ばすの状態
 
-    private enum ATKAREATYPE
+    //今プレイヤーの攻撃範囲のどこにいる
+    private enum currentAttackRange
     {
         Null,
         Red,
@@ -122,8 +124,8 @@ public class Enemy : MonoBehaviour
         end
     }
 
-    ATKAREATYPE AREA = ATKAREATYPE.Null;
-    float ForcePoint = 0;
+    currentAttackRange area = currentAttackRange.Null;
+    private  float ForcePoint = 15;
 
     private void Awake()
     {
@@ -138,49 +140,16 @@ public class Enemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-
-        // プレイヤーの攻撃範囲にいるとき
-        if (ATKAREA)
-        {
-            // プレイヤーが攻撃入力をした時
-            if (FindObjectOfType<Player>().ATK)
-            {
-                // 移動処理を行わないようにする
-                stop = true;
-                fix = false;
-                if (!shoted)
-                {
-                    // ふっとばす
-                    shoted = true;
-                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                    shotIt.x = Mathf.Sign(shotrote.x);
-                    shotIt.y = Mathf.Sign(shotrote.y);
-                    rb2d.AddForce(shotrote * 10, ForceMode2D.Impulse);
-                }
-
-            }
-        }
-
-        // ふっとばし停止処理
-        // 攻撃入力がされていない上
-        if (FindObjectOfType<Player>().ATK == false)
-        {
-            stop = false;
-            // 修正処理がされていないなら停止する。
-            if (!fix)
-            {
-                transform.eulerAngles = Vector3.zero;
-                fix = true;
-                shoted = false;
-                rb2d.velocity = Vector2.zero;
-                rb2d.angularVelocity = 0;
-            }
-        }
+    {                       
         Move();
 
-        BlowAway();
+        //Eキーを押した時、playerも攻撃できるなら
+        if (Input.GetKeyDown(KeyCode.E) && playerAttackable)
+        {
+            Debug.Log("攻撃");
+            BlowAway();
+        }  
+        //StopBlow();
     }
 
     /// <summary>
@@ -200,31 +169,6 @@ public class Enemy : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
         }
-
-        //actTime = GameManeger.Tempo;
-
-        //// 二秒経過時
-        //if (actTime >= 2.0f)
-        //{
-        //    // 停止処理が行われていないなら
-        //    if (!stop)
-        //    {
-        //        // 移動する
-        //        moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-        //        moveit.x = Mathf.Sign(moveint.x);
-        //        moveit.y = Mathf.Sign(moveint.y);
-        //        rb2d.velocity = moveit * 5;
-
-        //        // 停止・初期化する
-        //        if (actTime >= 2.25f)
-        //        {
-        //            rb2d.velocity = Vector2.zero;
-        //            rb2d.angularVelocity = 0;
-        //            actTime = 0;
-        //        }
-        //    }
-        //    else actTime = 0; ;
-        //}
     }
 
     /// <summary>
@@ -233,83 +177,122 @@ public class Enemy : MonoBehaviour
     private void BlowAway()
     {
         // プレイヤーの攻撃範囲にいるとき
-        if (ATKAREA)
+        if (inPlayerAttackRange)
         {
-            //1、プレイヤーは攻撃したかを判断する
-            if (FindObjectOfType<Player>().ATK == true)
-            {
-                // 移動処理を行わないようにする
-                stop = true;
-                fix = false;
+            //方向
+            shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+            shotIt.x = Mathf.Sign(shotrote.x);
+            shotIt.y = Mathf.Sign(shotrote.y);
 
-                //2、敵の位置が黄色、白、赤のエリア内にあるかどうかを判断し、威力を変える。
-                switch (AREA)
-                {
-                    case ATKAREATYPE.Red: ForcePoint = redForce; break;
-                    case ATKAREATYPE.white: ForcePoint = whiteForce; break;
-                    case ATKAREATYPE.yellow: ForcePoint = yellowForce; break;
-                }
+            //switch (area)
+            //{
+            //    case currentAttackRange.Red: ForcePoint = redForce; break;
+            //    case currentAttackRange.white: ForcePoint = whiteForce; break;
+            //    case currentAttackRange.yellow: ForcePoint = yellowForce; break;
+            //}
 
-                //3、プレイヤーとの位置によって吹っ飛ばす方向を決める
-                if (!shoted)
-                {
-                    // ふっとばす
-                    shoted = true;
-                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                    shotIt.x = Mathf.Sign(shotrote.x);
-                    shotIt.y = Mathf.Sign(shotrote.y);
+            //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+            rb2d.AddForce(shotrote * yellowForce);
+            //rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
 
-                    //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                    rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
-                }
-            }
+            //// 移動処理を行わないようにする
+            //stop = true;
+            //    fix = false;
+
+            //    //2、敵の位置が黄色、白、赤のエリア内にあるかどうかを判断し、威力を変える。
+            //    switch (area)
+            //    {
+            //        case currentAttackRange.Red: ForcePoint = redForce; break;
+            //        case currentAttackRange.white: ForcePoint = whiteForce; break;
+            //        case currentAttackRange.yellow: ForcePoint = yellowForce; break;
+            //    }
+
+            //    //3、プレイヤーとの位置によって吹っ飛ばす方向を決める
+            //    if (!shoted)
+            //    {
+            //    Debug.Log(3);
+            //        // ふっとばす
+            //        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+            //        shotIt.x = Mathf.Sign(shotrote.x);
+            //        shotIt.y = Mathf.Sign(shotrote.y);
+
+            //        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+            //        rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
+            //    shoted = true;
+            //}
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    /// <summary>
+    /// 吹っ飛ばすの状態に止まる
+    /// </summary>
+    private void StopBlow()
     {
-        // プレイヤーの攻撃範囲に入った場合
-        if (col.CompareTag("Player"))
+        // ふっとばし停止処理
+        // 攻撃入力がされていない上
+        if (!playerAttackable)
         {
-            ATKAREA = true;
-
-            if (col.gameObject.name == "Red")
+            stop = false;
+            // 修正処理がされていないなら停止する。
+            if (!fix)
             {
-                AREA = ATKAREATYPE.Red;
-            }
-            else if (col.gameObject.name == "white")
-            {
-                AREA = ATKAREATYPE.white;
-            }
-            else if (col.gameObject.name == "yellow")
-            {
-                AREA = ATKAREATYPE.yellow;
+                transform.eulerAngles = Vector3.zero;
+                fix = true;
+                shoted = false;
+                rb2d.velocity = Vector2.zero;
+                rb2d.angularVelocity = 0;
             }
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    // プレイヤーの攻撃範囲に入った場合
+    //    if (col.CompareTag("Player"))
+    //    {
+    //        inPlayerAttackRange = true;
+
+    //        if (col.gameObject.name == "Red")
+    //        {
+    //            area = currentAttackRange.Red;
+    //        }
+    //        else if (col.gameObject.name == "white")
+    //        {
+    //            area = currentAttackRange.white;
+    //        }
+    //        else if (col.gameObject.name == "yellow")
+    //        {
+    //            area = currentAttackRange.yellow;
+    //        }
+    //    }
+    //}
 
     private void OnTriggerStay2D(Collider2D col)
     {
         // プレイヤーの攻撃範囲に入っていて、
         if (col.CompareTag("Player"))
         {
+            inPlayerAttackRange = true;
             if (col.gameObject.name == "Red")
             {
-                AREA = ATKAREATYPE.Red;
+                area = currentAttackRange.Red;
             }
             else if (col.gameObject.name == "white")
             {
-                AREA = ATKAREATYPE.white;
+                area = currentAttackRange.white;
             }
             else if (col.gameObject.name == "yellow")
             {
-                AREA = ATKAREATYPE.yellow;
+                area = currentAttackRange.yellow;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-
-    }
+        if (col.CompareTag("Player"))
+        {            
+            inPlayerAttackRange = false;
+        }
+     }
 }
