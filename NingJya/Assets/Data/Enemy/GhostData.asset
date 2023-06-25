@@ -15,11 +15,11 @@ MonoBehaviour:
   Hp: 0
   Speed: 5
   damage: 0
-  blowTime: 5
+  blowTime: 2
   blowDistance: 5
   existenceTime: 5
   isDead: 0
   attackable: 0
-  removable: 1
+  removable: 0
   blowable: 0
   beingBlow: 0

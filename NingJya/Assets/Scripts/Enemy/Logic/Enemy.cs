@@ -59,6 +59,12 @@ public class Enemy : MonoBehaviour
         get { if (enemyData != null) return enemyData.damage; else return 0; }
 
     }
+    private float blowTime
+    {
+        //吹っ飛ばすの状態に直すの時間
+        get { if (enemyData != null) return enemyData.blowTime; else return 0; }
+
+    }
     private float yellowExistenceTime
     {
         //黄色エリアでの保存時間
@@ -124,8 +130,10 @@ public class Enemy : MonoBehaviour
         end
     }
 
-    currentAttackRange area = currentAttackRange.Null;
-    private  float ForcePoint = 15;
+   private currentAttackRange area;
+
+    //仮の吹っ飛ばす力
+    private  float ForcePoint = 150;
 
     private void Awake()
     {
@@ -135,20 +143,31 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
+        area = currentAttackRange.Null;
     }
 
     // Update is called once per frame
     void Update()
-    {                       
-        Move();
-
+    {
+        //吹っ飛ばすしない状態に移動する
+        if (!shoted)
+        {
+            Move();
+        }
+        
         //Eキーを押した時、playerも攻撃できるなら
         if (Input.GetKeyDown(KeyCode.E) && playerAttackable)
         {
             Debug.Log("攻撃");
+            shoted = true;
             BlowAway();
-        }  
+        }
+
+        //吹っ飛ばすしたら、止まる時間を計算する
+        if (shoted)
+        {
+            ToStop();
+        }        
         //StopBlow();
     }
 
@@ -184,6 +203,7 @@ public class Enemy : MonoBehaviour
             shotIt.x = Mathf.Sign(shotrote.x);
             shotIt.y = Mathf.Sign(shotrote.y);
 
+            //ーーーーーーーーー問題点（ForcePointはこれをゲットできない）ーーーーーーーーー
             //switch (area)
             //{
             //    case currentAttackRange.Red: ForcePoint = redForce; break;
@@ -192,7 +212,10 @@ public class Enemy : MonoBehaviour
             //}
 
             //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-            rb2d.AddForce(shotrote * yellowForce);
+            rb2d.AddForce(shotrote * ForcePoint);
+
+
+            //ーーーーーーーーー調整のためにーーーーーーーーー
             //rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
 
             //// 移動処理を行わないようにする
@@ -224,6 +247,19 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
+    /// 吹っ飛ばす状態に止まるの時間
+    /// </summary>
+    private void ToStop()
+    {
+        actTime += Time.deltaTime;
+        if (actTime >= blowTime)
+        {
+            actTime = 0;
+            shoted = false;
+        }
+    }
+
+    /// <summary>
     /// 吹っ飛ばすの状態に止まる
     /// </summary>
     private void StopBlow()
@@ -244,6 +280,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
 
     //private void OnTriggerEnter2D(Collider2D col)
     //{

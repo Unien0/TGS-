@@ -21,7 +21,7 @@ public class GameManeger : MonoBehaviour
 
     private void Start()
     {
-        
+        enemyRemovable = false;
     }
     private void Update()
     {

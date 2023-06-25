@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
                 attackable = false;
             }
 
-            // 攻撃処理
+            // 攻撃処理、playerCDの部分
             if (!attackable)
             {
                 // クールダウンの確認
