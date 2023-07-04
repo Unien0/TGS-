@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GM Data
   m_EditorClassIdentifier: 
   rhythmTime: 0
+  BgmVolume: 0.5
+  SeVolume: 0.5
