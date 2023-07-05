@@ -12,53 +12,76 @@ public class GameManeger : MonoBehaviour
         get { if (enemyData != null) return enemyData.removable; else return false; }
         set { enemyData.removable = value; }
     }
+    private bool blowable
+    {
+        //打ち飛べるかどうかを判断する
+        get { if (enemyData != null) return enemyData.blowable; else return false; }
+        set { enemyData.blowable = value; }
+    }
     #endregion
 
-    public static float Tempo;
-    private int blow;
-    private float time;
+    [SerializeField] private float BPM;
+    public static double Tempo;
+    private double time;
+    public double OneTempo;
+    public static double one_eighthTenpo;
+    public static double one_eighthCount;
+    private AudioSource Audio;
+    [SerializeField] private AudioClip MetronomeSE;
 
 
     private void Start()
     {
+        Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
+        OneTempo = 60 / BPM;
+        one_eighthTenpo = OneTempo / 8;
     }
     private void Update()
     {
         Metronome();
     }
 
-    // フレーム数を60にしたい
-    //void FixedUpdate()
-    //{
-    //    Tempo = Tempo + 1;
-
-    //    // 2秒(120)立つたびに初期化
-    //    if (Tempo >= 120)
-    //    {
-    //        Tempo = 0;
-    //    }
-    //}
-
     private void Metronome()
     {
         time += Time.deltaTime;
-        if (time > 1)
+        if (time > OneTempo)
         {
-            blow++;
-            Debug.Log(blow);
+            Tempo++;
             time = 0;
+            Audio.clip = MetronomeSE;
+            Audio.Play();
         }
-        if (blow >=2)
+        if (Tempo >= 4)
+        {
+            Tempo = 0;
+        }
+
+        /// <summary>
+        /// テンポに応じて処理を行う
+        /// </summary> 
+        //　○　敵の移動
+        if (Tempo == 3)
         {
             StartCoroutine(ToRemoveable());
         }
-        
+
+        //ジャストアタック
+        if ((time > (OneTempo - (OneTempo / 5))) || 
+            (time < (OneTempo / 2)))
+        {
+            // Enemyのフットバシ処理を許可する
+            blowable = true;
+            // 抜刀スプライトに変更
+        }
+        else
+        {
+            blowable = false;
+        }
     }
     private IEnumerator ToRemoveable()
     {
         enemyRemovable = true;
-        blow = 0;
         //Debug.Log("kai");
         yield return new WaitForSeconds(0.5f) ;
         //Debug.Log("guan");

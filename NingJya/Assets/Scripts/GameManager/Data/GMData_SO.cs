@@ -8,10 +8,9 @@ public class GMData_SO : ScriptableObject
     [Header("基本プロパティ")]
     public float rhythmTime;
 
-    [Header("音量")]
+    [Header("Audioについて")]
     [Range(0, 1)]
     public float BgmVolume;
     [Range(0, 1)]
     public float SeVolume;
-
 }

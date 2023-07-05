@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -60,6 +61,10 @@ public class Player : MonoBehaviour
     public bool ATK;
     private float time;
     private Rigidbody2D rb2d;
+    [SerializeField] private GameObject AttackArea;
+    private float roteMax;
+    private float moveinput;
+    [SerializeField]private GameObject KATANA;
 
     private void Awake()
     {
@@ -73,14 +78,25 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if ((Input.GetKeyDown(KeyCode.T)) || Input.GetKeyDown("joystick button 5"))
+        {
+            SceneManager.LoadScene(0);
+        }
+       
+
         if (!isDead)
         {
             move();
 
             // çUåÇèàóù
-            if (Input.GetKeyDown(KeyCode.E))
+            if ((Input.GetKeyDown(KeyCode.E))|| Input.GetKeyDown("joystick button 1"))
             {
                 attackable = false;
+                KATANA.GetComponent<Animator>().SetBool("ATK",true);
+            }
+            else
+            {
+                KATANA.GetComponent<Animator>().SetBool("ATK", false);
             }
 
             // çUåÇèàóùÅAplayerCDÇÃïîï™
@@ -102,15 +118,30 @@ public class Player : MonoBehaviour
         // à⁄ìÆì¸óÕ 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        // à⁄ìÆèàóù
-        rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
-    }
+        if ((horizontal != 0) || (vertical != 0))
+        {
+            moveinput += Time.deltaTime;
 
-    //private void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    if (col.CompareTag("Enemy"))
-    //    {
-    //        Enemyobj = col.gameObject;
-    //    }
-    //}
+            // ì¸óÕÇ…âûÇ∂ÇƒÅAâÒì]ÇïœçXÇ∑ÇÈ
+            if ((horizontal >= 0.01f) && (vertical >= 0.01f)) roteMax = 315;
+            if ((horizontal == 0) && (vertical >= 0.01)) roteMax = 0;
+            if ((horizontal <= -0.01f) && (vertical >= 0.01f)) roteMax = 45;
+            if ((horizontal <= -0.01f) && (vertical == 0)) roteMax = 90;
+            if ((horizontal <= -0.1f) && (vertical <= -0.01f)) roteMax = 135;
+            if ((horizontal == 0) && (vertical <= -0.01f)) roteMax = 180;
+            if ((horizontal >= 0.01f) && (vertical <= -0.01f)) roteMax = 225;
+            if ((horizontal >= 0.01f) && (vertical == 0)) roteMax = 270;
+            AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+        }
+        else
+        {
+            moveinput = 0;
+            rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
+        }
+        if (moveinput >= 0.05f)
+        {
+            // à⁄ìÆèàóù
+            rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
+        }
+    }
 }

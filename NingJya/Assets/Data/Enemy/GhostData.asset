@@ -18,8 +18,8 @@ MonoBehaviour:
   blowTime: 0.25
   blowDistance: 5
   existenceTime: 5
-  isDead: 1
+  isDead: 0
   attackable: 0
-  removable: 1
-  blowable: 0
+  removable: 0
+  blowable: 1
   beingBlow: 0
