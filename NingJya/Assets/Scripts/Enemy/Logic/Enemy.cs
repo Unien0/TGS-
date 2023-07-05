@@ -107,8 +107,13 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private bool inPlayerAttackRange = false;
+    private bool isEnemyClash = false;
+    private GameObject ClashEnemyObj;
+    private Vector2 clashRote;
+    private Vector2 clashshotIt;
     private GameObject PlayerObject;
     private Vector2 moveint;
+    [SerializeField]private float objctDistance;
     // moveintの結果を正負のみの値にする
     private Vector2 moveit;
     // 行動までの待機時間
@@ -117,8 +122,22 @@ public class Enemy : MonoBehaviour
     private bool stop = false;
     private bool fix = false;
     public Vector2 shotrote;
-    private Vector2 shotIt;
+    [SerializeField]private Vector2 shotIt;
     private bool shoted;//吹っ飛ばすの状態
+    private bool hit;
+
+    private enum enemyActSet
+    {
+        move,
+        shot,
+        cannonball,
+        end
+    }
+    enemyActSet enemyAct;
+    private bool shotOk;
+    [SerializeField] private GameObject cannonball;
+    [SerializeField] private GameObject sotBullet;
+    private bool isShot;
 
     //今プレイヤーの攻撃範囲のどこにいる
     private enum currentAttackRange
@@ -133,7 +152,7 @@ public class Enemy : MonoBehaviour
    private currentAttackRange area;
 
     //仮の吹っ飛ばす力
-    private  float ForcePoint = 150;
+    private  float ForcePoint = 625;
 
     private void Awake()
     {
@@ -154,13 +173,30 @@ public class Enemy : MonoBehaviour
         {
             Move();
         }
-        
-        //Eキーを押した時、playerも攻撃できるなら
-        if (Input.GetKeyDown(KeyCode.E) && playerAttackable)
+        if (hit)
         {
-            Debug.Log("攻撃");
             shoted = true;
-            BlowAway();
+            hit = false;
+           HitBlow();
+        }
+        
+        
+        //Eキーを押した時、playerも攻撃できる上
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1") )
+        {
+            if (inPlayerAttackRange)
+            {
+                // ジャストアタックのタイミングなら
+                if (blowable)
+                {
+                    shoted = true;
+                    BlowAway();
+                }
+                else
+                {
+                    shoted = false;
+                }
+            }
         }
 
         //吹っ飛ばすしたら、止まる時間を計算する
@@ -169,6 +205,53 @@ public class Enemy : MonoBehaviour
             ToStop();
         }        
         //StopBlow();
+
+        switch (enemyAct)
+        {
+            case enemyActSet.move:
+                break;
+            case enemyActSet.shot:
+                shotOk = true;
+                break;
+            case enemyActSet.cannonball:
+                shotOk = true;
+                rb2d.velocity = Vector3.zero;
+                break;
+        }
+
+        if (shotOk)
+        {
+            if (enemyAct == enemyActSet.cannonball)
+            {
+                if (GameManeger.Tempo == 0)
+                {
+                    if (!isShot)
+                    {
+                        isShot = true;
+
+                    }
+                }
+                else
+                {
+                    isShot = false;
+                }
+            }
+            if (enemyAct == enemyActSet.shot)
+            {
+                if(GameManeger.Tempo == 1)
+                {
+                    if (!isShot)
+                    {
+                        isShot = true;
+                        
+                    }
+                }
+                else
+                {
+                    isShot = false;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -178,15 +261,27 @@ public class Enemy : MonoBehaviour
     {
         if (removable)
         {
-            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-            moveit.x = Mathf.Sign(moveint.x);
-            moveit.y = Mathf.Sign(moveint.y);
-            rb2d.velocity = moveit * enemySpeed;
+            PlayerObject = FindObjectOfType<Player>().gameObject;
+            //if (!isEnemyClash)
+            {
+                moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+                objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
+                if (objctDistance <= 10)
+                {
+                    moveit.x = Mathf.Sign(moveint.x);
+                    moveit.y = Mathf.Sign(moveint.y);
+                    rb2d.velocity = moveit * enemySpeed;
+                }
+
+            }
         }
         else
         {
-            rb2d.velocity = Vector2.zero;
-            rb2d.angularVelocity = 0;
+            //if (!isEnemyClash)
+            {
+                rb2d.velocity = Vector2.zero;
+                rb2d.angularVelocity = 0;
+            }
         }
     }
 
@@ -200,50 +295,33 @@ public class Enemy : MonoBehaviour
         {
             //方向
             shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-            shotIt.x = Mathf.Sign(shotrote.x);
-            shotIt.y = Mathf.Sign(shotrote.y);
-
-            //ーーーーーーーーー問題点（ForcePointはこれをゲットできない）ーーーーーーーーー
-            //switch (area)
-            //{
-            //    case currentAttackRange.Red: ForcePoint = redForce; break;
-            //    case currentAttackRange.white: ForcePoint = whiteForce; break;
-            //    case currentAttackRange.yellow: ForcePoint = yellowForce; break;
-            //}
-
+            if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+            {shotIt.x = Mathf.Sign(shotrote.x);}
+            else
+            {shotIt.x = 0;}
+            if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+            {shotIt.y = Mathf.Sign(shotrote.y);}
+            else
+            {shotIt.y = 0;}
             //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-            rb2d.AddForce(shotrote * ForcePoint);
-
-
-            //ーーーーーーーーー調整のためにーーーーーーーーー
-            //rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
-
-            //// 移動処理を行わないようにする
-            //stop = true;
-            //    fix = false;
-
-            //    //2、敵の位置が黄色、白、赤のエリア内にあるかどうかを判断し、威力を変える。
-            //    switch (area)
-            //    {
-            //        case currentAttackRange.Red: ForcePoint = redForce; break;
-            //        case currentAttackRange.white: ForcePoint = whiteForce; break;
-            //        case currentAttackRange.yellow: ForcePoint = yellowForce; break;
-            //    }
-
-            //    //3、プレイヤーとの位置によって吹っ飛ばす方向を決める
-            //    if (!shoted)
-            //    {
-            //    Debug.Log(3);
-            //        // ふっとばす
-            //        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-            //        shotIt.x = Mathf.Sign(shotrote.x);
-            //        shotIt.y = Mathf.Sign(shotrote.y);
-
-            //        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-            //        rb2d.AddForce(shotIt * ForcePoint, ForceMode2D.Impulse);
-            //    shoted = true;
-            //}
+            rb2d.AddForce(shotIt * ForcePoint);
         }
+    }
+
+    void HitBlow()
+    {
+        //方向
+        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+        { shotIt.x = Mathf.Sign(shotrote.x); }
+        else
+        { shotIt.x = 0; }
+        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+        { shotIt.y = Mathf.Sign(shotrote.y); }
+        else
+        { shotIt.y = 0; }
+        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+        rb2d.AddForce(shotIt * ForcePoint);
     }
 
     /// <summary>
@@ -254,55 +332,32 @@ public class Enemy : MonoBehaviour
         actTime += Time.deltaTime;
         if (actTime >= blowTime)
         {
-            actTime = 0;
-            shoted = false;
-        }
-    }
+            transform.eulerAngles = Vector3.zero;
+            rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
 
-    /// <summary>
-    /// 吹っ飛ばすの状態に止まる
-    /// </summary>
-    private void StopBlow()
-    {
-        // ふっとばし停止処理
-        // 攻撃入力がされていない上
-        if (!playerAttackable)
-        {
-            stop = false;
-            // 修正処理がされていないなら停止する。
-            if (!fix)
+            if (actTime >= blowTime + 0.5f)
             {
-                transform.eulerAngles = Vector3.zero;
-                fix = true;
-                shoted = false;
-                rb2d.velocity = Vector2.zero;
-                rb2d.angularVelocity = 0;
+                Destroy(this.gameObject);
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            if (col.gameObject.GetComponent<Enemy>().shoted)
+            {
+                hit = true;
+            }
+        }
+        if (col.gameObject.CompareTag("HitObj"))
+        {
+            Debug.Log("B");
+            hit = true;
+        }
 
-
-    //private void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    // プレイヤーの攻撃範囲に入った場合
-    //    if (col.CompareTag("Player"))
-    //    {
-    //        inPlayerAttackRange = true;
-
-    //        if (col.gameObject.name == "Red")
-    //        {
-    //            area = currentAttackRange.Red;
-    //        }
-    //        else if (col.gameObject.name == "white")
-    //        {
-    //            area = currentAttackRange.white;
-    //        }
-    //        else if (col.gameObject.name == "yellow")
-    //        {
-    //            area = currentAttackRange.yellow;
-    //        }
-    //    }
-    //}
+    }
 
     private void OnTriggerStay2D(Collider2D col)
     {
@@ -310,18 +365,7 @@ public class Enemy : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             inPlayerAttackRange = true;
-            if (col.gameObject.name == "Red")
-            {
-                area = currentAttackRange.Red;
-            }
-            else if (col.gameObject.name == "white")
-            {
-                area = currentAttackRange.white;
-            }
-            else if (col.gameObject.name == "yellow")
-            {
-                area = currentAttackRange.yellow;
-            }
+            PlayerObject = FindObjectOfType<Player>().gameObject;
         }
     }
 
@@ -331,5 +375,5 @@ public class Enemy : MonoBehaviour
         {            
             inPlayerAttackRange = false;
         }
-     }
+    }
 }
