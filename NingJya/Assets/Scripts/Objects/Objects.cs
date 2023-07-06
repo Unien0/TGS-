@@ -42,7 +42,7 @@ public class Objects : MonoBehaviour
     private bool shoted;//‚Á”ò‚Î‚·‚Ìó‘Ô
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
-    private float ForcePoint = 375;
+    private float ForcePoint = 700;
     private float actTime;
 
     void Start()

@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
    private currentAttackRange area;
 
     //‰¼‚Ì‚Á”ò‚Î‚·—Í
-    private  float ForcePoint = 625;
+    private  float ForcePoint = 800;
 
     private void Awake()
     {
