@@ -56,15 +56,19 @@ public class Player : MonoBehaviour
     }
     #endregion 
 
-    public Vector2 shotrote;
-    private GameObject Enemyobj;
-    public bool ATK;
     private float time;
-    private Rigidbody2D rb2d;
-    [SerializeField] private GameObject AttackArea;
     private float roteMax;
     private float moveinput;
+
+    public bool ATK;
+
+    public Vector2 shotrote;
+
+    private GameObject Enemyobj;    
+    [SerializeField] private GameObject AttackArea;    
     [SerializeField]private GameObject KATANA;
+
+    private Rigidbody2D rb2d;
 
     private void Awake()
     {

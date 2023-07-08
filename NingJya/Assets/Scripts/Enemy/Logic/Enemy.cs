@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //共有データ
     public PlayerData_SO playerData;
     #region PlayerDataの変数
     private float playerHp
@@ -18,21 +19,12 @@ public class Enemy : MonoBehaviour
         get { if (playerData != null) return playerData.damage; else return 0; }
 
     }
-    private float yellowForce
+    private float ForcePoint
     {
-        //黄色エリアの力
+        //仮の力
         get { if (playerData != null) return playerData.force; else return 0; }
     }
-    private float whiteForce
-    {
-        //白色エリアの力
-        get { if (playerData != null) return playerData.force * 4; else return 0; }
-    }
-    private float redForce
-    {
-        //赤エリアの力
-        get { if (playerData != null) return playerData.force * 8; else return 0; }
-    }
+
     public bool playerAttackable
     {
         //プレイヤーが攻撃できるかどうかを判断する
@@ -65,24 +57,12 @@ public class Enemy : MonoBehaviour
         get { if (enemyData != null) return enemyData.blowTime; else return 0; }
 
     }
-    private float yellowExistenceTime
+    private float ExistenceTime
     {
-        //黄色エリアでの保存時間
+        //死体の保存時間
         get { if (enemyData != null) return enemyData.existenceTime; else return 0; }
 
     }    
-    private float whiteExistenceTime
-    {
-        //白色エリアでの保存時間
-        get { if (enemyData != null) return enemyData.existenceTime*4; else return 0; }
-
-    }
-    private float redExistenceTime
-    {
-        //赤色エリアでの保存時間
-        get { if (enemyData != null) return enemyData.existenceTime*8; else return 0; }
-
-    }
     private bool attackable
     {
         //攻撃の可否を判断する
@@ -105,27 +85,6 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    private Rigidbody2D rb2d;
-    private bool inPlayerAttackRange = false;
-    private bool isEnemyClash = false;
-    private GameObject ClashEnemyObj;
-    private Vector2 clashRote;
-    private Vector2 clashshotIt;
-    private GameObject PlayerObject;
-    private Vector2 moveint;
-    [SerializeField]private float objctDistance;
-    // moveintの結果を正負のみの値にする
-    private Vector2 moveit;
-    // 行動までの待機時間
-    private float actTime;
-    // 移動処理の停止
-    private bool stop = false;
-    private bool fix = false;
-    public Vector2 shotrote;
-    [SerializeField]private Vector2 shotIt;
-    private bool shoted;//吹っ飛ばすの状態
-    private bool hit;
-
     private enum enemyActSet
     {
         move,
@@ -133,12 +92,6 @@ public class Enemy : MonoBehaviour
         cannonball,
         end
     }
-    enemyActSet enemyAct;
-    private bool shotOk;
-    [SerializeField] private GameObject cannonball;
-    [SerializeField] private GameObject sotBullet;
-    private bool isShot;
-
     //今プレイヤーの攻撃範囲のどこにいる
     private enum currentAttackRange
     {
@@ -148,11 +101,36 @@ public class Enemy : MonoBehaviour
         yellow,
         end
     }
+    
+    private float actTime;// 行動までの待機時間    
+    [SerializeField] private float objctDistance;
 
-   private currentAttackRange area;
+    //個体の状態（Bool）
+    private bool inPlayerAttackRange = false;
+    private bool isEnemyClash = false;
+    private bool shotOk;
+    private bool isShot;
+    private bool shoted;//吹っ飛ばすの状態
+    private bool hit;
+    private bool stop = false;// 移動処理の停止
+    private bool fix = false;
 
-    //仮の吹っ飛ばす力
-    private  float ForcePoint = 800;
+    private Rigidbody2D rb2d;
+    enemyActSet enemyAct;
+    private currentAttackRange area;
+
+    private GameObject ClashEnemyObj;
+    private GameObject PlayerObject;
+    [SerializeField] private GameObject cannonball;
+    [SerializeField] private GameObject sotBullet;
+
+    private Vector2 clashRote;
+    private Vector2 clashshotIt;
+    private Vector2 moveint;    
+    private Vector2 moveit;// moveintの結果を正負のみの値にする
+    public Vector2 shotrote;
+    [SerializeField] private Vector2 shotIt;
+
 
     private void Awake()
     {
@@ -342,6 +320,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))

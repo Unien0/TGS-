@@ -4,55 +4,58 @@ using UnityEngine;
 
 public class Objects : MonoBehaviour
 {
-    public EnemyData_SO enemyData;
-    #region EnemyDataの変数
+    public EnemyData_SO SeatClothData;
+    #region SeatClothDataの変数
     private float blowTime
     {
         //吹っ飛ばすの状態に直すの時間
-        get { if (enemyData != null) return enemyData.blowTime; else return 0; }
-        set { enemyData.blowTime = value; }
-    }
-    private bool attackable
-    {
-        //攻撃の可否を判断する
-        get { if (enemyData != null) return enemyData.attackable; else return false; }
+        get { if (SeatClothData != null) return SeatClothData.blowTime; else return 0; }
+        set { SeatClothData.blowTime = value; }
     }
     private bool removable
     {
         //移動可能かどうかを判断する
-        get { if (enemyData != null) return enemyData.removable; else return false; }
+        get { if (SeatClothData != null) return SeatClothData.removable; else return false; }
     }
     private bool blowable
     {
         //打ち飛べるかどうかを判断する
-        get { if (enemyData != null) return enemyData.blowable; else return false; }
-        set { enemyData.blowable = value; }
+        get { if (SeatClothData != null) return SeatClothData.blowable; else return false; }
+        set { SeatClothData.blowable = value; }
     }
     private bool beingBlow
     {
         //飛ばされているかどうかを判断する
-        get { if (enemyData != null) return enemyData.beingBlow; else return false; }
+        get { if (SeatClothData != null) return SeatClothData.beingBlow; else return false; }
     }
     #endregion
+
+    private float ForcePoint = 700;
+    private float actTime;
+
+    private bool inPlayerAttackRange = false;
+    private bool shoted;//吹っ飛ばすの状態
 
     private Rigidbody2D rb2d;
     private Collider2D col2d;
     private GameObject PlayerObject;
-    private bool inPlayerAttackRange = false;
-    private bool shoted;//吹っ飛ばすの状態
+
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
-    private float ForcePoint = 700;
-    private float actTime;
 
-    void Start()
+    private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         col2d = GetComponent<Collider2D>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
+
     void Update()
     {
         // ジャストアタックのタイミングの上
