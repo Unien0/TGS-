@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 5
   hp: 5
-  speed: 4
+  speed: 6
   damage: 1
   attackCD: 0.2
   beatLengh: 0
-  force: 800
+  force: 1000
   isDead: 0
   attackable: 1
   removable: 0

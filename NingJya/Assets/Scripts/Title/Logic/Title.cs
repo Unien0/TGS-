@@ -15,7 +15,9 @@ public class Title : MonoBehaviour
 
     public void NewGame()
     {
-
+        
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
     }
 
     public void GameOver()
