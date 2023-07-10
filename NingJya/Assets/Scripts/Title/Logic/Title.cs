@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-   
 
     // Update is called once per frame
     void Update()
@@ -15,14 +14,12 @@ public class Title : MonoBehaviour
 
     public void NewGame()
     {
-        
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        SceneManager.LoadScene("SampleMap");
     }
 
     public void GameOver()
     {
         Application.Quit();//GameOver
     }
-   
+
 }
