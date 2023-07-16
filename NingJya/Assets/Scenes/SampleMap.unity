@@ -232,7 +232,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
   BPM: 140
   OneTempo: 0
-  MetronomeSE: {fileID: 8300000, guid: b5cfa4b1e7a12354a865299d3fc31eae, type: 3}
+  MetronomeSE: {fileID: 0}
 --- !u!4 &20236710
 Transform:
   m_ObjectHideFlags: 0
@@ -240,8 +240,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20236708}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -821.92145, y: -460.64505, z: 0.007985711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -715,7 +715,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.10748638}
+  m_Offset: {x: -0.0071946383, y: -0.24994805}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -726,7 +726,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.2149726}
+  m_Size: {x: 1.5899632, y: 1.6627095}
   m_EdgeRadius: 0
 --- !u!212 &158156506
 SpriteRenderer:
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1800509839}
         m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
         m_MethodName: SEVolume
         m_Mode: 1
@@ -28131,7 +28131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011062381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 821.92145, y: 460.64505, z: -0.007985711}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31219,7 +31219,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1800509839}
         m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
         m_MethodName: BGMVolume
         m_Mode: 1
@@ -32857,6 +32857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800509837}
   - component: {fileID: 1800509838}
+  - component: {fileID: 1800509839}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -32895,7 +32896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: BGM
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2d4c4e01a112f40408007d3fe11a01d9, type: 3}
   seSounds:
   - name: Move
     clip: {fileID: 0}
@@ -32907,6 +32908,23 @@ MonoBehaviour:
     clip: {fileID: 0}
   musicSounrce: {fileID: 1586242663}
   seSource: {fileID: 821924550}
+--- !u!114 &1800509839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800509836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d548b0a17d956f74db3f5e903e0d48f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameManagerData: {fileID: 11400000, guid: fbc14fdb27592294694a20ca8c0f8dd9, type: 2}
+  BGMSlider: {fileID: 1455831800}
+  SESlider: {fileID: 607017534}
+  BGMSource: {fileID: 1586242663}
+  SESource: {fileID: 821924550}
 --- !u!1 &1842523755
 GameObject:
   m_ObjectHideFlags: 0

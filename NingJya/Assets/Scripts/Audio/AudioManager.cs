@@ -29,8 +29,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //ÉQÅ[ÉÄÇÃBGM
-        //PlayMusic("");
-        
+        PlayMusic("BGM");
+
     }
 
     public void PlayMusic(string name)
