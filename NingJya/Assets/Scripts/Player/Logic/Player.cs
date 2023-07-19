@@ -59,6 +59,9 @@ public class Player : MonoBehaviour
     private float time;
     private float roteMax;
     private float moveinput;
+    private float inputX;
+    private float inputY;
+
 
     public bool ATK;
 
@@ -69,10 +72,12 @@ public class Player : MonoBehaviour
     [SerializeField]private GameObject KATANA;
 
     private Rigidbody2D rb2d;
+    private Animator[] animators;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animators = GetComponentsInChildren<Animator>();
     }
 
     void Start()
@@ -91,6 +96,8 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             move();
+            PlayerInput();
+            SwitchAnimation();
 
             // çUåÇèàóù
             if ((Input.GetKeyDown(KeyCode.E))|| Input.GetKeyDown("joystick button 1"))
@@ -146,6 +153,21 @@ public class Player : MonoBehaviour
         {
             // à⁄ìÆèàóù
             rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
+        }
+    }
+
+    private void PlayerInput()
+    {
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+    }
+
+    private void SwitchAnimation()
+    {
+        foreach (var anim in animators)
+        {
+            anim.SetFloat("InputX", inputX);
+            anim.SetFloat("InputY", inputY);
         }
     }
 }
