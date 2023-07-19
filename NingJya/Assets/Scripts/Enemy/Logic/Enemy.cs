@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
     
     private float actTime;// 行動までの待機時間    
     [SerializeField] private float objctDistance;
+    private float hp;
 
     //個体の状態（Bool）
     private bool inPlayerAttackRange = false;
@@ -114,6 +115,7 @@ public class Enemy : MonoBehaviour
     private bool hit;
     private bool stop = false;// 移動処理の停止
     private bool fix = false;
+    [SerializeField] private bool exchange;
 
     private Rigidbody2D rb2d;
     enemyActSet enemyAct;
@@ -136,11 +138,13 @@ public class Enemy : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
+
     }
 
     void Start()
     {
         area = currentAttackRange.Null;
+        hp = enemyHp;
     }
 
     // Update is called once per frame
@@ -157,8 +161,11 @@ public class Enemy : MonoBehaviour
             hit = false;
            HitBlow();
         }
-        
-        
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 4"))
+        {
+            exchange = !exchange;
+        }
+
         //Eキーを押した時、playerも攻撃できる上
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1") )
         {
@@ -240,8 +247,6 @@ public class Enemy : MonoBehaviour
         if (removable)
         {
             PlayerObject = FindObjectOfType<Player>().gameObject;
-            //if (!isEnemyClash)
-            {
                 moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
                 objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
                 if (objctDistance <= 10)
@@ -250,16 +255,11 @@ public class Enemy : MonoBehaviour
                     moveit.y = Mathf.Sign(moveint.y);
                     rb2d.velocity = moveit * enemySpeed;
                 }
-
-            }
         }
         else
         {
-            //if (!isEnemyClash)
-            {
-                rb2d.velocity = Vector2.zero;
-                rb2d.angularVelocity = 0;
-            }
+            rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
         }
     }
 
@@ -271,18 +271,29 @@ public class Enemy : MonoBehaviour
         // プレイヤーの攻撃範囲にいるとき
         if (inPlayerAttackRange)
         {
-            //方向
-            shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-            if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-            {shotIt.x = Mathf.Sign(shotrote.x);}
+            if (exchange)
+            {
+                // 全敵の取得
+                // 誘導範囲内の敵の取得
+                // 誘導範囲内で、攻撃方向にある敵を取得
+                // 上の敵取得の中から一番近くの敵を取得
+                // このオブジェクトと目標オブジェクトの差を求め、アドフォース
+            }
             else
-            {shotIt.x = 0;}
-            if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-            {shotIt.y = Mathf.Sign(shotrote.y);}
-            else
-            {shotIt.y = 0;}
-            //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-            rb2d.AddForce(shotIt * ForcePoint);
+            {
+                //方向
+                shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                { shotIt.x = Mathf.Sign(shotrote.x); }
+                else
+                { shotIt.x = 0; }
+                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                { shotIt.y = Mathf.Sign(shotrote.y); }
+                else
+                { shotIt.y = 0; }
+                //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                rb2d.AddForce(shotIt * ForcePoint);
+            }         
         }
     }
 
@@ -316,7 +327,15 @@ public class Enemy : MonoBehaviour
 
             if (actTime >= blowTime + 0.5f)
             {
-                Destroy(this.gameObject);
+                if (hp <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    actTime = 0;
+                    shoted = false;
+                }
             }
         }
     }
@@ -328,12 +347,13 @@ public class Enemy : MonoBehaviour
             if (col.gameObject.GetComponent<Enemy>().shoted)
             {
                 hit = true;
+                hp--;
             }
         }
         if (col.gameObject.CompareTag("HitObj"))
         {
-            Debug.Log("B");
             hit = true;
+            hp--;
         }
 
     }

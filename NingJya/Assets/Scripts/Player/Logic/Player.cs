@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     {
         //PlayerのHPをゲットする
         get { if (playerData != null) return playerData.hp; else return 0; }
-
+        set { playerData.hp = value; }
     }
     private float damage
     {
@@ -54,18 +54,25 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.removable; else return false; }
         set { playerData.removable = value; }
     }
+    public bool Mutekki
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.mutekki; else return false; }
+        set { playerData.mutekki = value; }
+    }
     #endregion 
 
     private float time;
     private float roteMax;
-    private float moveinput;
     private float inputX;
     private float inputY;
+    private float MutekiTime;
 
 
     public bool ATK;
 
     public Vector2 shotrote;
+    [SerializeField]private Vector2 moveInput;
 
     private GameObject Enemyobj;    
     [SerializeField] private GameObject AttackArea;    
@@ -73,11 +80,13 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Animator[] animators;
+    private SpriteRenderer SpR;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+        SpR = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Start()
@@ -92,35 +101,11 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(0);
         }
        
-
         if (!isDead)
         {
             move();
             PlayerInput();
             SwitchAnimation();
-
-            // 攻撃処理
-            if ((Input.GetKeyDown(KeyCode.E))|| Input.GetKeyDown("joystick button 1"))
-            {
-                attackable = false;
-                KATANA.GetComponent<Animator>().SetBool("ATK",true);
-            }
-            else
-            {
-                KATANA.GetComponent<Animator>().SetBool("ATK", false);
-            }
-
-            // 攻撃処理、playerCDの部分
-            if (!attackable)
-            {
-                // クールダウンの確認
-                time += Time.deltaTime;
-                if (time >= attackCD)
-                {
-                    time = 0;
-                    attackable = true;
-                }
-            }
         }        
     }
 
@@ -129,30 +114,60 @@ public class Player : MonoBehaviour
         // 移動入力 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        
         if ((horizontal != 0) || (vertical != 0))
         {
-            moveinput += Time.deltaTime;
-
+            // 入力に応じて、攻撃範囲を回転する
+            #region roteMax変更
             // 入力に応じて、回転を変更する
-            if ((horizontal >= 0.01f) && (vertical >= 0.01f)) roteMax = 315;
-            if ((horizontal == 0) && (vertical >= 0.01)) roteMax = 0;
-            if ((horizontal <= -0.01f) && (vertical >= 0.01f)) roteMax = 45;
-            if ((horizontal <= -0.01f) && (vertical == 0)) roteMax = 90;
-            if ((horizontal <= -0.1f) && (vertical <= -0.01f)) roteMax = 135;
-            if ((horizontal == 0) && (vertical <= -0.01f)) roteMax = 180;
-            if ((horizontal >= 0.01f) && (vertical <= -0.01f)) roteMax = 225;
-            if ((horizontal >= 0.01f) && (vertical == 0)) roteMax = 270;
+            if ((horizontal >= 0.01f) && (vertical >= 0.01f))
+            { roteMax = 315; moveInput = new Vector2(1, 1); }
+            if ((horizontal == 0) && (vertical >= 0.01))
+            { roteMax = 0; moveInput = new Vector2(0, 1); }
+            if ((horizontal <= -0.01f) && (vertical >= 0.01f))
+            { roteMax = 45; moveInput = new Vector2(-1, 1); }
+            if ((horizontal <= -0.01f) && (vertical == 0))
+            { roteMax = 90; moveInput = new Vector2(-1, 0); }
+            if ((horizontal <= -0.1f) && (vertical <= -0.01f))
+            { roteMax = 135; moveInput = new Vector2(-1, -1); }
+            if ((horizontal == 0) && (vertical <= -0.01f))
+            { roteMax = 180; moveInput = new Vector2(0, -1); }
+            if ((horizontal >= 0.01f) && (vertical <= -0.01f))
+            { roteMax = 225; moveInput = new Vector2(1, -1); }
+            if ((horizontal >= 0.01f) && (vertical == 0))
+            { roteMax = 270; moveInput = new Vector2(1, 0); }
+            #endregion
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+
+            // 入力に応じて スプライト変更をする
+            // 横方向の回転
+            if (moveInput.x == 1) SpR.flipX = true;
+            else if (moveInput.x == -1) SpR.flipX = false;
+
         }
         else
         {
-            moveinput = 0;
-            rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
+            moveInput = Vector2.zero;
+            rb2d.velocity = new Vector2(0, 0);
         }
-        if (moveinput >= 0.05f)
+        if (removable)
         {
             // 移動処理
-            rb2d.velocity = new Vector2(horizontal * speed, vertical * speed);
+            rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
+            Debug.Log("idou");
+            // 攻撃入力
+            if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
+            {
+                attackable = true;
+                KATANA.GetComponent<Animator>().SetBool("ATK", true);
+            }
+
+        }
+        else
+        {
+            attackable = false;
+            rb2d.velocity = Vector2.zero;
+            KATANA.GetComponent<Animator>().SetBool("ATK", false);
         }
     }
 
@@ -168,6 +183,18 @@ public class Player : MonoBehaviour
         {
             anim.SetFloat("InputX", inputX);
             anim.SetFloat("InputY", inputY);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            if (!Mutekki)
+            {
+                hp--;
+                Mutekki = true;
+                MutekiTime = 0;
+            }
         }
     }
 }

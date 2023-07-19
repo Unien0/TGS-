@@ -11,6 +11,7 @@ public class Camera : MonoBehaviour
 
     [SerializeField]private GameObject playerObj;
     private Vector2 PosGap;
+    public EnemyManage enemyManage;
     void Start()
     {
         
@@ -26,22 +27,22 @@ public class Camera : MonoBehaviour
         if (PosGap.x >= 2.5f)
         {
             Debug.Log("Right");
-            transform.position = new Vector3(transform.position.x + (Time.deltaTime * 20),transform.position.y,transform.position.z);
+            transform.position = new Vector3(transform.position.x + (Time.deltaTime * 5),transform.position.y,transform.position.z);
         }
         if (PosGap.x <= -2.5f)
         {
             Debug.Log("Left");
-            transform.position = new Vector3(transform.position.x - (Time.deltaTime * 20), transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x - (Time.deltaTime * 5), transform.position.y, transform.position.z);
         }
-        if (PosGap.y >= 0.5f)
+        if (PosGap.y >= 0.75f)
         {
             Debug.Log("Up");
-            transform.position = new Vector3(transform.position.x , transform.position.y + (Time.deltaTime * 20), transform.position.z);
+            transform.position = new Vector3(transform.position.x , transform.position.y + (Time.deltaTime * 5), transform.position.z);
         }
-        if (PosGap.y <= -0.5f)
+        if (PosGap.y <= -0.75f)
         {
             Debug.Log("Down");
-            transform.position = new Vector3(transform.position.x, transform.position.y - (Time.deltaTime * 20), transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - (Time.deltaTime * 5), transform.position.z);
         }
 
     }

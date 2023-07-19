@@ -18,7 +18,29 @@ public class GameManeger : MonoBehaviour
         get { if (enemyData != null) return enemyData.blowable; else return false; }
         set { enemyData.blowable = value; }
     }
+    private bool isDead
+    {
+        //打ち飛べるかどうかを判断する
+        get { if (enemyData != null) return enemyData.isDead; else return false; }
+        set { enemyData.isDead = value; }
+    }
     #endregion
+    public PlayerData_SO playerData;
+    #region playerDataの変数
+    public bool attackable
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.attackable; else return false; }
+        set { playerData.attackable = value; }
+    }
+    public bool removable
+    {
+        //プレイヤーが移動できるかどうかを判断する
+        get { if (playerData != null) return playerData.removable; else return false; }
+        set { playerData.removable = value; }
+    }
+    #endregion
+
 
     [SerializeField] private float BPM;
     public static double Tempo;
@@ -28,7 +50,7 @@ public class GameManeger : MonoBehaviour
     public static double one_eighthCount;
     private AudioSource Audio;
     [SerializeField] private AudioClip MetronomeSE;
-
+    bool isSound;
 
     private void Start()
     {
@@ -51,6 +73,11 @@ public class GameManeger : MonoBehaviour
             time = 0;
             Audio.clip = MetronomeSE;
             Audio.Play();
+            isDead = true;
+        }
+        else
+        {
+            isDead = false;
         }
         if (Tempo >= 4)
         {
@@ -70,12 +97,15 @@ public class GameManeger : MonoBehaviour
         if ((time > (OneTempo - (OneTempo / 5))) || 
             (time < (OneTempo / 2)))
         {
+            removable = true;
             // Enemyのフットバシ処理を許可する
             blowable = true;
             // 抜刀スプライトに変更
         }
         else
         {
+            isSound = false;
+            removable = false;
             blowable = false;
         }
     }
