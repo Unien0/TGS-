@@ -116,13 +116,20 @@ public class Enemy : MonoBehaviour
     private bool stop = false;// 移動処理の停止
     private bool fix = false;
     [SerializeField] private bool exchange;
+    private bool isEnd;
+    public bool conductIt;
+    public bool Ready;
+    private bool isBlow;
 
     private Rigidbody2D rb2d;
+    private SpriteRenderer SpR;
+    private Collider2D col2d;
     enemyActSet enemyAct;
     private currentAttackRange area;
 
     private GameObject ClashEnemyObj;
     private GameObject PlayerObject;
+    public GameObject conductObject;
     [SerializeField] private GameObject cannonball;
     [SerializeField] private GameObject sotBullet;
 
@@ -136,9 +143,11 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        hp = enemyHp;
         rb2d = GetComponent<Rigidbody2D>();
+        SpR = GetComponent<SpriteRenderer>();
+        col2d = GetComponent<Collider2D>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
-
     }
 
     void Start()
@@ -150,90 +159,103 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //吹っ飛ばすしない状態に移動する
-        if (!shoted)
+        if (!isEnd)
         {
-            Move();
-        }
-        if (hit)
-        {
-            shoted = true;
-            hit = false;
-           HitBlow();
-        }
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 4"))
-        {
-            exchange = !exchange;
-        }
-
-        //Eキーを押した時、playerも攻撃できる上
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1") )
-        {
-            if (inPlayerAttackRange)
+            if (isBlow)
             {
-                // ジャストアタックのタイミングなら
-                if (blowable)
-                {
-                    shoted = true;
-                    BlowAway();
-                }
-                else
-                {
-                    shoted = false;
-                }
+                BlowAway();
+                isBlow = false;
             }
-        }
 
-        //吹っ飛ばすしたら、止まる時間を計算する
-        if (shoted)
-        {
-            ToStop();
-        }        
-        //StopBlow();
-
-        switch (enemyAct)
-        {
-            case enemyActSet.move:
-                break;
-            case enemyActSet.shot:
-                shotOk = true;
-                break;
-            case enemyActSet.cannonball:
-                shotOk = true;
-                rb2d.velocity = Vector3.zero;
-                break;
-        }
-
-        if (shotOk)
-        {
-            if (enemyAct == enemyActSet.cannonball)
+            //吹っ飛ばすしない状態に移動する
+            if (!shoted)
             {
-                if (GameManeger.Tempo == 0)
-                {
-                    if (!isShot)
-                    {
-                        isShot = true;
+                Move();
+            }
+            if (hit)
+            {
+                shoted = true;
+                hit = false;
+                HitBlow();
+            }
 
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 4"))
+            {
+                exchange = !exchange;
+            }
+
+            //Eキーを押した時、playerも攻撃できる上
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
+            {
+                if (inPlayerAttackRange)
+                {
+                    // ジャストアタックのタイミングなら
+                    if (blowable)
+                    {
+                        shoted = true;
+                        hp = -1;
+                        isBlow = true;
+                        conductIt = true;
+                        FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
+                        FindObjectOfType<ConductManeger>().conduct = true;
+                    }
+                    else
+                    {
+                        shoted = false;
                     }
                 }
-                else
-                {
-                    isShot = false;
-                }
             }
-            if (enemyAct == enemyActSet.shot)
+
+            //吹っ飛ばすしたら、止まる時間を計算する
+            if (shoted)
             {
-                if(GameManeger.Tempo == 1)
+                ToStop();
+            }
+            //StopBlow();
+
+            switch (enemyAct)
+            {
+                case enemyActSet.move:
+                    break;
+                case enemyActSet.shot:
+                    shotOk = true;
+                    break;
+                case enemyActSet.cannonball:
+                    shotOk = true;
+                    rb2d.velocity = Vector3.zero;
+                    break;
+            }
+
+            if (shotOk)
+            {
+                if (enemyAct == enemyActSet.cannonball)
                 {
-                    if (!isShot)
+                    if (GameManeger.Tempo == 0)
                     {
-                        isShot = true;
-                        
+                        if (!isShot)
+                        {
+                            isShot = true;
+                        }
+                    }
+                    else
+                    {
+                        isShot = false;
                     }
                 }
-                else
+                if (enemyAct == enemyActSet.shot)
                 {
-                    isShot = false;
+                    if (GameManeger.Tempo == 1)
+                    {
+                        if (!isShot)
+                        {
+                            isShot = true;
+
+                        }
+                    }
+                    else
+                    {
+                        isShot = false;
+                    }
                 }
             }
         }
@@ -273,11 +295,39 @@ public class Enemy : MonoBehaviour
         {
             if (exchange)
             {
-                // 全敵の取得
-                // 誘導範囲内の敵の取得
-                // 誘導範囲内で、攻撃方向にある敵を取得
-                // 上の敵取得の中から一番近くの敵を取得
-                // このオブジェクトと目標オブジェクトの差を求め、アドフォース
+                if (Ready)
+                {
+                    if (conductObject != null)
+                    {
+                        //方向
+                        shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
+
+                        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                        { shotIt.x = Mathf.Sign(shotrote.x); }
+                        else
+                        { shotIt.x = 0; }
+                        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                        { shotIt.y = Mathf.Sign(shotrote.y); }
+                        //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                        rb2d.AddForce(shotIt * ForcePoint);
+                        Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
+                    }
+                    else
+                    {
+                        //方向
+                        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                        { shotIt.x = Mathf.Sign(shotrote.x); }
+                        else
+                        { shotIt.x = 0; }
+                        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                        { shotIt.y = Mathf.Sign(shotrote.y); }
+                        else
+                        { shotIt.y = 0; }
+                        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                        rb2d.AddForce(shotIt * ForcePoint);
+                    }
+                }
             }
             else
             {
@@ -293,24 +343,47 @@ public class Enemy : MonoBehaviour
                 { shotIt.y = 0; }
                 //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
                 rb2d.AddForce(shotIt * ForcePoint);
-            }         
+            }
         }
     }
 
     void HitBlow()
     {
-        //方向
-        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-        { shotIt.x = Mathf.Sign(shotrote.x); }
-        else
-        { shotIt.x = 0; }
-        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-        { shotIt.y = Mathf.Sign(shotrote.y); }
-        else
-        { shotIt.y = 0; }
-        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-        rb2d.AddForce(shotIt * ForcePoint);
+        if (exchange)
+        {
+            if (Ready)
+            {
+                if (conductObject != null)
+                {
+                    //方向
+                    shotrote = new Vector2(this.transform.position.x - conductObject.transform.position.x, this.transform.position.y - conductObject.transform.position.y);
+
+                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    else
+                    { shotIt.x = 0; }
+                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                    rb2d.AddForce(shotIt * ForcePoint);
+                }
+                else
+                {
+                    //方向
+                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    else
+                    { shotIt.x = 0; }
+                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    else
+                    { shotIt.y = 0; }
+                    //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                    rb2d.AddForce(shotIt * ForcePoint);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -329,7 +402,14 @@ public class Enemy : MonoBehaviour
             {
                 if (hp <= 0)
                 {
-                    Destroy(this.gameObject);
+                    SpR.enabled = false;
+                    col2d.enabled = false;
+
+                    if (actTime > blowTime + 1)
+                    {
+                        isEnd = true;
+                        //Destroy(this.gameObject);
+                    }
                 }
                 else
                 {
