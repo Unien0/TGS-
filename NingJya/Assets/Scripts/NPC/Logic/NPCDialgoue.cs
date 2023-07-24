@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
+using UnityEngine.SceneManagement;
 
 public class NPCDialgoue : MonoBehaviour
 {
+    public string chatName;
+    private bool npc;
+    private bool endChat = false;
+    private bool outEnemy = false;
     public GameObject door1;
     public GameObject npc1;
-    private bool npc;
-    private FungusManager fungus;
     public Flowchart fc;
+    private Collider2D col2D;
 
     private void Awake()
     {
-        
+        fc = GameObject.Find("Flowchart").GetComponent<Flowchart>();
+        col2D = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -24,6 +29,26 @@ public class NPCDialgoue : MonoBehaviour
             Destroy(door1);
             npc1.SetActive(false);
         }
+        if (fc.GetBooleanVariable("TutorialCompletion") && !endChat &&outEnemy)
+        {
+
+            //‘Î˜bŽÀ‘•‚µ‚½‚©
+            if (fc.HasBlock(chatName))
+            {
+                fc.ExecuteBlock(chatName);
+                endChat = true;
+            }
+        }
+        if (fc.GetBooleanVariable("ToInGame"))
+        {
+            SceneManager.LoadScene("SampleMap");
+        }
     }
-    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            outEnemy = true;
+        }
+    }
 }
