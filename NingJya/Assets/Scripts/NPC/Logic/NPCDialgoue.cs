@@ -5,17 +5,25 @@ using Fungus;
 
 public class NPCDialgoue : MonoBehaviour
 {
+    public GameObject door1;
+    public GameObject npc1;
     private bool npc;
     private FungusManager fungus;
+    public Flowchart fc;
 
     private void Awake()
     {
-        //fungus = 
+        
     }
 
     void Update()
     {
-        //npc = getbool
+        //Flowchart flowchart = GameObject.Find("Flowchart").GetComponent<Flowchart>();
+        if (fc.GetBooleanVariable("WellOpen"))
+        {
+            Destroy(door1);
+            npc1.SetActive(false);
+        }
     }
     
 }

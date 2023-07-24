@@ -8,15 +8,17 @@ public class DialogueArea : MonoBehaviour
     public string chatName;
     private bool outEnemy = false;
     private bool canChat = false;
+    private bool endChat = false;
 
-    public GameObject door1;
-    public GameObject door2;
+    private Flowchart flowchart;
+    public GameObject door;
     public GameObject npc1;
     //public GameObject npc2;
     private Collider2D col2D;
     private void Awake()
     {
         col2D = GetComponent<Collider2D>();
+        flowchart = GameObject.Find("Flowchart").GetComponent<Flowchart>();
     }
 
     // Start is called before the first frame update
@@ -30,17 +32,17 @@ public class DialogueArea : MonoBehaviour
     {
         if (outEnemy)
         {
-            door1.SetActive(false);
+            Destroy(door);
             npc1.SetActive(false);
         }
-        if (canChat)
+        if (canChat && !endChat)
         {
-            //対話
-            Flowchart flowchart = GameObject.Find("Flowchart").GetComponent<Flowchart>();
+            
             //対話実装したか
             if (flowchart.HasBlock(chatName))
             {
                 flowchart.ExecuteBlock(chatName);
+                endChat = true;
             }
         }
     }
@@ -50,7 +52,6 @@ public class DialogueArea : MonoBehaviour
         // プレイヤーの攻撃範囲に入っていて、
         if (col.CompareTag("Player"))
         {
-            door1.SetActive(true);
             npc1.SetActive(true);
             canChat = true;
             
