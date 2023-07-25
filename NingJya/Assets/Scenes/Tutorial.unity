@@ -16703,6 +16703,7 @@ MonoBehaviour:
   BPM: 140
   OneTempo: 0
   MetronomeSE: {fileID: 0}
+  Score: 0
 --- !u!1 &1236417650
 GameObject:
   m_ObjectHideFlags: 0
@@ -17229,6 +17230,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1537900252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537900253}
+  - component: {fileID: 1537900254}
+  m_Layer: 0
+  m_Name: ConductManeger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537900253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537900252}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1644513258}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537900254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537900252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b93dc2a4b6bbc844824dc59df8cab6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemys: []
+  noneCol: 0
+  conductObjGap: {x: 0, y: 0}
+  conduct: 0
+  chackObj: {fileID: 0}
+  EnemyobjctDistance: 0
+  MustEnemyobjctDistance: 0
+  CTobject: {fileID: 0}
+  targetObj: {fileID: 0}
 --- !u!1 &1577618900
 GameObject:
   m_ObjectHideFlags: 0
@@ -17449,6 +17503,7 @@ Transform:
   m_Children:
   - {fileID: 1215272969}
   - {fileID: 10337790}
+  - {fileID: 1537900253}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20754,7 +20809,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
-  enemyManage: {fileID: 0}
 --- !u!81 &2139365603
 AudioListener:
   m_ObjectHideFlags: 0
@@ -20773,7 +20827,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

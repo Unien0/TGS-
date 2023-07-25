@@ -102,6 +102,11 @@ MonoBehaviour:
   SeatClothData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
   shotrote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
+  exchange: 1
+  conductIt: 0
+  conductObject: {fileID: 0}
+  Ready: 0
+  ObjNAME: 0
 --- !u!50 &3898732125540329264
 Rigidbody2D:
   serializedVersion: 4

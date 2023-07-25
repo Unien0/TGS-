@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     private GameObject Enemyobj;    
     [SerializeField] private GameObject AttackArea;    
-    [SerializeField]private GameObject KATANA;
+    public  GameObject KATANA;
 
     private Rigidbody2D rb2d;
     private Animator[] animators;

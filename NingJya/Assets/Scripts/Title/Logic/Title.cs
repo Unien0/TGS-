@@ -14,7 +14,7 @@ public class Title : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("SampleMap");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void GameOver()

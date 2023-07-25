@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManeger : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class GameManeger : MonoBehaviour
 
 
     [SerializeField] private float BPM;
-    public static double Tempo;
+    public static int Tempo;
     private double time;
     public double OneTempo;
     public static double one_eighthTenpo;
@@ -51,6 +52,11 @@ public class GameManeger : MonoBehaviour
     private AudioSource Audio;
     [SerializeField] private AudioClip MetronomeSE;
     bool isSound;
+
+    // ÉXÉRÉAä÷åW
+    public int Score;
+    public static int KillEnemy;
+    public static int hitEnemy;
 
     private void Start()
     {
@@ -61,6 +67,7 @@ public class GameManeger : MonoBehaviour
     }
     private void Update()
     {
+        ScoreCheck();
         Metronome();
     }
 
@@ -116,5 +123,10 @@ public class GameManeger : MonoBehaviour
         yield return new WaitForSeconds(0.5f) ;
         //Debug.Log("guan");
         enemyRemovable = false;
+    }
+
+    public void ScoreCheck()
+    {
+        Score = ((KillEnemy * 10) + (hitEnemy * 5));
     }
 }

@@ -11,7 +11,6 @@ public class Camera : MonoBehaviour
 
     [SerializeField]private GameObject playerObj;
     private Vector2 PosGap;
-    public EnemyManage enemyManage;
     void Start()
     {
         

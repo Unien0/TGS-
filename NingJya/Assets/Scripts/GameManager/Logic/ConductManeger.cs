@@ -21,6 +21,7 @@ public class ConductManeger : MonoBehaviour
     public GameObject targetObj;
 
     public static List<GameObject> EnemyList = new List<GameObject>();
+    string tagName;
 
     void Start()
     {
@@ -88,12 +89,24 @@ public class ConductManeger : MonoBehaviour
             }
         }
 
+        tagName = CTobject.tag;
 
-        if (CTobject.GetComponent<Enemy>().conductIt == true)
+        switch (tagName)
         {
-            CTobject.GetComponent<Enemy>().conductObject = targetObj;
-            CTobject.GetComponent<Enemy>().Ready = true;
-            conduct = false;
+            case "Enemy":
+                if (CTobject.GetComponent<Enemy>().conductIt == true)
+                {
+                    CTobject.GetComponent<Enemy>().conductObject = targetObj;
+                    CTobject.GetComponent<Enemy>().Ready = true;
+                    conduct = false;
+                }
+                break;
+            case"HitObj":
+                CTobject.GetComponent<Objects>().conductObject = targetObj;
+                CTobject.GetComponent<Objects>().Ready = true;
+                conduct = false;
+                break; 
         }
+
     }
 }

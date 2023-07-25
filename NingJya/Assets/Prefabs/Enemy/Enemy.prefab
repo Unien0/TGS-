@@ -124,6 +124,11 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
   objctDistance: 0
+  exchange: 1
+  conductIt: 0
+  Ready: 0
+  enemyAct: 0
+  conductObject: {fileID: 0}
   cannonball: {fileID: 0}
   sotBullet: {fileID: 0}
   shotrote: {x: 0, y: 0}

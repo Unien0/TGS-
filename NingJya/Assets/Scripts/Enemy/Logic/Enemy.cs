@@ -88,17 +88,9 @@ public class Enemy : MonoBehaviour
     private enum enemyActSet
     {
         move,
+        notMove,
         shot,
         cannonball,
-        end
-    }
-    //今プレイヤーの攻撃範囲のどこにいる
-    private enum currentAttackRange
-    {
-        Null,
-        Red,
-        white,
-        yellow,
         end
     }
     
@@ -124,8 +116,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     private SpriteRenderer SpR;
     private Collider2D col2d;
-    enemyActSet enemyAct;
-    private currentAttackRange area;
+    [SerializeField] private enemyActSet enemyAct;
 
     private GameObject ClashEnemyObj;
     private GameObject PlayerObject;
@@ -152,7 +143,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        area = currentAttackRange.Null;
         hp = enemyHp;
     }
 
@@ -170,7 +160,22 @@ public class Enemy : MonoBehaviour
             //吹っ飛ばすしない状態に移動する
             if (!shoted)
             {
-                Move();
+                switch (enemyAct)
+                {
+                    case enemyActSet.move:
+                        Move();
+                        break;
+                    case enemyActSet.notMove:
+                        rb2d.velocity = Vector3.zero;
+                        break;
+                    case enemyActSet.shot:
+                        shotOk = true;
+                        break;
+                    case enemyActSet.cannonball:
+                        shotOk = true;
+                        rb2d.velocity = Vector3.zero;
+                        break;
+                }
             }
             if (hit)
             {
@@ -198,6 +203,7 @@ public class Enemy : MonoBehaviour
                         conductIt = true;
                         FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                         FindObjectOfType<ConductManeger>().conduct = true;
+                        FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
                     }
                     else
                     {
@@ -211,29 +217,17 @@ public class Enemy : MonoBehaviour
             {
                 ToStop();
             }
-            //StopBlow();
-
-            switch (enemyAct)
-            {
-                case enemyActSet.move:
-                    break;
-                case enemyActSet.shot:
-                    shotOk = true;
-                    break;
-                case enemyActSet.cannonball:
-                    shotOk = true;
-                    rb2d.velocity = Vector3.zero;
-                    break;
-            }
 
             if (shotOk)
             {
                 if (enemyAct == enemyActSet.cannonball)
                 {
-                    if (GameManeger.Tempo == 0)
+                    #region
+                    if (GameManeger.Tempo == 1)
                     {
                         if (!isShot)
                         {
+                            // バレットの射出
                             isShot = true;
                         }
                     }
@@ -242,8 +236,10 @@ public class Enemy : MonoBehaviour
                         isShot = false;
                     }
                 }
+                #endregion
                 if (enemyAct == enemyActSet.shot)
                 {
+                    #region
                     if (GameManeger.Tempo == 1)
                     {
                         if (!isShot)
@@ -257,6 +253,7 @@ public class Enemy : MonoBehaviour
                         isShot = false;
                     }
                 }
+                #endregion
             }
         }
     }
@@ -408,7 +405,7 @@ public class Enemy : MonoBehaviour
                     if (actTime > blowTime + 1)
                     {
                         isEnd = true;
-                        //Destroy(this.gameObject);
+                        GameManeger.KillEnemy ++;
                     }
                 }
                 else
@@ -428,11 +425,13 @@ public class Enemy : MonoBehaviour
             {
                 hit = true;
                 hp--;
+                GameManeger.hitEnemy++;
             }
         }
         if (col.gameObject.CompareTag("HitObj"))
         {
             hit = true;
+            GameManeger.hitEnemy++;
             hp--;
         }
 
