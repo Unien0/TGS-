@@ -874,12 +874,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'End
-
-'
+  m_text: "\u7D42\u3000\u4E86"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
+  m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2089,10 +2087,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option
+  m_text: "\u8A2D\u3000\u5B9A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
+  m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3069,10 +3067,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: "\u958B\u3000\u59CB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
+  m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3096,8 +3094,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 85.1
-  m_fontSizeBase: 85.1
+  m_fontSize: 92.18
+  m_fontSizeBase: 92.18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0

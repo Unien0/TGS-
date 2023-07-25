@@ -234,6 +234,7 @@ MonoBehaviour:
   BPM: 140
   OneTempo: 0
   MetronomeSE: {fileID: 0}
+  Score: 0
 --- !u!4 &20236710
 Transform:
   m_ObjectHideFlags: 0
@@ -1296,7 +1297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
-  enemyManage: {fileID: 0}
 --- !u!1 &287149684
 GameObject:
   m_ObjectHideFlags: 0
@@ -27963,7 +27963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u623B\u308A"
+  m_text: "\u623B\u3000\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
@@ -31712,7 +31712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30BF\u30A4\u30C8\u30EB"
+  m_text: "\u30BF\u30A4\u30C8\u30EB\u3078"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
@@ -31739,8 +31739,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32313,7 +32313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30B2\u30FC\u30E0\u30AA\u30FC\u30D0\u30FC"
+  m_text: "\u7D42\u3000\u4E86"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
@@ -32340,8 +32340,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -34321,7 +34321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8A2D\u5B9A"
+  m_text: "\u8A2D\u3000\u5B9A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
