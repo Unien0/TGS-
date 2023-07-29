@@ -20,6 +20,7 @@ public class ESCMenuList : MonoBehaviour
         //ÉLÅ[ÇâüÇµÇƒãNìÆ
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+           
             PlanelCon();
         }
         
@@ -29,13 +30,15 @@ public class ESCMenuList : MonoBehaviour
     {
             if (!escOn)
             {
-                escPlanel.SetActive(true);
+            AudioManager.Instance.PlaySE("Button2");
+            escPlanel.SetActive(true);
                 escOn = true;
                 Time.timeScale = (0);//éûä‘é~ÇﬂÇƒ
             }
             else
             {
-                escPlanel.SetActive(false);
+            AudioManager.Instance.PlaySE("Button1");
+            escPlanel.SetActive(false);
                 escOn = false;
                 Time.timeScale = (1);
             }
@@ -43,6 +46,7 @@ public class ESCMenuList : MonoBehaviour
 
     public void ToTitle()
     {
+        AudioManager.Instance.PlaySE("Button1");
         escPlanel.SetActive(false);
         escOn = false;
         Time.timeScale = (1);

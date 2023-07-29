@@ -34168,13 +34168,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2d4c4e01a112f40408007d3fe11a01d9, type: 3}
   seSounds:
   - name: Move
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5201f93ec0b79c1479ee9e46d25c90cc, type: 3}
   - name: Attack
     clip: {fileID: 0}
-  - name: Button
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
+  - name: Button1
+    clip: {fileID: 8300000, guid: 24c3abcb902cd3947a25a3f9e701a3df, type: 3}
+  - name: Button2
+    clip: {fileID: 8300000, guid: 33fcad35f7ce1a645a50606fa4ed6983, type: 3}
   musicSounrce: {fileID: 1586242663}
   seSource: {fileID: 821924550}
 --- !u!114 &1800509839
