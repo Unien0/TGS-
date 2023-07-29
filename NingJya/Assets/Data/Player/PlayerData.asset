@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   maxHp: 5
-  hp: 4
+  hp: 5
   speed: 6
   damage: 1
   attackCD: 0.2

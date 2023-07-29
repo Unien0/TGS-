@@ -10548,7 +10548,7 @@ GameObject:
   - component: {fileID: 789002210}
   - component: {fileID: 789002209}
   m_Layer: 0
-  m_Name: //Player
+  m_Name: "\uFF01Player"
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19214,7 +19214,7 @@ GameObject:
   - component: {fileID: 1674403048}
   - component: {fileID: 1674403047}
   m_Layer: 5
-  m_Name: ///Canvas
+  m_Name: '%Canvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19582,7 +19582,7 @@ GameObject:
   - component: {fileID: 1755233165}
   - component: {fileID: 1755233166}
   m_Layer: 0
-  m_Name: //NPC
+  m_Name: "\uFF01NPC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
