@@ -7,19 +7,19 @@ public class Player : MonoBehaviour
 {
     public PlayerData_SO playerData;
     #region PlayerData変数
-    private float maxHp
+    private int maxHp
     {
         //PlayerのMaxHPをゲットする
         get { if (playerData != null) return playerData.maxHp; else return 0; }
 
     }
-    private float hp
+    private int hp
     {
         //PlayerのHPをゲットする
         get { if (playerData != null) return playerData.hp; else return 0; }
         set { playerData.hp = value; }
     }
-    private float damage
+    private int damage
     {
         //Playerのダメージ値を取得する
         get { if (playerData != null) return playerData.damage; else return 0; }

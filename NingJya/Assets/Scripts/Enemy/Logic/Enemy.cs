@@ -7,13 +7,13 @@ public class Enemy : MonoBehaviour
     //共有データ
     public PlayerData_SO playerData;
     #region PlayerDataの変数
-    private float playerHp
+    private int playerHp
     {
         //PlayerのHPをゲットする
         get { if (playerData != null) return playerData.hp; else return 0; }
         set { playerData.hp = value; }//ダメージを与えた場合にPlayerの血量を修正する
     }
-    private float playerDamage
+    private int playerDamage
     {
         //Playerのダメージ値を取得する
         get { if (playerData != null) return playerData.damage; else return 0; }
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyData_SO enemyData;
     #region EnemyDataの変数
-    private float enemyHp
+    private int enemyHp
     {
         //enemyのhpをゲットする
         get { if (enemyData != null) return enemyData.Hp; else return 0; }
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         //enemyのhpをゲットする
         get { if (enemyData != null) return enemyData.Speed; else return 0; }
     }
-    private float enemyDamage
+    private int enemyDamage
     {
         //enemyのダメージをゲットする
         get { if (enemyData != null) return enemyData.damage; else return 0; }

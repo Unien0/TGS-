@@ -7,13 +7,13 @@ public class PlayerData_SO : ScriptableObject
 {
     [Header("基本プロパティ")]
     //MaxHP
-    public float maxHp;
+    public int maxHp;
     //HP
-    public float hp;
+    public int hp;
     //スピード
     public float speed;
     //ダメージ
-    public float damage;
+    public int damage;
     //攻撃CD
     public float attackCD;
 

@@ -7,11 +7,11 @@ public class EnemyData_SO : ScriptableObject
 {
     [Header("基本プロパティ")]
     //HP
-    public float Hp;
+    public int Hp;
     //スピード
     public float Speed;
     //ダメージ
-    public float damage;
+    public int damage;
 
     [Header("吹っ飛ばすに関するデータ")]
     //吹っ飛ばすの制限時間
