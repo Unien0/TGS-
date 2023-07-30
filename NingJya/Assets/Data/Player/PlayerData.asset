@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   maxHp: 6
-  hp: 4
+  hp: 6
   speed: 6
   damage: 1
   attackCD: 0.2
@@ -21,5 +21,5 @@ MonoBehaviour:
   force: 1000
   isDead: 0
   attackable: 0
-  removable: 1
+  removable: 0
   mutekki: 1
