@@ -86,6 +86,13 @@ public class BossEnemy : MonoBehaviour
                     Audio.clip = isBlowSE;
                     Audio.Play();
                     BossHP = BossHP - 1;
+                    if (BossHP <= 0)
+                    {
+                        ActPermission = false;
+                        SpR.enabled = false;
+                        Col2D.enabled = false;
+                        GameManeger.KillBOSS++;
+                    }
                 }
             }
         }
@@ -116,13 +123,6 @@ public class BossEnemy : MonoBehaviour
         // 行動許可が降りているのか
         if (ActPermission)
         {
-            if (BossHP <= 0)
-            {
-                ActPermission = false;
-                SpR.enabled = false;
-                Col2D.enabled = false;
-            }
-
             // アクションタイミングに入ったら
             if (ExChange)
             {

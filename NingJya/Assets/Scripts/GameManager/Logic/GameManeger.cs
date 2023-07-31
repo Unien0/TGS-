@@ -57,6 +57,8 @@ public class GameManeger : MonoBehaviour
     public int Score;
     public static int KillEnemy;
     public static int hitEnemy;
+    public static int GetCoin;
+    public static int KillBOSS;
 
     private void Start()
     {
@@ -69,6 +71,7 @@ public class GameManeger : MonoBehaviour
     {
         ScoreCheck();
         Metronome();
+        Function();
     }
 
     private void Metronome()
@@ -79,8 +82,8 @@ public class GameManeger : MonoBehaviour
 
             Tempo++;
             time = 0;
-            Audio.clip = MetronomeSE;
-            Audio.Play();
+            //Audio.clip = MetronomeSE;
+            //Audio.Play();
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
         }
@@ -129,6 +132,27 @@ public class GameManeger : MonoBehaviour
 
     public void ScoreCheck()
     {
-        Score = ((KillEnemy * 10) + (hitEnemy * 5));
+        Score = ((KillEnemy * 100)
+               + (hitEnemy * 200) 
+               + (GetCoin * 50) 
+               + (KillBOSS * 1000));
+    }
+
+    void Function()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            // リズムリセットを行う。
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {// 誘導挙動の再設定を行う            
+            FindObjectOfType<ConductManeger>().Enemys = new GameObject[0];
+            FindObjectOfType<ConductManeger>().Enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {// プレイヤーの当たり判定を解除・再設定する
+            FindObjectOfType<Player>().PlayerCol2D.enabled = !enabled;
+        }
+
     }
 }

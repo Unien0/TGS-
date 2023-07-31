@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.maxHp; else return 0; }
 
     }
-    private int hp
+    public int hp
     {
         //Player‚ÌHP‚ðƒQƒbƒg‚·‚é
         get { if (playerData != null) return playerData.hp; else return 0; }
@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator[] animators;
     private SpriteRenderer SpR;
+    public Collider2D PlayerCol2D;
 
     private void Awake()
     {

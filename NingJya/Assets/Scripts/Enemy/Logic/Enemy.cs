@@ -85,24 +85,20 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    public GMData_SO GameManagerData;
-    private float SeVolume
-    {
-        //SEの音量
-        get { if (GameManagerData != null) return GameManagerData.SeVolume; else return 0; }
-    }
-
-    private enum enemyActSet
+    public enum enemyActSet
     {
         move,
         notMove,
         cannonball,
+        knockback,
+        clockup,
         end
     }
     
     public float actTime;// 行動までの待機時間    
     [SerializeField] private float objctDistance;
-    private float hp;
+    [SerializeField]private float hp;
+    public float knockbackPoint;
 
     //個体の状態（Bool）
     private bool inPlayerAttackRange = false;
@@ -153,11 +149,14 @@ public class Enemy : MonoBehaviour
         col2d = GetComponent<Collider2D>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
         Audio = GetComponent<AudioSource>();
+        knockbackPoint = ForcePoint;
     }
 
     void Start()
     {
         hp = enemyHp;
+        if (enemyAct == enemyActSet.knockback)
+        { knockbackPoint = knockbackPoint * 30; }
     }
 
     // Update is called once per frame
@@ -187,6 +186,10 @@ public class Enemy : MonoBehaviour
                         shotOk = true;
                         rb2d.velocity = Vector3.zero;
                         break;
+                    case enemyActSet.knockback:
+                        Move();                        
+                        break;
+
                 }
             }
             if (hit)
@@ -255,8 +258,6 @@ public class Enemy : MonoBehaviour
                     #endregion
                 }
             }
-
-            VolumeAdjusting();
         }
     }
 
@@ -428,11 +429,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void VolumeAdjusting()
-    {
-        Audio.volume = SeVolume;
-    }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
@@ -440,7 +436,7 @@ public class Enemy : MonoBehaviour
             if (col.gameObject.GetComponent<Enemy>().shoted)
             {
                 hit = true;
-                hp--;
+                hp = 0;
                 GameManeger.hitEnemy++;
             }
         }
@@ -448,7 +444,7 @@ public class Enemy : MonoBehaviour
         {
             hit = true;
             GameManeger.hitEnemy++;
-            hp--;
+            hp = 0;
         }
 
     }
