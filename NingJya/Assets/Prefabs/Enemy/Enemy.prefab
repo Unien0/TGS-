@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
+  GameManagerData: {fileID: 11400000, guid: fbc14fdb27592294694a20ca8c0f8dd9, type: 2}
   actTime: 0
   objctDistance: 0
   exchange: 1

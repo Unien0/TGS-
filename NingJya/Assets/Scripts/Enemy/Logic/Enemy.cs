@@ -85,6 +85,13 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
+    public GMData_SO GameManagerData;
+    private float SeVolume
+    {
+        //SE‚Ì‰¹—Ê
+        get { if (GameManagerData != null) return GameManagerData.SeVolume; else return 0; }
+    }
+
     private enum enemyActSet
     {
         move,
@@ -248,6 +255,8 @@ public class Enemy : MonoBehaviour
                     #endregion
                 }
             }
+
+            VolumeAdjusting();
         }
     }
 
@@ -417,6 +426,11 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void VolumeAdjusting()
+    {
+        Audio.volume = SeVolume;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
