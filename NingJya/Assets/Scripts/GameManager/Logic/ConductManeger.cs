@@ -71,6 +71,8 @@ public class ConductManeger : MonoBehaviour
 
     public void gapChack()
     {
+        tagName = CTobject.tag;
+
         foreach (var ctobj in Enemys)
         {
             if (ctobj.gameObject.name != CTobject.gameObject.name)
@@ -78,18 +80,34 @@ public class ConductManeger : MonoBehaviour
                 Gap = new Vector2(ctobj.transform.position.x - CTobject.transform.position.x, ctobj.transform.position.y - CTobject.transform.position.y);
                 float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y); ;
 
-                if (vec < MustEnemyobjctDistance)
+                if (tagName == "EnemyBullet")
                 {
                     if (ctobj.GetComponent<Collider2D>().enabled == true)
                     {
-                        targetObj = ctobj;
-                        MustEnemyobjctDistance = Mathf.Abs(vec);
+                        if (!(ctobj.GetComponent<Enemy>().actTime >= 0))
+                        {
+                            targetObj = ctobj;                            
+                        }
                     }
                 }
+                else
+                {
+                    if (vec < MustEnemyobjctDistance)
+                    {
+                        if (ctobj.GetComponent<Collider2D>().enabled == true)
+                        {
+                            if (!(ctobj.GetComponent<Enemy>().actTime >= 0))
+                            {
+                                targetObj = ctobj;
+                                MustEnemyobjctDistance = Mathf.Abs(vec);
+                            }
+                        }
+                    }
+                }
+ 
             }
         }
-
-        tagName = CTobject.tag;
+        
 
         switch (tagName)
         {
@@ -105,7 +123,12 @@ public class ConductManeger : MonoBehaviour
                 CTobject.GetComponent<Objects>().conductObject = targetObj;
                 CTobject.GetComponent<Objects>().Ready = true;
                 conduct = false;
-                break; 
+                break;
+            case "EnemyBullet":
+                CTobject.GetComponent<EnemyBullet>().conductObject = targetObj;
+                CTobject.GetComponent<EnemyBullet>().Ready = true;
+                conduct = false;
+                break;
         }
 
     }

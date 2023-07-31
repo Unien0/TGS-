@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
         get { if (playerData != null) return playerData.hp; else return 0; }
         set { playerData.hp = value; }//ダメージを与えた場合にPlayerの血量を修正する
     }
-    private int playerDamage
+    private float playerDamage
     {
         //Playerのダメージ値を取得する
         get { if (playerData != null) return playerData.damage; else return 0; }
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyData_SO enemyData;
     #region EnemyDataの変数
-    private int enemyHp
+    private float enemyHp
     {
         //enemyのhpをゲットする
         get { if (enemyData != null) return enemyData.Hp; else return 0; }
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         //enemyのhpをゲットする
         get { if (enemyData != null) return enemyData.Speed; else return 0; }
     }
-    private int enemyDamage
+    private float enemyDamage
     {
         //enemyのダメージをゲットする
         get { if (enemyData != null) return enemyData.damage; else return 0; }
@@ -89,12 +89,11 @@ public class Enemy : MonoBehaviour
     {
         move,
         notMove,
-        shot,
         cannonball,
         end
     }
     
-    private float actTime;// 行動までの待機時間    
+    public float actTime;// 行動までの待機時間    
     [SerializeField] private float objctDistance;
     private float hp;
 
@@ -122,7 +121,7 @@ public class Enemy : MonoBehaviour
     private GameObject PlayerObject;
     public GameObject conductObject;
     [SerializeField] private GameObject cannonball;
-    [SerializeField] private GameObject sotBullet;
+    [SerializeField] private GameObject EnemyBullet;
 
     private Vector2 clashRote;
     private Vector2 clashshotIt;
@@ -130,7 +129,14 @@ public class Enemy : MonoBehaviour
     private Vector2 moveit;// moveintの結果を正負のみの値にする
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
+    [SerializeField]private GameObject DEAD_EFECT;
 
+    private AudioSource Audio;
+    [SerializeField] private AudioClip isBlowSE;
+    [SerializeField] private AudioClip HITSE;
+    private bool IsSound;
+    [SerializeField] private AudioClip DeaDSE1;
+    [SerializeField] private AudioClip DeaDSE2;
 
     private void Awake()
     {
@@ -139,6 +145,7 @@ public class Enemy : MonoBehaviour
         SpR = GetComponent<SpriteRenderer>();
         col2d = GetComponent<Collider2D>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
+        Audio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -153,6 +160,7 @@ public class Enemy : MonoBehaviour
         {
             if (isBlow)
             {
+                Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
                 BlowAway();
                 isBlow = false;
             }
@@ -168,9 +176,6 @@ public class Enemy : MonoBehaviour
                     case enemyActSet.notMove:
                         rb2d.velocity = Vector3.zero;
                         break;
-                    case enemyActSet.shot:
-                        shotOk = true;
-                        break;
                     case enemyActSet.cannonball:
                         shotOk = true;
                         rb2d.velocity = Vector3.zero;
@@ -179,6 +184,9 @@ public class Enemy : MonoBehaviour
             }
             if (hit)
             {
+                Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                Audio.clip = HITSE;
+                Audio.Play();
                 shoted = true;
                 hit = false;
                 HitBlow();
@@ -197,6 +205,8 @@ public class Enemy : MonoBehaviour
                     // ジャストアタックのタイミングなら
                     if (blowable)
                     {
+                        Audio.clip = HITSE;
+                        Audio.Play();
                         shoted = true;
                         hp = -1;
                         isBlow = true;
@@ -227,33 +237,16 @@ public class Enemy : MonoBehaviour
                     {
                         if (!isShot)
                         {
-                            // バレットの射出
                             isShot = true;
+                            Instantiate(EnemyBullet, this.transform.position, this.transform.rotation);
                         }
                     }
                     else
                     {
                         isShot = false;
                     }
+                    #endregion
                 }
-                #endregion
-                if (enemyAct == enemyActSet.shot)
-                {
-                    #region
-                    if (GameManeger.Tempo == 1)
-                    {
-                        if (!isShot)
-                        {
-                            isShot = true;
-
-                        }
-                    }
-                    else
-                    {
-                        isShot = false;
-                    }
-                }
-                #endregion
             }
         }
     }
@@ -305,6 +298,8 @@ public class Enemy : MonoBehaviour
                         { shotIt.x = 0; }
                         if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
                         { shotIt.y = Mathf.Sign(shotrote.y); }
+                        else
+                        { shotIt.y = 0; }
                         //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
                         rb2d.AddForce(shotIt * ForcePoint);
                         Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
@@ -399,6 +394,13 @@ public class Enemy : MonoBehaviour
             {
                 if (hp <= 0)
                 {
+                    if (!IsSound)
+                    {
+                        IsSound = true;
+                        Audio.clip = DeaDSE2;
+                        Audio.Play();
+                    }
+
                     SpR.enabled = false;
                     col2d.enabled = false;
 

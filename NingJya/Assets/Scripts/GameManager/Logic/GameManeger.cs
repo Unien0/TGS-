@@ -76,11 +76,13 @@ public class GameManeger : MonoBehaviour
         time += Time.deltaTime;
         if (time > OneTempo)
         {
+
             Tempo++;
             time = 0;
             Audio.clip = MetronomeSE;
             Audio.Play();
             isDead = true;
+            FindObjectOfType<BossEnemy>().ExChange = true;
         }
         else
         {

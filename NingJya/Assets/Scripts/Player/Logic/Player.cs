@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.hp; else return 0; }
         set { playerData.hp = value; }
     }
-    private int damage
+    private float damage
     {
         //Playerのダメージ値を取得する
         get { if (playerData != null) return playerData.damage; else return 0; }
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     private float inputX;
     private float inputY;
     private float MutekiTime;
-
+    public bool Hit;
 
     public bool ATK;
 
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        hp = maxHp;
     }
     
     void Update()
@@ -106,7 +106,25 @@ public class Player : MonoBehaviour
             move();
             PlayerInput();
             SwitchAnimation();
-        }        
+        }
+
+        if (Hit)
+        {
+            if (!Mutekki)
+            {
+                hp--;
+                Mutekki = true;
+                MutekiTime = 0;
+            }
+            MutekiTime += Time.deltaTime;
+
+            if (MutekiTime >= 3)
+            {
+                Hit = false;
+                Mutekki = false;
+            }
+        }
+
     }
 
     void move()
@@ -154,12 +172,11 @@ public class Player : MonoBehaviour
         {
             // 移動処理
             rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-            Debug.Log("idou");
             // 攻撃入力
             if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
             {
                 attackable = true;
-                KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                
             }
 
         }
@@ -189,11 +206,9 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            if (!Mutekki)
+            if (!Hit)
             {
-                hp--;
-                Mutekki = true;
-                MutekiTime = 0;
+                Hit = true;
             }
         }
     }

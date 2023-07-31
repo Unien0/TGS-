@@ -18,8 +18,8 @@ MonoBehaviour:
   damage: 1
   attackCD: 0.2
   beatLengh: 0
-  force: 1000
+  force: 500
   isDead: 0
   attackable: 0
-  removable: 0
+  removable: 1
   mutekki: 1

@@ -41,7 +41,7 @@ public class NPCDialgoue : MonoBehaviour
         }
         if (fc.GetBooleanVariable("ToInGame"))
         {
-            SceneManager.LoadScene("SampleMap");
+            //SceneManager.LoadScene("SampleMap");
         }
     }
     private void OnTriggerExit2D(Collider2D other)
