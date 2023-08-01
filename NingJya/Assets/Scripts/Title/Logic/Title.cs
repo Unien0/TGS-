@@ -14,7 +14,7 @@ public class Title : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(2);
     }
 
     public void GameOver()

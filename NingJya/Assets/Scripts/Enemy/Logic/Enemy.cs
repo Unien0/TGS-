@@ -132,7 +132,8 @@ public class Enemy : MonoBehaviour
     private Vector2 moveit;// moveintの結果を正負のみの値にする
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
-    [SerializeField]private GameObject DEAD_EFECT;
+    [SerializeField]private GameObject DEAD_EFECT_1;
+    [SerializeField]private GameObject DEAD_EFECT_2;
 
     private AudioSource Audio;
     [SerializeField] private AudioClip isBlowSE;
@@ -156,7 +157,7 @@ public class Enemy : MonoBehaviour
     {
         hp = enemyHp;
         if (enemyAct == enemyActSet.knockback)
-        { knockbackPoint = knockbackPoint * 30; }
+        { knockbackPoint = knockbackPoint * 60; }
     }
 
     // Update is called once per frame
@@ -165,8 +166,7 @@ public class Enemy : MonoBehaviour
         if (!isEnd)
         {
             if (isBlow)
-            {
-                Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+            {                
                 BlowAway();
                 isBlow = false;
             }
@@ -194,17 +194,12 @@ public class Enemy : MonoBehaviour
             }
             if (hit)
             {
-                Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                Instantiate(DEAD_EFECT_1, this.transform.position, this.transform.rotation);
                 Audio.clip = HITSE;
                 Audio.Play();
                 shoted = true;
                 hit = false;
                 HitBlow();
-            }
-
-            if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 4"))
-            {
-                exchange = !exchange;
             }
 
             //Eキーを押した時、playerも攻撃できる上
@@ -215,6 +210,7 @@ public class Enemy : MonoBehaviour
                     // ジャストアタックのタイミングなら
                     if (blowable)
                     {
+                        Instantiate(DEAD_EFECT_1, this.transform.position, this.transform.rotation);
                         Audio.clip = HITSE;
                         Audio.Play();
                         shoted = true;
@@ -243,12 +239,18 @@ public class Enemy : MonoBehaviour
                 if (enemyAct == enemyActSet.cannonball)
                 {
                     #region
-                    if (GameManeger.Tempo == 1)
+                    if (GameManeger.Tempo == 0)
                     {
                         if (!isShot)
                         {
-                            isShot = true;
-                            Instantiate(EnemyBullet, this.transform.position, this.transform.rotation);
+                            PlayerObject = FindObjectOfType<Player>().gameObject;
+                            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+                            objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
+                            if (objctDistance <= 10)
+                            {
+                                Instantiate(EnemyBullet, this.transform.position, this.transform.rotation);
+                            }
+                            isShot = true;                            
                         }
                     }
                     else
@@ -409,10 +411,15 @@ public class Enemy : MonoBehaviour
                         IsSound = true;
                         Audio.clip = DeaDSE2;
                         Audio.Play();
+                        // エフェクト作成
+                        Instantiate(DEAD_EFECT_2, this.transform.position, this.transform.rotation);
                     }
 
                     SpR.enabled = false;
                     col2d.enabled = false;
+
+                    
+
 
                     if (actTime > blowTime + 1)
                     {
@@ -440,7 +447,7 @@ public class Enemy : MonoBehaviour
                 GameManeger.hitEnemy++;
             }
         }
-        if (col.gameObject.CompareTag("HitObj"))
+        if ((col.gameObject.CompareTag("HitObj")) )
         {
             hit = true;
             GameManeger.hitEnemy++;

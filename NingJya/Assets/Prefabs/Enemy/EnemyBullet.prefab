@@ -111,6 +111,7 @@ MonoBehaviour:
   exchange: 1
   isBlowSE: {fileID: 8300000, guid: f89f6739eeea26b42b769490499aa979, type: 3}
   conductObject: {fileID: 0}
+  Hit_Efect: {fileID: 6473819552231644624, guid: b0d7fc4c4ad00f7489e2290e75a02a74, type: 3}
 --- !u!50 &1773284206530875431
 Rigidbody2D:
   serializedVersion: 4

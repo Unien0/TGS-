@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManeger : MonoBehaviour
 {
@@ -55,13 +56,15 @@ public class GameManeger : MonoBehaviour
 
     // スコア関係
     public int Score;
+    private string Scoretext;
+    [SerializeField] private TextMeshProUGUI TMPui;
     public static int KillEnemy;
     public static int hitEnemy;
     public static int GetCoin;
     public static int KillBOSS;
 
     private void Start()
-    {
+    {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
         OneTempo = 60 / BPM;
@@ -136,6 +139,7 @@ public class GameManeger : MonoBehaviour
                + (hitEnemy * 200) 
                + (GetCoin * 50) 
                + (KillBOSS * 1000));
+        TMPui.text = Score.ToString();
     }
 
     void Function()
@@ -152,6 +156,10 @@ public class GameManeger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F3))
         {// プレイヤーの当たり判定を解除・再設定する
             FindObjectOfType<Player>().PlayerCol2D.enabled = !enabled;
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {// シーンのリロード
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }

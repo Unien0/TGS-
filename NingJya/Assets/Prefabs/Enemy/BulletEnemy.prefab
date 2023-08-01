@@ -125,9 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
-  GameManagerData: {fileID: 11400000, guid: fbc14fdb27592294694a20ca8c0f8dd9, type: 2}
   actTime: 0
   objctDistance: 0
+  hp: 0
+  knockbackPoint: 0
   exchange: 1
   conductIt: 0
   Ready: 0
@@ -137,7 +138,8 @@ MonoBehaviour:
   EnemyBullet: {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
   shotrote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
-  DEAD_EFECT: {fileID: 6473819552231644624, guid: b0d7fc4c4ad00f7489e2290e75a02a74, type: 3}
+  DEAD_EFECT_1: {fileID: 6473819552231644624, guid: b0d7fc4c4ad00f7489e2290e75a02a74, type: 3}
+  DEAD_EFECT_2: {fileID: 8242268725105712320, guid: 3d396cc73a4904841ad0f08b5b4e1b37, type: 3}
   isBlowSE: {fileID: 8300000, guid: f05b1452400c683429d3a04792a2bdee, type: 3}
   HITSE: {fileID: 8300000, guid: ec1e83cc4ac9bab418307855d13d9981, type: 3}
   DeaDSE1: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}

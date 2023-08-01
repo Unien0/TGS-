@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public PlayerData_SO playerData;
     #region PlayerDataïœêî
-    private int maxHp
+    public int maxHp
     {
         //PlayerÇÃMaxHPÇÉQÉbÉgÇ∑ÇÈ
         get { if (playerData != null) return playerData.maxHp; else return 0; }
@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        PlayerCol2D = GetComponent<Collider2D>();
         rb2d = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
         SpR = GetComponentInChildren<SpriteRenderer>();
@@ -93,6 +94,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         hp = maxHp;
+        foreach (var anim in animators)
+        { anim.SetBool("DEAD",false); break; }
     }
     
     void Update()
@@ -116,6 +119,14 @@ public class Player : MonoBehaviour
                 hp--;
                 Mutekki = true;
                 MutekiTime = 0;
+                if (hp <= 0)
+                {
+                    rb2d.velocity = Vector2.zero;
+                    PlayerCol2D.enabled = false;
+                    GameOver.GAMEOVER = true;
+                    foreach (var anim in animators)
+                    {anim.SetBool("DEAD", true);break;}
+                }
             }
             MutekiTime += Time.deltaTime;
 
@@ -212,5 +223,13 @@ public class Player : MonoBehaviour
                 Hit = true;
             }
         }
+        if (col.gameObject.name == "END")
+        {
+            rb2d.velocity = Vector2.zero;
+            PlayerCol2D.enabled = false;
+            GameOver.GAMEOVER = true;
+        }
+           
     }
+
 }

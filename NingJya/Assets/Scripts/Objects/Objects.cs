@@ -57,6 +57,8 @@ public class Objects : MonoBehaviour
     }
     [SerializeField] private ObjectType ObjNAME;
 
+    private AudioSource audio;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -72,12 +74,6 @@ public class Objects : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown("joystick button 4"))
-        {
-            exchange = !exchange;
-        }
-
-
         // ジャストアタックのタイミングの上
         if (blowable)
         {

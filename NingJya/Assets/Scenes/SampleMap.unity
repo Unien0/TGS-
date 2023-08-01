@@ -235,6 +235,7 @@ MonoBehaviour:
   OneTempo: 0
   MetronomeSE: {fileID: 0}
   Score: 0
+  TMPui: {fileID: 0}
 --- !u!4 &20236710
 Transform:
   m_ObjectHideFlags: 0
@@ -34623,11 +34624,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
+  Hit: 0
   ATK: 0
   shotrote: {x: 0, y: 0}
   moveInput: {x: 0, y: 0}
   AttackArea: {fileID: 287149684}
   KATANA: {fileID: 944778605}
+  PlayerCol2D: {fileID: 0}
 --- !u!50 &1947853041
 Rigidbody2D:
   serializedVersion: 4

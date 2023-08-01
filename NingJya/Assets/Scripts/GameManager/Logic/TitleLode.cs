@@ -18,6 +18,11 @@ public class TitleLode : MonoBehaviour
         if ((Anim.GetCurrentAnimatorStateInfo(0).IsName("End")) || (Input.anyKeyDown))
         {
             SceneManager.LoadScene(1);
+            GameManeger.KillEnemy = 0;
+            GameManeger.KillBOSS = 0;
+            GameManeger.GetCoin = 0;
+            GameManeger.hitEnemy = 0;
+            GameOver.GAMEOVER = false;
         }
     }
 }

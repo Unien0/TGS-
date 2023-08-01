@@ -42,6 +42,8 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] GameObject EnemyBullet;
     [SerializeField] private Sprite[] BossSprite;
     [SerializeField] private AudioClip isBlowSE;
+    [SerializeField] private GameObject Hit_Efect;
+    [SerializeField] private GameObject DEAD_EFECT;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -52,12 +54,16 @@ public class BossEnemy : MonoBehaviour
 
     void Update()
     {
-        Damage();
-        switch (BossType)
+        if (FindObjectOfType<BossStartFlag>().ActStart)
         {
-            case BossNumber.No1:
-                if (FindObjectOfType<BossStartFlag>().ActStart == true)
-                {FirstBoss();}break;
+            Damage();
+            switch (BossType)
+            {
+                case BossNumber.No1:
+                    if (FindObjectOfType<BossStartFlag>().ActStart == true)
+                    { FirstBoss(); }
+                    break;
+            }
         }
     }
 
@@ -84,14 +90,18 @@ public class BossEnemy : MonoBehaviour
                     rb2d.AddForce(shotIt * ForcePoint);
                     FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
                     Audio.clip = isBlowSE;
-                    Audio.Play();
+                    Audio.Play();                   
+                    Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
                     BossHP = BossHP - 1;
                     if (BossHP <= 0)
                     {
+                        FindObjectOfType<BossStartFlag>().ActEnd = true;
                         ActPermission = false;
                         SpR.enabled = false;
                         Col2D.enabled = false;
+                        rb2d.velocity = Vector3.zero;
                         GameManeger.KillBOSS++;
+                        Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
                     }
                 }
             }

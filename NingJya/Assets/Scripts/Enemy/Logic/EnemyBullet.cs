@@ -30,6 +30,7 @@ public class EnemyBullet : MonoBehaviour
     private GameObject PlayerObject;
     public GameObject conductObject;
     private bool inPlayerAttackRange = false;
+    [SerializeField] private GameObject Hit_Efect;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class EnemyBullet : MonoBehaviour
         {
             if (inPlayerAttackRange)
             {
+                Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
                 rb2d.velocity = Vector3.zero;
                 isBlow = true;
                 conductIt = true;
@@ -66,6 +68,7 @@ public class EnemyBullet : MonoBehaviour
                 FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
                 Audio.clip = isBlowSE;
                 Audio.Play();
+                GameManeger.hitEnemy++;
             }
         }
 
@@ -134,6 +137,13 @@ public class EnemyBullet : MonoBehaviour
         {
             inPlayerAttackRange = true;
             PlayerObject = FindObjectOfType<Player>().gameObject;
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (isBlow)
+            {
+                Destroy(this.gameObject);
+            }            
         }
     }
 
