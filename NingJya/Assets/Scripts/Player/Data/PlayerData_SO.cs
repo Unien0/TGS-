@@ -21,6 +21,8 @@ public class PlayerData_SO : ScriptableObject
     //リズム時間
     public float beatLengh;
 
+    public bool levelling;
+
     [Header("吹っ飛ばすに関するデータ")]
     //吹っ飛ばすの力
     public float force;

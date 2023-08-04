@@ -60,6 +60,12 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.mutekki; else return false; }
         set { playerData.mutekki = value; }
     }
+    public bool TimeInspect
+    {
+        //ƒvƒŒƒCƒ„[‚ªUŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é
+        get { if (playerData != null) return playerData.levelling; else return false; }
+        set { playerData.levelling = value; }
+    }
     #endregion 
 
     private float time;
@@ -67,7 +73,6 @@ public class Player : MonoBehaviour
     private float inputY;
     private float MutekiTime;
     public bool Hit;
-
     public bool ATK;
 
     public Vector2 shotrote;
@@ -202,6 +207,16 @@ public class Player : MonoBehaviour
     private void PlayerInput()
     {
         inputY = Input.GetAxisRaw("Vertical");
+        if (inputY<0.001f && removable)
+        {
+            foreach (var anim in animators)
+            { anim.SetBool("TimeInspect", true); break; }            
+        }
+        if (inputY > 0)
+        {
+            foreach (var anim in animators)
+            { anim.SetBool("TimeInspect", false); break; }
+        }
     }
 
     private void SwitchAnimation()
@@ -211,6 +226,7 @@ public class Player : MonoBehaviour
             anim.SetFloat("InputY", inputY);
         }
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
