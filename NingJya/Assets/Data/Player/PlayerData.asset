@@ -22,5 +22,5 @@ MonoBehaviour:
   force: 500
   isDead: 0
   attackable: 0
-  removable: 0
-  mutekki: 1
+  removable: 1
+  mutekki: 0

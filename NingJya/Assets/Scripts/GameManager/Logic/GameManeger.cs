@@ -73,7 +73,7 @@ public class GameManeger : MonoBehaviour
     {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
-        OneTempo = 60 / BPM;
+        OneTempo =60 / BPM;
         one_eighthTenpo = OneTempo / 8;
     }
     private void Update()
@@ -86,11 +86,12 @@ public class GameManeger : MonoBehaviour
     private void Metronome()
     {
         time += Time.deltaTime;
-        if (time > OneTempo)
+        if (time >= OneTempo)
         {
-            Tempo++;
+            Tempo++;            
+            time -= OneTempo;
             TimeInspect = true;
-            time = 0;
+            Debug.Log("timeto");
             //Audio.clip = MetronomeSE;
             //Audio.Play();
             isDead = true;

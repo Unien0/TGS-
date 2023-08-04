@@ -8,7 +8,7 @@ public class FranerateLinitSample : MonoBehaviour
     {
         NoLimit = -1,
         Limit30 = 30,
-        Limit60 = 60,
+        Limit70 = 70,
         Limit120 = 120,
     }
     public LimitType limitType;

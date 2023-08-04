@@ -13,8 +13,12 @@ public class AnimationEvent : MonoBehaviour
         set { playerData.levelling = value; }
     }
 
-    void Levelling()
+    public  void Levelling()
     {
         TimeInspect = true;
+    }
+    public  void Off()
+    {
+        TimeInspect = false;
     }
 }

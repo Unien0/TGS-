@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     public  GameObject KATANA;
 
     private Rigidbody2D rb2d;
-    private Animator[] animators;
+    private Animator anim;
     private SpriteRenderer SpR;
     public Collider2D PlayerCol2D;
 
@@ -91,15 +91,14 @@ public class Player : MonoBehaviour
     {
         PlayerCol2D = GetComponent<Collider2D>();
         rb2d = GetComponent<Rigidbody2D>();
-        animators = GetComponentsInChildren<Animator>();
+        anim = GetComponent<Animator>();
         SpR = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Start()
     {
         hp = maxHp;
-        foreach (var anim in animators)
-        { anim.SetBool("DEAD",false); break; }
+        anim.SetBool("DEAD",false);
     }
     
     void Update()
@@ -112,7 +111,7 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             move();
-            PlayerInput();
+            //PlayerInput();
             SwitchAnimation();
         }
 
@@ -128,8 +127,7 @@ public class Player : MonoBehaviour
                     rb2d.velocity = Vector2.zero;
                     PlayerCol2D.enabled = false;
                     GameOver.GAMEOVER = true;
-                    foreach (var anim in animators)
-                    {anim.SetBool("DEAD", true);break;}
+                    anim.SetBool("DEAD", true);
                 }
             }
             MutekiTime += Time.deltaTime;
@@ -141,6 +139,14 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    private void LateUpdate()
+    {
+        if (!isDead)
+        {
+            PlayerInput();
+        }
     }
 
     void move()
@@ -209,22 +215,18 @@ public class Player : MonoBehaviour
         inputY = Input.GetAxisRaw("Vertical");
         if (inputY <= 0f && TimeInspect)
         {
-            foreach (var anim in animators)
-            { anim.SetBool("TimeInspect", true); break; }            
+            anim.SetBool("TimeInspect", true);
+            Debug.Log("back");
         }
         else
         {
-            foreach (var anim in animators)
-            { anim.SetBool("TimeInspect", false); break; }
+            anim.SetBool("TimeInspect", false);
         }
     }
 
     private void SwitchAnimation()
     {
-        foreach (var anim in animators)
-        {
-            anim.SetFloat("InputY", inputY);
-        }
+        anim.SetFloat("InputY", inputY);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
