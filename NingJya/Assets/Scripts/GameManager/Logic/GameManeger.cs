@@ -41,6 +41,12 @@ public class GameManeger : MonoBehaviour
         get { if (playerData != null) return playerData.removable; else return false; }
         set { playerData.removable = value; }
     }
+    public bool TimeInspect
+    {
+        //ƒvƒŒƒCƒ„[‚ªUŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚ð”»’f‚·‚é
+        get { if (playerData != null) return playerData.levelling; else return false; }
+        set { playerData.levelling = value; }
+    }
     #endregion
 
 
@@ -82,17 +88,19 @@ public class GameManeger : MonoBehaviour
         time += Time.deltaTime;
         if (time > OneTempo)
         {
-
             Tempo++;
+            TimeInspect = true;
             time = 0;
             //Audio.clip = MetronomeSE;
             //Audio.Play();
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
+            //StartCoroutine(ToTimeInspect());            
         }
         else
         {
             isDead = false;
+            TimeInspect = false;
         }
         if (Tempo >= 4)
         {
@@ -132,6 +140,13 @@ public class GameManeger : MonoBehaviour
         //Debug.Log("guan");
         enemyRemovable = false;
     }
+
+    //private IEnumerator ToTimeInspect()
+    //{
+    //    TimeInspect = true;
+    //    yield return new WaitForSeconds(0.1f);
+    //    TimeInspect = false;
+    //}
 
     public void ScoreCheck()
     {

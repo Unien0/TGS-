@@ -207,12 +207,12 @@ public class Player : MonoBehaviour
     private void PlayerInput()
     {
         inputY = Input.GetAxisRaw("Vertical");
-        if (inputY<0.001f && removable)
+        if (inputY <= 0f && TimeInspect)
         {
             foreach (var anim in animators)
             { anim.SetBool("TimeInspect", true); break; }            
         }
-        if (inputY > 0)
+        else
         {
             foreach (var anim in animators)
             { anim.SetBool("TimeInspect", false); break; }
