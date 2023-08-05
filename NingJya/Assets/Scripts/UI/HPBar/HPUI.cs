@@ -17,9 +17,9 @@ public class HPUI : MonoBehaviour
     }
 
 
-    public Image heartFull;
-    public Image heartHalf;
-    public Image heartVoid;
+    public GameObject heartFull;
+    public GameObject heartHalf;
+    public GameObject heartVoid;
 
 
     // Update is called once per frame

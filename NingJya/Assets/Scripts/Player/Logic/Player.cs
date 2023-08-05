@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         SpR = GetComponentInChildren<SpriteRenderer>();
+        Cursor.visible = false;
     }
 
     void Start()
@@ -154,42 +155,7 @@ public class Player : MonoBehaviour
         // 移動入力 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        
-        if ((horizontal != 0) || (vertical != 0))
-        {
-            // 入力に応じて、攻撃範囲を回転する
-            #region roteMax変更
-            // 入力に応じて、回転を変更する
-            if ((horizontal >= 0.01f) && (vertical >= 0.01f))
-            { roteMax = 315; moveInput = new Vector2(1, 1); }
-            if ((horizontal == 0) && (vertical >= 0.01))
-            { roteMax = 0; moveInput = new Vector2(0, 1); }
-            if ((horizontal <= -0.01f) && (vertical >= 0.01f))
-            { roteMax = 45; moveInput = new Vector2(-1, 1); }
-            if ((horizontal <= -0.01f) && (vertical == 0))
-            { roteMax = 90; moveInput = new Vector2(-1, 0); }
-            if ((horizontal <= -0.1f) && (vertical <= -0.01f))
-            { roteMax = 135; moveInput = new Vector2(-1, -1); }
-            if ((horizontal == 0) && (vertical <= -0.01f))
-            { roteMax = 180; moveInput = new Vector2(0, -1); }
-            if ((horizontal >= 0.01f) && (vertical <= -0.01f))
-            { roteMax = 225; moveInput = new Vector2(1, -1); }
-            if ((horizontal >= 0.01f) && (vertical == 0))
-            { roteMax = 270; moveInput = new Vector2(1, 0); }
-            #endregion
-            AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
-
-            // 入力に応じて スプライト変更をする
-            // 横方向の回転
-            if (moveInput.x == 1) SpR.flipX = true;
-            else if (moveInput.x == -1) SpR.flipX = false;
-
-        }
-        else
-        {
-            moveInput = Vector2.zero;
-            rb2d.velocity = new Vector2(0, 0);
-        }
+                
         if (removable)
         {
             // 移動処理
@@ -197,15 +163,43 @@ public class Player : MonoBehaviour
             // 攻撃入力
             if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
             {
-                attackable = true;
-                
+                attackable = true;                
             }
-
         }
         else
         {
+            if ((horizontal != 0) || (vertical != 0))
+            {   // 入力に応じて、攻撃範囲を回転する
+                #region roteMax変更
+                // 入力に応じて、回転を変更する
+                if ((horizontal >= 0.01f) && (vertical >= 0.01f))
+                { roteMax = 315; moveInput = new Vector2(1, 1); }
+                if ((horizontal == 0) && (vertical >= 0.01))
+                { roteMax = 0; moveInput = new Vector2(0, 1); }
+                if ((horizontal <= -0.01f) && (vertical >= 0.01f))
+                { roteMax = 45; moveInput = new Vector2(-1, 1); }
+                if ((horizontal <= -0.01f) && (vertical == 0))
+                { roteMax = 90; moveInput = new Vector2(-1, 0); }
+                if ((horizontal <= -0.1f) && (vertical <= -0.01f))
+                { roteMax = 135; moveInput = new Vector2(-1, -1); }
+                if ((horizontal == 0) && (vertical <= -0.01f))
+                { roteMax = 180; moveInput = new Vector2(0, -1); }
+                if ((horizontal >= 0.01f) && (vertical <= -0.01f))
+                { roteMax = 225; moveInput = new Vector2(1, -1); }
+                if ((horizontal >= 0.01f) && (vertical == 0))
+                { roteMax = 270; moveInput = new Vector2(1, 0); }
+                #endregion
+                AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+
+                // 入力に応じて スプライト変更をする
+                // 横方向の回転
+                if (moveInput.x == 1) SpR.flipX = true;
+                else if (moveInput.x == -1) SpR.flipX = false;
+                if (moveInput.y == 1) SpR.flipX = !SpR.flipX;}
+            else
+            {moveInput = Vector2.zero;}
+            rb2d.velocity = new Vector2(0, 0);
             attackable = false;
-            rb2d.velocity = Vector2.zero;
             KATANA.GetComponent<Animator>().SetBool("ATK", false);
         }
     }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca3dae95dc1832e4695c060daa17af8f
+guid: c2c3b53a367d7874b962c016882d7c90
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,127 +105,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HPDown_0
+      name: HPOn_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 68
-        width: 15
-        height: 14
+        x: 8
+        y: 76
+        width: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b668738187ba4de4aa5f50196f3f92b6
-      internalID: 354844923
+      spriteID: 2c4f6e6f9b5f1284cb17c1223e4d1dea
+      internalID: 954760860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HPDown_1
+      name: HPOn_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 76
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d94afad4d39f94a8d3b7c21007d9cd
+      internalID: 1029985271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HPOn_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 44
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cad864e8caf98c141b764e9ec5a651d2
+      internalID: -537540815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HPOn_3
       rect:
         serializedVersion: 2
         x: 41
-        y: 68
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99e5afdc25e1bdb46bfbd1cfa864b96b
-      internalID: 964306291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HPDown_2
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 36
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fe1dbc50c943074ebdff304dbf752b0
-      internalID: -1175887270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HPDown_3
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 36
+        y: 45
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73703bc3905e0cb4d8e25a2b095875ed
-      internalID: 1284249595
+      spriteID: fbfb196d1b67ced4a82b008bf4a18f49
+      internalID: 1858183839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HPDown_4
+      name: HPOn_4
       rect:
         serializedVersion: 2
         x: 9
-        y: 4
+        y: 13
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cae7ba7be8320954fbb116cf724cc214
-      internalID: 1932108054
+      spriteID: 22951b95823e5f54386bbe65798b30f5
+      internalID: -1393460286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HPDown_5
+      name: HPOn_5
       rect:
         serializedVersion: 2
         x: 41
-        y: 1
+        y: 10
         width: 15
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 287a7df7f578b1b4d83165de941dae9b
-      internalID: 1388835029
+      spriteID: 0b10481090651f147aefe91f83909c1f
+      internalID: 1728849314
       vertices: []
       indices: 
       edges: []
@@ -241,12 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HPDown_0: 354844923
-      HPDown_1: 964306291
-      HPDown_2: -1175887270
-      HPDown_3: 1284249595
-      HPDown_4: 1932108054
-      HPDown_5: 1388835029
+      HPOn_0: 954760860
+      HPOn_1: 1029985271
+      HPOn_2: -537540815
+      HPOn_3: 1858183839
+      HPOn_4: -1393460286
+      HPOn_5: 1728849314
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
