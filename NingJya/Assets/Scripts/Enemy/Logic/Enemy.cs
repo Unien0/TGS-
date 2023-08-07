@@ -123,7 +123,8 @@ public class Enemy : MonoBehaviour
     private GameObject ClashEnemyObj;
     private GameObject PlayerObject;
     public GameObject conductObject;
-    [SerializeField] private GameObject cannonball;
+    [SerializeField] private GameObject HitEfect;
+    [SerializeField] private GameObject DEADEfect;
     [SerializeField] private GameObject EnemyBullet;
 
     private Vector2 clashRote;
@@ -132,8 +133,7 @@ public class Enemy : MonoBehaviour
     private Vector2 moveit;// moveintの結果を正負のみの値にする
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
-    [SerializeField]private GameObject DEAD_EFECT_1;
-    [SerializeField]private GameObject DEAD_EFECT_2;
+
 
     private AudioSource Audio;
     [SerializeField] private AudioClip isBlowSE;
@@ -194,7 +194,7 @@ public class Enemy : MonoBehaviour
             }
             if (hit)
             {
-                Instantiate(DEAD_EFECT_1, this.transform.position, this.transform.rotation);
+                Instantiate(HitEfect, this.transform.position, this.transform.rotation);
                 Audio.clip = HITSE;
                 Audio.Play();
                 shoted = true;
@@ -210,7 +210,7 @@ public class Enemy : MonoBehaviour
                     // ジャストアタックのタイミングなら
                     if (blowable)
                     {
-                        Instantiate(DEAD_EFECT_1, this.transform.position, this.transform.rotation);
+                        Instantiate(HitEfect, this.transform.position, this.transform.rotation);
                         Audio.clip = HITSE;
                         Audio.Play();
                         shoted = true;
@@ -412,7 +412,7 @@ public class Enemy : MonoBehaviour
                         Audio.clip = DeaDSE2;
                         Audio.Play();
                         // エフェクト作成
-                        Instantiate(DEAD_EFECT_2, this.transform.position, this.transform.rotation);
+                        Instantiate(DEADEfect, this.transform.position, this.transform.rotation);
                     }
 
                     SpR.enabled = false;

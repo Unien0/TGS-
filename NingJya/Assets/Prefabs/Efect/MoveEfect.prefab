@@ -4826,3 +4826,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeadTime: 1
+  EfectName: 0
