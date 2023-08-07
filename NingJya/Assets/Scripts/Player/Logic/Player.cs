@@ -223,7 +223,8 @@ public class Player : MonoBehaviour
                 // ‰¡•ûŒü‚Ì‰ñ“]
                 if (moveCon.x == 1) SpR.flipX = true;
                 else if (moveCon.x == -1) SpR.flipX = false;
-                if (moveCon.y == 1) SpR.flipX = !SpR.flipX;}
+                //if (moveCon.y == 1) SpR.flipX = !SpR.flipX;
+            }
             else
             {moveInput = Vector2.zero;            }
             rb2d.velocity = new Vector2(0, 0);

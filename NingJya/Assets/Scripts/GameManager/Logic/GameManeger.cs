@@ -91,7 +91,7 @@ public class GameManeger : MonoBehaviour
             Tempo++;            
             time -= OneTempo;
             TimeInspect = true;
-            Debug.Log("timeto");
+            //Debug.Log("timeto");
             //Audio.clip = MetronomeSE;
             //Audio.Play();
             isDead = true;
