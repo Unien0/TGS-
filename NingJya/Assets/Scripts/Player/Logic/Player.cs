@@ -69,11 +69,12 @@ public class Player : MonoBehaviour
     #endregion 
 
     private float time;
-    private float roteMax;
+    public float roteMax;
     private float inputY;
     private float MutekiTime;
     public bool Hit;
     public bool ATK;
+    private bool maked;
 
     public Vector2 shotrote;
     [SerializeField]private Vector2 moveInput;
@@ -81,11 +82,15 @@ public class Player : MonoBehaviour
     private GameObject Enemyobj;    
     [SerializeField] private GameObject AttackArea;    
     public  GameObject KATANA;
+    [SerializeField] private GameObject MoveEfect;
 
     private Rigidbody2D rb2d;
     private Animator anim;
     private SpriteRenderer SpR;
     public Collider2D PlayerCol2D;
+
+    private PlayerInputActions controls;
+    private Vector2 moveCon;
 
     private void Awake()
     {
@@ -94,6 +99,21 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         SpR = GetComponentInChildren<SpriteRenderer>();
         Cursor.visible = false;
+        controls = new PlayerInputActions();
+        controls.GamePlay.Move.performed += ctx => moveCon = ctx.ReadValue<Vector2>();
+        controls.GamePlay.Move.canceled += ctx => moveCon = Vector2.zero;
+
+        controls.GamePlay.Attack.started += ctx => Attack();
+    }
+
+    private void OnEnable()
+    {
+        controls.GamePlay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.GamePlay.Disable();
     }
 
     void Start()
@@ -112,6 +132,8 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             move();
+            // UŒ‚“ü—Í
+            Attack();
             //PlayerInput();
             SwitchAnimation();
         }
@@ -158,16 +180,22 @@ public class Player : MonoBehaviour
                 
         if (removable)
         {
-            // ˆÚ“®ˆ—
-            rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-            // UŒ‚“ü—Í
-            if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
+            if (!maked)
             {
-                attackable = true;                
+                if ((horizontal != 0) || (vertical != 0))
+                {
+
+                    maked = true;
+                    Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
+                }
             }
+            // ˆÚ“®ˆ—
+            //rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
+            rb2d.velocity = new Vector2(moveCon.x * speed, moveCon.y * speed);
         }
         else
         {
+            maked = false;
             if ((horizontal != 0) || (vertical != 0))
             {   // “ü—Í‚É‰‚¶‚ÄAUŒ‚”ÍˆÍ‚ğ‰ñ“]‚·‚é
                 #region roteMax•ÏX
@@ -193,14 +221,27 @@ public class Player : MonoBehaviour
 
                 // “ü—Í‚É‰‚¶‚Ä ƒXƒvƒ‰ƒCƒg•ÏX‚ğ‚·‚é
                 // ‰¡•ûŒü‚Ì‰ñ“]
-                if (moveInput.x == 1) SpR.flipX = true;
-                else if (moveInput.x == -1) SpR.flipX = false;
-                if (moveInput.y == 1) SpR.flipX = !SpR.flipX;}
+                if (moveCon.x == 1) SpR.flipX = true;
+                else if (moveCon.x == -1) SpR.flipX = false;
+                if (moveCon.y == 1) SpR.flipX = !SpR.flipX;}
             else
-            {moveInput = Vector2.zero;}
+            {moveInput = Vector2.zero;            }
             rb2d.velocity = new Vector2(0, 0);
             attackable = false;
             KATANA.GetComponent<Animator>().SetBool("ATK", false);
+        }
+    }
+
+    private void Attack()
+    {
+        if (removable)
+        {
+            attackable = true;
+
+            //if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
+            //{
+            //    attackable = true;
+            //}
         }
     }
 
@@ -210,7 +251,7 @@ public class Player : MonoBehaviour
         if (inputY <= 0f && TimeInspect)
         {
             anim.SetBool("TimeInspect", true);
-            Debug.Log("back");
+            //Debug.Log("back");
         }
         else
         {

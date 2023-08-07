@@ -86,8 +86,7 @@ namespace Fungus
 
             if (writer != null)
             {
-                if (Input.GetButtonDown(currentStandaloneInputModule.submitButton) ||
-                    (cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)))
+                if ((cancelEnabled && Input.GetButton(currentStandaloneInputModule.cancelButton)))
                 {
                     SetNextLineFlag();
                 }
@@ -100,6 +99,7 @@ namespace Fungus
             case ClickMode.ClickAnywhere:
                 if (Input.GetMouseButtonDown(0)||Input.GetKeyDown("joystick button 0"))
                 {
+                        Debug.Log(12);
                     SetClickAnywhereClickedFlag();
                 }
                 break;

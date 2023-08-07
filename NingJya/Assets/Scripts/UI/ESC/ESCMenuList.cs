@@ -2,38 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class ESCMenuList : MonoBehaviour
 {
     public GameObject escPlanel;
 
     private bool escOn;
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private GameObject mainMenuFirst;
+    [SerializeField] private GameObject settingsMenuFirst;
+
+    private PlayerInputActions controls;
+
+    private void Awake()
     {
-        
+        controls = new PlayerInputActions();
+        controls.GamePlay.ESC.started += ctx => PlanelCon();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        //ÉLÅ[ÇâüÇµÇƒãNìÆ
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-           
-            PlanelCon();
-        }
-        
+        controls.GamePlay.Enable();
     }
 
+    private void OnDisable()
+    {
+        controls.GamePlay.Disable();
+    }
+  
     public void PlanelCon()
     {
             if (!escOn)
             {
             AudioManager.Instance.PlaySE("Button2");
             escPlanel.SetActive(true);
-                escOn = true;
-                Time.timeScale = (0);//éûä‘é~ÇﬂÇƒ
+            escOn = true;
+            Time.timeScale = (0);//éûä‘é~ÇﬂÇƒ
+            EventSystem.current.SetSelectedGameObject(mainMenuFirst);
             }
             else
             {
@@ -41,7 +47,8 @@ public class ESCMenuList : MonoBehaviour
             escPlanel.SetActive(false);
                 escOn = false;
                 Time.timeScale = (1);
-            }
+            EventSystem.current.SetSelectedGameObject(null);
+        }
      }    
 
     public void ToTitle()
@@ -51,6 +58,11 @@ public class ESCMenuList : MonoBehaviour
         escOn = false;
         Time.timeScale = (1);
         SceneManager.LoadScene("Title");
+    }
+
+    public void Option()
+    {
+        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
     }
 
     public void EneGame()
