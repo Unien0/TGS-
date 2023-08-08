@@ -8,6 +8,9 @@ public class Title : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
+    [SerializeField] private GameObject optionClosedButton;
+
+    public GameObject option;
 
     private PlayerInputActions controls;
 
@@ -40,7 +43,21 @@ public class Title : MonoBehaviour
 
     public void Option()
     {
-        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+        if (!option.activeInHierarchy)
+        {
+            option.SetActive(true);
+            AudioManager.Instance.PlaySE("Button1");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+        }
+        else
+        {
+            option.SetActive(false);
+            AudioManager.Instance.PlaySE("Button2");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+        }
+        
     }
 
     public void GameOver()

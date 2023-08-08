@@ -13,6 +13,8 @@ public class ESCMenuList : MonoBehaviour
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
 
+    public GameObject option;
+
     private PlayerInputActions controls;
 
     private void Awake()
@@ -35,15 +37,16 @@ public class ESCMenuList : MonoBehaviour
     {
             if (!escOn)
             {
-            AudioManager.Instance.PlaySE("Button2");
+            AudioManager.Instance.PlaySE("Button1");
             escPlanel.SetActive(true);
             escOn = true;
             Time.timeScale = (0);//ŽžŠÔŽ~‚ß‚Ä
+            EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(mainMenuFirst);
             }
             else
             {
-            AudioManager.Instance.PlaySE("Button1");
+            AudioManager.Instance.PlaySE("Button2");
             escPlanel.SetActive(false);
                 escOn = false;
                 Time.timeScale = (1);
@@ -62,7 +65,20 @@ public class ESCMenuList : MonoBehaviour
 
     public void Option()
     {
-        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+        if (!option.activeInHierarchy)
+        {
+            option.SetActive(true);
+            AudioManager.Instance.PlaySE("Button1");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+        }
+        else
+        {
+            option.SetActive(false);
+            AudioManager.Instance.PlaySE("Button2");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+        }
     }
 
     public void EneGame()
