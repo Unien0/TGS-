@@ -190,8 +190,8 @@ public class Player : MonoBehaviour
                 }
             }
             // ˆÚ“®ˆ—
-            //rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-            rb2d.velocity = new Vector2(moveCon.x * speed, moveCon.y * speed);
+            rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
+            //rb2d.velocity = new Vector2(moveCon.x * speed, moveCon.y * speed);
         }
         else
         {
