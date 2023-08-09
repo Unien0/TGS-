@@ -29,7 +29,8 @@ public class BossEnemy : MonoBehaviour
     private bool inPlayerAttackRange = false;
     private GameObject PlayerObject;
     private Vector2 shotrote;
-
+    private double CoolDownTime;
+    private double time = -1;
     #endregion
     [SerializeField] private Vector2 shotIt;
     [SerializeField] private float ForcePoint;
@@ -56,12 +57,17 @@ public class BossEnemy : MonoBehaviour
     {
         if (FindObjectOfType<BossStartFlag>().ActStart)
         {
+            CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;
+            if(time == -1)
+            {
+                time = 10;
+            }
+            time += Time.deltaTime;
             Damage();
             switch (BossType)
             {
                 case BossNumber.No1:
-                    if (FindObjectOfType<BossStartFlag>().ActStart == true)
-                    { FirstBoss(); }
+                    FirstBoss();
                     break;
             }
         }
@@ -76,32 +82,38 @@ public class BossEnemy : MonoBehaviour
                 // ジャストアタックのタイミングなら
                 if (blowable)
                 {
-                    //方向
-                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                    { shotIt.x = Mathf.Sign(shotrote.x); }
-                    else
-                    { shotIt.x = 0; }
-                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                    { shotIt.y = Mathf.Sign(shotrote.y); }
-                    else
-                    { shotIt.y = 0; }
-                    //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                    rb2d.AddForce(shotIt * ForcePoint);
-                    FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
-                    Audio.clip = isBlowSE;
-                    Audio.Play();                   
-                    Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
-                    BossHP = BossHP - 1;
-                    if (BossHP <= 0)
+                    // クールダウンが回復したかどうか
+                    if (CoolDownTime <= time)
                     {
-                        FindObjectOfType<BossStartFlag>().ActEnd = true;
-                        ActPermission = false;
-                        SpR.enabled = false;
-                        Col2D.enabled = false;
-                        rb2d.velocity = Vector3.zero;
-                        GameManeger.KillBOSS++;
-                        Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                        //方向
+                        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                        { shotIt.x = Mathf.Sign(shotrote.x); }
+                        else
+                        { shotIt.x = 0; }
+                        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                        { shotIt.y = Mathf.Sign(shotrote.y); }
+                        else
+                        { shotIt.y = 0; }
+                        // 現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                        rb2d.AddForce(shotIt * ForcePoint);
+                        FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                        Audio.clip = isBlowSE;
+                        Audio.Play();
+                        Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
+                        BossHP = BossHP - 1;
+                        time = 0;
+                        if (BossHP <= 0)
+                        {
+                            FindObjectOfType<BossStartFlag>().ActEnd = true;
+                            ActPermission = false;
+                            SpR.enabled = false;
+                            Col2D.enabled = false;
+                            rb2d.velocity = Vector3.zero;
+                            GameManeger.KillBOSS += 1000;
+                            Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                        }
+
                     }
                 }
             }
@@ -174,6 +186,7 @@ public class BossEnemy : MonoBehaviour
 
                     RandumCount = Random.Range(1, 5);
                     Debug.Log(RandumCount);
+
                     switch (RandumCount)
                     {
                         case 1:

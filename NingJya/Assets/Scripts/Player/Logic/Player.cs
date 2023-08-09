@@ -271,7 +271,10 @@ public class Player : MonoBehaviour
         {
             if (!Hit)
             {
-                Hit = true;
+                if (col.gameObject.GetComponent<Enemy>().removable)
+                {
+                    Hit = true;
+                }
             }
         }
         if (col.gameObject.name == "END")

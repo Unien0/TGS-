@@ -56,6 +56,9 @@ public class GameManeger : MonoBehaviour
     public double OneTempo;
     public static double one_eighthTenpo;
     public static double one_eighthCount;
+    // 全スクリプトが参照にするテンポ変化確認
+    public static bool TempoExChange;
+
     private AudioSource Audio;
     [SerializeField] private AudioClip MetronomeSE;
     bool isSound;
@@ -64,22 +67,47 @@ public class GameManeger : MonoBehaviour
     public int Score;
     private string Scoretext;
     [SerializeField] private TextMeshProUGUI TMPui;
+
+    // 倒した敵の数
     public static int KillEnemy;
+    // ぶつけて倒した敵の数
     public static int hitEnemy;
+    // 手にしたコインの数
     public static int GetCoin;
+    // 倒したボスの数
     public static int KillBOSS;
+
+    //コンボオブジェクト
+    [SerializeField] private GameObject CombosObjct;
+    // コンボテキスト
+    [SerializeField] private TextMeshProUGUI ComboText;
+   // コンボの確認
+   public  static bool ComboCheck;
+    // コンボ中(ステータス)
+    private bool isCombo;
+    // コンボの制限時間
+    [SerializeField]private float ComboLimit;
+    // 現在コンボ数
+    [SerializeField] private int ComboCount;
+    // 最大コンボ数
+    [SerializeField] private int ComboMax;
+
+    private void Awake()
+    {
+        OneTempo = 60 / BPM;
+        one_eighthTenpo = OneTempo / 8;
+    }
 
     private void Start()
     {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
-        OneTempo =60 / BPM;
-        one_eighthTenpo = OneTempo / 8;
     }
     private void Update()
     {
         ScoreCheck();
         Metronome();
+       // ComboChecker();
         Function();
     }
 
@@ -91,15 +119,15 @@ public class GameManeger : MonoBehaviour
             Tempo++;            
             time -= OneTempo;
             TimeInspect = true;
-            //Debug.Log("timeto");
             //Audio.clip = MetronomeSE;
             //Audio.Play();
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
-            //StartCoroutine(ToTimeInspect());            
+            TempoExChange = true;
         }
         else
         {
+            TempoExChange = false;
             isDead = false;
             TimeInspect = false;
         }
@@ -118,8 +146,8 @@ public class GameManeger : MonoBehaviour
         }
 
         //ジャストアタック
-        if ((time > (OneTempo - (OneTempo / 5))) || 
-            (time < (OneTempo / 2)))
+        if ((time > (OneTempo - (OneTempo / 4))) || 
+            (time < (OneTempo / 4)))
         {
             removable = true;
             // Enemyのフットバシ処理を許可する
@@ -142,20 +170,44 @@ public class GameManeger : MonoBehaviour
         enemyRemovable = false;
     }
 
-    //private IEnumerator ToTimeInspect()
-    //{
-    //    TimeInspect = true;
-    //    yield return new WaitForSeconds(0.1f);
-    //    TimeInspect = false;
-    //}
-
     public void ScoreCheck()
     {
         Score = ((KillEnemy * 100)
                + (hitEnemy * 200) 
                + (GetCoin * 50) 
-               + (KillBOSS * 1000));
+               + (KillBOSS)
+               + (ComboMax * 100));
         TMPui.text = Score.ToString();
+    }
+
+    void ComboChecker()
+    {
+        if (ComboCheck)
+        {
+            if (!isCombo)
+            { 
+                isCombo = true;
+                ComboCount = 0;
+            }
+            ComboLimit = 5;
+            ComboCheck = false;
+            ComboCount++;
+        }
+        if (isCombo)
+        {
+            CombosObjct.SetActive(true);
+            ComboText.text = ComboCount.ToString();
+            ComboLimit -= Time.deltaTime;
+            if(ComboLimit <= 0)
+            {
+                if(ComboMax <= ComboCount)
+                {
+                    ComboMax = ComboCount;
+                }
+                isCombo = false;
+            }
+        }
+        else CombosObjct.SetActive(false);
     }
 
     void Function()
