@@ -23,4 +23,4 @@ MonoBehaviour:
   isDead: 0
   attackable: 0
   removable: 1
-  mutekki: 0
+  mutekki: 1

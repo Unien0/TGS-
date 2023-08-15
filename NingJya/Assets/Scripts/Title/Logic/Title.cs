@@ -38,7 +38,7 @@ public class Title : MonoBehaviour
     public void NewGame()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(2);
     }
 
     public void Option()

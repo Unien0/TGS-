@@ -88,7 +88,7 @@ public class GameManeger : MonoBehaviour
     // コンボの制限時間
     [SerializeField]private float ComboLimit;
     // 現在コンボ数
-    [SerializeField] private int ComboCount;
+    public int ComboCount;
     // 最大コンボ数
     [SerializeField] private int ComboMax;
 
@@ -107,7 +107,7 @@ public class GameManeger : MonoBehaviour
     {
         ScoreCheck();
         Metronome();
-       // ComboChecker();
+        ComboChecker();
         Function();
     }
 

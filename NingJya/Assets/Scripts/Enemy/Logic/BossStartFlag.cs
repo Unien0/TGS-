@@ -19,7 +19,7 @@ public class BossStartFlag : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.name == "ÅIPlayer")
         {
             ActStart = true;
             ENTER_SYOUZI.SetActive(true);

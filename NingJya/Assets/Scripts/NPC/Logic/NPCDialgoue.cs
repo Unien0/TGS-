@@ -14,6 +14,8 @@ public class NPCDialgoue : MonoBehaviour
     public GameObject npc1;
     public Flowchart fc;
     private Collider2D col2D;
+    private bool make;
+    [SerializeField] private GameObject DEAD_EFECT;
 
     private void Awake()
     {
@@ -26,6 +28,11 @@ public class NPCDialgoue : MonoBehaviour
         //Flowchart flowchart = GameObject.Find("Flowchart").GetComponent<Flowchart>();
         if (fc.GetBooleanVariable("WellOpen"))
         {
+            if (!make)
+            {
+                make = true;
+                Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
+            }
             Destroy(door1);
             npc1.SetActive(false);
         }

@@ -92,6 +92,7 @@ public class Enemy : MonoBehaviour
         cannonball,
         knockback,
         clockup,
+        Dummy,
         end
     }
     
@@ -132,7 +133,8 @@ public class Enemy : MonoBehaviour
 
     private Vector2 clashRote;
     private Vector2 clashshotIt;
-    private Vector2 moveint;    
+    private Vector2 moveint;
+    private Vector2 PosCheck;
     private Vector2 moveit;// moveintの結果を正負のみの値にする
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
@@ -142,8 +144,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip isBlowSE;
     [SerializeField] private AudioClip HITSE;
     private bool IsSound;
-    [SerializeField] private AudioClip DeaDSE1;
-    [SerializeField] private AudioClip DeaDSE2;
+    [SerializeField] private AudioClip DeadSE1;
+    [SerializeField] private AudioClip DeadSE2;
+
+    private bool ComboFix;
+    private int MakeComboCount;
 
     private void Awake()
     {
@@ -234,8 +239,8 @@ public class Enemy : MonoBehaviour
                             conductIt = true;
                             FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                             FindObjectOfType<ConductManeger>().conduct = true;
-                            FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
                             time = 0;
+                            KillCombo();
                         }
                         else
                         {
@@ -288,14 +293,31 @@ public class Enemy : MonoBehaviour
         if (removable)
         {
             PlayerObject = FindObjectOfType<Player>().gameObject;
-                moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-                objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
-                if (objctDistance <= 10)
+            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
+            PosCheck = new Vector2(Mathf.Abs(moveint.x), Mathf.Abs(moveint.y));   
+            objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
+            if (objctDistance <= 10)
+            {
+                /*if (enemyAct == enemyActSet.move)
+                {
+                    if (PosCheck.x >= PosCheck.y)
+                    {
+                        moveit.x = Mathf.Sign(moveint.x);
+                        moveit.y = 0;
+                    }
+                    else if (PosCheck.x <= PosCheck.y)
+                    {
+                        moveit.x = 0;
+                        moveit.y = Mathf.Sign(moveint.y); ;
+                    }
+                }
+                else*/
                 {
                     moveit.x = Mathf.Sign(moveint.x);
                     moveit.y = Mathf.Sign(moveint.y);
-                    rb2d.velocity = moveit * enemySpeed;
                 }
+                rb2d.velocity = moveit * enemySpeed;
+            }
         }
         else
         {
@@ -313,8 +335,7 @@ public class Enemy : MonoBehaviour
         if (inPlayerAttackRange)
         {
             if (Ready)
-            {
-                GameManeger.ComboCheck = true;
+            {                
                 if (conductObject != null)
                 {
                     //方向
@@ -404,20 +425,29 @@ public class Enemy : MonoBehaviour
             if (GameManeger.TempoExChange)
             {
                 if (hp <= 0)
-                {
+                {                    
                     if (!IsSound)
                     {
                         IsSound = true;
-                        Audio.clip = DeaDSE2;
+                        Audio.clip = DeadSE2;
                         Audio.Play();
                         // エフェクト作成
                         Instantiate(DEADEfect, this.transform.position, this.transform.rotation);
                     }
 
                     SpR.enabled = false;
-                    col2d.enabled = false;                   
+                    col2d.enabled = false;
 
-                    if (actTime > blowTime + 1)
+                    if (enemyAct == enemyActSet.Dummy)
+                    {
+                        if (actTime > blowTime + 1)
+                        {
+                            SpR.enabled = true;
+                            col2d.enabled = true;
+                            hp = 1;
+                        }
+                    }
+                    else if (actTime > blowTime + 1)
                     {
                         isEnd = true;
                         GameManeger.KillEnemy ++;
@@ -432,6 +462,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void KillCombo ()
+    {
+        if (!ComboFix)
+        {
+            ComboFix = true;
+            GameManeger.ComboCheck = true;
+            MakeComboCount = FindObjectOfType<GameManeger>().ComboCount;
+
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
@@ -439,9 +480,9 @@ public class Enemy : MonoBehaviour
             if (col.gameObject.GetComponent<Enemy>().shoted)
             {
                 hit = true;
-                GameManeger.ComboCheck = true;
                 hp = 0;
                 GameManeger.hitEnemy++;
+                KillCombo();
             }
         }
         if ((col.gameObject.CompareTag("HitObj")) )
@@ -449,8 +490,23 @@ public class Enemy : MonoBehaviour
             hit = true;
             GameManeger.hitEnemy++;
             hp = 0;
+            KillCombo();
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("EnemyBullet"))
+        {
+            if (col.gameObject.GetComponent<EnemyBullet>().isBlow == true)
+            {
+                Debug.Log("BulletDead");
+                hit = true;
+                GameManeger.hitEnemy++;
+                hp = 0;
+                KillCombo();
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)

@@ -141,8 +141,8 @@ MonoBehaviour:
   shotIt: {x: 0, y: 0}
   isBlowSE: {fileID: 8300000, guid: f05b1452400c683429d3a04792a2bdee, type: 3}
   HITSE: {fileID: 8300000, guid: ec1e83cc4ac9bab418307855d13d9981, type: 3}
-  DeaDSE1: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
-  DeaDSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
+  DeadSE1: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
+  DeadSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
 --- !u!70 &7624867953108359252
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

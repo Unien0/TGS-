@@ -91,6 +91,10 @@ public class Player : MonoBehaviour
 
     private PlayerInputActions controls;
     private Vector2 moveCon;
+    private bool AlphaExchange;
+
+    private AudioSource Audio;
+    [SerializeField] private AudioClip DamageSE;
 
     private void Awake()
     {
@@ -120,6 +124,8 @@ public class Player : MonoBehaviour
     {
         hp = maxHp;
         anim.SetBool("DEAD",false);
+        Audio = GetComponent<AudioSource>();
+        isDead = false;
     }
     
     void Update()
@@ -145,8 +151,11 @@ public class Player : MonoBehaviour
                 hp--;
                 Mutekki = true;
                 MutekiTime = 0;
+                Audio.clip = DamageSE;
+                Audio.Play();
                 if (hp <= 0)
                 {
+                    isDead = true;
                     rb2d.velocity = Vector2.zero;
                     PlayerCol2D.enabled = false;
                     GameOver.GAMEOVER = true;
@@ -159,6 +168,28 @@ public class Player : MonoBehaviour
             {
                 Hit = false;
                 Mutekki = false;
+                AlphaExchange = false;
+                SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b,1);
+            }
+            else
+            {
+                if (!AlphaExchange)
+                {
+                    SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, SpR.color.a - Time.deltaTime * 8);
+                    if(SpR.color.a <= 0)
+                    {
+                        AlphaExchange = true;
+                    }
+                }
+                else
+                {
+                    SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, SpR.color.a + Time.deltaTime * 8);
+                    if (SpR.color.a >= 1)
+                    {
+                        AlphaExchange = false;
+                    }
+                }
+
             }
         }
 
@@ -236,13 +267,18 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         if (removable)
-        {
-            attackable = true;
-
-            //if ((Input.GetKey(KeyCode.E)) || Input.GetKey("joystick button 1"))
-            //{
-            //    attackable = true;
-            //}
+        {     
+            if ((Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 1"))
+            {
+                if (!attackable)
+                {
+                    if (removable)
+                    {
+                        attackable = true;
+                        KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                    }
+                }
+            }
         }
     }
 

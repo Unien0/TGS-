@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private Vector2 shotIt;
     public bool conductIt;
     public bool Ready;
-    private bool isBlow;
+    public bool isBlow;
     [SerializeField] private bool exchange;
     private AudioSource Audio;
     [SerializeField] private AudioClip isBlowSE;
@@ -65,7 +65,6 @@ public class EnemyBullet : MonoBehaviour
                 conductIt = true;
                 FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                 FindObjectOfType<ConductManeger>().conduct = true;
-                FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
                 Audio.clip = isBlowSE;
                 Audio.Play();
                 GameManeger.hitEnemy++;
@@ -100,7 +99,6 @@ public class EnemyBullet : MonoBehaviour
                     { shotIt.y = 0; }
                     //åªç›à íuÇ…äÓÇ√Ç¢ÇƒêÅÇ¡îÚÇŒÇ∑ÇÃóÕÇ∆ï€ë∂éûä‘ÇîªífÇµÇ‹Ç∑
                     rb2d.AddForce(shotIt * BulletSpeed);
-                    Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
                 }
                 else
                 {
@@ -125,7 +123,6 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.name == "ÅIPlayer")
         {
-            Debug.Log("Trg");
             Destroy(this.gameObject);
             FindObjectOfType<Player>().Hit = true;
         }
@@ -142,7 +139,7 @@ public class EnemyBullet : MonoBehaviour
         {
             if (isBlow)
             {
-                Destroy(this.gameObject);
+                Destroy(this.gameObject);                
             }            
         }
     }

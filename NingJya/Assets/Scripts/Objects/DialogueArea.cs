@@ -15,6 +15,8 @@ public class DialogueArea : MonoBehaviour
     public GameObject npc1;
     //public GameObject npc2;
     private Collider2D col2D;
+    private bool make;
+    [SerializeField] private GameObject DEAD_EFECT;
     private void Awake()
     {
         col2D = GetComponent<Collider2D>();
@@ -32,6 +34,11 @@ public class DialogueArea : MonoBehaviour
     {
         if (outEnemy)
         {
+            if (!make)
+            {
+                make = true;
+                Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
+            }            
             Destroy(door);
             npc1.SetActive(false);
         }
