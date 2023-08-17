@@ -30,7 +30,7 @@ public class Objects : MonoBehaviour
     }
     #endregion
 
-    private float ForcePoint = 700;
+    private float ForcePoint;
     private float actTime;
 
     private bool inPlayerAttackRange = false;
@@ -53,6 +53,7 @@ public class Objects : MonoBehaviour
     private enum ObjectType
     {
         Cushion,
+        Table,
         end
     }
     [SerializeField] private ObjectType ObjNAME;
@@ -68,12 +69,19 @@ public class Objects : MonoBehaviour
 
     void Start()
     {
-
+        switch (ObjNAME)
+        {
+            case ObjectType.Cushion:
+                ForcePoint = 800;break;
+            case ObjectType.Table:
+                ForcePoint = 400; break;
+        }
     }
 
 
     void Update()
     {
+        // 共通処理
         // ジャストアタックのタイミングの上
         if (blowable)
         {
@@ -82,11 +90,14 @@ public class Objects : MonoBehaviour
             {
                 if (inPlayerAttackRange)
                 {
+                    Debug.Log("Get E");
                     shoted = true;
                     BlowAway();
                     actTime = 0;
-                    col2d.isTrigger = false;
-
+                    if (ObjNAME == ObjectType.Cushion)
+                    {
+                        col2d.isTrigger = false;
+                    }
                     conductIt = true;
                     FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                     FindObjectOfType<ConductManeger>().conduct = true;
@@ -111,64 +122,38 @@ public class Objects : MonoBehaviour
         // プレイヤーの攻撃範囲にいるとき
         if (inPlayerAttackRange)
         {
-            // オブジェクトタイプを確認
-            switch (ObjNAME)
+            if (Ready)
             {
-                case ObjectType.Cushion:
-                    #region
-                    if (exchange)
-                    {
-                        if (Ready)
-                        {
-                            if (conductObject != null)
-                            {
-                                //方向
-                                shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
+                if (conductObject != null)
+                {
+                    //方向
+                    shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
 
-                                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                                { shotIt.x = Mathf.Sign(shotrote.x); }
-                                else
-                                { shotIt.x = 0; }
-                                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                                { shotIt.y = Mathf.Sign(shotrote.y); }
-                                //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                                rb2d.AddForce(shotIt * ForcePoint);
-                                Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
-                            }
-                            else
-                            {
-                                //方向
-                                shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                                { shotIt.x = Mathf.Sign(shotrote.x); }
-                                else
-                                { shotIt.x = 0; }
-                                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                                { shotIt.y = Mathf.Sign(shotrote.y); }
-                                else
-                                { shotIt.y = 0; }
-                                //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                                rb2d.AddForce(shotIt * ForcePoint);
-                            }
-                        }
-                    }
+                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(shotrote.x); }
                     else
-                    {
-                        //方向
-                        shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                        { shotIt.x = Mathf.Sign(shotrote.x); }
-                        else
-                        { shotIt.x = 0; }
-                        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                        { shotIt.y = Mathf.Sign(shotrote.y); }
-                        else
-                        { shotIt.y = 0; }
-                        //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                        rb2d.AddForce(shotIt * ForcePoint);
-                    }
-                    #endregion
-                    break;
+                    { shotIt.x = 0; }
+                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                    rb2d.AddForce(shotIt * ForcePoint);
+                    Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
+                }
+                else
+                {
+                    //方向
+                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    else
+                    { shotIt.x = 0; }
+                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    else
+                    { shotIt.y = 0; }
+                    //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                    rb2d.AddForce(shotIt * ForcePoint);
+                }
             }
         }
     }
@@ -181,7 +166,10 @@ public class Objects : MonoBehaviour
             transform.eulerAngles = Vector3.zero;
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
-            col2d.isTrigger = true;
+            if (ObjNAME == ObjectType.Cushion)
+            {
+                col2d.isTrigger = false;
+            }
         }
     }
 
@@ -189,7 +177,34 @@ public class Objects : MonoBehaviour
     {
         if ((col.CompareTag("wall")) || (col.CompareTag("HitObj")))
         {
-            col2d.isTrigger = true;
+            if (ObjNAME == ObjectType.Cushion)
+            {
+                col2d.isTrigger = true;
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (ObjNAME == ObjectType.Table)
+        {
+            // プレイヤーの攻撃範囲に入っていて、
+            if (col.gameObject.CompareTag("Player"))
+            {
+                inPlayerAttackRange = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (ObjNAME == ObjectType.Table)
+        {
+            // プレイヤーの攻撃範囲に入っていて、
+            if (col.gameObject.CompareTag("Player"))
+            {
+                inPlayerAttackRange = false;
+            }
         }
     }
 

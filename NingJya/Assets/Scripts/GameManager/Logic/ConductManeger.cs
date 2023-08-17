@@ -20,6 +20,8 @@ public class ConductManeger : MonoBehaviour
     private int CTcount;
     public GameObject targetObj;
 
+    [SerializeField]private GameObject PlayerObj;
+
     public static List<GameObject> EnemyList = new List<GameObject>();
     string tagName;
 
@@ -107,7 +109,11 @@ public class ConductManeger : MonoBehaviour
  
             }
         }
-        
+
+        if (targetObj == null)
+        {
+            targetObj = PlayerObj;
+        }
 
         switch (tagName)
         {
