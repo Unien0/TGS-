@@ -373,7 +373,7 @@ Transform:
   - {fileID: 1332941005}
   - {fileID: 720396185}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28865543
 GameObject:
@@ -26572,6 +26572,7 @@ MonoBehaviour:
   MustEnemyobjctDistance: 0
   CTobject: {fileID: 0}
   targetObj: {fileID: 0}
+  PlayerObj: {fileID: 0}
 --- !u!1001 &584895253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26838,7 +26839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204558, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204558, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55244,7 +55245,7 @@ Transform:
   - {fileID: 154652052}
   - {fileID: 883177882}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1783353054 stripped
 RectTransform:
