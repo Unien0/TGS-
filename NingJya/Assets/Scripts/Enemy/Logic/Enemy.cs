@@ -548,6 +548,16 @@ public class Enemy : MonoBehaviour
                 KillCombo();
             }
         }
+        if ((col.gameObject.CompareTag("HitObj")))
+        {
+            if (col.GetComponent<Objects>().shoted)
+            {
+                hit = true;
+                GameManeger.hitEnemy++;
+                hp = 0;
+                KillCombo();
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)

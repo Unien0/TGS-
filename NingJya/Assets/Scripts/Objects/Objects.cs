@@ -34,7 +34,7 @@ public class Objects : MonoBehaviour
     private float actTime;
 
     private bool inPlayerAttackRange = false;
-    private bool shoted;//‚Á”ò‚Î‚·‚Ìó‘Ô
+    public bool shoted;//‚Á”ò‚Î‚·‚Ìó‘Ô
 
     private Rigidbody2D rb2d;
     private Collider2D col2d;
@@ -182,6 +182,10 @@ public class Objects : MonoBehaviour
                 col2d.isTrigger = true;
             }
         }
+        if (col.CompareTag("Enemy"))
+        {
+            col2d.isTrigger = false;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D col)
@@ -223,5 +227,9 @@ public class Objects : MonoBehaviour
         {
             inPlayerAttackRange = false;
         }
+        if (col.CompareTag("Enemy"))
+        {
+            col2d.isTrigger = true;
+        } 
     }
 }

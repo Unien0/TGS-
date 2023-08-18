@@ -102,12 +102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2f12a74d2d95c42b475ebde037667d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
   BulletSpeed: 50
   shotrote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
   conductIt: 1
   Ready: 0
+  isBlow: 0
   exchange: 1
   isBlowSE: {fileID: 8300000, guid: f89f6739eeea26b42b769490499aa979, type: 3}
   conductObject: {fileID: 0}
