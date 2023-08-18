@@ -42,6 +42,14 @@ public class EnemyBullet : MonoBehaviour
         // objectPLからtransform.position.x,yの情報を取得、
         // このオブジェクトとの位置の差をtargetPLに代入
         targetPL = new Vector2((objectPL.transform.position.x - this.transform.position.x), (objectPL.transform.position.y - this.transform.position.y));
+        switch (targetPL.x)
+        {
+
+        }
+        switch (targetPL.y)
+        {
+
+        }
         // targetPLの位置に向かって移動する
         rb2d.AddForce(targetPL * BulletSpeed);
     }

@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
     {
         if (AudioNumber == 3)
         {
-            Debug.Log("EXcBGM");
+            
             Gap = new Vector2(ExchangePoint1.transform.position.x - PlayerObj.transform.position.x, ExchangePoint1.transform.position.y - PlayerObj.transform.position.y);
             float vec1 = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
             if (vec1 <= 5)

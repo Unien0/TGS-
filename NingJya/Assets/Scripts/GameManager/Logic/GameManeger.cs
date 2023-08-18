@@ -124,8 +124,8 @@ public class GameManeger : MonoBehaviour
             Tempo++;            
             time -= OneTempo;
             TimeInspect = true;
-            Audio.clip = MetronomeSE;
-            Audio.Play();
+            //Audio.clip = MetronomeSE;
+            //Audio.Play();
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
             TempoExChange = true;
