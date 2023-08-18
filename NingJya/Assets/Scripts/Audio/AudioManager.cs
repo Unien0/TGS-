@@ -14,11 +14,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSounrce, seSource;
 
     // âûã}èàíu
-    [SerializeField] private GameObject ExchangePoint1;
-    [SerializeField] private GameObject ExchangePoint2;
-    Vector2 Gap;
+    public bool Ex = false;
     public GameObject PlayerObj;
-    private int AudioNumber = 3;
+    public int AudioNumber = 3;
 
     private void Awake()
     {
@@ -43,29 +41,25 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
         if (AudioNumber == 3)
-        {
-            
-            Gap = new Vector2(ExchangePoint1.transform.position.x - PlayerObj.transform.position.x, ExchangePoint1.transform.position.y - PlayerObj.transform.position.y);
-            float vec1 = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
-            if (vec1 <= 5)
+        {         
+            if (Ex)
             {
-                
                 AudioNumber = 4;
                 PlayMusic("BGM2");
                 FindObjectOfType<GameManeger>().BPM = 136;
                 GameManeger.TempoReset = true;
+                Ex = false;
             }
         }
         if (AudioNumber == 4)
         {
-            Gap = new Vector2(ExchangePoint2.transform.position.x - PlayerObj.transform.position.x, ExchangePoint2.transform.position.y - PlayerObj.transform.position.y);
-            float vec2 = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
-            if (vec2 <= 5)
+            if (Ex)
             {
                 AudioNumber = 5;
                 PlayMusic("BGM3");
                 FindObjectOfType<GameManeger>().BPM = 136;
                 GameManeger.TempoReset = true;
+                Ex=false;
             }
         }
 

@@ -168,7 +168,7 @@ public class Objects : MonoBehaviour
             rb2d.angularVelocity = 0;
             if (ObjNAME == ObjectType.Cushion)
             {
-                col2d.isTrigger = false;
+                col2d.isTrigger = true;
             }
         }
     }
