@@ -96,7 +96,7 @@ public class EnemyBullet : MonoBehaviour
                 {
                     //ï˚å¸
                     shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
-
+                    /*
                     if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
                     { shotIt.x = Mathf.Sign(shotrote.x); }
                     else
@@ -104,7 +104,9 @@ public class EnemyBullet : MonoBehaviour
                     if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
                     { shotIt.y = Mathf.Sign(shotrote.y); }
                     else
-                    { shotIt.y = 0; }
+                    { shotIt.y = 0; }*/
+                    shotIt.x = Mathf.Sign(shotrote.x);
+                    shotIt.y = Mathf.Sign(shotrote.y);
                     //åªç›à íuÇ…äÓÇ√Ç¢ÇƒêÅÇ¡îÚÇŒÇ∑ÇÃóÕÇ∆ï€ë∂éûä‘ÇîªífÇµÇ‹Ç∑
                     rb2d.AddForce(shotIt * BulletSpeed);
                 }
