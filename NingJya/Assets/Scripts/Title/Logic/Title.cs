@@ -13,9 +13,13 @@ public class Title : MonoBehaviour
     public GameObject option;
 
     private PlayerInputActions controls;
+    private AudioSource audioSource;
+    [SerializeField]private AudioClip startClip;
+    private bool LoadIt;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         controls = new PlayerInputActions();
         controls.GamePlay.ESC.started += ctx => Start();
     }
@@ -23,6 +27,17 @@ public class Title : MonoBehaviour
     private void Start()
     {
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+    }
+
+    private void Update()
+    {
+        if (LoadIt)
+        {
+            if (!audioSource.isPlaying)
+            {
+                SceneManager.LoadScene(2);
+            }
+        }
     }
 
     private void OnEnable()
@@ -38,7 +53,9 @@ public class Title : MonoBehaviour
     public void NewGame()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        SceneManager.LoadScene(2);
+        audioSource.clip = startClip;
+        audioSource.Play();
+        LoadIt = true;
     }
 
     public void Option()

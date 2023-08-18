@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EfectDestory : MonoBehaviour
 {
@@ -10,12 +11,21 @@ public class EfectDestory : MonoBehaviour
     public enum EfectType
     {
         Move,
+        Combo,
         Any,
         End
     }
     [SerializeField] private EfectType EfectName;
+    public int ComboPoint;
+    [SerializeField] private TextMeshPro ComboText;
+    private Rigidbody2D rd2d;
+    private float ShotPoint;
     void Start()
     {
+        rd2d = GetComponent<Rigidbody2D>();
+
+        ShotPoint = Random.Range(-1.5f,1.5f);
+
         switch (EfectName)
         {
             case EfectType.Move:
@@ -48,7 +58,9 @@ public class EfectDestory : MonoBehaviour
                         break;
                         #endregion
                 }
-
+                break;
+            case EfectType.Combo:
+                rd2d.AddForce(new Vector2(ShotPoint, 5) * 80);
                 break;
         }
     }
@@ -60,6 +72,16 @@ public class EfectDestory : MonoBehaviour
         if (time >= DeadTime)
         {
             Destroy(gameObject);
+        }
+
+        if (EfectName == EfectType.Combo)
+        {
+            ComboText.text = ComboPoint.ToString();
+
+            if (GameManeger.ComboCheck == true)
+            {
+                //Destroy(gameObject);
+            }
         }
     }
 }

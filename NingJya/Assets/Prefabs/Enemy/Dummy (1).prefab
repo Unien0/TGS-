@@ -132,7 +132,7 @@ MonoBehaviour:
   exchange: 1
   conductIt: 0
   Ready: 0
-  enemyAct: 0
+  enemyAct: 5
   conductObject: {fileID: 0}
   HitEfect: {fileID: 6473819552231644624, guid: b0d7fc4c4ad00f7489e2290e75a02a74, type: 3}
   DEADEfect: {fileID: 8242268725105712320, guid: 3d396cc73a4904841ad0f08b5b4e1b37, type: 3}
@@ -143,6 +143,8 @@ MonoBehaviour:
   HITSE: {fileID: 8300000, guid: ec1e83cc4ac9bab418307855d13d9981, type: 3}
   DeadSE1: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
   DeadSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
+  MakeComboCount: 0
+  ComboEfect: {fileID: 8831881229920725353, guid: be8f2a0b235ed0e48ba4a39c44231459, type: 3}
 --- !u!70 &392622890078974022
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

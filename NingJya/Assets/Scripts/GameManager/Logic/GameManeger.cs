@@ -50,7 +50,7 @@ public class GameManeger : MonoBehaviour
     #endregion
 
 
-    [SerializeField] private float BPM;
+    public float BPM;
     public static int Tempo;
     private double time;
     public double OneTempo;
@@ -88,10 +88,10 @@ public class GameManeger : MonoBehaviour
     // コンボの制限時間
     [SerializeField]private float ComboLimit;
     // 現在コンボ数
-    public int ComboCount;
+    public static int ComboCount;
     // 最大コンボ数
     [SerializeField] private int ComboMax;
-
+    public static bool TempoReset;
     private void Awake()
     {
         TempoChange();
@@ -191,8 +191,7 @@ public class GameManeger : MonoBehaviour
         {
             if (!isCombo)
             { 
-                isCombo = true;
-                ComboCount = 0;
+                isCombo = true;                
             }
             ComboLimit = 5;
             ComboCheck = false;
@@ -203,26 +202,31 @@ public class GameManeger : MonoBehaviour
             CombosObjct.SetActive(true);
             ComboText.text = ComboCount.ToString();
             ComboLimit -= Time.deltaTime;
-            if(ComboLimit <= 0)
+            if (ComboLimit <= 0)
             {
-                if(ComboMax <= ComboCount)
+                if (ComboMax <= ComboCount)
                 {
                     ComboMax = ComboCount;
                 }
                 isCombo = false;
             }
         }
-        else CombosObjct.SetActive(false);
+        else
+        {
+            ComboCount = 0;
+            CombosObjct.SetActive(false);
+        }
     }
 
     void Function()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if ((Input.GetKeyDown(KeyCode.F1)) || (TempoReset))
         {
             // リズムリセットを行う。
             TempoChange();
             Tempo = 0;
             time = 0;
+            TempoReset = false;
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {// 誘導挙動の再設定を行う            

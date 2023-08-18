@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float objctDistance;
     [SerializeField]private float hp;
     public float knockbackPoint;
+    private Vector2 ReSponePoint;
 
     //個体の状態（Bool）
     private bool inPlayerAttackRange = false;
@@ -122,7 +123,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer SpR;
     private Collider2D col2d;
     private Animator anim;
-    [SerializeField] private enemyActSet enemyAct;
+    public enemyActSet enemyAct;
 
     private GameObject ClashEnemyObj;
     private GameObject PlayerObject;
@@ -148,8 +149,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip DeadSE2;
 
     private bool ComboFix;
-    private int MakeComboCount;
+    public int MakeComboCount;
     private float animSpeed;
+
+    [SerializeField] private GameObject ComboEfect;
+    private bool AlphaExchange;
+
 
     private void Awake()
     {
@@ -165,9 +170,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        ReSponePoint = transform.position;
         hp = enemyHp;
         if (enemyAct == enemyActSet.knockback)
-        { knockbackPoint = knockbackPoint * 60; }
+        { knockbackPoint = knockbackPoint * 2; }
         CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;
         if (time == -1)
         {
@@ -208,6 +214,9 @@ public class Enemy : MonoBehaviour
                         break;
                     case enemyActSet.knockback:
                         Move();                        
+                        break;
+                    case enemyActSet.Dummy:
+                        rb2d.velocity = Vector2.zero;
                         break;
 
                 }
@@ -258,6 +267,26 @@ public class Enemy : MonoBehaviour
             if (shoted)
             {
                 ToStop();
+                if (!AlphaExchange)
+                {
+                    SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, SpR.color.a - Time.deltaTime * 10);
+                    if (SpR.color.a <= 0)
+                    {
+                        AlphaExchange = true;
+                    }
+                }
+                else
+                {
+                    SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, SpR.color.a + Time.deltaTime * 10);
+                    if (SpR.color.a >= 1)
+                    {
+                        AlphaExchange = false;
+                    }
+                }
+            }
+            else
+            {
+                SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, 1);
             }
 
             if (shotOk)
@@ -354,7 +383,7 @@ public class Enemy : MonoBehaviour
                     else
                     { shotIt.y = 0; }
                     //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                    rb2d.AddForce(shotIt * ForcePoint);
+                    rb2d.AddForce(shotIt * knockbackPoint);
                     Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
                 }
                 else
@@ -370,7 +399,7 @@ public class Enemy : MonoBehaviour
                     else
                     { shotIt.y = 0; }
                     //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                    rb2d.AddForce(shotIt * ForcePoint);
+                    rb2d.AddForce(shotIt * knockbackPoint);
                 }
             }
         }
@@ -392,7 +421,7 @@ public class Enemy : MonoBehaviour
                 if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
                 { shotIt.y = Mathf.Sign(shotrote.y); }
                 //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                rb2d.AddForce(shotIt * ForcePoint);
+                rb2d.AddForce(shotIt * knockbackPoint);
             }
             else
             {
@@ -407,7 +436,7 @@ public class Enemy : MonoBehaviour
                 else
                 { shotIt.y = 0; }
                 //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                rb2d.AddForce(shotIt * ForcePoint);
+                rb2d.AddForce(shotIt * knockbackPoint);
             }
         }
     }
@@ -426,6 +455,7 @@ public class Enemy : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
 
+
             if (GameManeger.TempoExChange)
             {
                 if (hp <= 0)
@@ -437,6 +467,8 @@ public class Enemy : MonoBehaviour
                         Audio.Play();
                         // エフェクト作成
                         Instantiate(DEADEfect, this.transform.position, this.transform.rotation);
+                        GameObject instance = Instantiate(ComboEfect, this.transform.position, this.transform.rotation);
+                        instance.GetComponent<EfectDestory>().ComboPoint = MakeComboCount;
                     }
 
                     SpR.enabled = false;
@@ -449,6 +481,12 @@ public class Enemy : MonoBehaviour
                             SpR.enabled = true;
                             col2d.enabled = true;
                             hp = 1;
+                            transform.position = ReSponePoint;
+                            anim.SetBool("DEAD", false);
+                            AlphaExchange = false;                            
+                            IsSound = false;
+                            shoted = false;
+                            Ready = false;
                         }
                     }
                     else if (actTime > blowTime + 1)
@@ -472,8 +510,7 @@ public class Enemy : MonoBehaviour
         {
             ComboFix = true;
             GameManeger.ComboCheck = true;
-            MakeComboCount = FindObjectOfType<GameManeger>().ComboCount;
-
+            MakeComboCount = GameManeger.ComboCount + 1;
         }
     }
 

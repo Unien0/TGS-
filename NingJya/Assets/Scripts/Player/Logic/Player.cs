@@ -313,7 +313,10 @@ public class Player : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<Enemy>().removable)
                 {
-                    Hit = true;
+                    if (col.gameObject.GetComponent<Enemy>().enemyAct != Enemy.enemyActSet.Dummy)
+                    {
+                        Hit = true;
+                    }
                 }
             }
         }

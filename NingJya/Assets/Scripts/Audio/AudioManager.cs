@@ -13,6 +13,13 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, seSounds;
     public AudioSource musicSounrce, seSource;
 
+    // âûã}èàíu
+    [SerializeField] private GameObject ExchangePoint1;
+    [SerializeField] private GameObject ExchangePoint2;
+    Vector2 Gap;
+    public GameObject PlayerObj;
+    private int AudioNumber = 3;
+
     private void Awake()
     {
         if (Instance == null)
@@ -29,7 +36,38 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //ÉQÅ[ÉÄÇÃBGM
-        PlayMusic("BGM");
+        PlayMusic("BGM");        
+    }
+
+    // âûã}èàíu
+    private void Update()
+    {
+        if (AudioNumber == 3)
+        {
+            Debug.Log("EXcBGM");
+            Gap = new Vector2(ExchangePoint1.transform.position.x - PlayerObj.transform.position.x, ExchangePoint1.transform.position.y - PlayerObj.transform.position.y);
+            float vec1 = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
+            if (vec1 <= 5)
+            {
+                
+                AudioNumber = 4;
+                PlayMusic("BGM2");
+                FindObjectOfType<GameManeger>().BPM = 136;
+                GameManeger.TempoReset = true;
+            }
+        }
+        if (AudioNumber == 4)
+        {
+            Gap = new Vector2(ExchangePoint2.transform.position.x - PlayerObj.transform.position.x, ExchangePoint2.transform.position.y - PlayerObj.transform.position.y);
+            float vec2 = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
+            if (vec2 <= 5)
+            {
+                AudioNumber = 5;
+                PlayMusic("BGM3");
+                FindObjectOfType<GameManeger>().BPM = 136;
+                GameManeger.TempoReset = true;
+            }
+        }
 
     }
 
