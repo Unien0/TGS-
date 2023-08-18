@@ -149,6 +149,7 @@ public class Enemy : MonoBehaviour
 
     private bool ComboFix;
     private int MakeComboCount;
+    private float animSpeed;
 
     private void Awake()
     {
@@ -177,6 +178,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animSpeed = GameManeger.AnimSpeed;
+        anim.SetFloat("AnimSpeed", animSpeed);
+
         if (!isEnd)
         {
             time += Time.deltaTime;

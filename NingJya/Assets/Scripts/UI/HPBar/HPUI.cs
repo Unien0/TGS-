@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class HPUI : MonoBehaviour
 {
     public PlayerData_SO playerData;
+    private Animator anim;
+    private float animSpeed;
 
     public int MaxHP
     {
@@ -22,9 +24,17 @@ public class HPUI : MonoBehaviour
     public GameObject heartVoid;
 
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        animSpeed = GameManeger.AnimSpeed;
+        anim.SetFloat("AnimSpeed", animSpeed);
+
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {

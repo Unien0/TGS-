@@ -54,10 +54,10 @@ public class GameManeger : MonoBehaviour
     public static int Tempo;
     private double time;
     public double OneTempo;
-    public static double one_eighthTenpo;
-    public static double one_eighthCount;
     // 全スクリプトが参照にするテンポ変化確認
     public static bool TempoExChange;
+    // 全スクリプトが参照にするアニメーション速度
+    public static float AnimSpeed;
 
     private AudioSource Audio;
     [SerializeField] private AudioClip MetronomeSE;
@@ -94,8 +94,7 @@ public class GameManeger : MonoBehaviour
 
     private void Awake()
     {
-        OneTempo = 60 / BPM;
-        one_eighthTenpo = OneTempo / 8;
+        TempoChange();
     }
 
     private void Start()
@@ -111,6 +110,12 @@ public class GameManeger : MonoBehaviour
         Function();
     }
 
+    void TempoChange()
+    {
+        OneTempo = 60 / BPM;
+        AnimSpeed = BPM / 140;
+    }
+
     private void Metronome()
     {
         time += Time.deltaTime;
@@ -119,8 +124,8 @@ public class GameManeger : MonoBehaviour
             Tempo++;            
             time -= OneTempo;
             TimeInspect = true;
-            //Audio.clip = MetronomeSE;
-            //Audio.Play();
+            Audio.clip = MetronomeSE;
+            Audio.Play();
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
             TempoExChange = true;
@@ -215,6 +220,9 @@ public class GameManeger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             // リズムリセットを行う。
+            TempoChange();
+            Tempo = 0;
+            time = 0;
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {// 誘導挙動の再設定を行う            

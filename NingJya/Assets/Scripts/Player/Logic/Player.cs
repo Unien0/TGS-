@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
     public bool Hit;
     public bool ATK;
     private bool maked;
+    private float animSpeed;
 
     public Vector2 shotrote;
     [SerializeField]private Vector2 moveInput;
@@ -130,6 +131,9 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        animSpeed = GameManeger.AnimSpeed;
+        anim.SetFloat("AnimSpeed", animSpeed);
+
         if ((Input.GetKeyDown(KeyCode.T)) || Input.GetKeyDown("joystick button 5"))
         {
             SceneManager.LoadScene(0);

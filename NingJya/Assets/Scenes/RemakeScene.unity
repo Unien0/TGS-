@@ -41519,7 +41519,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   BPM: 140
   OneTempo: 0
-  MetronomeSE: {fileID: 0}
+  MetronomeSE: {fileID: 8300000, guid: b5cfa4b1e7a12354a865299d3fc31eae, type: 3}
   Score: 0
   TMPui: {fileID: 1790362886}
   CombosObjct: {fileID: 1611063752}
@@ -54239,7 +54239,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523684762}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2d4c4e01a112f40408007d3fe11a01d9, type: 3}
