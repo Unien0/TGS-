@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    public PlayerData_SO playerData;
+    public int maxHp
+    {
+        //Player‚ÌMaxHP‚ðƒQƒbƒg‚·‚é
+        get { if (playerData != null) return playerData.maxHp; else return 0; }
+        set { playerData.maxHp = value; }
+    }
+    public int hp
+    {
+        //Player‚ÌHP‚ðƒQƒbƒg‚·‚é
+        get { if (playerData != null) return playerData.hp; else return 0; }
+        set { playerData.hp = value; }
+    }
+
     private enum ItemName
     {
         LIFEUP,
@@ -32,7 +46,19 @@ public class Items : MonoBehaviour
             switch (itemType)
             {
                 case ItemName.LIFEUP:
-                    FindObjectOfType<Player>().hp = FindObjectOfType<Player>().hp + 2;
+                    if (hp<maxHp)
+                    {
+                        hp += 2;
+                    }
+                    else if(hp == maxHp && maxHp <12)
+                    {
+                        maxHp += 2;
+                        hp += 2;
+                    }
+                    else if(hp ==maxHp && maxHp == 12)
+                    {
+                        hp = maxHp;
+                    }
                     break;
                 case ItemName.SCOREUP:
                     GameManeger.GetCoin++;

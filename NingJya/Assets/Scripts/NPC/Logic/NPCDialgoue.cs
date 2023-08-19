@@ -40,11 +40,11 @@ public class NPCDialgoue : MonoBehaviour
         {
 
             //‘Î˜bŽÀ‘•‚µ‚½‚©
-            if (fc.HasBlock(chatName))
-            {
-                fc.ExecuteBlock(chatName);
-                endChat = true;
-            }
+            //if (fc.HasBlock(chatName))
+            //{
+            //    fc.ExecuteBlock(chatName);
+            //    endChat = true;
+            //}
         }
         if (fc.GetBooleanVariable("ToInGame"))
         {
