@@ -41922,7 +41922,7 @@ MonoBehaviour:
   TMPui: {fileID: 1790362886}
   CombosObjct: {fileID: 1611063752}
   ComboText: {fileID: 2014412950}
-  BordColor: {fileID: 0}
+  BordColor: {fileID: 1644403851}
   ComboLimit: 0
   ComboMax: 0
 --- !u!114 &754888807
