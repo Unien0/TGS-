@@ -42857,7 +42857,7 @@ MonoBehaviour:
   chatName: npc4
   door: {fileID: 0}
   npc1: {fileID: 348496385}
-  DEAD_EFECT: {fileID: 4622103877717082459, guid: 57a22e63f55551b4ea7e764f5715e2d1, type: 3}
+  DEAD_EFECT: {fileID: 0}
 --- !u!61 &883177884
 BoxCollider2D:
   m_ObjectHideFlags: 0
