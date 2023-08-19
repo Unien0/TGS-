@@ -4884,4 +4884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeadTime: 5
-  EfectName: 1
+  EfectName: 2
+  ComboPoint: 0
+  ComboText: {fileID: 0}

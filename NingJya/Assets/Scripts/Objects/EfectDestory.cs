@@ -5,6 +5,9 @@ using TMPro;
 
 public class EfectDestory : MonoBehaviour
 {
+    private Animator anim;
+    private Rigidbody2D rd2d;
+
     [SerializeField] private float DeadTime;
     private float time = 0;
 
@@ -18,10 +21,11 @@ public class EfectDestory : MonoBehaviour
     [SerializeField] private EfectType EfectName;
     public int ComboPoint;
     [SerializeField] private TextMeshPro ComboText;
-    private Rigidbody2D rd2d;
+    [SerializeField] private GameObject ComboBord;
     private float ShotPoint;
     void Start()
     {
+        anim = GetComponent<Animator>();
         rd2d = GetComponent<Rigidbody2D>();
 
         ShotPoint = Random.Range(-1.5f,1.5f);
@@ -77,10 +81,21 @@ public class EfectDestory : MonoBehaviour
         if (EfectName == EfectType.Combo)
         {
             ComboText.text = ComboPoint.ToString();
-
-            if (GameManeger.ComboCheck == true)
+            if (30 <= ComboPoint)
             {
-                //Destroy(gameObject);
+                anim.SetFloat("Color", 3.3f);
+            }
+            else if (20 <= ComboPoint)
+            {
+                anim.SetFloat("Color", 2.2f);
+            }
+            else if (10 <= ComboPoint)
+            {
+                anim.SetFloat("Color", 1.1f);
+            }
+            else
+            {
+                anim.SetFloat("Color", 0.0f);
             }
         }
     }

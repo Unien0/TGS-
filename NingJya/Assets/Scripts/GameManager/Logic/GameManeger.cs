@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManeger : MonoBehaviour
 {
@@ -81,6 +82,8 @@ public class GameManeger : MonoBehaviour
     [SerializeField] private GameObject CombosObjct;
     // コンボテキスト
     [SerializeField] private TextMeshProUGUI ComboText;
+    // コンボ背景
+    [SerializeField] private GameObject BordColor;
    // コンボの確認
    public  static bool ComboCheck;
     // コンボ中(ステータス)
@@ -201,6 +204,24 @@ public class GameManeger : MonoBehaviour
         {
             CombosObjct.SetActive(true);
             ComboText.text = ComboCount.ToString();
+
+            if (30 <= ComboCount)
+            {
+                BordColor.GetComponent<Animator>().SetFloat("Color", 3.3f);
+            }
+            else if (20 <= ComboCount)
+            {
+                BordColor.GetComponent<Animator>().SetFloat("Color", 2.2f);
+            }
+            else if (10 <= ComboCount)
+            {
+                BordColor.GetComponent<Animator>().SetFloat("Color", 1.1f);
+            }
+            else
+            {
+                BordColor.GetComponent<Animator>().SetFloat("Color", 0.0f);
+            }
+
             ComboLimit -= Time.deltaTime;
             if (ComboLimit <= 0)
             {
