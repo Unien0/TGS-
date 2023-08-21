@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
     {
         // RigidBody2D‚Ìî•ñŠi”[E‘ã“ü
         rb2d = GetComponent<Rigidbody2D>();
-        transform.rotation = Quaternion.Euler(0,0,GameObject.Find("AttackArea").transform.rotation.z);
+        transform.rotation = Quaternion.Euler(0,0,FindObjectOfType<Player>().roteMax);
     }
 
     // Update is called once per frame

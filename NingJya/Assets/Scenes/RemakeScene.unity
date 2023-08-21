@@ -58447,6 +58447,7 @@ MonoBehaviour:
   MoveEfect: {fileID: 4483416700207499399, guid: 0e6a8fad3419d1c429531d0418d2da48, type: 3}
   PlayerCol2D: {fileID: 0}
   DamageSE: {fileID: 8300000, guid: f89f6739eeea26b42b769490499aa979, type: 3}
+  Bullet: {fileID: 1773284206530875610, guid: f6b2fa9f3d7663e4fb6814af3cd6de04, type: 3}
 --- !u!50 &1904580783
 Rigidbody2D:
   serializedVersion: 4
