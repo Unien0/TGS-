@@ -4,15 +4,56 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody2D rb2d;               // Rigidbody2DÇÃéÊìæÅEäiî[
+    public GameObject conductObject;
+    public bool Ready;
+    private bool shot;
+    public float BulletSpeed;
+    public Vector2 shotrote;
+    [SerializeField] private Vector2 shotIt;
+
     void Start()
     {
-        
+        // RigidBody2DÇÃèÓïÒäiî[ÅEë„ì¸
+        rb2d = GetComponent<Rigidbody2D>();
+        FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
+        FindObjectOfType<ConductManeger>().conduct = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!shot)
+        {
+            if (Ready)
+            {
+                if (conductObject != null)
+                {
+                    //ï˚å¸
+                    shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
+                    shotIt.x = Mathf.Sign(shotrote.x);
+                    shotIt.y = Mathf.Sign(shotrote.y);
+                    //åªç›à íuÇ…äÓÇ√Ç¢ÇƒêÅÇ¡îÚÇŒÇ∑ÇÃóÕÇ∆ï€ë∂éûä‘ÇîªífÇµÇ‹Ç∑
+                    rb2d.AddForce(shotIt * BulletSpeed);
+                    shot = true;
+                }
+                else
+                {
+                    //ï˚å¸
+                    shotrote = new Vector2(this.transform.position.x - FindObjectOfType<Player>().transform.position.x, this.transform.position.y - FindObjectOfType<Player>().transform.position.y);
+                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    else
+                    { shotIt.x = 0; }
+                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    else
+                    { shotIt.y = 0; }
+                    //4ÅAåªç›à íuÇ…äÓÇ√Ç¢ÇƒêÅÇ¡îÚÇŒÇ∑ÇÃóÕÇ∆ï€ë∂éûä‘ÇîªífÇµÇ‹Ç∑
+                    rb2d.AddForce(shotIt * BulletSpeed);
+                    shot = true;
+                }
+            }
+        }
     }
 }

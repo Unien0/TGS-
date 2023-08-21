@@ -20,14 +20,14 @@ public class ConductManeger : MonoBehaviour
     private int CTcount;
     public GameObject targetObj;
 
-    [SerializeField]private GameObject PlayerObj;
+    [SerializeField] private GameObject PlayerObj;
 
     public static List<GameObject> EnemyList = new List<GameObject>();
     string tagName;
 
     void Start()
     {
-        MustEnemyobjctDistance = 5;
+        MustEnemyobjctDistance = 20;
         Enemys = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
@@ -66,7 +66,7 @@ public class ConductManeger : MonoBehaviour
         }
         else
         {
-            MustEnemyobjctDistance = 5;
+            MustEnemyobjctDistance = 20;
             targetObj = null;
         }
     }
@@ -88,7 +88,7 @@ public class ConductManeger : MonoBehaviour
                     {
                         if (!(ctobj.GetComponent<Enemy>().actTime >= 0))
                         {
-                            targetObj = ctobj;                            
+                            targetObj = ctobj;
                         }
                     }
                 }
@@ -106,7 +106,7 @@ public class ConductManeger : MonoBehaviour
                         }
                     }
                 }
- 
+
             }
         }
 
@@ -125,7 +125,7 @@ public class ConductManeger : MonoBehaviour
                     conduct = false;
                 }
                 break;
-            case"HitObj":
+            case "HitObj":
                 CTobject.GetComponent<Objects>().conductObject = targetObj;
                 CTobject.GetComponent<Objects>().Ready = true;
                 conduct = false;
@@ -134,6 +134,10 @@ public class ConductManeger : MonoBehaviour
                 CTobject.GetComponent<EnemyBullet>().conductObject = targetObj;
                 CTobject.GetComponent<EnemyBullet>().Ready = true;
                 conduct = false;
+                break;
+            case "PlayerBullet":
+                CTobject.GetComponent<PlayerBullet>().conductObject = targetObj;
+                CTobject.GetComponent<PlayerBullet>().Ready = true;
                 break;
         }
 
