@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
 
     private AudioSource Audio;
     [SerializeField] private AudioClip DamageSE;
+    [SerializeField] private GameObject Bullet;
 
     private void Awake()
     {
@@ -282,6 +283,10 @@ public class Player : MonoBehaviour
                         KATANA.GetComponent<Animator>().SetBool("ATK", true);
                     }
                 }
+            }
+            if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKeyDown("joystick button 2"))
+            {
+                Instantiate(Bullet,this.transform.position, Bullet.transform.rotation);
             }
         }
     }

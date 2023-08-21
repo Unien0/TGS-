@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: e6613f60e4a39d74799dd444242b4572
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 46effa0323929d6499dfbe1d1c3e344c
+  - enabled: 1
     path: Assets/Scenes/RemakeScene.unity
     guid: fb8c8da90b7bac14c8c948792e8d8d73
   m_configObjects: {}

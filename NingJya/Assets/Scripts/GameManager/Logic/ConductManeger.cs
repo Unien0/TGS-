@@ -135,10 +135,6 @@ public class ConductManeger : MonoBehaviour
                 CTobject.GetComponent<EnemyBullet>().Ready = true;
                 conduct = false;
                 break;
-            case "PlayerBullet":
-                CTobject.GetComponent<PlayerBullet>().conductObject = targetObj;
-                CTobject.GetComponent<PlayerBullet>().Ready = true;
-                break;
         }
 
     }
