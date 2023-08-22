@@ -11,8 +11,9 @@ public class DialogueArea : MonoBehaviour
     private bool endChat = false;
 
     private Flowchart flowchart;
-    public GameObject door;
+    public GameObject iconDisplay;
     public GameObject npc1;
+
     //public GameObject npc2;
     private Collider2D col2D;
     private bool make;
@@ -26,23 +27,23 @@ public class DialogueArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        iconDisplay.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (outEnemy)
-        {
-            if (!make)
-            {
-                make = true;
-                Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
-            }            
-            Destroy(door);
-            npc1.SetActive(false);
-        }
-        if (canChat && !endChat)
+        //if (outEnemy)
+        //{
+        //    if (!make)
+        //    {
+        //        make = true;
+        //        Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
+        //    }            
+            
+        //    npc1.SetActive(false);
+        //}
+        if (canChat && !endChat && Input.GetKeyDown("joystick button 0"))
         {
             
             //対話実装したか
@@ -59,17 +60,28 @@ public class DialogueArea : MonoBehaviour
         // プレイヤーの攻撃範囲に入っていて、
         if (col.CompareTag("Player"))
         {
+            iconDisplay.SetActive(true);
             npc1.SetActive(true);
             canChat = true;
             
         }
         
     }
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        if (other.CompareTag("Enemy"))
+        if (col.CompareTag("Player"))
         {
-            outEnemy = true;
+            iconDisplay.SetActive(false);
+            npc1.SetActive(false);
+            canChat = false;
+
         }
     }
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Enemy"))
+    //    {
+    //        outEnemy = true;
+    //    }
+    //}
 }
