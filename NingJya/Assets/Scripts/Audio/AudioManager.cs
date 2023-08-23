@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
             {
                 AudioNumber = 4;
                 PlayMusic("BGM2");
-                FindObjectOfType<GameManeger>().BPM = 136;
+                FindObjectOfType<GameManeger>().BPM = 130;
                 GameManeger.TempoReset = true;
                 Ex = false;
             }
