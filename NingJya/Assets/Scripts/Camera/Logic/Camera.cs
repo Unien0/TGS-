@@ -14,6 +14,7 @@ public class Camera : MonoBehaviour
     public static bool ShakeOrder;
     public enum StageName
     {
+        Tutorial,
         Stage_1,
         Boss_1,
         Stage_2,
@@ -84,12 +85,23 @@ public class Camera : MonoBehaviour
         }
         #endregion
 
+
+
         if (Mathf.Abs(playerObj.transform.position.x - this.transform.position.x) <= 10)
         {
             if (Mathf.Abs(playerObj.transform.position.y - this.transform.position.y) <= 10)
-            {
+            {                      
                 switch (Process)
                 {
+                    case StageName.Tutorial:
+                        switch (Order)
+                        {
+                            case 0:
+                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.005f) * input.y);
+                                break;
+                        }
+                        break;
+
                     case StageName.Stage_1:
                         switch (Order)
                         {
@@ -178,6 +190,8 @@ public class Camera : MonoBehaviour
                         }
                         break;
                 }
+
+                // プレイヤーがカメラ中央から離れていた場合
             }
         }
     }

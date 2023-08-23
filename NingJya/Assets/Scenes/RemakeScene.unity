@@ -3224,7 +3224,7 @@ MonoBehaviour:
   playerObj: {fileID: 1904580777}
   moveSpeed: 0.14
   shake: {fileID: 216088065}
-  Process: 0
+  Process: 1
   Order: 0
   Point:
   - {fileID: 102561740}
@@ -33601,7 +33601,6 @@ MonoBehaviour:
   ComboLimit: 0
   ComboMax: 0
   shakeManeger: {fileID: 754888808}
-  shakeTime: 0
 --- !u!114 &754888807
 MonoBehaviour:
   m_ObjectHideFlags: 0
