@@ -170,7 +170,7 @@ public class Camera : MonoBehaviour
                                 break;
                             case 3:
                                 // à⁄ìÆèàóù
-                                if (this.transform.position != Point[5].transform.position)
+                                if (this.transform.position != Point[3].transform.position)
                                 {
                                     transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, moveSpeed);
                                 }
