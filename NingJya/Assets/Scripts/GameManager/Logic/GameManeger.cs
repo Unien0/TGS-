@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Haptics;
 
 public class GameManeger : MonoBehaviour
 {
@@ -104,6 +106,8 @@ public class GameManeger : MonoBehaviour
     {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
+        // PlayerInputインスタンスを取得
+        var playerInput = GetComponent<PlayerInput>();
     }
     private void Update()
     {
@@ -229,7 +233,11 @@ public class GameManeger : MonoBehaviour
                 {
                     ComboMax = ComboCount;
                 }
-                isCombo = false;
+
+                if (ComboLimit <= -0.5f)
+                {
+                    isCombo = false;
+                }
             }
         }
         else

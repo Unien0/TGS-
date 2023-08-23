@@ -7,10 +7,11 @@ public class Camera : MonoBehaviour
 {
     [SerializeField] private GameObject playerObj;
     private Vector3 playerBeforePos;
-    private Vector2 PosGap;
     private Vector3 StartPos;
     [SerializeField] private float moveSpeed;
     private Vector2 input;
+    public CameraShake shake;
+    public bool ShakeOrder;
     public enum StageName
     {
         Stage_1,
@@ -31,6 +32,21 @@ public class Camera : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        MoveProcess();
+        ShakeProcess();
+    }
+
+    void ShakeProcess()
+    {
+        if ((ShakeOrder) || (Input.GetKeyDown(KeyCode.Y)))
+        {
+            shake.Shake(0.25f, 0.1f);
+            ShakeOrder = false;
+        }
+    }
+
+    void MoveProcess()
     {
         // ˆÚ“®“ü—Í 
         #region ˆÚ“®“ü—Í
@@ -130,7 +146,7 @@ public class Camera : MonoBehaviour
                                 break;
                             case 2:
                                 // ˆÚ“®ˆ—
-                                transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y );
+                                transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
 
                                 if (Leave)
                                 {
