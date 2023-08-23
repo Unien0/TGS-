@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Haptics;
 
 public class GameManeger : MonoBehaviour
 {
@@ -97,6 +95,9 @@ public class GameManeger : MonoBehaviour
     // 最大コンボ数
     [SerializeField] private int ComboMax;
     public static bool TempoReset;
+    public ShakeManeger shakeManeger;
+    public static float shakeTime;
+
     private void Awake()
     {
         TempoChange();
@@ -106,8 +107,6 @@ public class GameManeger : MonoBehaviour
     {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
-        // PlayerInputインスタンスを取得
-        var playerInput = GetComponent<PlayerInput>();
     }
     private void Update()
     {
@@ -115,6 +114,7 @@ public class GameManeger : MonoBehaviour
         Metronome();
         ComboChecker();
         Function();
+        ShakeCheck();
     }
 
     void TempoChange()
@@ -237,6 +237,7 @@ public class GameManeger : MonoBehaviour
                 if (ComboLimit <= -0.5f)
                 {
                     isCombo = false;
+                    shakeTime = 1f;
                 }
             }
         }
@@ -244,6 +245,23 @@ public class GameManeger : MonoBehaviour
         {
             ComboCount = 0;
             CombosObjct.SetActive(false);
+        }
+    }
+
+    void ShakeCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            shakeTime = 1;
+        }
+        shakeTime -= Time.deltaTime;
+        if (shakeTime > 0)
+        {
+            shakeManeger.isShake = true;
+        }
+        else
+        {
+            shakeManeger.isShake = false;
         }
     }
 

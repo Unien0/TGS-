@@ -256,6 +256,7 @@ public class Enemy : MonoBehaviour
                             time = 0;
                             Camera.ShakeOrder = true;
                             KillCombo();
+                            GameManeger.shakeTime = 0.25f;
                         }
                         else
                         {
@@ -526,6 +527,7 @@ public class Enemy : MonoBehaviour
                 hp = 0;
                 GameManeger.hitEnemy++;
                 KillCombo();
+                GameManeger.shakeTime = 0.25f;
             }
         }
         if ((col.gameObject.CompareTag("HitObj")) )
@@ -534,6 +536,7 @@ public class Enemy : MonoBehaviour
             GameManeger.hitEnemy++;
             hp = 0;
             KillCombo();
+            GameManeger.shakeTime = 0.25f;
         }
     }
 
@@ -548,6 +551,7 @@ public class Enemy : MonoBehaviour
                 GameManeger.hitEnemy++;
                 hp = 0;
                 KillCombo();
+                GameManeger.shakeTime = 0.25f;
             }
         }
         if ((col.gameObject.CompareTag("HitObj")))
@@ -558,6 +562,7 @@ public class Enemy : MonoBehaviour
                 GameManeger.hitEnemy++;
                 hp = 0;
                 KillCombo();
+                GameManeger.shakeTime = 0.25f;
             }
         }
         if ((col.gameObject.CompareTag("PlayerBullet")))
@@ -566,6 +571,7 @@ public class Enemy : MonoBehaviour
             GameManeger.hitEnemy++;
             hp = 0;
             KillCombo();
+            GameManeger.shakeTime = 0.25f;
         }
     }
 

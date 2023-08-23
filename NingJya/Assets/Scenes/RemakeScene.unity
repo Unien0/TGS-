@@ -3872,7 +3872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatName: Completion
-  door1: {fileID: 1668262677}
   npc1: {fileID: 2076250668}
   fc: {fileID: 1890563494}
   DEAD_EFECT: {fileID: 4622103877717082459, guid: 57a22e63f55551b4ea7e764f5715e2d1, type: 3}
@@ -33458,6 +33457,7 @@ GameObject:
   - component: {fileID: 754888807}
   - component: {fileID: 754888806}
   - component: {fileID: 754888805}
+  - component: {fileID: 754888808}
   m_Layer: 0
   m_Name: GameManeger
   m_TagString: Untagged
@@ -33600,6 +33600,8 @@ MonoBehaviour:
   BordColor: {fileID: 1644403851}
   ComboLimit: 0
   ComboMax: 0
+  shakeManeger: {fileID: 754888808}
+  shakeTime: 0
 --- !u!114 &754888807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33613,6 +33615,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limitType: 70
+--- !u!114 &754888808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754888803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189abcbfef7385645b07c2d1a76d2af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShake: 0
 --- !u!1 &759465876
 GameObject:
   m_ObjectHideFlags: 0
