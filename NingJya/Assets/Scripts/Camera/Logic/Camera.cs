@@ -146,7 +146,7 @@ public class Camera : MonoBehaviour
                                 break;
                             case 2:
                                 // à⁄ìÆèàóù
-                                transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+                                transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
                                 if (Leave)
                                 {
@@ -169,54 +169,6 @@ public class Camera : MonoBehaviour
                                 }
                                 break;
                             case 3:
-                                // à⁄ìÆèàóù
-                                transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed * input.x);
-
-                                if (Leave)
-                                {
-                                    if (this.transform.position == Point[3].transform.position)
-                                    {
-                                        Order = 4;
-                                        Leave = false;
-                                    }
-                                    if (this.transform.position == Point[2].transform.position)
-                                    {
-                                        input.y = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.transform.position != Point[2].transform.position)
-                                    {
-                                        Leave = true;
-                                    }
-                                }
-                                break;
-                            case 4:
-                                // à⁄ìÆèàóù
-                                transform.position = Vector3.MoveTowards(transform.position, Point[4].transform.position, moveSpeed * input.y * -1);
-
-                                if (Leave)
-                                {
-                                    if (this.transform.position == Point[4].transform.position)
-                                    {
-                                        Order = 5;
-                                        Leave = false;
-                                    }
-                                    if (this.transform.position == Point[3].transform.position)
-                                    {
-                                        input.y = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.transform.position != Point[3].transform.position)
-                                    {
-                                        Leave = true;
-                                    }
-                                }
-                                break;
-                            case 5:
                                 // à⁄ìÆèàóù
                                 if (this.transform.position != Point[5].transform.position)
                                 {
