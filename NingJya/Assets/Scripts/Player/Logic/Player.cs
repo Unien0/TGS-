@@ -329,7 +329,7 @@ public class Player : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             PlayerCol2D.enabled = false;
-            GameOver.GAMEOVER = true;
+            GameOver.GAMECLEAR = true;
         }
            
     }
