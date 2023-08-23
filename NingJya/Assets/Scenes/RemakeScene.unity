@@ -34451,7 +34451,7 @@ MonoBehaviour:
   - name: BGM
     clip: {fileID: 8300000, guid: e5fe41f9727934d4686bb2427dd92d8f, type: 3}
   - name: BGM2
-    clip: {fileID: 8300000, guid: ee8876d6e0116c948a0066b02cb8814a, type: 3}
+    clip: {fileID: 8300000, guid: 76a3d3772ed32904aa17f168e7d136be, type: 3}
   - name: BGM3
     clip: {fileID: 8300000, guid: e5c60b425ff06634d9848e719b022477, type: 3}
   seSounds:
@@ -35275,7 +35275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946433133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.37, y: -21.61, z: 0}
+  m_LocalPosition: {x: 0.04, y: -22.42, z: 0}
   m_LocalScale: {x: 1, y: 4.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
