@@ -111,6 +111,7 @@ public class BossEnemy : MonoBehaviour
                             BossHP = BossHP - 1;
                             time = 0;
                             MutekiTime = 0;
+                            Camera.ShakeOrder = true;
                             if (BossHP <= 0)
                             {
                                 FindObjectOfType<BossStartFlag>().ActEnd = true;

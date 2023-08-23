@@ -11,7 +11,7 @@ public class Camera : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private Vector2 input;
     public CameraShake shake;
-    public bool ShakeOrder;
+    public static bool ShakeOrder;
     public enum StageName
     {
         Stage_1,

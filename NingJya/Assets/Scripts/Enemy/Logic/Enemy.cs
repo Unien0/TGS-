@@ -230,6 +230,7 @@ public class Enemy : MonoBehaviour
                 shoted = true;
                 hit = false;
                 HitBlow();
+                Camera.ShakeOrder = true;
             }
 
             //EƒL[‚ğ‰Ÿ‚µ‚½Aplayer‚àUŒ‚‚Å‚«‚éã
@@ -253,6 +254,7 @@ public class Enemy : MonoBehaviour
                             FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                             FindObjectOfType<ConductManeger>().conduct = true;
                             time = 0;
+                            Camera.ShakeOrder = true;
                             KillCombo();
                         }
                         else
