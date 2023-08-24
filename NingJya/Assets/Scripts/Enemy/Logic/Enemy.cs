@@ -231,6 +231,7 @@ public class Enemy : MonoBehaviour
                 hit = false;
                 HitBlow();
                 Camera.ShakeOrder = true;
+                ShakeManeger.ShakeLevel = 1;
             }
 
             //EƒL[‚ğ‰Ÿ‚µ‚½Aplayer‚àUŒ‚‚Å‚«‚éã
@@ -256,7 +257,8 @@ public class Enemy : MonoBehaviour
                             time = 0;
                             Camera.ShakeOrder = true;
                             KillCombo();
-                            GameManeger.shakeTime = 0.25f;
+                            GameManeger.shakeTime = 0.125f;
+                            ShakeManeger.ShakeLevel = 2;
                         }
                         else
                         {
@@ -527,7 +529,8 @@ public class Enemy : MonoBehaviour
                 hp = 0;
                 GameManeger.hitEnemy++;
                 KillCombo();
-                GameManeger.shakeTime = 0.25f;
+                GameManeger.shakeTime = 0.125f;
+                ShakeManeger.ShakeLevel = 1;
             }
         }
         if ((col.gameObject.CompareTag("HitObj")) )
@@ -536,7 +539,8 @@ public class Enemy : MonoBehaviour
             GameManeger.hitEnemy++;
             hp = 0;
             KillCombo();
-            GameManeger.shakeTime = 0.25f;
+            GameManeger.shakeTime = 0.125f;
+            ShakeManeger.ShakeLevel = 1;
         }
     }
 
@@ -551,7 +555,8 @@ public class Enemy : MonoBehaviour
                 GameManeger.hitEnemy++;
                 hp = 0;
                 KillCombo();
-                GameManeger.shakeTime = 0.25f;
+                GameManeger.shakeTime = 0.125f;
+                ShakeManeger.ShakeLevel = 1;
             }
         }
         if ((col.gameObject.CompareTag("HitObj")))
@@ -562,7 +567,8 @@ public class Enemy : MonoBehaviour
                 GameManeger.hitEnemy++;
                 hp = 0;
                 KillCombo();
-                GameManeger.shakeTime = 0.25f;
+                GameManeger.shakeTime = 0.125f;
+                ShakeManeger.ShakeLevel = 1;
             }
         }
         if ((col.gameObject.CompareTag("PlayerBullet")))
@@ -571,7 +577,8 @@ public class Enemy : MonoBehaviour
             GameManeger.hitEnemy++;
             hp = 0;
             KillCombo();
-            GameManeger.shakeTime = 0.25f;
+            GameManeger.shakeTime = 0.125f;
+            ShakeManeger.ShakeLevel = 1;
         }
     }
 

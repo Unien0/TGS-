@@ -121,6 +121,14 @@ public class BossEnemy : MonoBehaviour
                                 rb2d.velocity = Vector3.zero;
                                 GameManeger.KillBOSS += 1000;
                                 Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+
+                                GameManeger.shakeTime = 0.25f;
+                                ShakeManeger.ShakeLevel = 4;
+                            }
+                            else
+                            {
+                                GameManeger.shakeTime = 0.125f;
+                                ShakeManeger.ShakeLevel = 2;
                             }
 
                         }
