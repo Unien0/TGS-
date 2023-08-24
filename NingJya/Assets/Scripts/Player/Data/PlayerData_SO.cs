@@ -16,6 +16,10 @@ public class PlayerData_SO : ScriptableObject
     public int damage;
     //UŒ‚CD
     public float attackCD;
+    // è— Œ•Å‘å”
+    public int maxBullet;
+    // Šè— Œ•”
+    public int nowBullet;
 
     [Header("ƒŠƒYƒ€‘ŠŠÖ")]
     //ƒŠƒYƒ€ŠÔ

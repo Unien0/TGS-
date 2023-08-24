@@ -37,6 +37,17 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.attackCD; else return 1; }
 
     }
+    private int maxBullet
+    {
+        //Player‚ÌCD‚ðŽæ“¾‚·‚é
+        get { if (playerData != null) return playerData.maxBullet; else return 1; }
+    }
+    private int nowBullet
+    {
+        //Player‚ÌCD‚ðŽæ“¾‚·‚é
+        get { if (playerData != null) return playerData.nowBullet; else return 1; }
+        set { playerData.nowBullet = value; }
+    }
     public bool isDead
     {
         get { if (playerData != null) return playerData.isDead; else return false; }
@@ -125,6 +136,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         hp = maxHp;
+        nowBullet = 3;
         anim.SetBool("DEAD",false);
         Audio = GetComponent<AudioSource>();
         isDead = false;
@@ -286,7 +298,11 @@ public class Player : MonoBehaviour
             }
             if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKeyDown("joystick button 2"))
             {
-                Instantiate(Bullet,this.transform.position, Bullet.transform.rotation);
+                if(nowBullet > 0)
+                {
+                    Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
+                    nowBullet--;
+                }
             }
         }
     }
