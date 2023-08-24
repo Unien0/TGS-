@@ -35,7 +35,7 @@ public class Title : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("Tutorial");
             }
         }
     }
