@@ -11,7 +11,7 @@ public class ShakeManeger : MonoBehaviour
         Gamepad gamepad = Gamepad.current;
         if (isShake)
         {
-            gamepad.SetMotorSpeeds(1.0f, 0.0f);
+            gamepad.SetMotorSpeeds(0.25f, 0.25f);
         }
         else
         {
