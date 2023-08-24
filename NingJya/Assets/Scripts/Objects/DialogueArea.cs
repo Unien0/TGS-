@@ -43,14 +43,14 @@ public class DialogueArea : MonoBehaviour
             
         //    npc1.SetActive(false);
         //}
-        if (canChat && !endChat && Input.GetKeyDown("joystick button 0"))
+        if (canChat && Input.GetKeyDown("joystick button 0"))
         {
             
             //‘Î˜bŽÀ‘•‚µ‚½‚©
             if (flowchart.HasBlock(chatName))
             {
                 flowchart.ExecuteBlock(chatName);
-                endChat = true;
+                //endChat = true;
             }
         }
     }
@@ -61,7 +61,7 @@ public class DialogueArea : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             iconDisplay.SetActive(true);
-            npc1.SetActive(true);
+            //npc1.SetActive(true);
             canChat = true;
             
         }
@@ -72,7 +72,7 @@ public class DialogueArea : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             iconDisplay.SetActive(false);
-            npc1.SetActive(false);
+            //npc1.SetActive(false);
             canChat = false;
 
         }
