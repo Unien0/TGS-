@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         {
             move();
             // çUåÇì¸óÕ
-            Attack();
+            //Attack();
             //PlayerInput();
             SwitchAnimation();
         }
@@ -283,27 +283,42 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+
         if (removable)
-        {     
-            if ((Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 1"))
+        {
+            if (!attackable && removable)
             {
-                if (!attackable)
-                {
-                    if (removable)
-                    {
-                        attackable = true;
-                        KATANA.GetComponent<Animator>().SetBool("ATK", true);
-                    }
-                }
+                    attackable = true;
+                    KATANA.GetComponent<Animator>().SetBool("ATK", true);
             }
             if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKeyDown("joystick button 2"))
             {
-                if(nowBullet > 0)
+                if (nowBullet > 0)
                 {
                     Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
                     nowBullet--;
                 }
             }
+
+            //if ((Input.GetKeyDown(KeyCode.E)) || Input.GetKeyDown("joystick button 1"))
+            //{
+            //    if (!attackable)
+            //    {
+            //        if (removable)
+            //        {
+            //            attackable = true;
+            //            KATANA.GetComponent<Animator>().SetBool("ATK", true);
+            //        }
+            //    }
+            //}
+            //if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKeyDown("joystick button 2"))
+            //{
+            //    if(nowBullet > 0)
+            //    {
+            //        Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
+            //        nowBullet--;
+            //    }
+            //}
         }
     }
 
