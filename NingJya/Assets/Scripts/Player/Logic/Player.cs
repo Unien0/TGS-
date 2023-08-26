@@ -77,6 +77,12 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.levelling; else return false; }
         set { playerData.levelling = value; }
     }
+    public bool IsAttack
+    {
+        //ÉvÉåÉCÉÑÅ[Ç™çUåÇÇ≈Ç´ÇÈÇ©Ç«Ç§Ç©ÇîªífÇ∑ÇÈ
+        get { if (playerData != null) return playerData.isAttack; else return false; }
+        set { playerData.isAttack = value; }
+    }
     #endregion 
 
     private float time;
@@ -108,6 +114,7 @@ public class Player : MonoBehaviour
     private AudioSource Audio;
     [SerializeField] private AudioClip DamageSE;
     [SerializeField] private GameObject Bullet;
+    private bool InputATK;
 
     private void Awake()
     {
@@ -309,20 +316,32 @@ public class Player : MonoBehaviour
             { roteMax = 270; } //moveInput = new Vector2(1, 0); }
             #endregion
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+            InputATK = true;
         }
-            if (removable)
+        else
+        {
+            InputATK = false;
+        }
+
+        if (removable)
         {
             if (!attackable && removable)
             {
+                if (InputATK)
+                {
                     attackable = true;
                     KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                }
             }
-            if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKeyDown("joystick button 2"))
+            if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKey("joystick button 4"))
             {
                 if (nowBullet > 0)
                 {
-                    Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
-                    nowBullet--;
+                    if (InputATK)
+                    {
+                        Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
+                        nowBullet--;
+                    }
                 }
             }
 

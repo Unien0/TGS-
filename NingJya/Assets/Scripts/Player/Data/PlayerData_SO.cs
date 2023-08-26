@@ -41,4 +41,6 @@ public class PlayerData_SO : ScriptableObject
     public bool removable;
     // –³“GŠÔ
     public bool mutekki;
+    // UŒ‚‚µ‚½‚©‚Ç‚¤‚©
+    public bool isAttack;
 }

@@ -17,6 +17,8 @@ MonoBehaviour:
   speed: 6
   damage: 1
   attackCD: 0.2
+  maxBullet: 0
+  nowBullet: 2
   beatLengh: 0
   levelling: 0
   force: 500
@@ -24,3 +26,4 @@ MonoBehaviour:
   attackable: 0
   removable: 1
   mutekki: 1
+  isAttack: 0

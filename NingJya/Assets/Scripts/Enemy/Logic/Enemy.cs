@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
         //プレイヤーが攻撃できるかどうかを判断する
         get { if (playerData != null) return playerData.attackable; else return false; }
     }
+    public bool IsAttack
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.isAttack; else return false; }
+        set { playerData.isAttack = value; }
+    }
     #endregion 
 
     public EnemyData_SO enemyData;
@@ -234,13 +240,13 @@ public class Enemy : MonoBehaviour
                 ShakeManeger.ShakeLevel = 1;
             }
 
-            //Eキーを押した時、playerも攻撃できる上
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
+            //攻撃入力
+            if (inPlayerAttackRange)
             {
-                if (inPlayerAttackRange)
+                // クールダウンが回復したかどうか
+                if (CoolDownTime <= time)
                 {
-                    // クールダウンが回復したかどうか
-                    if (CoolDownTime <= time)
+                    if (IsAttack)
                     {
                         // ジャストアタックのタイミングなら
                         if (blowable)
@@ -264,7 +270,8 @@ public class Enemy : MonoBehaviour
                         {
                             shoted = false;
                         }
-                    }                    
+                    }
+
                 }
             }
 

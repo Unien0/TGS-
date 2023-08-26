@@ -25879,7 +25879,7 @@ MonoBehaviour:
   - name: BGM
     clip: {fileID: 8300000, guid: e5fe41f9727934d4686bb2427dd92d8f, type: 3}
   - name: BGM2
-    clip: {fileID: 8300000, guid: 76a3d3772ed32904aa17f168e7d136be, type: 3}
+    clip: {fileID: 8300000, guid: ee40dd8792ecaab4282d32dc83de8f49, type: 3}
   - name: BGM3
     clip: {fileID: 8300000, guid: e5c60b425ff06634d9848e719b022477, type: 3}
   seSounds:
