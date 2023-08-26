@@ -98,6 +98,9 @@ public class GameManeger : MonoBehaviour
     public ShakeManeger shakeManeger;
     public static float shakeTime;
 
+    // スキャンラインオブジェクト
+    [SerializeField] private GameObject ScanLineObj;
+    [SerializeField] private int ScanLineLevel = 1;
     private void Awake()
     {
         TempoChange();
@@ -287,6 +290,34 @@ public class GameManeger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F4))
         {// シーンのリロード
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (Input.GetKey(KeyCode.F5))
+        {
+            if ((Input.GetKeyDown(KeyCode.C)))
+            {
+                ScanLineLevel = ScanLineLevel + 1;
+            }
+            else if ((Input.GetKeyDown(KeyCode.V)))
+            {
+
+                    ScanLineLevel = ScanLineLevel - 1;
+
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.F5))
+        {
+            switch (ScanLineLevel)
+            {
+                case 1:
+                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 0.0f);
+                    break;
+                case 2:
+                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 1.1f);
+                    break;
+                case 3:
+                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 2.2f);
+                    break;
+            }
         }
 
     }

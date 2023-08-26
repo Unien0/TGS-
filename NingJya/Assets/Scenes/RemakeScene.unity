@@ -25340,6 +25340,8 @@ MonoBehaviour:
   ComboLimit: 0
   ComboMax: 0
   shakeManeger: {fileID: 754888808}
+  ScanLineObj: {fileID: 459615138}
+  ScanLineLevel: 0
 --- !u!114 &754888807
 MonoBehaviour:
   m_ObjectHideFlags: 0
