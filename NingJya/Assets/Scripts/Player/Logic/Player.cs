@@ -232,7 +232,6 @@ public class Player : MonoBehaviour
             {
                 if ((horizontal != 0) || (vertical != 0))
                 {
-
                     maked = true;
                     Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
                 }
@@ -246,6 +245,7 @@ public class Player : MonoBehaviour
             maked = false;
             if ((horizontal != 0) || (vertical != 0))
             {   // 入力に応じて、攻撃範囲を回転する
+
                 #region roteMax変更
                 // 入力に応じて、回転を変更する
                 if ((horizontal >= 0.01f) && (vertical >= 0.01f))
@@ -265,7 +265,8 @@ public class Player : MonoBehaviour
                 if ((horizontal >= 0.01f) && (vertical == 0))
                 { roteMax = 270; moveInput = new Vector2(1, 0); }
                 #endregion
-                AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+
+                //AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
 
                 // 入力に応じて スプライト変更をする
                 // 横方向の回転
@@ -274,7 +275,7 @@ public class Player : MonoBehaviour
                 //if (moveCon.y == 1) SpR.flipX = !SpR.flipX;
             }
             else
-            {moveInput = Vector2.zero;            }
+            {moveInput = Vector2.zero; }
             rb2d.velocity = new Vector2(0, 0);
             attackable = false;
             KATANA.GetComponent<Animator>().SetBool("ATK", false);
@@ -283,8 +284,33 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        float hr_R = Input.GetAxis("Horizontal_Right");
+        float vr_R = Input.GetAxis("Vertical_Right");
 
-        if (removable)
+        if ((hr_R != 0) || (vr_R != 0))
+        {   // 入力に応じて、攻撃範囲を回転する
+            #region roteMax変更
+            // 入力に応じて、回転を変更する
+            if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
+            { roteMax = 315; }//moveInput = new Vector2(1, 1); }
+            if ((hr_R == 0) && (vr_R >= 0.01))
+            { roteMax = 0; }//moveInput = new Vector2(0, 1); }
+            if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
+            { roteMax = 45; }//moveInput = new Vector2(-1, 1); }
+            if ((hr_R <= -0.01f) && (vr_R == 0))
+            { roteMax = 90; }//moveInput = new Vector2(-1, 0); }
+            if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
+            { roteMax = 135; }//moveInput = new Vector2(-1, -1); }
+            if ((hr_R == 0) && (vr_R <= -0.01f))
+            { roteMax = 180; }//moveInput = new Vector2(0, -1); }
+            if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
+            { roteMax = 225; } //moveInput = new Vector2(1, -1); }
+            if ((hr_R >= 0.01f) && (vr_R == 0))
+            { roteMax = 270; } //moveInput = new Vector2(1, 0); }
+            #endregion
+            AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+        }
+            if (removable)
         {
             if (!attackable && removable)
             {
