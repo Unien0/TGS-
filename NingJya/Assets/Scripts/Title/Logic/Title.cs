@@ -9,7 +9,7 @@ public class Title : MonoBehaviour
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
     [SerializeField] private GameObject optionClosedButton;
-
+    private float lodeTime;
     public GameObject option;
 
     private PlayerInputActions controls;
@@ -33,6 +33,12 @@ public class Title : MonoBehaviour
     {
         if (LoadIt)
         {
+            lodeTime += Time.deltaTime;
+            if (lodeTime >= 3)
+            {
+                lodeTime = 0;
+                TransitionRotate.isRotate = true;
+            }
             if (!audioSource.isPlaying)
             {
                 SceneManager.LoadScene("Tutorial");
