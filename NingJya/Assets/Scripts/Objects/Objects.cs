@@ -110,6 +110,7 @@ public class Objects : MonoBehaviour
                     FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                     FindObjectOfType<ConductManeger>().conduct = true;
                     FindObjectOfType<Player>().KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                    IsAttack = false;
                 }
             }
         }

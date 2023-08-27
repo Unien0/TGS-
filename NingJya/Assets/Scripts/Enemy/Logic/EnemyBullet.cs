@@ -84,6 +84,7 @@ public class EnemyBullet : MonoBehaviour
                 Audio.clip = isBlowSE;
                 Audio.Play();
                 GameManeger.hitEnemy++;
+                IsAttack = false;
             }
         }
 
