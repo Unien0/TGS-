@@ -249,6 +249,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            IsAttack = false; 
             maked = false;
             if ((horizontal != 0) || (vertical != 0))
             {   // “ü—Í‚É‰‚¶‚ÄAUŒ‚”ÍˆÍ‚ğ‰ñ“]‚·‚é
@@ -325,14 +326,6 @@ public class Player : MonoBehaviour
 
         if (removable)
         {
-            if (!attackable && removable)
-            {
-                if (InputATK)
-                {
-                    attackable = true;
-                    KATANA.GetComponent<Animator>().SetBool("ATK", true);
-                }
-            }
             if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKey("joystick button 4"))
             {
                 if (nowBullet > 0)
@@ -342,6 +335,15 @@ public class Player : MonoBehaviour
                         Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
                         nowBullet--;
                     }
+                }
+            }
+            else if (!attackable && removable)
+            {
+                if (InputATK)
+                {
+                    attackable = true;
+                    KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                    IsAttack = true;
                 }
             }
 
