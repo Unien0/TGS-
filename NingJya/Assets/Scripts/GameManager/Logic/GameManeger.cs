@@ -308,6 +308,9 @@ public class GameManeger : MonoBehaviour
         {
             switch (ScanLineLevel)
             {
+                case 0:
+                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", -1.1f);
+                    break;
                 case 1:
                     ScanLineObj.GetComponent<Animator>().SetFloat("Level", 0.0f);
                     break;
