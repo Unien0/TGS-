@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Objects : MonoBehaviour
 {
+    public PlayerData_SO playerData;
+    #region
+    public bool IsAttack
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.isAttack; else return false; }
+        set { playerData.isAttack = value; }
+    }
+    #endregion
     public EnemyData_SO SeatClothData;
     #region SeatClothDataの変数
     private float blowTime
@@ -85,10 +94,9 @@ public class Objects : MonoBehaviour
         // ジャストアタックのタイミングの上
         if (blowable)
         {
-            //Eキーを押した時、playerも攻撃できるなら
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
+            if (inPlayerAttackRange)
             {
-                if (inPlayerAttackRange)
+                if (IsAttack)
                 {
                     Debug.Log("Get E");
                     shoted = true;

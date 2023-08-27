@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossEnemy : MonoBehaviour
-{
+{    public PlayerData_SO playerData;
+    #region
+    public bool IsAttack
+    {
+        //ƒvƒŒƒCƒ„[‚ªUŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é
+        get { if (playerData != null) return playerData.isAttack; else return false; }
+        set { playerData.isAttack = value; }
+    }
+    #endregion
     public EnemyData_SO enemyData;
     #region
     private bool blowable
@@ -82,7 +90,7 @@ public class BossEnemy : MonoBehaviour
         {
             AlphaExchange = false;
             SpR.color = new Color(SpR.color.r, SpR.color.g, SpR.color.b, 1);
-            if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1")))
+            if (IsAttack)
             {
                 if (inPlayerAttackRange)
                 {

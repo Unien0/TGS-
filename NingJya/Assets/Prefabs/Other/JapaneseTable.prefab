@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c06ec214a818e47aea98329b32c430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   SeatClothData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
+  shoted: 0
   shotrote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
   exchange: 1

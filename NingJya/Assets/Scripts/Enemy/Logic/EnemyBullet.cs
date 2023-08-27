@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    public PlayerData_SO playerData;
+    #region
+    public bool IsAttack
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.isAttack; else return false; }
+        set { playerData.isAttack = value; }
+    }
+    #endregion
     public EnemyData_SO enemyData;
     #region
     private bool blowable
@@ -62,10 +71,9 @@ public class EnemyBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //Eキーを押した時、playerも攻撃できる上
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
+        if (inPlayerAttackRange)
         {
-            if (inPlayerAttackRange)
+            if (IsAttack)
             {
                 Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
                 rb2d.velocity = Vector3.zero;
