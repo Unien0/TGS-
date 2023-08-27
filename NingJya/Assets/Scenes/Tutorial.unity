@@ -2560,6 +2560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d135413b613ede4089667d6671e32db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
   enemyData: {fileID: 11400000, guid: 6ee7f38fbe7ce534b9d02cb5ac8ce24d, type: 2}
   BossType: 2
   BossHP: 5
@@ -24676,7 +24677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTextObject: {fileID: 437168442}
   punchObject: {fileID: 7731095}
-  writingSpeed: 60
+  writingSpeed: 20
   punctuationPause: 0.25
   hiddenTextColor: {r: 1, g: 1, b: 1, a: 0}
   writeWholeWords: 0
@@ -26605,7 +26606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTextObject: {fileID: 1142273991}
   punchObject: {fileID: 1676734165}
-  writingSpeed: 60
+  writingSpeed: 20
   punctuationPause: 0.25
   hiddenTextColor: {r: 1, g: 1, b: 1, a: 0}
   writeWholeWords: 0
