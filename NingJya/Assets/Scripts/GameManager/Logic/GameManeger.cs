@@ -209,25 +209,30 @@ public class GameManeger : MonoBehaviour
         }
         if (isCombo)
         {
-            CombosObjct.SetActive(true);
-            ComboText.text = ComboCount.ToString();
+            if (2 < ComboCount)
+            {
+                CombosObjct.SetActive(true);
+                ComboText.text = ComboCount.ToString();
 
-            if (30 <= ComboCount)
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 3.3f);
+                if (30 <= ComboCount)
+                {
+                    BordColor.GetComponent<Animator>().SetFloat("Color", 3.3f);
+                }
+                else if (20 <= ComboCount)
+                {
+                    BordColor.GetComponent<Animator>().SetFloat("Color", 2.2f);
+                }
+                else if (10 <= ComboCount)
+                {
+                    BordColor.GetComponent<Animator>().SetFloat("Color", 1.1f);
+                }
+                else
+                {
+                    BordColor.GetComponent<Animator>().SetFloat("Color", 0.0f);
+                }
             }
-            else if (20 <= ComboCount)
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 2.2f);
-            }
-            else if (10 <= ComboCount)
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 1.1f);
-            }
-            else
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 0.0f);
-            }
+
+
 
             ComboLimit -= Time.deltaTime;
             if (ComboLimit <= 0)

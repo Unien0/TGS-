@@ -95,6 +95,10 @@ public class EfectDestory : MonoBehaviour
             }
             else
             {
+                if (2 >=ComboPoint)
+                {
+                    Destroy(this.gameObject);
+                }
                 anim.SetFloat("Color", 0.0f);
             }
         }
