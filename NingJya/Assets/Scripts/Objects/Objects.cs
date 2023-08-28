@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,8 @@ public class Objects : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Collider2D col2d;
+    private Animator animator;
+
     private GameObject PlayerObject;
 
     public Vector2 shotrote;
@@ -59,20 +62,28 @@ public class Objects : MonoBehaviour
     public bool Ready;
     private bool isBlow;
 
+
+    // トラップ用変数
+    private float ResetTime;
+    public bool Activate;
+    private bool Motion;
+
     private enum ObjectType
     {
         Cushion,
         Table,
+        BambooTrap,
         end
     }
     [SerializeField] private ObjectType ObjNAME;
 
-    private AudioSource audio;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         col2d = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+
         PlayerObject = FindObjectOfType<Player>().gameObject;
     }
 
@@ -103,9 +114,9 @@ public class Objects : MonoBehaviour
                     BlowAway();
                     actTime = 0;
                     if (ObjNAME == ObjectType.Cushion)
-                    {
-                        col2d.isTrigger = false;
-                    }
+                    {　col2d.isTrigger = false;　}
+                    else if (ObjNAME == ObjectType.BambooTrap)
+                    {　Destroy(this.gameObject);　}
                     conductIt = true;
                     FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                     FindObjectOfType<ConductManeger>().conduct = true;
@@ -122,6 +133,30 @@ public class Objects : MonoBehaviour
         if (!shoted)
         {
             ToStop();
+        }
+
+        if (Activate)
+        {
+            switch (ObjNAME)
+            {
+                case ObjectType.BambooTrap:
+                    if (!Motion)
+                    {
+                        animator.SetBool("Boot", true);
+                        PlayerObject.GetComponent<Player>().Hit = true;
+                        Motion = true;
+                    }
+                    else
+                    {
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("wait"))
+                        {
+                            Activate = false;
+                            Motion = false;
+                            animator.SetBool("Boot", false);
+                        }
+                    }
+                    break;
+            }
         }
     }
 
@@ -182,6 +217,31 @@ public class Objects : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (ObjNAME == ObjectType.Table)
+        {
+            // プレイヤーの攻撃範囲に入っている
+            if (col.gameObject.CompareTag("Player"))
+            {
+                inPlayerAttackRange = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (ObjNAME == ObjectType.Table)
+        {
+            // プレイヤーの攻撃範囲から出る
+            if (col.gameObject.CompareTag("Player"))
+            {
+                inPlayerAttackRange = false;
+            }
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.CompareTag("wall")) || (col.CompareTag("HitObj")))
@@ -195,28 +255,12 @@ public class Objects : MonoBehaviour
         {
             col2d.isTrigger = false;
         }
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (ObjNAME == ObjectType.Table)
+        if (col.gameObject.name == "！Player")
         {
-            // プレイヤーの攻撃範囲に入っていて、
-            if (col.gameObject.CompareTag("Player"))
-            {
-                inPlayerAttackRange = true;
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D col)
-    {
-        if (ObjNAME == ObjectType.Table)
-        {
-            // プレイヤーの攻撃範囲に入っていて、
-            if (col.gameObject.CompareTag("Player"))
-            {
-                inPlayerAttackRange = false;
+            
+            if (ObjNAME == ObjectType.BambooTrap)
+            {               
+                Activate = true;
             }
         }
     }
