@@ -24,6 +24,9 @@ public class BossEnemy : MonoBehaviour
     private SpriteRenderer SpR;
     private Collider2D Col2D;
     private AudioSource Audio;
+    [SerializeField] private GameObject ShotRote;
+    private float gapPos;
+    private float gapfixPos;
     private enum BossNumber
     {
         No1,
@@ -61,6 +64,7 @@ public class BossEnemy : MonoBehaviour
         SpR = GetComponent<SpriteRenderer>();
         Col2D = GetComponent<Collider2D>();
         Audio = GetComponent<AudioSource>();
+        PlayerObject = FindObjectOfType<Player>().gameObject;
     }
 
     void Update()
@@ -80,6 +84,14 @@ public class BossEnemy : MonoBehaviour
                     break;
             }
             Damage();
+
+            gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
+            gapfixPos = gapPos * Mathf.Rad2Deg;
+            if (gapfixPos < 0)
+            {
+                gapfixPos += 360;
+            }
+            ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
         }
     }
 
@@ -208,7 +220,7 @@ public class BossEnemy : MonoBehaviour
                         break;
                     case 3:
                         rb2d.velocity = Vector2.zero;
-                        Instantiate(EnemyBullet,this.transform);
+                        Instantiate(EnemyBullet,this.transform.position,ShotRote.transform.rotation);
                         SpR.sprite = BossSprite[2];
                         break;
                     case 4:

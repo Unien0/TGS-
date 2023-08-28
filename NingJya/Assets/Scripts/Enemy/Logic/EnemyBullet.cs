@@ -25,7 +25,7 @@ public class EnemyBullet : MonoBehaviour
     private Rigidbody2D rb2d;               // Rigidbody2Dの取得・格納
     public float BulletSpeed;
     private GameObject objectPL;            // 目的地(Player)の情報を格納
-    private Vector2 targetPL;
+    private float targetPL;
     float time;
 
     public Vector2 shotrote;
@@ -50,21 +50,12 @@ public class EnemyBullet : MonoBehaviour
         objectPL = FindObjectOfType<Player>().gameObject;
         // objectPLからtransform.position.x,yの情報を取得、
         // このオブジェクトとの位置の差をtargetPLに代入
-        targetPL = new Vector2((objectPL.transform.position.x - this.transform.position.x), (objectPL.transform.position.y - this.transform.position.y));
-        switch (targetPL.x)
-        {
 
-        }
-        switch (targetPL.y)
-        {
-
-        }
-        // targetPLの位置に向かって移動する
-        rb2d.AddForce(targetPL * BulletSpeed);
     }
 
     void Update()
-    {       
+    {
+
         time += Time.deltaTime;
         if(time >= 5)
         {
@@ -91,6 +82,10 @@ public class EnemyBullet : MonoBehaviour
         if (isBlow)
         {
             BlowAway();
+        }
+        else
+        {
+            rb2d.velocity = transform.up * BulletSpeed;
         }
     }
 

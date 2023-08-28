@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   enemyData: {fileID: 11400000, guid: 9cf9405c288637f4ea2716e19a861e0d, type: 2}
-  BulletSpeed: 50
+  BulletSpeed: 7.25
   shotrote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
   conductIt: 1

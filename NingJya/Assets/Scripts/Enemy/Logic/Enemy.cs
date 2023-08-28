@@ -137,13 +137,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject HitEfect;
     [SerializeField] private GameObject DEADEfect;
     [SerializeField] private GameObject EnemyBullet;
+    [SerializeField] private GameObject ShotRote;
+    private float gapPos;
+    private float gapfixPos;
+
 
     private Vector2 clashRote;
     private Vector2 clashshotIt;
     private Vector2 moveint;
     private Vector2 PosCheck;
     private Vector2 moveit;// moveintの結果を正負のみの値にする
-    public Vector2 shotrote;
+    public Vector2 knockbackRote;
     [SerializeField] private Vector2 shotIt;
 
 
@@ -217,6 +221,13 @@ public class Enemy : MonoBehaviour
                     case enemyActSet.cannonball:
                         shotOk = true;
                         rb2d.velocity = Vector3.zero;
+                        gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
+                        gapfixPos = gapPos * Mathf.Rad2Deg;
+                        if (gapfixPos < 0)
+                        {
+                            gapfixPos += 360;
+                        }
+                        ShotRote.transform.rotation = Quaternion.Euler(0, 0,-1* gapfixPos);
                         break;
                     case enemyActSet.knockback:
                         Move();                        
@@ -315,7 +326,7 @@ public class Enemy : MonoBehaviour
                             objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
                             if (objctDistance <= 10)
                             {
-                                Instantiate(EnemyBullet, this.transform.position, this.transform.rotation);
+                                Instantiate(EnemyBullet, this.transform.position, ShotRote.transform.rotation);
                             }
                             isShot = true;                            
                         }
@@ -384,14 +395,14 @@ public class Enemy : MonoBehaviour
                 if (conductObject != null)
                 {
                     //方向
-                    shotrote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
+                    knockbackRote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
 
-                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(knockbackRote.x); }
                     else
                     { shotIt.x = 0; }
-                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(knockbackRote.y); }
                     else
                     { shotIt.y = 0; }
                     //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
@@ -401,13 +412,13 @@ public class Enemy : MonoBehaviour
                 else
                 {
                     //方向
-                    shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                    if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                    { shotIt.x = Mathf.Sign(shotrote.x); }
+                    knockbackRote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                    if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
+                    { shotIt.x = Mathf.Sign(knockbackRote.x); }
                     else
                     { shotIt.x = 0; }
-                    if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                    { shotIt.y = Mathf.Sign(shotrote.y); }
+                    if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
+                    { shotIt.y = Mathf.Sign(knockbackRote.y); }
                     else
                     { shotIt.y = 0; }
                     //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
@@ -424,27 +435,27 @@ public class Enemy : MonoBehaviour
             if (conductObject != null)
             {
                 //方向
-                shotrote = new Vector2(this.transform.position.x - conductObject.transform.position.x, this.transform.position.y - conductObject.transform.position.y);
+                knockbackRote = new Vector2(this.transform.position.x - conductObject.transform.position.x, this.transform.position.y - conductObject.transform.position.y);
 
-                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                { shotIt.x = Mathf.Sign(shotrote.x); }
+                if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
+                { shotIt.x = Mathf.Sign(knockbackRote.x); }
                 else
                 { shotIt.x = 0; }
-                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                { shotIt.y = Mathf.Sign(shotrote.y); }
+                if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
+                { shotIt.y = Mathf.Sign(knockbackRote.y); }
                 //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
                 rb2d.AddForce(shotIt * knockbackPoint);
             }
             else
             {
                 //方向
-                shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
-                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                { shotIt.x = Mathf.Sign(shotrote.x); }
+                knockbackRote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
+                { shotIt.x = Mathf.Sign(knockbackRote.x); }
                 else
                 { shotIt.x = 0; }
-                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                { shotIt.y = Mathf.Sign(shotrote.y); }
+                if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
+                { shotIt.y = Mathf.Sign(knockbackRote.y); }
                 else
                 { shotIt.y = 0; }
                 //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
