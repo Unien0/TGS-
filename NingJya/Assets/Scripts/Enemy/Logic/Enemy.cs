@@ -542,12 +542,15 @@ public class Enemy : MonoBehaviour
         }
         if ((col.gameObject.CompareTag("HitObj")) )
         {
-            hit = true;
-            GameManeger.hitEnemy++;
-            hp = 0;
-            KillCombo();
-            GameManeger.shakeTime = 0.125f;
-            ShakeManeger.ShakeLevel = 1;
+            if (col.gameObject.GetComponent<Objects>().shoted)
+            {
+                hit = true;
+                GameManeger.hitEnemy++;
+                hp = 0;
+                KillCombo();
+                GameManeger.shakeTime = 0.125f;
+                ShakeManeger.ShakeLevel = 1;
+            }
         }
     }
 
