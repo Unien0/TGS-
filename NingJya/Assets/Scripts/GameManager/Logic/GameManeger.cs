@@ -245,7 +245,6 @@ public class GameManeger : MonoBehaviour
                 if (ComboLimit <= -0.5f)
                 {
                     isCombo = false;
-                    shakeTime = 1f;
                 }
             }
         }

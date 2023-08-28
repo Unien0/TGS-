@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         animSpeed = GameManeger.AnimSpeed;
         anim.SetFloat("AnimSpeed", animSpeed);
 
-        if ((Input.GetKeyDown(KeyCode.T)) || Input.GetKeyDown("joystick button 5"))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             SceneManager.LoadScene(0);
         }
