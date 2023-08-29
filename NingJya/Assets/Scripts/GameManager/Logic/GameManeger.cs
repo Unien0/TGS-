@@ -222,7 +222,15 @@ public class GameManeger : MonoBehaviour
                         ComboText_1.sprite = GetSprite(data1);
                         break;
                     case 1:     // “ñŒ…–Ú
-                        ComboText_2.sprite = GetSprite(data2);
+                        if (data2 == 0)
+                        {
+                            ComboText_2.enabled = false;
+                        }
+                        else
+                        {
+                            ComboText_2.enabled = true;
+                            ComboText_2.sprite = GetSprite(data2);
+                        }
                         break;
                 }
             }
