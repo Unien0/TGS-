@@ -2562,6 +2562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 0}
   enemyData: {fileID: 11400000, guid: 6ee7f38fbe7ce534b9d02cb5ac8ce24d, type: 2}
+  ShotRote: {fileID: 0}
   BossType: 2
   BossHP: 5
   shotIt: {x: 0, y: 0}
@@ -9987,8 +9988,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081842}
-  selectedCommands: []
+  - {fileID: 678081824}
+  selectedCommands:
+  - {fileID: 678081857}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -11321,7 +11323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 64
   indentLevel: 1
-  storyText: "\uFF08B\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u653B\u6483\uFF09"
+  storyText: "\uFF08\u30EA\u30BA\u30E0\u3092\u5408\u308F\u305B\u3066R\u30B9\u30C6\u30A3\u30C3\u30AF\u3092\u62BC\u3057\u3066\u653B\u6483\uFF09"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
