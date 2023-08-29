@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Objects;
 
 public class EnemyBullet : MonoBehaviour
 {
@@ -153,7 +154,14 @@ public class EnemyBullet : MonoBehaviour
             if (isBlow)
             {
                 Destroy(this.gameObject);                
-            }            
+            }
+        }
+        if (collision.gameObject.CompareTag("HitObj"))
+        {
+            if (collision.gameObject.GetComponent<Objects>().ObjNAME == ObjectType.Table)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

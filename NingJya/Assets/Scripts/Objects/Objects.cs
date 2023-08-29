@@ -68,14 +68,14 @@ public class Objects : MonoBehaviour
     public bool Activate;
     private bool Motion;
 
-    private enum ObjectType
+    public enum ObjectType
     {
         Cushion,
         Table,
         BambooTrap,
         end
     }
-    [SerializeField] private ObjectType ObjNAME;
+    public ObjectType ObjNAME;
 
 
     private void Awake()

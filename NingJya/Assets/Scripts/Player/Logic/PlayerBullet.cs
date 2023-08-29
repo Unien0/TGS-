@@ -6,7 +6,7 @@ public class PlayerBullet : MonoBehaviour
 {
     private Rigidbody2D rb2d;               // Rigidbody2D‚ÌŽæ“¾EŠi”[
     [SerializeField] private float speed;
-
+    private float time;
     void Start()
     {
         // RigidBody2D‚Ìî•ñŠi”[E‘ã“ü
@@ -19,6 +19,11 @@ public class PlayerBullet : MonoBehaviour
     {
         // ‘O•û•ûŒü‚ÉŒü‚©‚Á‚Äi‚Þ
         rb2d.velocity = transform.up * speed;
+        time += Time.deltaTime;
+        if (time >= 5)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
