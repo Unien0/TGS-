@@ -25411,9 +25411,19 @@ MonoBehaviour:
   Score: 0
   TMPui: {fileID: 1790362886}
   CombosObjct: {fileID: 1611063752}
-  ComboText_1: {fileID: 0}
-  ComboText_2: {fileID: 0}
-  Numbers: []
+  ComboText_1: {fileID: 2123919894}
+  ComboText_2: {fileID: 378605269}
+  Numbers:
+  - {fileID: 21300000, guid: 16a539e3b4fab1f4ab8fa4470c0a4ea3, type: 3}
+  - {fileID: 21300000, guid: 920766862a58bdc42af1285e9911d767, type: 3}
+  - {fileID: 21300000, guid: 534d9f01deccfb94897a7c127f9089c9, type: 3}
+  - {fileID: 21300000, guid: ea2a1be76118ff942a6e2b5c1a3c7c9d, type: 3}
+  - {fileID: 21300000, guid: 12e025bed1ce5dd41bb7f36994906a7b, type: 3}
+  - {fileID: 21300000, guid: bc2c3cd92916fff4f960ab849a436985, type: 3}
+  - {fileID: 21300000, guid: 0732af2fbf01c6346942f5b843a7fd14, type: 3}
+  - {fileID: 21300000, guid: c4e88ac39cf24d045b90f0d8875882c4, type: 3}
+  - {fileID: 21300000, guid: 8c9e2e27f817d6849a99a59444eb3323, type: 3}
+  - {fileID: 21300000, guid: 9e52b8917e34cd343ba1639d4a054395, type: 3}
   ComboLimit: 0
   ComboMax: 0
   shakeManeger: {fileID: 754888808}
