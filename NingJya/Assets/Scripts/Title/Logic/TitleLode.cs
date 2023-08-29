@@ -9,6 +9,7 @@ public class TitleLode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         Anim = GetComponent<Animator>();
     }
 

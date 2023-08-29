@@ -92,7 +92,7 @@ public class Objects : MonoBehaviour
         switch (ObjNAME)
         {
             case ObjectType.Cushion:
-                ForcePoint = 800;break;
+                ForcePoint = 800; break;
             case ObjectType.Table:
                 ForcePoint = 400; break;
         }
@@ -114,9 +114,9 @@ public class Objects : MonoBehaviour
                     BlowAway();
                     actTime = 0;
                     if (ObjNAME == ObjectType.Cushion)
-                    {　col2d.isTrigger = false;　}
+                    { col2d.isTrigger = false; }
                     else if (ObjNAME == ObjectType.BambooTrap)
-                    {　Destroy(this.gameObject);　}
+                    { Destroy(this.gameObject); }
                     conductIt = true;
                     FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                     FindObjectOfType<ConductManeger>().conduct = true;
@@ -126,11 +126,6 @@ public class Objects : MonoBehaviour
             }
         }
         else
-        {
-            shoted = false;
-        }
-
-        if (!shoted)
         {
             ToStop();
         }
@@ -210,6 +205,7 @@ public class Objects : MonoBehaviour
             transform.eulerAngles = Vector3.zero;
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
+            shoted = false;
             if (ObjNAME == ObjectType.Cushion)
             {
                 col2d.isTrigger = true;
@@ -257,9 +253,9 @@ public class Objects : MonoBehaviour
         }
         if (col.gameObject.name == "！Player")
         {
-            
+
             if (ObjNAME == ObjectType.BambooTrap)
-            {               
+            {
                 Activate = true;
             }
         }
@@ -283,6 +279,6 @@ public class Objects : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             col2d.isTrigger = true;
-        } 
+        }
     }
 }
