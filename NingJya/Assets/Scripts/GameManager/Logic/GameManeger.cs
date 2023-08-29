@@ -81,9 +81,9 @@ public class GameManeger : MonoBehaviour
     //コンボオブジェクト
     [SerializeField] private GameObject CombosObjct;
     // コンボテキスト
-    [SerializeField] private TextMeshProUGUI ComboText;
-    // コンボ背景
-    [SerializeField] private GameObject BordColor;
+    [SerializeField] private Image ComboText_1;
+    [SerializeField] private Image ComboText_2;
+    [SerializeField] private Sprite[] Numbers;
    // コンボの確認
    public  static bool ComboCheck;
     // コンボ中(ステータス)
@@ -210,23 +210,21 @@ public class GameManeger : MonoBehaviour
         if (isCombo)
         {
             CombosObjct.SetActive(true);
-            ComboText.text = ComboCount.ToString();
 
-            if (30 <= ComboCount)
+            int data1 = (int)(ComboCount % 10);              // 1の位
+            int data2 = (int)((ComboCount / 10) % 10);       // 2の位
+
+            for (int i = 0; i < 2; i++)
             {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 3.3f);
-            }
-            else if (20 <= ComboCount)
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 2.2f);
-            }
-            else if (10 <= ComboCount)
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 1.1f);
-            }
-            else
-            {
-                BordColor.GetComponent<Animator>().SetFloat("Color", 0.0f);
+                switch (i)
+                {
+                    case 0:     // 一桁目
+                        ComboText_1.sprite = GetSprite(data1);
+                        break;
+                    case 1:     // 二桁目
+                        ComboText_2.sprite = GetSprite(data2);
+                        break;
+                }
             }
 
             ComboLimit -= Time.deltaTime;
@@ -248,6 +246,45 @@ public class GameManeger : MonoBehaviour
             ComboCount = 0;
             CombosObjct.SetActive(false);
         }
+    }
+
+    Sprite GetSprite(int number)
+    {
+        Sprite img = Numbers[0];
+        switch (number)
+        {
+            case 0:
+                img = Numbers[0];
+                break;
+            case 1:
+                img = Numbers[1];
+                break;
+            case 2:
+                img = Numbers[2];
+                break;
+            case 3:
+                img = Numbers[3];
+                break;
+            case 4:
+                img = Numbers[4];
+                break;
+            case 5:
+                img = Numbers[5];
+                break;
+            case 6:
+                img = Numbers[6];
+                break;
+            case 7:
+                img = Numbers[7];
+                break;
+            case 8:
+                img = Numbers[8];
+                break;
+            case 9:
+                img = Numbers[9];
+                break;
+        }
+        return img;
     }
 
     void ShakeCheck()
