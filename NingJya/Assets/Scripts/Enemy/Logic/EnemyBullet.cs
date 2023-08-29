@@ -112,8 +112,7 @@ public class EnemyBullet : MonoBehaviour
                     shotIt.x = Mathf.Sign(shotrote.x);
                     shotIt.y = Mathf.Sign(shotrote.y);
                     //Œ»İˆÊ’u‚ÉŠî‚Ã‚¢‚Ä‚Á”ò‚Î‚·‚Ì—Í‚Æ•Û‘¶ŠÔ‚ğ”»’f‚µ‚Ü‚·
-                    rb2d.AddForce(shotIt * BulletSpeed);
-                }
+                    rb2d.AddForce(shotIt * BulletSpeed * 15);                }
                 else
                 {
                     //•ûŒü
@@ -127,7 +126,7 @@ public class EnemyBullet : MonoBehaviour
                     else
                     { shotIt.y = 0; }
                     //4AŒ»İˆÊ’u‚ÉŠî‚Ã‚¢‚Ä‚Á”ò‚Î‚·‚Ì—Í‚Æ•Û‘¶ŠÔ‚ğ”»’f‚µ‚Ü‚·
-                    rb2d.AddForce(shotIt * BulletSpeed);
+                    rb2d.AddForce(shotIt * BulletSpeed * 15);
                 }
             }
         }
