@@ -1447,8 +1447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 260}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 0.69993, y: 262.52}
+  m_SizeDelta: {x: 1232.251, y: 625.0498}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &625459047
 MonoBehaviour:
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 699b73a940cd31743becc51c990bfaa5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 54b30c8b6ab7c9f459feec36d677d46e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1596,8 +1596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f651a31a8129348b625b12172ebd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRotate: 0
-  nowRotate: 1
 --- !u!1 &824599333
 GameObject:
   m_ObjectHideFlags: 0
