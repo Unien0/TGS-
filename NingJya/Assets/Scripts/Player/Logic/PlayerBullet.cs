@@ -20,7 +20,7 @@ public class PlayerBullet : MonoBehaviour
         // ‘O•û•ûŒü‚ÉŒü‚©‚Á‚Äi‚Þ
         rb2d.velocity = transform.up * speed;
         time += Time.deltaTime;
-        if (time >= 5)
+        if (time >= 2)
         {
             Destroy(this.gameObject);
         }

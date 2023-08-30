@@ -20,8 +20,9 @@ public class EfectDestory : MonoBehaviour
     }
     [SerializeField] private EfectType EfectName;
     public int ComboPoint;
-    [SerializeField] private TextMeshPro ComboText;
-    [SerializeField] private GameObject ComboBord;
+    [SerializeField] private GameObject No1Number;
+    [SerializeField] private GameObject No2Number;
+    [SerializeField] private Sprite[] Numbers;
     private float ShotPoint;
     void Start()
     {
@@ -29,7 +30,6 @@ public class EfectDestory : MonoBehaviour
         rd2d = GetComponent<Rigidbody2D>();
 
         ShotPoint = Random.Range(-1.5f,1.5f);
-
         switch (EfectName)
         {
             case EfectType.Move:
@@ -78,25 +78,74 @@ public class EfectDestory : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (EfectName == EfectType.Combo)
+        switch (EfectName)
         {
-            ComboText.text = ComboPoint.ToString();
-            if (30 <= ComboPoint)
-            {
-                anim.SetFloat("Color", 3.3f);
-            }
-            else if (20 <= ComboPoint)
-            {
-                anim.SetFloat("Color", 2.2f);
-            }
-            else if (10 <= ComboPoint)
-            {
-                anim.SetFloat("Color", 1.1f);
-            }
-            else
-            {
-                anim.SetFloat("Color", 0.0f);
-            }
+            case EfectType.Combo:
+                // コンボ数確認
+                int data1 = (int)(ComboPoint % 10);              // 1の位
+                int data2 = (int)((ComboPoint / 10) % 10);       // 2の位
+
+                // スプライト変更
+                for (int i = 0; i < 2; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:     // 一桁目
+                            No1Number.GetComponent<SpriteRenderer>().sprite = GetSprite(data1);
+                            break;
+                        case 1:     // 二桁目
+                            if (data2 == 0)
+                            {
+                                No2Number.SetActive(false);
+                            }
+                            else
+                            {
+                                No2Number.SetActive(true);
+                                No2Number.GetComponent<SpriteRenderer>().sprite = GetSprite(data2);
+                            }
+                            break;
+                    }
+                }
+                break;
+        }    
+    }
+
+    Sprite GetSprite(int number)
+    {
+        Sprite img = Numbers[0];
+        switch (number)
+        {
+            case 0:
+                img = Numbers[0];
+                break;
+            case 1:
+                img = Numbers[1];
+                break;
+            case 2:
+                img = Numbers[2];
+                break;
+            case 3:
+                img = Numbers[3];
+                break;
+            case 4:
+                img = Numbers[4];
+                break;
+            case 5:
+                img = Numbers[5];
+                break;
+            case 6:
+                img = Numbers[6];
+                break;
+            case 7:
+                img = Numbers[7];
+                break;
+            case 8:
+                img = Numbers[8];
+                break;
+            case 9:
+                img = Numbers[9];
+                break;
         }
+        return img;
     }
 }
