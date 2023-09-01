@@ -97,7 +97,7 @@ public class Camera : MonoBehaviour
                         switch (Order)
                         {
                             case 0:
-                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.005f) * input.y);
+                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed  * input.y );
                                 break;
                         }
                         break;
