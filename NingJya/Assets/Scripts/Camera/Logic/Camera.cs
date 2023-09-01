@@ -114,7 +114,7 @@ public class Camera : MonoBehaviour
                                         input.y = 0;
                                     }
                                 }
-                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.005f) * input.y );
+                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.025f) * input.y );
 
                                 if (Leave)
                                 {
@@ -133,6 +133,12 @@ public class Camera : MonoBehaviour
                                 }
                                 break;
                             case 1:
+                                if ((playerObj.transform.position.x - this.transform.position.x) > 5)
+                                {
+                                    Order = 2;
+                                }
+                                break;
+                            case 2:
                                 // à⁄ìÆèàóù
                                 transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
 
@@ -140,7 +146,7 @@ public class Camera : MonoBehaviour
                                 {
                                     if (this.transform.position == Point[1].transform.position)
                                     {
-                                        Order = 2;
+                                        Order = 3;
                                         Leave = false;
                                     }
                                     if (this.transform.position == Point[0].transform.position)
@@ -156,7 +162,15 @@ public class Camera : MonoBehaviour
                                     }
                                 }
                                 break;
-                            case 2:
+
+                            case 3:
+                                if ((playerObj.transform.position.y - this.transform.position.y) < -5)
+                                {
+                                    Order = 4;
+                                }
+                                break;
+
+                            case 4:
                                 // à⁄ìÆèàóù
                                 transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
@@ -164,7 +178,7 @@ public class Camera : MonoBehaviour
                                 {
                                     if (this.transform.position == Point[2].transform.position)
                                     {
-                                        Order = 3;
+                                        Order = 5;
                                         Leave = false;
                                     }
                                     if (this.transform.position == Point[1].transform.position)
@@ -180,7 +194,8 @@ public class Camera : MonoBehaviour
                                     }
                                 }
                                 break;
-                            case 3:
+
+                            case 5:
                                 // à⁄ìÆèàóù
                                 if (this.transform.position != Point[3].transform.position)
                                 {
