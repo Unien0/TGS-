@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
     {
         //ˆÚ“®‰Â”\‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é
         get { if (enemyData != null) return enemyData.removable; else return false; }
+        set { enemyData.removable = value; }
     }
     private bool blowable
     {
@@ -562,6 +563,14 @@ public class Enemy : MonoBehaviour
                 GameManeger.shakeTime = 0.125f;
                 ShakeManeger.ShakeLevel = 1;
             }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.name == "IPlayer")
+        {
+            Debug.Log("aaa");
         }
     }
 

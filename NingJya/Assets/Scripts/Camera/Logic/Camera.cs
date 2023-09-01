@@ -164,7 +164,7 @@ public class Camera : MonoBehaviour
                                 break;
 
                             case 3:
-                                if ((playerObj.transform.position.y - this.transform.position.y) < -5)
+                                if ((playerObj.transform.position.y - this.transform.position.y) < -3)
                                 {
                                     Order = 4;
                                 }
