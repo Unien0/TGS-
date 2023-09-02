@@ -21,7 +21,6 @@ public class TitleLode : MonoBehaviour
             SceneManager.LoadScene(1);
             GameManeger.KillEnemy = 0;
             GameManeger.KillBOSS = 0;
-            GameManeger.GetCoin = 0;
             GameManeger.hitEnemy = 0;
             GameOver.GAMEOVER = false;
         }

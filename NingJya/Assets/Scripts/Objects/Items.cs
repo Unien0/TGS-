@@ -62,7 +62,7 @@ public class Items : MonoBehaviour
                     }*/
                     break;
                 case ItemName.SCOREUP:
-                    GameManeger.GetCoin++;
+
                     break;
             }
             SoundSource.clip = GetSound;

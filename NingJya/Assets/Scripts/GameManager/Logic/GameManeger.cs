@@ -207,8 +207,8 @@ public class GameManeger : MonoBehaviour
 
                 if (PlusScore > 0)
                 {
-                    Score = Score + 100;
-                    PlusScore = PlusScore - 100;
+                    Score = Score + 10;
+                    PlusScore = PlusScore - 10;
                 }
                 else
                 {
@@ -226,8 +226,8 @@ public class GameManeger : MonoBehaviour
 
         if (KillBOSS > 0)
         {
-            Score = Score + 100;
-            KillBOSS = KillBOSS - 100;
+            Score = Score + 10;
+            KillBOSS = KillBOSS - 10;
         }
     }
 
