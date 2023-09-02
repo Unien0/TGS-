@@ -22,10 +22,10 @@ public class Camera : MonoBehaviour
         end
     }
     [SerializeField] private StageName Process;
-    [SerializeField] private int Order;
+    public int Order;
+    public int Ordermax;
     [SerializeField] private GameObject[] Point;
     private bool Leave;
-
     void Start()
     {
         StartPos = this.transform.position;
@@ -94,6 +94,7 @@ public class Camera : MonoBehaviour
                 switch (Process)
                 {
                     case StageName.Tutorial:
+                        Ordermax = 1;
                         switch (Order)
                         {
                             case 0:
@@ -103,6 +104,7 @@ public class Camera : MonoBehaviour
                         break;
 
                     case StageName.Stage_1:
+                        Ordermax = 5;
                         switch (Order)
                         {
                             case 0:

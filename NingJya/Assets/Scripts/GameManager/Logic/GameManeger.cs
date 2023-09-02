@@ -65,17 +65,17 @@ public class GameManeger : MonoBehaviour
     bool isSound;
 
     // スコア関係
-    public int Score;
-    private string Scoretext;
+    private bool isFix;
+    [SerializeField] private int PlusScore;
+    public int Score = 000;
+    [SerializeField] private TextMeshProUGUI ScoreBordTMPui;
     [SerializeField] private TextMeshProUGUI TMPui;
 
     // 倒した敵の数
     public static int KillEnemy;
     // ぶつけて倒した敵の数
     public static int hitEnemy;
-    // 手にしたコインの数
-    public static int GetCoin;
-    // 倒したボスの数
+    // 倒したボスの点数
     public static int KillBOSS;
 
     //コンボオブジェクト
@@ -101,6 +101,7 @@ public class GameManeger : MonoBehaviour
     // スキャンラインオブジェクト
     [SerializeField] private GameObject ScanLineObj;
     [SerializeField] private int ScanLineLevel = 1;
+
     private void Awake()
     {
         TempoChange();
@@ -110,6 +111,7 @@ public class GameManeger : MonoBehaviour
     {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
+        Score = 0;
     }
     private void Update()
     {
@@ -118,6 +120,13 @@ public class GameManeger : MonoBehaviour
         ComboChecker();
         Function();
         ShakeCheck();
+        UIChange();
+    }
+
+    void UIChange()
+    {
+        // 進行度の取得
+
     }
 
     void TempoChange()
@@ -187,12 +196,39 @@ public class GameManeger : MonoBehaviour
 
     public void ScoreCheck()
     {
-        Score = ((KillEnemy * 100)
-               + (hitEnemy * 200) 
-               + (GetCoin * 50) 
-               + (KillBOSS)
-               + (ComboMax * 100));
         TMPui.text = Score.ToString();
+        ScoreBordTMPui.text = Score.ToString();
+
+        // コンボ精算処理
+        if (!isCombo)
+        {
+            if (!isFix)
+            {
+
+                if (PlusScore > 0)
+                {
+                    Score = Score + 100;
+                    PlusScore = PlusScore - 100;
+                }
+                else
+                {
+                    isFix = true;
+                }
+            }
+        }
+        else
+        {
+            isFix = false;
+            PlusScore = ((KillEnemy * 100)
+                        + (hitEnemy * 200)
+                        + (ComboMax * 100));
+        }
+
+        if (KillBOSS > 0)
+        {
+            Score = Score + 100;
+            KillBOSS = KillBOSS - 100;
+        }
     }
 
     void ComboChecker()

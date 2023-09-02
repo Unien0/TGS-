@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966e20181933e3046a5a33f0779535f5, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  maxHp: 8
-  hp: 8
+  maxHp: 10
+  hp: 12
   speed: 6
   damage: 1
   attackCD: 0.2
   maxBullet: 0
-  nowBullet: 2
+  nowBullet: 3
   beatLengh: 0
   levelling: 0
   force: 500

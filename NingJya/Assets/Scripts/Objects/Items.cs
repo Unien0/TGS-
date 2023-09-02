@@ -46,10 +46,11 @@ public class Items : MonoBehaviour
             switch (itemType)
             {
                 case ItemName.LIFEUP:
-                    if (hp<maxHp)
+                    if (hp <= maxHp)
                     {
                         hp += 2;
                     }
+                    /*
                     else if(hp == maxHp && maxHp <12)
                     {
                         maxHp += 2;
@@ -58,7 +59,7 @@ public class Items : MonoBehaviour
                     else if(hp ==maxHp && maxHp == 12)
                     {
                         hp = maxHp;
-                    }
+                    }*/
                     break;
                 case ItemName.SCOREUP:
                     GameManeger.GetCoin++;
