@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class Camera : MonoBehaviour
 {
@@ -22,13 +23,19 @@ public class Camera : MonoBehaviour
         end
     }
     [SerializeField] private StageName Process;
-    public int Order;
-    public int Ordermax;
+    public static float Order;
+    public static float Ordermax;
     [SerializeField] private GameObject[] Point;
     private bool Leave;
+
+
+    [SerializeField] private Slider DoP;
+    private bool DoPFix;
+
     void Start()
     {
         StartPos = this.transform.position;
+        DoPFix = true;
     }
 
     // Update is called once per frame
@@ -36,6 +43,23 @@ public class Camera : MonoBehaviour
     {
         MoveProcess();
         ShakeProcess();
+        Degreeofprogress();
+    }
+
+    void Degreeofprogress()
+    {
+        // 進行度の取得・更新
+        if (DoPFix)
+        {
+            DoP.value = Order / Ordermax;
+            DoPFix = false;
+        }
+        Debug.Log(Order / Ordermax);
+
+        if (DoP.value == 1)
+        {
+            //DoP.enabled = false;
+        }
     }
 
     void ShakeProcess()
@@ -90,7 +114,7 @@ public class Camera : MonoBehaviour
         if (Mathf.Abs(playerObj.transform.position.x - this.transform.position.x) <= 10)
         {
             if (Mathf.Abs(playerObj.transform.position.y - this.transform.position.y) <= 10)
-            {                      
+            {
                 switch (Process)
                 {
                     case StageName.Tutorial:
@@ -98,6 +122,10 @@ public class Camera : MonoBehaviour
                         switch (Order)
                         {
                             case 0:
+                                Order = 1;
+                                DoPFix = true;
+                                break;
+                            case 1:
                                 transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed  * input.y );
                                 break;
                         }
@@ -124,6 +152,7 @@ public class Camera : MonoBehaviour
                                     {
                                         Order = 1;
                                         Leave = false;
+                                        DoPFix = true;
                                     }
                                 }
                                 else
@@ -150,6 +179,7 @@ public class Camera : MonoBehaviour
                                     {
                                         Order = 3;
                                         Leave = false;
+                                        DoPFix = true;
                                     }
                                     if (this.transform.position == Point[0].transform.position)
                                     {
@@ -182,6 +212,7 @@ public class Camera : MonoBehaviour
                                     {
                                         Order = 5;
                                         Leave = false;
+                                        DoPFix = true;
                                     }
                                     if (this.transform.position == Point[1].transform.position)
                                     {

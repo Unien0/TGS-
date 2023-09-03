@@ -102,6 +102,8 @@ public class GameManeger : MonoBehaviour
     [SerializeField] private GameObject ScanLineObj;
     [SerializeField] private int ScanLineLevel = 1;
 
+
+
     private void Awake()
     {
         TempoChange();
@@ -125,7 +127,6 @@ public class GameManeger : MonoBehaviour
 
     void UIChange()
     {
-        // is“x‚Ìæ“¾
 
     }
 
