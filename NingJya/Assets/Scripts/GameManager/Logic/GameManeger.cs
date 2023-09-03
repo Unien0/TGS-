@@ -68,6 +68,7 @@ public class GameManeger : MonoBehaviour
     private bool isFix;
     [SerializeField] private int PlusScore;
     public int Score = 000;
+    [SerializeField] private TextMeshProUGUI ScorePlusTMPui;
     [SerializeField] private TextMeshProUGUI ScoreBordTMPui;
     [SerializeField] private TextMeshProUGUI TMPui;
 
@@ -200,6 +201,7 @@ public class GameManeger : MonoBehaviour
         TMPui.text = Score.ToString();
         ScoreBordTMPui.text = Score.ToString();
 
+
         // ƒRƒ“ƒ{¸ŽZˆ—
         if (!isCombo)
         {
@@ -223,6 +225,7 @@ public class GameManeger : MonoBehaviour
             PlusScore = ((KillEnemy * 100)
                         + (hitEnemy * 200)
                         + (ComboMax * 100));
+            ScorePlusTMPui.text = PlusScore.ToString();
         }
 
         if (KillBOSS > 0)
