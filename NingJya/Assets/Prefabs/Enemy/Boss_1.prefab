@@ -142,12 +142,14 @@ MonoBehaviour:
   ForcePoint: 400
   ActPermission: 1
   ExChange: 0
-  EnemyBullet: {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
+  EnemyBullet:
+  - {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
+  - {fileID: 3460365764642063064, guid: d4da3473f3b8e274e9e0f2f95c9e1464, type: 3}
   BossSprite:
   - {fileID: 21300000, guid: 0702b665c6193e241872dbdbd7940581, type: 3}
   - {fileID: 21300000, guid: 787ffd6ff65d3d6458e7c80b88b6ac01, type: 3}
   - {fileID: 21300000, guid: 4224c3692b7cbc8489b71753994001c0, type: 3}
-  isBlowSE: {fileID: 8300000, guid: ec1e83cc4ac9bab418307855d13d9981, type: 3}
+  isBlowSE: {fileID: 8300000, guid: 273b90a3f1a861e47aa35c2297720686, type: 3}
   Hit_Efect: {fileID: 4894317834079027766, guid: e1c325061a6b24f4dbf19f5777e36d41, type: 3}
   DEAD_EFECT: {fileID: 6992273729208221150, guid: 8fa0909713fa8524b9503b42805ba108, type: 3}
 --- !u!50 &6758980481141204557

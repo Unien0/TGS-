@@ -78,6 +78,8 @@ public class GameManeger : MonoBehaviour
     public static int hitEnemy;
     // 倒したボスの点数
     public static int KillBOSS;
+    // スキルボーナス
+    public static int SKillScore;
 
     //コンボオブジェクト
     [SerializeField] private GameObject CombosObjct;
@@ -233,6 +235,12 @@ public class GameManeger : MonoBehaviour
         {
             Score = Score + 10;
             KillBOSS = KillBOSS - 10;
+        }
+
+        if (SKillScore >0)
+        {
+            Score = Score + 10;
+            SKillScore = SKillScore - 10;
         }
     }
 

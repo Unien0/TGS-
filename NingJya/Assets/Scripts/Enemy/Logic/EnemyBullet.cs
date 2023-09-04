@@ -75,7 +75,7 @@ public class EnemyBullet : MonoBehaviour
                 FindObjectOfType<ConductManeger>().conduct = true;
                 Audio.clip = isBlowSE;
                 Audio.Play();
-                GameManeger.hitEnemy++;
+                GameManeger.SKillScore = + 200;
                 IsAttack = false;
             }
         }

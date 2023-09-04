@@ -51,7 +51,7 @@ public class BossEnemy : MonoBehaviour
     private int RandumCount;
     private Vector2 MoveInt;
     public bool ExChange;
-    [SerializeField] GameObject EnemyBullet;
+    [SerializeField] GameObject[] EnemyBullet;
     [SerializeField] private Sprite[] BossSprite;
     [SerializeField] private AudioClip isBlowSE;
     [SerializeField] private GameObject Hit_Efect;
@@ -222,11 +222,12 @@ public class BossEnemy : MonoBehaviour
                         break;
                     case 3:
                         rb2d.velocity = Vector2.zero;
-                        Instantiate(EnemyBullet,this.transform.position,ShotRote.transform.rotation);
+                        Instantiate(EnemyBullet[0],this.transform.position,ShotRote.transform.rotation);
                         SpR.sprite = BossSprite[2];
                         break;
                     case 4:
                         rb2d.velocity = Vector2.zero;
+                        Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
                         SpR.sprite = BossSprite[1];
                         break;
                 }
