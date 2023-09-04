@@ -13582,7 +13582,7 @@ GameObject:
   - component: {fileID: 753008520}
   - component: {fileID: 753008519}
   m_Layer: 5
-  m_Name: "\u7B2C\u4E00\u5E55"
+  m_Name: "\u7B2C0\u5E55"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13628,7 +13628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7B2C1\u5E55"
+  m_text: "\u7B2C0\u5E55"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 16e29b5973b634d45a415a091cceebb1, type: 2}
   m_sharedMaterial: {fileID: -153568877484512507, guid: 16e29b5973b634d45a415a091cceebb1, type: 2}
