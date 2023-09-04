@@ -140,7 +140,6 @@ public class Camera : MonoBehaviour
                         }
                         transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.025f) * input.y);
 
-                        Debug.Log("can");
                         if (Leave)
                         {
                             if (this.transform.position == Point[0].transform.position)
