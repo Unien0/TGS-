@@ -11,6 +11,7 @@ public class NPCDialgoue : MonoBehaviour
     public Flowchart fc;
     private bool make;
     [SerializeField] private GameObject DEAD_EFECT;
+    [SerializeField] private GameObject rotate_Close;
 
     private void Awake()
     {
@@ -26,11 +27,18 @@ public class NPCDialgoue : MonoBehaviour
                 make = true;
                 Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
             }
-            npc1.SetActive(false);
+            else
+            {
+                npc1.SetActive(false);
+            }
+
         }
         if (fc.GetBooleanVariable("ToInGame"))
         {
-            SceneManager.LoadScene("RemakeScene");
+            if (rotate_Close.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("close"))
+            {
+                SceneManager.LoadScene("RemakeScene");
+            }
         }
     }
 }

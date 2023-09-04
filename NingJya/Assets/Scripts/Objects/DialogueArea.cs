@@ -33,16 +33,20 @@ public class DialogueArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (outEnemy)
-        //{
-        //    if (!make)
-        //    {
-        //        make = true;
-        //        Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
-        //    }            
-            
-        //    npc1.SetActive(false);
-        //}
+        if (outEnemy)
+        {
+            if (!make)
+            {
+                make = true;
+                Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
+                
+            }
+            else
+            {
+                npc1.SetActive(false);
+            }
+
+        }
         if (canChat && Input.GetKeyDown("joystick button 0"))
         {
             
@@ -72,7 +76,7 @@ public class DialogueArea : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             iconDisplay.SetActive(false);
-            //npc1.SetActive(false);
+            outEnemy = true;
             canChat = false;
 
         }

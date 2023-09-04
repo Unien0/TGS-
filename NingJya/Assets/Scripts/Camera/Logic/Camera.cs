@@ -54,7 +54,6 @@ public class Camera : MonoBehaviour
             DoP.value = Order / Ordermax;
             DoPFix = false;
         }
-        Debug.Log(Order / Ordermax);
 
         if (DoP.value == 1)
         {
@@ -110,138 +109,133 @@ public class Camera : MonoBehaviour
         #endregion
 
 
-
-        if (Mathf.Abs(playerObj.transform.position.x - this.transform.position.x) <= 10)
+        switch (Process)
         {
-            if (Mathf.Abs(playerObj.transform.position.y - this.transform.position.y) <= 10)
-            {
-                switch (Process)
+            case StageName.Tutorial:
+                Ordermax = 1;
+                switch (Order)
                 {
-                    case StageName.Tutorial:
-                        Ordermax = 1;
-                        switch (Order)
+                    case 0:
+                        Order = 1;
+                        DoPFix = true;
+                        break;
+                    case 1:
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
+                        break;
+                }
+                break;
+
+            case StageName.Stage_1:
+                Ordermax = 5;
+                switch (Order)
+                {
+                    case 0:
+                        // 移動処理
+                        if (this.transform.position == StartPos)
                         {
-                            case 0:
+                            if (input.y == -1)
+                            {
+                                input.y = 0;
+                            }
+                        }
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.025f) * input.y);
+
+                        Debug.Log("can");
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[0].transform.position)
+                            {
                                 Order = 1;
+                                Leave = false;
                                 DoPFix = true;
-                                break;
-                            case 1:
-                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed  * input.y );
-                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[0].transform.position)
+                            {
+                                Leave = true;
+                            }
+                        }
+                        break;
+                    case 1:
+                        if ((playerObj.transform.position.x - this.transform.position.x) > 5)
+                        {
+                            Order = 2;
+                        }
+                        break;
+                    case 2:
+                        // 移動処理
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
+
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[1].transform.position)
+                            {
+                                Order = 3;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                            if (this.transform.position == Point[0].transform.position)
+                            {
+                                input.x = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[0].transform.position)
+                            {
+                                Leave = true;
+                            }
                         }
                         break;
 
-                    case StageName.Stage_1:
-                        Ordermax = 5;
-                        switch (Order)
+                    case 3:
+                        if ((playerObj.transform.position.y - this.transform.position.y) < -3)
                         {
-                            case 0:
-                                // 移動処理
-                                if (this.transform.position == StartPos)
-                                {
-                                    if (input.y == -1)
-                                    {
-                                        input.y = 0;
-                                    }
-                                }
-                                transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.025f) * input.y );
+                            Order = 4;
+                        }
+                        break;
 
-                                if (Leave)
-                                {
-                                    if (this.transform.position == Point[0].transform.position)
-                                    {
-                                        Order = 1;
-                                        Leave = false;
-                                        DoPFix = true;
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.transform.position != Point[0].transform.position)
-                                    {
-                                        Leave = true;
-                                    }
-                                }
-                                break;
-                            case 1:
-                                if ((playerObj.transform.position.x - this.transform.position.x) > 5)
-                                {
-                                    Order = 2;
-                                }
-                                break;
-                            case 2:
-                                // 移動処理
-                                transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
+                    case 4:
+                        // 移動処理
+                        transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
-                                if (Leave)
-                                {
-                                    if (this.transform.position == Point[1].transform.position)
-                                    {
-                                        Order = 3;
-                                        Leave = false;
-                                        DoPFix = true;
-                                    }
-                                    if (this.transform.position == Point[0].transform.position)
-                                    {
-                                        input.x = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.transform.position != Point[0].transform.position)
-                                    {
-                                        Leave = true;
-                                    }
-                                }
-                                break;
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[2].transform.position)
+                            {
+                                Order = 5;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                            if (this.transform.position == Point[1].transform.position)
+                            {
+                                input.y = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[1].transform.position)
+                            {
+                                Leave = true;
+                            }
+                        }
+                        break;
 
-                            case 3:
-                                if ((playerObj.transform.position.y - this.transform.position.y) < -3)
-                                {
-                                    Order = 4;
-                                }
-                                break;
-
-                            case 4:
-                                // 移動処理
-                                transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
-
-                                if (Leave)
-                                {
-                                    if (this.transform.position == Point[2].transform.position)
-                                    {
-                                        Order = 5;
-                                        Leave = false;
-                                        DoPFix = true;
-                                    }
-                                    if (this.transform.position == Point[1].transform.position)
-                                    {
-                                        input.y = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    if (this.transform.position != Point[1].transform.position)
-                                    {
-                                        Leave = true;
-                                    }
-                                }
-                                break;
-
-                            case 5:
-                                // 移動処理
-                                if (this.transform.position != Point[3].transform.position)
-                                {
-                                    transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed);
-                                }
-                                break;
+                    case 5:
+                        // 移動処理
+                        if (this.transform.position != Point[3].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed);
                         }
                         break;
                 }
-
-                // プレイヤーがカメラ中央から離れていた場合
-            }
+                break;
         }
+
+        // プレイヤーがカメラ中央から離れていた場合
+
     }
 
 }

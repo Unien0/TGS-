@@ -10,7 +10,7 @@ public class TransitionRotate : MonoBehaviour
     private bool nowRotate = true;
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         animator = GetComponent<Animator>();
         SceneManager.sceneLoaded += SceneLoaded;
     }
@@ -29,10 +29,6 @@ public class TransitionRotate : MonoBehaviour
 
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)
     {
-        if((nextScene.name == "Tutorial") || (nextScene.name == "Title"))
-        {
-            animator.SetBool("isRotate", true);
-            nowRotate = true;
-        }        
+        Camera.Order = 0;
     }
 }
