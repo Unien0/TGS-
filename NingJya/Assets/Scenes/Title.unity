@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 253404408}
   - component: {fileID: 253404410}
   - component: {fileID: 253404409}
+  - component: {fileID: 253404411}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -738,6 +739,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253404407}
   m_CullTransparentMesh: 1
+--- !u!95 &253404411
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253404407}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94a0b1d78a9cd0a47a6340c9dc7cf5ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &289208416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,6 +1753,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f651a31a8129348b625b12172ebd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMove: 0
+  Player: {fileID: 0}
 --- !u!1 &824599333
 GameObject:
   m_ObjectHideFlags: 0

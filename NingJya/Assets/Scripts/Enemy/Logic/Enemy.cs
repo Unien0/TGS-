@@ -116,6 +116,7 @@ public class Enemy : MonoBehaviour
     private bool isShot;
     private bool shoted;//êÅÇ¡îÚÇŒÇ∑ÇÃèÛë‘
     private bool hit;
+    private bool ishit;
     private double CoolDownTime;
     private double time = -1;
     private bool stop = false;// à⁄ìÆèàóùÇÃí‚é~
@@ -544,24 +545,32 @@ public class Enemy : MonoBehaviour
         {
             if (col.gameObject.GetComponent<Enemy>().shoted)
             {
-                hit = true;
-                hp = 0;
-                GameManeger.hitEnemy++;
-                KillCombo();
-                GameManeger.shakeTime = 0.125f;
-                ShakeManeger.ShakeLevel = 1;
+                if (!ishit)
+                {
+                    ishit = true;
+                    hit = true;
+                    GameManeger.hitEnemy++;
+                    hp = 0;
+                    KillCombo();
+                    GameManeger.shakeTime = 0.125f;
+                    ShakeManeger.ShakeLevel = 1;
+                }
             }
         }
         if ((col.gameObject.CompareTag("HitObj")) )
         {
             if (col.gameObject.GetComponent<Objects>().shoted)
             {
-                hit = true;
-                GameManeger.hitEnemy++;
-                hp = 0;
-                KillCombo();
-                GameManeger.shakeTime = 0.125f;
-                ShakeManeger.ShakeLevel = 1;
+                if (!ishit)
+                {
+                    ishit = true;
+                    hit = true;
+                    GameManeger.hitEnemy++;
+                    hp = 0;
+                    KillCombo();
+                    GameManeger.shakeTime = 0.125f;
+                    ShakeManeger.ShakeLevel = 1;
+                }
             }
         }
     }
@@ -580,19 +589,39 @@ public class Enemy : MonoBehaviour
         {
             if (col.gameObject.GetComponent<EnemyBullet>().isBlow == true)
             {
-                Debug.Log("BulletDead");
-                hit = true;
-                GameManeger.hitEnemy++;
-                hp = 0;
-                KillCombo();
-                GameManeger.shakeTime = 0.125f;
-                ShakeManeger.ShakeLevel = 1;
+                if (!ishit)
+                {
+                    ishit = true;
+                    hit = true;
+                    GameManeger.hitEnemy++;
+                    hp = 0;
+                    KillCombo();
+                    GameManeger.shakeTime = 0.125f;
+                    ShakeManeger.ShakeLevel = 1;
+                }
             }
         }
         if ((col.gameObject.CompareTag("HitObj")))
         {
             if (col.GetComponent<Objects>().shoted)
             {
+                if (!ishit)
+                {
+                    ishit = true;
+                    hit = true;
+                    GameManeger.hitEnemy++;
+                    hp = 0;
+                    KillCombo();
+                    GameManeger.shakeTime = 0.125f;
+                    ShakeManeger.ShakeLevel = 1;
+                }
+            }
+        }
+        if ((col.gameObject.CompareTag("PlayerBullet")))
+        {
+            if (!ishit)
+            {
+                ishit = true;
                 hit = true;
                 GameManeger.hitEnemy++;
                 hp = 0;
@@ -600,15 +629,6 @@ public class Enemy : MonoBehaviour
                 GameManeger.shakeTime = 0.125f;
                 ShakeManeger.ShakeLevel = 1;
             }
-        }
-        if ((col.gameObject.CompareTag("PlayerBullet")))
-        {
-            hit = true;
-            GameManeger.hitEnemy++;
-            hp = 0;
-            KillCombo();
-            GameManeger.shakeTime = 0.125f;
-            ShakeManeger.ShakeLevel = 1;
         }
     }
 

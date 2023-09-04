@@ -132,6 +132,8 @@ public class BossEnemy : MonoBehaviour
                             time = 0;
                             MutekiTime = 0;
                             Camera.ShakeOrder = true;
+                            GameManeger.KillBOSS += 1000;
+
                             if (BossHP <= 0)
                             {
                                 FindObjectOfType<BossStartFlag>().ActEnd = true;
@@ -139,7 +141,7 @@ public class BossEnemy : MonoBehaviour
                                 SpR.enabled = false;
                                 Col2D.enabled = false;
                                 rb2d.velocity = Vector3.zero;
-                                GameManeger.KillBOSS += 1000;
+                                GameManeger.KillBOSS += 5000;
                                 Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
 
                                 GameManeger.shakeTime = 0.25f;

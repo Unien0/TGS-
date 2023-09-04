@@ -17,8 +17,7 @@ public class SceneController : MonoBehaviour
     {
         if (flowchart.GetBooleanVariable("ToInGame"))
         {
-            SceneChange();
-            
+            SceneChange(); 
         }
     }
 

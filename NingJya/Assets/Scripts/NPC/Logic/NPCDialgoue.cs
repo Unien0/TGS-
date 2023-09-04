@@ -35,7 +35,7 @@ public class NPCDialgoue : MonoBehaviour
         }
         if (fc.GetBooleanVariable("ToInGame"))
         {
-            if (rotate_Close.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("close"))
+            if (rotate_Close.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
             {
                 SceneManager.LoadScene("RemakeScene");
             }

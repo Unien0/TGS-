@@ -8,6 +8,8 @@ public class TransitionRotate : MonoBehaviour
     private Animator animator;
     public static bool isRotate;
     private bool nowRotate = true;
+    [SerializeField]private bool isMove;
+    [SerializeField] private GameObject Player;
     private void Awake()
     {
         //DontDestroyOnLoad(this.gameObject);
@@ -23,6 +25,11 @@ public class TransitionRotate : MonoBehaviour
             animator.SetBool("isRotate",!nowRotate);
             nowRotate = !nowRotate;
             isRotate = false;
+        }
+
+        if (isMove)
+        {
+            GetComponent<RectTransform>().position = Player.transform.position;
         }
 
     }

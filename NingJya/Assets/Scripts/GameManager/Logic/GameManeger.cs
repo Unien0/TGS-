@@ -207,16 +207,17 @@ public class GameManeger : MonoBehaviour
         {
             if (!isFix)
             {
+                Score = Score + PlusScore;
+                isFix = true;
+            }
+            else
+            {
+                PlusScore = 0;
 
-                if (PlusScore > 0)
-                {
-                    Score = Score + 10;
-                    PlusScore = PlusScore - 10;
-                }
-                else
-                {
-                    isFix = true;
-                }
+                KillEnemy = 0;
+                hitEnemy = 0;
+                ComboMax = 0;
+                ScorePlusTMPui.text = " ";
             }
         }
         else
@@ -225,7 +226,7 @@ public class GameManeger : MonoBehaviour
             PlusScore = ((KillEnemy * 100)
                         + (hitEnemy * 200)
                         + (ComboMax * 100));
-            ScorePlusTMPui.text = PlusScore.ToString();
+            ScorePlusTMPui.text = ("+" + PlusScore.ToString());
         }
 
         if (KillBOSS > 0)
