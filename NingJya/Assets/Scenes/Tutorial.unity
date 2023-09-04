@@ -1960,7 +1960,10 @@ MonoBehaviour:
   ForcePoint: 400
   ActPermission: 1
   ExChange: 0
-  EnemyBullet: {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
+  EnemyBullet:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   BossSprite:
   - {fileID: 21300000, guid: 0702b665c6193e241872dbdbd7940581, type: 3}
   - {fileID: 21300000, guid: 787ffd6ff65d3d6458e7c80b88b6ac01, type: 3}
@@ -3022,7 +3025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &242634917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3315,6 +3318,11 @@ MonoBehaviour:
   fc: {fileID: 678081832}
   DEAD_EFECT: {fileID: 4622103877717082459, guid: 57a22e63f55551b4ea7e764f5715e2d1, type: 3}
   rotate_Close: {fileID: 371869500}
+  anim:
+  - {fileID: 2076250668}
+  - {fileID: 1118660050}
+  - {fileID: 1464919632}
+  - {fileID: 1424284675}
 --- !u!4 &285715689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -9319,10 +9327,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 678081874}
-  selectedCommands:
-  - {fileID: 678081867}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}

@@ -58,6 +58,10 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] private GameObject DEAD_EFECT;
     private float MutekiTime = 5;
     private bool AlphaExchange;
+
+    private Animator anim;
+    private float animSpeed;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -65,10 +69,14 @@ public class BossEnemy : MonoBehaviour
         Col2D = GetComponent<Collider2D>();
         Audio = GetComponent<AudioSource>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
+        //anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        //animSpeed = GameManeger.AnimSpeed;
+        //anim.SetFloat("AnimSpeed", animSpeed);
+
         if (FindObjectOfType<BossStartFlag>().ActStart)
         {
             CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;

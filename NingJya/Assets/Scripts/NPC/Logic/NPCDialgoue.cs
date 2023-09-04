@@ -13,6 +13,9 @@ public class NPCDialgoue : MonoBehaviour
     [SerializeField] private GameObject DEAD_EFECT;
     [SerializeField] private GameObject rotate_Close;
 
+    public GameObject[] anim;
+    private float animSpeed;
+
     private void Awake()
     {
         fc = GameObject.Find("Flowchart").GetComponent<Flowchart>();
@@ -20,6 +23,11 @@ public class NPCDialgoue : MonoBehaviour
 
     void Update()
     {
+        foreach (var Iconobj in anim)
+        {
+            Iconobj.GetComponent<Animator>().SetFloat("AnimSpeed", GameManeger.AnimSpeed);
+        }
+
         if (fc.GetBooleanVariable("WellOpen"))
         {
             if (!make)

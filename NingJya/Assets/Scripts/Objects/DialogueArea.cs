@@ -17,6 +17,7 @@ public class DialogueArea : MonoBehaviour
     //public GameObject npc2;
     private Collider2D col2D;
     private bool make;
+    private bool isSay;
     [SerializeField] private GameObject DEAD_EFECT;
     private void Awake()
     {
@@ -35,17 +36,20 @@ public class DialogueArea : MonoBehaviour
     {
         if (outEnemy)
         {
-            if (!make)
+            if (isSay)
             {
-                make = true;
-                Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
-                
-            }
-            else
-            {
-                npc1.SetActive(false);
-            }
+                if (!make)
+                {
+                    make = true;
+                    Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
 
+                }
+                else
+                {
+                    npc1.SetActive(false);
+                    iconDisplay.SetActive(false);
+                }
+            }
         }
         if (canChat && Input.GetKeyDown("joystick button 0"))
         {
@@ -54,6 +58,7 @@ public class DialogueArea : MonoBehaviour
             if (flowchart.HasBlock(chatName))
             {
                 flowchart.ExecuteBlock(chatName);
+                isSay = true;
                 //endChat = true;
             }
         }
