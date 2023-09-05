@@ -252,7 +252,6 @@ public class BossEnemy : MonoBehaviour
                     fix = true;
 
                     RandumCount = Random.Range(1, 5);
-                    Debug.Log(RandumCount);
 
                     switch (RandumCount)
                     {

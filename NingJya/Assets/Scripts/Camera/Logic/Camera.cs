@@ -31,6 +31,7 @@ public class Camera : MonoBehaviour
 
     [SerializeField] private Slider DoP;
     private bool DoPFix;
+    private bool PosFix = false;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class Camera : MonoBehaviour
         MoveProcess();
         ShakeProcess();
         Degreeofprogress();
+        Debug.Log(Order);
     }
 
     void Degreeofprogress()
@@ -112,7 +114,7 @@ public class Camera : MonoBehaviour
         switch (Process)
         {
             case StageName.Tutorial:
-                Ordermax = 1;
+                Ordermax = 3;
                 switch (Order)
                 {
                     case 0:
@@ -121,7 +123,29 @@ public class Camera : MonoBehaviour
                         break;
                     case 1:
                         transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
+                        if (this.transform.position == Point[0].transform.position)
+                        {
+                            Order = 2;
+                            Leave = false;
+                            DoPFix = true;
+                        }
                         break;
+                    case 2:
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
+                        if (this.transform.position == Point[1].transform.position)
+                        {
+                            Order = 3;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 3:
+                        if (this.transform.position != Point[2].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+                        }
+                        break;
+
                 }
                 break;
 
@@ -130,6 +154,10 @@ public class Camera : MonoBehaviour
                 switch (Order)
                 {
                     case 0:
+                        Order = 1;
+                        DoPFix = true;
+                        break;
+                    case 1:
                         // ˆÚ“®ˆ—
                         if (this.transform.position == StartPos)
                         {
@@ -138,13 +166,13 @@ public class Camera : MonoBehaviour
                                 input.y = 0;
                             }
                         }
-                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, (moveSpeed + 0.025f) * input.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position,moveSpeed * input.y);
 
                         if (Leave)
                         {
                             if (this.transform.position == Point[0].transform.position)
                             {
-                                Order = 1;
+                                Order = 2;
                                 Leave = false;
                                 DoPFix = true;
                             }
@@ -155,48 +183,61 @@ public class Camera : MonoBehaviour
                             {
                                 Leave = true;
                             }
-                        }
-                        break;
-                    case 1:
-                        if ((playerObj.transform.position.x - this.transform.position.x) > 5)
-                        {
-                            Order = 2;
                         }
                         break;
                     case 2:
-                        // ˆÚ“®ˆ—
-                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
-
-                        if (Leave)
+                        if ((playerObj.transform.position.x - this.transform.position.x) > 8)
                         {
-                            if (this.transform.position == Point[1].transform.position)
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position,new Vector3 (Point[0].transform.position.x+ 16, Point[0].transform.position.y, Point[0].transform.position.z), 0.125f);
+                            if (this.transform.position == new Vector3(Point[0].transform.position.x + 16, Point[0].transform.position.y, Point[0].transform.position.z))
                             {
                                 Order = 3;
+                                PosFix = false;
                                 Leave = false;
                                 DoPFix = true;
-                            }
-                            if (this.transform.position == Point[0].transform.position)
-                            {
-                                input.x = 0;
-                            }
-                        }
-                        else
-                        {
-                            if (this.transform.position != Point[0].transform.position)
-                            {
-                                Leave = true;
                             }
                         }
                         break;
 
                     case 3:
-                        if ((playerObj.transform.position.y - this.transform.position.y) < -3)
+                        // ˆÚ“®ˆ—
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
+
+                        if (this.transform.position == Point[1].transform.position)
                         {
                             Order = 4;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+                        if (this.transform.position == Point[0].transform.position)
+                        {
+                            input.x = 0;
                         }
                         break;
 
                     case 4:
+                        if ((playerObj.transform.position.y - this.transform.position.y) < -4)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Point[1].transform.position.x, Point[1].transform.position.y - 8, Point[1].transform.position.z), 0.125f);
+                            if (this.transform.position == new Vector3(Point[1].transform.position.x, Point[1].transform.position.y - 8, Point[1].transform.position.z))
+                            {
+                                DoPFix = true;
+                                Order = 5;
+                                PosFix = false;
+                                Leave = false;
+                            }
+                        }
+                        break;
+
+                    case 5:
                         // ˆÚ“®ˆ—
                         transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
@@ -204,7 +245,7 @@ public class Camera : MonoBehaviour
                         {
                             if (this.transform.position == Point[2].transform.position)
                             {
-                                Order = 5;
+                                Order = 6;
                                 Leave = false;
                                 DoPFix = true;
                             }
@@ -221,8 +262,7 @@ public class Camera : MonoBehaviour
                             }
                         }
                         break;
-
-                    case 5:
+                    case 6:
                         // ˆÚ“®ˆ—
                         if (this.transform.position != Point[3].transform.position)
                         {
