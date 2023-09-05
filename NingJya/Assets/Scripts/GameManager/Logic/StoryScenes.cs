@@ -13,6 +13,7 @@ public class StoryScenes : MonoBehaviour
     [SerializeField] private SpriteRenderer Back;
     public static int NextStageNum;
     private int LodeSceneNum;
+    private bool isPlay;
     [SerializeField]private GameObject trans;
     private bool isClose;
 
@@ -26,16 +27,22 @@ public class StoryScenes : MonoBehaviour
     void Update()
     {
         if (FindObjectOfType<TransitionRotate>().Delay == false)
-        {
-            VideoPlayer.clip = Videos[NextStageNum];
-            Back.sprite = Images[NextStageNum];
-            switch (NextStageNum)
+        {         
+            if (!isPlay)
             {
-                case 0:
-                    LodeSceneNum = 4;
-                    break;
+                VideoPlayer.clip = Videos[NextStageNum];
+                Back.sprite = Images[NextStageNum];
+                
+                switch (NextStageNum)
+                {
+                    case 0:
+                        LodeSceneNum = 4;
+                        break;
+                }
+
+                isPlay = true;
+                VideoPlayer.Play();
             }
-            VideoPlayer.Play();
         }
 
 

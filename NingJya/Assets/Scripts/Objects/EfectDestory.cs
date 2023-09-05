@@ -106,6 +106,11 @@ public class EfectDestory : MonoBehaviour
                             break;
                     }
                 }
+
+                if (rd2d.velocity.y < 0)
+                {
+                    rd2d.velocity = Vector2.zero;
+                }
                 break;
         }    
     }
