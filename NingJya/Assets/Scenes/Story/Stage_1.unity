@@ -1669,7 +1669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &509391207
 Transform:
   m_ObjectHideFlags: 0
@@ -2198,6 +2198,7 @@ MonoBehaviour:
   ScoreBordTMPui: {fileID: 1988039150}
   TMPui: {fileID: 1715157763}
   CombosObjct: {fileID: 2006229868}
+  ComboGaugeObjct: {fileID: 0}
   ComboText_1: {fileID: 1571274727}
   ComboText_2: {fileID: 1308026778}
   Numbers:
@@ -2778,7 +2779,7 @@ MonoBehaviour:
   shake: {fileID: 1335712361}
   Process: 0
   Point:
-  - {fileID: 27277650}
+  - {fileID: 2006229868}
   DoP: {fileID: 1350557751}
 --- !u!4 &622711720
 Transform:
@@ -2935,8 +2936,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723187527}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -959.83, y: -537.3048, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -960.0022, y: -539.9979, z: 0}
+  m_LocalScale: {x: 0.9999992, y: 0.9988975, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 682146553}
@@ -3011,7 +3012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472048, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.03
+      value: -4.076
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472048, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3148,7 +3149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511167546586183712, guid: 71e866ec5e25ced4f8c2c613bb7957db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: -3.0660002
       objectReference: {fileID: 0}
     - target: {fileID: 7511167546586183712, guid: 71e866ec5e25ced4f8c2c613bb7957db, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3886,7 +3887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849825206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.18, y: -0.73, z: 0}
+  m_LocalPosition: {x: -12.18, y: -3.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5328,7 +5329,10 @@ MonoBehaviour:
   ForcePoint: 400
   ActPermission: 1
   ExChange: 0
-  EnemyBullet: {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
+  EnemyBullet:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   BossSprite:
   - {fileID: 21300000, guid: 0702b665c6193e241872dbdbd7940581, type: 3}
   - {fileID: 21300000, guid: 787ffd6ff65d3d6458e7c80b88b6ac01, type: 3}
@@ -5525,6 +5529,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323959256}
   m_CullTransparentMesh: 1
+--- !u!1 &1331851955
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331851957}
+  - component: {fileID: 1331851956}
+  m_Layer: 0
+  m_Name: _FungusState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1331851956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331851955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedFlowchart: {fileID: 0}
+--- !u!4 &1331851957
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331851955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1335712360
 GameObject:
   m_ObjectHideFlags: 0
@@ -5615,7 +5664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335712360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 2.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5963,6 +6012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f651a31a8129348b625b12172ebd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  isMove: 0
+  Player: {fileID: 0}
 --- !u!114 &1416171605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6457,22 +6509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e5a2ed52370954a8286879443ef376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds:
-  - name: BGM
-    clip: {fileID: 8300000, guid: e5fe41f9727934d4686bb2427dd92d8f, type: 3}
-  - name: BGM2
-    clip: {fileID: 8300000, guid: ee8876d6e0116c948a0066b02cb8814a, type: 3}
-  - name: BGM3
-    clip: {fileID: 8300000, guid: e5c60b425ff06634d9848e719b022477, type: 3}
-  seSounds:
-  - name: Move
-    clip: {fileID: 0}
-  - name: Attack
-    clip: {fileID: 0}
-  - name: Button1
-    clip: {fileID: 8300000, guid: 24c3abcb902cd3947a25a3f9e701a3df, type: 3}
-  - name: Button2
-    clip: {fileID: 8300000, guid: 33fcad35f7ce1a645a50606fa4ed6983, type: 3}
+  musicSounds: []
+  seSounds: []
   musicSounrce: {fileID: 509391208}
   seSource: {fileID: 121928613}
   Ex: 0
@@ -8014,7 +8052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511167546586183712, guid: 71e866ec5e25ced4f8c2c613bb7957db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0529432
+      value: -1.993057
       objectReference: {fileID: 0}
     - target: {fileID: 7511167546586183712, guid: 71e866ec5e25ced4f8c2c613bb7957db, type: 3}
       propertyPath: m_LocalPosition.z
