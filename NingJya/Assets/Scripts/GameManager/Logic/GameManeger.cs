@@ -248,33 +248,33 @@ public class GameManeger : MonoBehaviour
             { 
                 isCombo = true;                
             }
-            ComboLimit = 5;
+            ComboLimit = 2.5f;
             ComboCheck = false;
             ComboCount++;
         }
         if (isCombo)
         {
-            CombosObjct.SetActive(true);
+            //CombosObjct.SetActive(true);
 
-            int data1 = (int)(ComboCount % 10);              // 1‚ÌˆÊ
-            int data2 = (int)((ComboCount / 10) % 10);       // 2‚ÌˆÊ
+            int data_1 = (int)(ComboCount % 10);              // 1‚ÌˆÊ
+            int data_2 = (int)((ComboCount / 10) % 10);       // 2‚ÌˆÊ
 
             for (int i = 0; i < 2; i++)
             {
                 switch (i)
                 {
                     case 0:     // ˆêŒ…–Ú
-                        ComboText_1.sprite = GetSprite(data1);
+                        ComboText_1.sprite = GetSprite(data_1);
                         break;
                     case 1:     // “ñŒ…–Ú
-                        if (data2 == 0)
+                        if (data_2 == 0)
                         {
                             ComboText_2.enabled = false;
                         }
                         else
                         {
                             ComboText_2.enabled = true;
-                            ComboText_2.sprite = GetSprite(data2);
+                            ComboText_2.sprite = GetSprite(data_2);
                         }
                         break;
                 }
@@ -282,9 +282,9 @@ public class GameManeger : MonoBehaviour
 
             ComboLimit -= Time.deltaTime;
 
-            if (ComboLimit <= 4.5f)
+            if (ComboLimit <= 2f)
             {
-                ComboGaugeObjct.fillAmount = ComboLimit / 4.5f;
+                ComboGaugeObjct.fillAmount = ComboLimit / 2f;
             }
 
             if (ComboLimit <= 0)
@@ -303,7 +303,32 @@ public class GameManeger : MonoBehaviour
         else
         {
             ComboCount = 0;
-            CombosObjct.SetActive(false);
+            //CombosObjct.SetActive(false);
+        }
+
+
+        int data1 = (int)(ComboCount % 10);              // 1‚ÌˆÊ
+        int data2 = (int)((ComboCount / 10) % 10);       // 2‚ÌˆÊ
+
+        for (int i = 0; i < 2; i++)
+        {
+            switch (i)
+            {
+                case 0:     // ˆêŒ…–Ú
+                    ComboText_1.sprite = GetSprite(data1);
+                    break;
+                case 1:     // “ñŒ…–Ú
+                    if (data2 == 0)
+                    {
+                        ComboText_2.enabled = false;
+                    }
+                    else
+                    {
+                        ComboText_2.enabled = true;
+                        ComboText_2.sprite = GetSprite(data2);
+                    }
+                    break;
+            }
         }
     }
 

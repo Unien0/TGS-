@@ -10,28 +10,43 @@ public class TransitionRotate : MonoBehaviour
     private bool nowRotate = true;
     [SerializeField]private bool isMove;
     [SerializeField] private GameObject Player;
+    public bool Delay;
+    [SerializeField] private float DelayTime;
     private void Awake()
     {
         //DontDestroyOnLoad(this.gameObject);
         animator = GetComponent<Animator>();
         SceneManager.sceneLoaded += SceneLoaded;
+        if (!Delay)
+        {
+            DelayTime = 0;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isRotate)
+        DelayTime -= Time.deltaTime;
+        if (!(DelayTime >0))
         {
-            animator.SetBool("isRotate",!nowRotate);
-            nowRotate = !nowRotate;
-            isRotate = false;
-        }
+            Delay = false;
+            animator.enabled = true;
+            if (isRotate)
+            {
+                animator.SetBool("isRotate", !nowRotate);
+                nowRotate = !nowRotate;
+                isRotate = false;
+            }
 
-        if (isMove)
+            if (isMove)
+            {
+                GetComponent<RectTransform>().position = Player.transform.position;
+            }
+        }
+        else
         {
-            GetComponent<RectTransform>().position = Player.transform.position;
+            animator.enabled = false;
         }
-
     }
 
     void SceneLoaded(Scene nextScene, LoadSceneMode mode)

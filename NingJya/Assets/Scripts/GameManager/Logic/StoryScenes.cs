@@ -22,22 +22,23 @@ public class StoryScenes : MonoBehaviour
         VideoPlayer.loopPointReached += FinishPlayingVideo;
     }
 
-    void Start()
-    {
-        VideoPlayer.clip = Videos[NextStageNum];
-        Back.sprite = Images[NextStageNum];
-        switch (NextStageNum)
-        {
-            case 0:
-                LodeSceneNum = 4;                
-                break;
-        }
-        VideoPlayer.Play();
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<TransitionRotate>().Delay == false)
+        {
+            VideoPlayer.clip = Videos[NextStageNum];
+            Back.sprite = Images[NextStageNum];
+            switch (NextStageNum)
+            {
+                case 0:
+                    LodeSceneNum = 4;
+                    break;
+            }
+            VideoPlayer.Play();
+        }
+
+
         if (isClose)
         {
             if (FindObjectOfType<TransitionRotate>().animator.GetCurrentAnimatorStateInfo(0).IsName("Close"))
