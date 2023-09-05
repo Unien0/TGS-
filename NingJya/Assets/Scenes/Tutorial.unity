@@ -3951,7 +3951,7 @@ MonoBehaviour:
   npc1: {fileID: 2076250668}
   fc: {fileID: 678081832}
   DEAD_EFECT: {fileID: 4622103877717082459, guid: 57a22e63f55551b4ea7e764f5715e2d1, type: 3}
-  rotate_Close: {fileID: 0}
+  rotate_Close: {fileID: 1334609464}
   anim:
   - {fileID: 2076250668}
   - {fileID: 1118660050}
@@ -9412,9 +9412,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081874}
+  - {fileID: 678081843}
   selectedCommands:
-  - {fileID: 678081868}
+  - {fileID: 678081834}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -9820,8 +9820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -112.464584
-    y: 168.90236
+    x: -115.44966
+    y: 171.88744
     width: 73.880585
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}

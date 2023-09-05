@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: e6613f60e4a39d74799dd444242b4572
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
-    guid: 7c5fddf1546ab014082cd3fd4fbbd706
+    guid: d316ca7c52b0a6f45bfbf740cc309808
   - enabled: 1
     path: Assets/Scenes/RemakeScene.unity
     guid: 9b195689bb0318a4085ed75fb2f1ba6d
