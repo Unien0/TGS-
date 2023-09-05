@@ -45,7 +45,8 @@ public class NPCDialgoue : MonoBehaviour
         {
             if (rotate_Close.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
             {
-                SceneManager.LoadScene("RemakeScene");
+                StoryScenes.NextStageNum = 0;
+                SceneManager.LoadScene("StoryScene");
             }
         }
     }

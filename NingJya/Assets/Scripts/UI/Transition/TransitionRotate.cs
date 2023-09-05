@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TransitionRotate : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     public static bool isRotate;
     private bool nowRotate = true;
     [SerializeField]private bool isMove;
