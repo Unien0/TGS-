@@ -83,6 +83,8 @@ public class GameManeger : MonoBehaviour
 
     //コンボオブジェクト
     [SerializeField] private GameObject CombosObjct;
+    // コンボゲージオブジェクト
+    [SerializeField] private Image ComboGaugeObjct;
     // コンボテキスト
     [SerializeField] private Image ComboText_1;
     [SerializeField] private Image ComboText_2;
@@ -125,12 +127,6 @@ public class GameManeger : MonoBehaviour
         ComboChecker();
         Function();
         ShakeCheck();
-        UIChange();
-    }
-
-    void UIChange()
-    {
-
     }
 
     void TempoChange()
@@ -285,6 +281,12 @@ public class GameManeger : MonoBehaviour
             }
 
             ComboLimit -= Time.deltaTime;
+
+            if (ComboLimit <= 4.5f)
+            {
+                ComboGaugeObjct.fillAmount = ComboLimit / 4.5f;
+            }
+
             if (ComboLimit <= 0)
             {
                 if (ComboMax <= ComboCount)
