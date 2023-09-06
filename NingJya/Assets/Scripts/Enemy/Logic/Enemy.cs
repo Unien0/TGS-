@@ -503,6 +503,7 @@ public class Enemy : MonoBehaviour
                     {
                         if (actTime > blowTime + 1)
                         {
+                            // ‰Šú‰»‚·‚é
                             SpR.enabled = true;
                             col2d.enabled = true;
                             hp = 1;
@@ -512,6 +513,8 @@ public class Enemy : MonoBehaviour
                             IsSound = false;
                             shoted = false;
                             Ready = false;
+                            GameManeger.ComboMax--;
+                            inPlayerAttackRange = false;
                         }
                     }
                     else if (actTime > blowTime + 1)

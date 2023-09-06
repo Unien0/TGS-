@@ -98,7 +98,7 @@ public class GameManeger : MonoBehaviour
     // 現在コンボ数
     public static int ComboCount;
     // 最大コンボ数
-    [SerializeField] private int ComboMax;
+    public static int ComboMax;
     public static bool TempoReset;
     public ShakeManeger shakeManeger;
     public static float shakeTime;
@@ -254,8 +254,6 @@ public class GameManeger : MonoBehaviour
         }
         if (isCombo)
         {
-            //CombosObjct.SetActive(true);
-
             int data_1 = (int)(ComboCount % 10);              // 1の位
             int data_2 = (int)((ComboCount / 10) % 10);       // 2の位
 
@@ -303,7 +301,6 @@ public class GameManeger : MonoBehaviour
         else
         {
             ComboCount = 0;
-            //CombosObjct.SetActive(false);
         }
 
 
