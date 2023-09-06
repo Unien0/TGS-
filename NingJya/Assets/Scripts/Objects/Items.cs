@@ -46,7 +46,7 @@ public class Items : MonoBehaviour
             switch (itemType)
             {
                 case ItemName.LIFEUP:
-                    if (hp <= maxHp)
+                    if (hp != maxHp)
                     {
                         hp += 2;
                     }

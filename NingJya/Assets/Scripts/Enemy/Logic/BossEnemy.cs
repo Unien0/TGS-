@@ -47,6 +47,7 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] private float ForcePoint;
     public bool ActPermission;
     private int ActCounter;
+    private int LoopCounter = 1;
     private bool fix;
     private int RandumCount;
     private Vector2 MoveInt;
@@ -61,6 +62,9 @@ public class BossEnemy : MonoBehaviour
 
     private Animator anim;
     private float animSpeed;
+
+    private bool isDead;
+    private bool DeadFix;
 
     void Start()
     {
@@ -100,6 +104,24 @@ public class BossEnemy : MonoBehaviour
                 gapfixPos += 360;
             }
             ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+
+            // 死亡処理
+            if (isDead)
+            {
+                if (!DeadFix)
+                {
+                    DeadFix = true;
+                    FindObjectOfType<BossStartFlag>().ActEnd = true;
+                    ActPermission = false;
+                    SpR.enabled = false;
+                    Col2D.enabled = false;
+                    rb2d.velocity = Vector3.zero;
+                    GameManeger.KillBOSS += 5000;
+                    Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                    GameManeger.shakeTime = 0.25f;
+                    ShakeManeger.ShakeLevel = 4;
+                }
+            }
         }
     }
 
@@ -144,16 +166,7 @@ public class BossEnemy : MonoBehaviour
 
                             if (BossHP <= 0)
                             {
-                                FindObjectOfType<BossStartFlag>().ActEnd = true;
-                                ActPermission = false;
-                                SpR.enabled = false;
-                                Col2D.enabled = false;
-                                rb2d.velocity = Vector3.zero;
-                                GameManeger.KillBOSS += 5000;
-                                Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
-
-                                GameManeger.shakeTime = 0.25f;
-                                ShakeManeger.ShakeLevel = 4;
+                                isDead = true;
                             }
                             else
                             {
@@ -188,6 +201,94 @@ public class BossEnemy : MonoBehaviour
         }    
     }
 
+    void FirstBoss()
+    {
+        // 行動許可が降りているのか
+        if (ActPermission)
+        {
+            // アクションタイミングに入ったら
+            if (ExChange)
+            {
+                fix = false;
+                ExChange = false;
+
+                // アクションカウントに応じて行動を変化させる
+                switch (ActCounter)
+                {
+                    case 1:
+                        rb2d.velocity = MoveInt * 4;
+                        SpR.sprite = BossSprite[0];
+                        break;
+                    case 2:
+                        rb2d.velocity = MoveInt * 4;
+                        SpR.sprite = BossSprite[1];
+                        break;
+                    case 3:
+                        rb2d.velocity = Vector2.zero;
+                        if(LoopCounter == 6)
+                        {
+                            Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
+
+                        }
+                        else
+                        {
+                            Instantiate(EnemyBullet[0], this.transform.position, ShotRote.transform.rotation);
+                        }
+                        SpR.sprite = BossSprite[2];
+                        break;
+                    case 4:
+                        rb2d.velocity = Vector2.zero;
+                        if (LoopCounter == 3)
+                        {
+                            Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
+                        }
+                        else
+                        {
+                            Instantiate(EnemyBullet[0], this.transform.position, ShotRote.transform.rotation);
+                            if (LoopCounter == 6)
+                            {
+                                LoopCounter = 0;
+                            }
+                        }
+                        SpR.sprite = BossSprite[1];
+                        break;
+                }
+            }
+            else
+            {
+                // 初期化・値の再設定
+                if (!fix)
+                {
+                    // アクションカウントを上昇させる
+                    ActCounter++;
+                    if (ActCounter == 5)
+                    { ActCounter = 1;
+                      LoopCounter++;}
+                    fix = true;
+
+                    RandumCount = Random.Range(1, 5);
+
+                    switch (RandumCount)
+                    {
+                        case 1:
+                            MoveInt = new Vector2(1, 0);
+                            break;
+                        case 2:
+                            MoveInt = new Vector2(-1, 0);
+                            break;
+                        case 3:
+                            MoveInt = new Vector2(0, 1);
+                            break;
+                        case 4:
+                            MoveInt = new Vector2(0, -1);
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+
     private void OnTriggerStay2D(Collider2D col)
     {
         // プレイヤーの攻撃範囲に入っていて、
@@ -206,74 +307,7 @@ public class BossEnemy : MonoBehaviour
         }
     }
 
-    void FirstBoss()
-    {
-        // 行動許可が降りているのか
-        if (ActPermission)
-        {
-            // アクションタイミングに入ったら
-            if (ExChange)
-            {
-                fix = false;                
-                ExChange = false;
-
-                // アクションカウントに応じて行動を変化させる
-                switch (ActCounter)
-                {
-                    case 1:
-                        rb2d.velocity = MoveInt * 4;
-                        SpR.sprite = BossSprite[0];
-                        break;
-                    case 2:
-                        rb2d.velocity = MoveInt * 4;
-                        SpR.sprite = BossSprite[1];
-                        break;
-                    case 3:
-                        rb2d.velocity = Vector2.zero;
-                        Instantiate(EnemyBullet[0],this.transform.position,ShotRote.transform.rotation);
-                        SpR.sprite = BossSprite[2];
-                        break;
-                    case 4:
-                        rb2d.velocity = Vector2.zero;
-                        Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
-                        SpR.sprite = BossSprite[1];
-                        break;
-                }
-            }
-            else
-            {
-                // 初期化・値の再設定
-                if (!fix)
-                {
-                    // アクションカウントを上昇させる
-                    ActCounter++;
-                    if (ActCounter == 5)
-                    {ActCounter = 1;}
-                    fix = true;
-
-                    RandumCount = Random.Range(1, 5);
-
-                    switch (RandumCount)
-                    {
-                        case 1:
-                            MoveInt = new Vector2(1, 0);
-                            break;
-                        case 2:
-                            MoveInt = new Vector2(-1, 0);
-                            break;
-                        case 3:
-                            MoveInt = new Vector2(0,1);
-                            break;
-                        case 4:
-                            MoveInt = new Vector2(0, -1);
-                            break;
-                    }
-                }
-            }
-        }
-
-    }
-        private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("EnemyBullet"))
         {
@@ -301,18 +335,46 @@ public class BossEnemy : MonoBehaviour
                     BossHP = BossHP - 1;
                     time = 0;
                     MutekiTime = 0;
+                    GameManeger.KillBOSS += 1000;
                     if (BossHP <= 0)
                     {
-                        FindObjectOfType<BossStartFlag>().ActEnd = true;
-                        ActPermission = false;
-                        SpR.enabled = false;
-                        Col2D.enabled = false;
-                        rb2d.velocity = Vector3.zero;
-                        GameManeger.KillBOSS += 1000;
-                        Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                        isDead = true;
                     }
 
                 }
+            }
+        }
+
+        if (col.gameObject.CompareTag("PlayerBullet"))
+        {
+            // クールダウンが回復したかどうか
+            if (CoolDownTime <= time)
+            {
+                //方向
+                shotrote = new Vector2(this.transform.position.x - col.gameObject.transform.position.x, this.transform.position.y - col.gameObject.transform.position.y);
+                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                { shotIt.x = Mathf.Sign(shotrote.x); }
+                else
+                { shotIt.x = 0; }
+                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                { shotIt.y = Mathf.Sign(shotrote.y); }
+                else
+                { shotIt.y = 0; }
+                // 現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                rb2d.AddForce(shotIt * ForcePoint);
+
+                Audio.clip = isBlowSE;
+                Audio.Play();
+                Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
+                BossHP = BossHP - 1;
+                time = 0;
+                MutekiTime = 0;
+                GameManeger.KillBOSS += 1000;
+                if (BossHP <= 0)
+                {
+                    isDead = true;
+                }
+
             }
         }
     }
