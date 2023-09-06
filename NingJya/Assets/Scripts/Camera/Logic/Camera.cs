@@ -29,9 +29,11 @@ public class Camera : MonoBehaviour
     private bool Leave;
 
 
+    [SerializeField] private GameObject DoPObj;
     [SerializeField] private Slider DoP;
     private bool DoPFix;
     private bool PosFix = false;
+    [SerializeField] private GameObject BOSSTEXT;
 
     void Start()
     {
@@ -59,7 +61,8 @@ public class Camera : MonoBehaviour
 
         if (DoP.value == 1)
         {
-            //DoP.enabled = false;
+            DoPObj.SetActive(true);
+            BOSSTEXT.SetActive(true);
         }
     }
 

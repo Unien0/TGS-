@@ -84,7 +84,7 @@ public class GameManeger : MonoBehaviour
     //コンボオブジェクト
     [SerializeField] private GameObject CombosObjct;
     // コンボゲージオブジェクト
-    [SerializeField] private Image ComboGaugeObjct;
+    [SerializeField] private Slider ComboGaugeObjct;
     // コンボテキスト
     [SerializeField] private Image ComboText_1;
     [SerializeField] private Image ComboText_2;
@@ -282,7 +282,7 @@ public class GameManeger : MonoBehaviour
 
             if (ComboLimit <= 2f)
             {
-                ComboGaugeObjct.fillAmount = ComboLimit / 2f;
+                ComboGaugeObjct.value = ComboLimit / 2f;
             }
 
             if (ComboLimit <= 0)
