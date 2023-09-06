@@ -41,7 +41,8 @@ public class Title : MonoBehaviour
             }
             if (!audioSource.isPlaying)
             {
-                SceneManager.LoadScene("Tutorial");
+                StoryScenes.NextStageNum = 0;
+                SceneManager.LoadScene("StoryScene");
             }
         }
     }

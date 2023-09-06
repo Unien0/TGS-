@@ -36,6 +36,9 @@ public class StoryScenes : MonoBehaviour
                 switch (NextStageNum)
                 {
                     case 0:
+                        LodeSceneNum = 3;
+                        break;                    
+                    case 1:
                         LodeSceneNum = 4;
                         break;
                 }
