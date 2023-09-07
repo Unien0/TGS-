@@ -378,8 +378,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1483093386616733282}
   - component: {fileID: 4453640912351535649}
-  - component: {fileID: 1376904544235069832}
   - component: {fileID: 1419599398371593357}
+  - component: {fileID: 6650207538845785609}
   m_Layer: 0
   m_Name: ComboEfcect
   m_TagString: Untagged
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ad097865d87b446bc0f5759160ba5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeadTime: 2
+  DeadTime: 1
   EfectName: 1
   ComboPoint: 0
   No1Number: {fileID: 2276164937985066954}
@@ -434,27 +434,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc8f05b7d083dbf4b9ef5e02fd23fb63, type: 3}
   - {fileID: 21300000, guid: 6639db8b13bfe1647ae66afe1d14ea95, type: 3}
   - {fileID: 21300000, guid: f9e7a1f0f5ef3c64f93aa38cab2a3825, type: 3}
---- !u!95 &1376904544235069832
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8831881229920725353}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26463f822df11124bb2ec18bd4b34d6c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  NeedanimSpeed: 1
 --- !u!50 &1419599398371593357
 Rigidbody2D:
   serializedVersion: 4
@@ -476,3 +456,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &6650207538845785609
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8831881229920725353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cbeb4481b0721a4faea59e72b314350, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

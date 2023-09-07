@@ -47,7 +47,6 @@ public class Camera : MonoBehaviour
         MoveProcess();
         ShakeProcess();
         Degreeofprogress();
-        Debug.Log(Order);
     }
 
     void Degreeofprogress()
@@ -61,8 +60,11 @@ public class Camera : MonoBehaviour
 
         if (DoP.value == 1)
         {
-            DoPObj.SetActive(true);
-            BOSSTEXT.SetActive(true);
+            if (FindObjectOfType<BossStartFlag>().ActStart)
+            {
+                DoPObj.SetActive(true);
+                BOSSTEXT.SetActive(true);
+            }
         }
     }
 
@@ -117,16 +119,21 @@ public class Camera : MonoBehaviour
         switch (Process)
         {
             case StageName.Tutorial:
-                Ordermax = 3;
+                Ordermax = 2;
                 switch (Order)
                 {
                     case 0:
-                        Order = 1;
-                        DoPFix = true;
-                        break;
-                    case 1:
                         transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
                         if (this.transform.position == Point[0].transform.position)
+                        {
+                            Order = 1;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 1:
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
+                        if (this.transform.position == Point[1].transform.position)
                         {
                             Order = 2;
                             Leave = false;
@@ -134,15 +141,6 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 2:
-                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
-                        if (this.transform.position == Point[1].transform.position)
-                        {
-                            Order = 3;
-                            Leave = false;
-                            DoPFix = true;
-                        }
-                        break;
-                    case 3:
                         if (this.transform.position != Point[2].transform.position)
                         {
                             transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
@@ -154,13 +152,9 @@ public class Camera : MonoBehaviour
 
             case StageName.Stage_1:
                 Ordermax = 5;
-                switch (Order)
-                {
+                switch (Order) 
+                {                     
                     case 0:
-                        Order = 1;
-                        DoPFix = true;
-                        break;
-                    case 1:
                         // à⁄ìÆèàóù
                         if (this.transform.position == StartPos)
                         {
@@ -175,7 +169,7 @@ public class Camera : MonoBehaviour
                         {
                             if (this.transform.position == Point[0].transform.position)
                             {
-                                Order = 2;
+                                Order = 1;
                                 Leave = false;
                                 DoPFix = true;
                             }
@@ -188,7 +182,7 @@ public class Camera : MonoBehaviour
                             }
                         }
                         break;
-                    case 2:
+                    case 1:
                         if ((playerObj.transform.position.x - this.transform.position.x) > 8)
                         {
                             PosFix = true;
@@ -198,7 +192,7 @@ public class Camera : MonoBehaviour
                             transform.position = Vector3.MoveTowards(transform.position,new Vector3 (Point[0].transform.position.x+ 16, Point[0].transform.position.y, Point[0].transform.position.z), 0.125f);
                             if (this.transform.position == new Vector3(Point[0].transform.position.x + 16, Point[0].transform.position.y, Point[0].transform.position.z))
                             {
-                                Order = 3;
+                                Order = 2;
                                 PosFix = false;
                                 Leave = false;
                                 DoPFix = true;
@@ -206,13 +200,13 @@ public class Camera : MonoBehaviour
                         }
                         break;
 
-                    case 3:
+                    case 2:
                         // à⁄ìÆèàóù
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
 
                         if (this.transform.position == Point[1].transform.position)
                         {
-                            Order = 4;
+                            Order = 3;
                             Leave = false;
                             DoPFix = true;
                         }
@@ -222,7 +216,7 @@ public class Camera : MonoBehaviour
                         }
                         break;
 
-                    case 4:
+                    case 3:
                         if ((playerObj.transform.position.y - this.transform.position.y) < -4)
                         {
                             PosFix = true;
@@ -233,14 +227,14 @@ public class Camera : MonoBehaviour
                             if (this.transform.position == new Vector3(Point[1].transform.position.x, Point[1].transform.position.y - 8, Point[1].transform.position.z))
                             {
                                 DoPFix = true;
-                                Order = 5;
+                                Order = 4;
                                 PosFix = false;
                                 Leave = false;
                             }
                         }
                         break;
 
-                    case 5:
+                    case 4:
                         // à⁄ìÆèàóù
                         transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
@@ -248,7 +242,7 @@ public class Camera : MonoBehaviour
                         {
                             if (this.transform.position == Point[2].transform.position)
                             {
-                                Order = 6;
+                                Order = 5;
                                 Leave = false;
                                 DoPFix = true;
                             }
@@ -265,7 +259,7 @@ public class Camera : MonoBehaviour
                             }
                         }
                         break;
-                    case 6:
+                    case 5:
                         // à⁄ìÆèàóù
                         if (this.transform.position != Point[3].transform.position)
                         {

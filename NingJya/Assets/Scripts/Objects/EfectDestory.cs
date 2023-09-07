@@ -9,6 +9,7 @@ public class EfectDestory : MonoBehaviour
     private Rigidbody2D rd2d;
 
     [SerializeField] private float DeadTime;
+    private float animSpeed;
     private float time = 0;
 
     public enum EfectType
@@ -24,6 +25,7 @@ public class EfectDestory : MonoBehaviour
     [SerializeField] private GameObject No2Number;
     [SerializeField] private Sprite[] Numbers;
     private float ShotPoint;
+    [SerializeField] private bool NeedanimSpeed;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -72,8 +74,24 @@ public class EfectDestory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (NeedanimSpeed)
+        {
+            animSpeed = GameManeger.AnimSpeed;
+            anim.SetFloat("AnimSpeed", animSpeed);
+        }
         time += Time.deltaTime;
-        if (time >= DeadTime)
+        if (EfectName == EfectType.Combo)
+        {
+            if (GameManeger.TempoExChange)
+            {
+                anim.SetBool("FadeOut", true);
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("void"))
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+        else if (time >= DeadTime)
         {
             Destroy(gameObject);
         }
