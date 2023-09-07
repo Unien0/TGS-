@@ -179,7 +179,7 @@ MonoBehaviour:
   isMove: 0
   Player: {fileID: 0}
   Delay: 1
-  DelayTime: 2
+  DelayTime: 1
 --- !u!95 &125479329
 Animator:
   serializedVersion: 5

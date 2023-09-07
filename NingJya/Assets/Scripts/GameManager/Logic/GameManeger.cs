@@ -229,14 +229,14 @@ public class GameManeger : MonoBehaviour
 
         if (KillBOSS > 0)
         {
-            Score = Score + 10;
-            KillBOSS = KillBOSS - 10;
+            Score = Score + 100;
+            KillBOSS = KillBOSS - 100;
         }
 
         if (SKillScore >0)
         {
-            Score = Score + 10;
-            SKillScore = SKillScore - 10;
+            Score = Score + 50;
+            SKillScore = SKillScore - 50;
         }
     }
 
