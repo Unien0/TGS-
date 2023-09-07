@@ -66,6 +66,10 @@ public class BossEnemy : MonoBehaviour
     private bool isDead;
     private bool DeadFix;
 
+    private int Ramdom1st;
+    private int Ramdom2nd;
+    private bool Shot3pt;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -222,33 +226,48 @@ public class BossEnemy : MonoBehaviour
                     case 2:
                         rb2d.velocity = MoveInt * 4;
                         SpR.sprite = BossSprite[1];
+
+                        Ramdom1st = Random.Range(0, 3);
+                        Ramdom2nd = Random.Range(0, 3);
                         break;
                     case 3:
                         rb2d.velocity = Vector2.zero;
                         if(LoopCounter == 6)
                         {
-                            Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
-
+                            Instantiate(EnemyBullet[3], this.transform.position, ShotRote.transform.rotation);
+                        }
+                        else if (LoopCounter == 3)
+                        {
+                            // çsìÆÇ»Çµ
                         }
                         else
                         {
-                            Instantiate(EnemyBullet[0], this.transform.position, ShotRote.transform.rotation);
+                            Instantiate(EnemyBullet[Ramdom1st], this.transform.position, ShotRote.transform.rotation);
+                            if (Ramdom1st == 0)
+                            {
+                                Ramdom2nd = Random.Range(1, 3);
+                            }
+                            if (Ramdom1st == 2)
+                            {
+                                Ramdom2nd = Random.Range(0, 2);
+                            }
                         }
                         SpR.sprite = BossSprite[2];
                         break;
                     case 4:
                         rb2d.velocity = Vector2.zero;
-                        if (LoopCounter == 3)
+                        if (LoopCounter == 6)
                         {
-                            Instantiate(EnemyBullet[1], this.transform.position, ShotRote.transform.rotation);
+                            // çsìÆÇ»Çµ
+                            LoopCounter = 0;
+                        }
+                        elseÅ@if (LoopCounter == 3)
+                        {
+                            Instantiate(EnemyBullet[3], this.transform.position, ShotRote.transform.rotation);
                         }
                         else
                         {
-                            Instantiate(EnemyBullet[0], this.transform.position, ShotRote.transform.rotation);
-                            if (LoopCounter == 6)
-                            {
-                                LoopCounter = 0;
-                            }
+                            Instantiate(EnemyBullet[Ramdom2nd], this.transform.position, ShotRote.transform.rotation);
                         }
                         SpR.sprite = BossSprite[1];
                         break;

@@ -143,8 +143,10 @@ MonoBehaviour:
   ActPermission: 1
   ExChange: 0
   EnemyBullet:
+  - {fileID: 760558094660630636, guid: 04b21188bde710b439e421cef4e2965d, type: 3}
   - {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
   - {fileID: 3460365764642063064, guid: d4da3473f3b8e274e9e0f2f95c9e1464, type: 3}
+  - {fileID: 4741880050218229446, guid: 653cdbe13126b9e4eba26565388f5d76, type: 3}
   BossSprite:
   - {fileID: 21300000, guid: 0702b665c6193e241872dbdbd7940581, type: 3}
   - {fileID: 21300000, guid: 787ffd6ff65d3d6458e7c80b88b6ac01, type: 3}
