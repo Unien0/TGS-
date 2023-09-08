@@ -42038,7 +42038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 1904580777}
-  moveSpeed: 0.13
+  moveSpeed: 0.225
   shake: {fileID: 216088065}
   Process: 1
   Point:

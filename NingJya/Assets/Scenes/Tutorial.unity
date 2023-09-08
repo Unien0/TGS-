@@ -8163,7 +8163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 1904580777}
-  moveSpeed: 0.12
+  moveSpeed: 0.225
   shake: {fileID: 2044924671}
   Process: 0
   Point:
