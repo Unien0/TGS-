@@ -292,7 +292,7 @@ public class GameManeger : MonoBehaviour
                     ComboMax = ComboCount;
                 }
 
-                if (ComboLimit <= -0.5f)
+                if (ComboLimit <= 0)
                 {
                     isCombo = false;
                 }
