@@ -65,6 +65,12 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.removable; else return false; }
         set { playerData.removable = value; }
     }
+    public bool taking
+    {
+        //プレイヤーが移動できるかどうかを判断する
+        get { if (playerData != null) return playerData.taking; else return false; }
+        set { playerData.taking = value; }
+    }
     public bool Mutekki
     {
         //プレイヤーが攻撃できるかどうかを判断する
@@ -233,7 +239,7 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
                 
-        if (removable)
+        if (removable && !taking)
         {
             if (!maked)
             {

@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class NPCDialgoue : MonoBehaviour
 {
+    public PlayerData_SO playerData;
+    public bool taking
+    {
+        //ƒvƒŒƒCƒ„[‚ªˆÚ“®‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é
+        get { if (playerData != null) return playerData.taking; else return false; }
+        set { playerData.taking = value; }
+    }
+
     public string chatName;
     public GameObject npc1;
     public Flowchart fc;
@@ -48,6 +56,14 @@ public class NPCDialgoue : MonoBehaviour
                 StoryScenes.NextStageNum = 1;
                 SceneManager.LoadScene("StoryScene");
             }
+        }
+        if (fc.GetBooleanVariable("PlayerTaking"))
+        {
+            taking = true;
+        }
+        else
+        {
+            taking = false;
         }
     }
 }

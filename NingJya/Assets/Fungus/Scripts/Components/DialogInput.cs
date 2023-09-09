@@ -99,7 +99,7 @@ namespace Fungus
             case ClickMode.ClickAnywhere:
                 if (Input.GetMouseButtonDown(0)||Input.GetKeyDown("joystick button 0"))
                 {
-                        Debug.Log(12);
+                    //Debug.Log(12);
                     SetClickAnywhereClickedFlag();
                 }
                 break;

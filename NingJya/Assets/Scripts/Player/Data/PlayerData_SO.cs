@@ -37,6 +37,7 @@ public class PlayerData_SO : ScriptableObject
     public bool isDead;
     //UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©
     public bool attackable;
+    public bool taking;
     //ˆÚ“®‰Â”\‚©‚Ç‚¤‚©
     public bool removable;
     // –³“GŠÔ
