@@ -34,6 +34,10 @@ public class Camera : MonoBehaviour
     private bool DoPFix;
     private bool PosFix = false;
     [SerializeField] private GameObject BOSSTEXT;
+   
+    private Vector2 StayPoint;
+    private bool fixX;
+    private bool fixY;
 
     void Start()
     {
@@ -123,6 +127,8 @@ public class Camera : MonoBehaviour
                 switch (Order)
                 {
                     case 0:
+                        fixX = false;
+                        fixY = true;
                         transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
                         if (this.transform.position == Point[0].transform.position)
                         {
@@ -132,6 +138,8 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 1:
+                        fixX = false;
+                        fixY = true;
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
                         if (this.transform.position == Point[1].transform.position)
                         {
@@ -141,6 +149,8 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 2:
+                        fixX = false;
+                        fixY = true;
                         if (this.transform.position != Point[2].transform.position)
                         {
                             transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
@@ -155,6 +165,9 @@ public class Camera : MonoBehaviour
                 switch (Order) 
                 {                     
                     case 0:
+                        fixX = false;
+                        fixY = true;
+                        StayPoint = StartPos;
                         // 移動処理
                         if (this.transform.position == StartPos)
                         {
@@ -183,6 +196,8 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 1:
+                        fixX = false;
+                        fixY = false;
                         if ((playerObj.transform.position.x - this.transform.position.x) > 8)
                         {
                             PosFix = true;
@@ -201,6 +216,8 @@ public class Camera : MonoBehaviour
                         break;
 
                     case 2:
+                        fixX = true;
+                        fixY = false;
                         // 移動処理
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
 
@@ -217,6 +234,8 @@ public class Camera : MonoBehaviour
                         break;
 
                     case 3:
+                        fixX = false;
+                        fixY = false;
                         if ((playerObj.transform.position.y - this.transform.position.y) < -4)
                         {
                             PosFix = true;
@@ -235,6 +254,8 @@ public class Camera : MonoBehaviour
                         break;
 
                     case 4:
+                        fixX = false;
+                        fixY = true;
                         // 移動処理
                         transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
@@ -260,6 +281,8 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 5:
+                        fixX = false;
+                        fixY = false;
                         // 移動処理
                         if (this.transform.position != Point[3].transform.position)
                         {
@@ -270,8 +293,38 @@ public class Camera : MonoBehaviour
                 break;
         }
 
-        // プレイヤーがカメラ中央から離れていた場合
+        // プレイヤーがカメラから離れていた場合
+        // カメラを中央に寄せる
+        if (fixX)
+        {
+            if ((playerObj.transform.position.x - StayPoint.x) > 1)
+            {
+                Debug.Log("!!");
+                transform.position = new Vector3(playerObj.transform.position.x,transform.position.y, transform.position.z);
+            }
+            if ((playerObj.transform.position.x - StayPoint.x) < -1)
+            {
+                Debug.Log("!!");
 
+                transform.position = new Vector3 (playerObj.transform.position.x,transform.position.y,transform.position.z);
+
+            }
+        }
+
+        if (fixY)
+        {
+            if ((playerObj.transform.position.y - StayPoint.y) > 1)
+            {
+                Debug.Log("!!");
+
+                transform.position = new Vector3(transform.position.x, playerObj.transform.position.y, transform.position.z);
+            }
+            if ((playerObj.transform.position.y - StayPoint.y) < -1)
+            {
+                Debug.Log("!!");
+
+                transform.position = new Vector3(transform.position.x, playerObj.transform.position.y, transform.position.z);
+            }
+        }
     }
-
 }
