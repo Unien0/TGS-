@@ -124,17 +124,14 @@ public class Camera : MonoBehaviour
         {
             case StageName.Tutorial:
                 Ordermax = 2;
-                StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 1.35f);
-                if (this.transform.position != Point[2].transform.position)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
-                }
+                StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 3f);
+
                 switch (Order)
                 {
                     case 0:
                         fixX = false;
                         fixY = true;
-                        //transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
                         if (this.transform.position == Point[0].transform.position)
                         {
                             Order = 1;
@@ -145,7 +142,7 @@ public class Camera : MonoBehaviour
                     case 1:
                         fixX = false;
                         fixY = true;
-                        //transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
                         if (this.transform.position == Point[1].transform.position)
                         {
                             Order = 2;
@@ -155,7 +152,11 @@ public class Camera : MonoBehaviour
                         break;
                     case 2:
                         fixX = false;
-                        fixY = true;
+                        fixY = false;
+                        if (this.transform.position != Point[2].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+                        }
                         break;
 
                 }
@@ -168,7 +169,7 @@ public class Camera : MonoBehaviour
                     case 0:
                         fixX = false;
                         fixY = true;
-                        StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 3.57f);
+                        StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 3f);
                         // à⁄ìÆèàóù
                         if (this.transform.position == StartPos)
                         {
@@ -208,13 +209,13 @@ public class Camera : MonoBehaviour
                         if (PosFix)
                         {
                             transform.position = Vector3.MoveTowards(transform.position,new Vector3 (Point[0].transform.position.x+ 16, Point[0].transform.position.y, Point[0].transform.position.z), 0.125f);
+                            StayPoint = new Vector2(Point[0].transform.position.x +10, Point[0].transform.position.y);
                             if (this.transform.position == new Vector3(Point[0].transform.position.x + 16, Point[0].transform.position.y, Point[0].transform.position.z))
                             {
                                 Order = 2;
                                 PosFix = false;
                                 Leave = false;
                                 DoPFix = true;
-                                StayPoint = new Vector2(transform.position.x - 6, transform.position.y);
                             }
                         }
                         break;
@@ -256,7 +257,7 @@ public class Camera : MonoBehaviour
                                 Order = 4;
                                 PosFix = false;
                                 Leave = false;
-                                StayPoint = new Vector2(transform.position.x, transform.position.y - 2.72f);
+                                StayPoint = new Vector2(transform.position.x, transform.position.y + 3f);
                             }
                         }
                         break;
@@ -264,7 +265,7 @@ public class Camera : MonoBehaviour
                     case 4:
                         fixX = false;
                         fixY = true;
-                        StayPoint = new Vector2(transform.position.x, transform.position.y - 2.72f);
+                        StayPoint = new Vector2(transform.position.x, transform.position.y + 3f);
 
                         // à⁄ìÆèàóù
                         transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
