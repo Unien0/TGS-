@@ -439,6 +439,21 @@ public class GameManeger : MonoBehaviour
                     break;
             }
         }
+        if (Input.GetKey(KeyCode.F12))
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                SceneManager.LoadScene("1stStage");
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SceneManager.LoadScene("2ndStage");
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                SceneManager.LoadScene("3rdStage");
+            }
+        }
 
     }
 }
