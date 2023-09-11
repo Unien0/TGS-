@@ -12,7 +12,7 @@ public class DialogueArea : MonoBehaviour
 
     private Flowchart flowchart;
     public GameObject iconDisplay;
-    public GameObject npc1;
+    //public GameObject npc1;
 
     //public GameObject npc2;
     private Collider2D col2D;
@@ -28,32 +28,32 @@ public class DialogueArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        iconDisplay.SetActive(false);
+        //iconDisplay.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (outEnemy)
-        {
-            if (isSay)
-            {
-                if (!make)
-                {
-                    make = true;
-                    Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
+        //if (outEnemy)
+        //{
+        //    if (isSay)
+        //    {
+        //        if (!make)
+        //        {
+        //            make = true;
+        //            Instantiate(DEAD_EFECT, npc1.transform.position, npc1.transform.rotation);
 
-                }
-                else
-                {
-                    npc1.SetActive(false);
-                    iconDisplay.SetActive(false);
-                }
-            }
-        }
+        //        }
+        //        else
+        //        {
+        //            npc1.SetActive(false);
+        //            iconDisplay.SetActive(false);
+        //        }
+        //    }
+        //}
         if (canChat && Input.GetKeyDown("joystick button 0"))
         {
-            
+
             //対話実装したか
             if (flowchart.HasBlock(chatName))
             {
@@ -69,10 +69,10 @@ public class DialogueArea : MonoBehaviour
         // プレイヤーの攻撃範囲に入っていて、
         if (col.CompareTag("Player"))
         {
-            iconDisplay.SetActive(true);
+            //iconDisplay.SetActive(true);
             //npc1.SetActive(true);
             canChat = true;
-            
+            flowchart.ExecuteBlock(chatName);
         }
         
     }
@@ -80,7 +80,7 @@ public class DialogueArea : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            iconDisplay.SetActive(false);
+            //iconDisplay.SetActive(false);
             outEnemy = true;
             canChat = false;
 
