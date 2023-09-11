@@ -3973,6 +3973,7 @@ MonoBehaviour:
   - {fileID: 1118660050}
   - {fileID: 1464919632}
   - {fileID: 1424284675}
+  AS: {fileID: 1523684764}
 --- !u!4 &285715689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}

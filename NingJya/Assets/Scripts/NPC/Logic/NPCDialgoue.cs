@@ -24,6 +24,8 @@ public class NPCDialgoue : MonoBehaviour
     public GameObject[] anim;
     private float animSpeed;
 
+    [SerializeField] private AudioSource AS;
+
     private void Awake()
     {
         fc = GameObject.Find("Flowchart").GetComponent<Flowchart>();
@@ -51,6 +53,7 @@ public class NPCDialgoue : MonoBehaviour
         }
         if (fc.GetBooleanVariable("ToInGame"))
         {
+            AS.GetComponent<AudioSource>().volume -= Time.deltaTime;
             if (rotate_Close.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
             {
                 StoryScenes.NextStageNum = 1;
