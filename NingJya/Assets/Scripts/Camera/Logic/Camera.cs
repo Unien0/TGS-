@@ -214,6 +214,7 @@ public class Camera : MonoBehaviour
                                 PosFix = false;
                                 Leave = false;
                                 DoPFix = true;
+                                StayPoint = new Vector2(transform.position.x - 6, transform.position.y);
                             }
                         }
                         break;
@@ -221,6 +222,7 @@ public class Camera : MonoBehaviour
                     case 2:
                         fixX = true;
                         fixY = false;
+                        StayPoint = new Vector2(transform.position.x - 6, transform.position.y);
                         // ˆÚ“®ˆ—
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
 
@@ -254,6 +256,7 @@ public class Camera : MonoBehaviour
                                 Order = 4;
                                 PosFix = false;
                                 Leave = false;
+                                StayPoint = new Vector2(transform.position.x, transform.position.y - 2.72f);
                             }
                         }
                         break;
@@ -261,6 +264,8 @@ public class Camera : MonoBehaviour
                     case 4:
                         fixX = false;
                         fixY = true;
+                        StayPoint = new Vector2(transform.position.x, transform.position.y - 2.72f);
+
                         // ˆÚ“®ˆ—
                         transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
 
@@ -304,11 +309,11 @@ public class Camera : MonoBehaviour
         {
             if ((playerObj.transform.position.x - StayPoint.x) > 1)
             {
-                transform.position = new Vector3(StayPoint.x - Time.deltaTime,transform.position.y, transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + (playerObj.transform.position.x - StayPoint.x), transform.position.y, transform.position.z), moveSpeed);
             }
             if ((playerObj.transform.position.x - StayPoint.x) < -1)
             {
-                transform.position = new Vector3 (StayPoint.x + Time.deltaTime,transform.position.y,transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - (playerObj.transform.position.x - StayPoint.x), transform.position.y, transform.position.z),moveSpeed);
             }
         }
 
@@ -316,11 +321,11 @@ public class Camera : MonoBehaviour
         {
             if ((playerObj.transform.position.y - StayPoint.y) > 1)
             {
-                transform.position = new Vector3(transform.position.x, StayPoint.y - Time.deltaTime,transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + (playerObj.transform.position.y - StayPoint.y), transform.position.z),moveSpeed);
             }
             if ((playerObj.transform.position.y - StayPoint.y) < -1)
             {
-                transform.position = new Vector3(transform.position.x, StayPoint.y + Time.deltaTime,transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + (playerObj.transform.position.y - StayPoint.y), transform.position.z), moveSpeed);
             }
         }
     }
