@@ -305,6 +305,7 @@ public class Player : MonoBehaviour
             rb2d.velocity = new Vector2(0, 0);
             attackable = false;
             KATANA.GetComponent<Animator>().SetBool("ATK", false);
+            anim.SetBool("Attack", false);
         }
     }
 
@@ -361,6 +362,7 @@ public class Player : MonoBehaviour
                 {
                     attackable = true;
                     KATANA.GetComponent<Animator>().SetBool("ATK", true);
+                    anim.SetBool("Attack", true);
                     IsAttack = true;
                 }
             }
