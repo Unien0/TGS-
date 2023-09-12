@@ -164,6 +164,7 @@ public class Camera : MonoBehaviour
                 break;
 
             case StageName.Tutorial_New:
+                Ordermax = 7;
                 switch (Order)
                 {
                     case 0:
