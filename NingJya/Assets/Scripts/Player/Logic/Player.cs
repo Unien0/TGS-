@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
 
     private float time;
     public float roteMax;
+    private float inputX;
     private float inputY;
     private float MutekiTime;
     public bool Hit;
@@ -391,6 +392,7 @@ public class Player : MonoBehaviour
 
     private void PlayerInput()
     {
+        inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
         if (inputY <= 0f && TimeInspect)
         {
@@ -405,6 +407,7 @@ public class Player : MonoBehaviour
 
     private void SwitchAnimation()
     {
+       // anim.SetFloat("InputX", inputX);
         anim.SetFloat("InputY", inputY);
     }
 
