@@ -16,16 +16,18 @@ public class Camera : MonoBehaviour
     public enum StageName
     {
         Tutorial,
+        Tutorial_New,
         Stage_1,
-        Boss_1,
+        Stage_1_New,
         Stage_2,
-        Boss_2,
+        Stage_3,
         end
     }
     [SerializeField] private StageName Process;
     public static float Order;
     public static float Ordermax;
     [SerializeField] private GameObject[] Point;
+    [SerializeField] private GameObject[] ProceedBlocks;
     private bool Leave;
 
 
@@ -125,7 +127,6 @@ public class Camera : MonoBehaviour
             case StageName.Tutorial:
                 Ordermax = 2;
                 StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 3f);
-
                 switch (Order)
                 {
                     case 0:
@@ -156,6 +157,160 @@ public class Camera : MonoBehaviour
                         if (this.transform.position != Point[2].transform.position)
                         {
                             transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+                        }
+                        break;
+
+                }
+                break;
+
+            case StageName.Tutorial_New:
+                switch (Order)
+                {
+                    case 0:
+                        fixX = false;
+                        fixY = true;
+                        StayPoint = new Vector2(this.transform.position.x, this.transform.position.y - 1.35f);
+                        if (this.transform.position == StartPos)
+                        {
+                            if (input.y == -1)
+                            {
+                                input.y = 0;
+                            }
+                        }
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[0].transform.position)
+                            {
+                                StayPoint = Vector2.zero;
+                                Order = 1;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[0].transform.position)
+                            {
+                                Leave = true;
+                            }
+                        }
+                        break;
+                    case 1:
+                        if ((Mathf.Abs(playerObj.transform.position.x) - Mathf.Abs(this.transform.position.x)) < -4f)
+                        {
+                            PosFix = true;
+
+                        }
+                        else
+                        {
+                            fixX = false;
+                            fixY = false;
+                            StayPoint = Vector2.zero;
+                        }
+                        if (PosFix)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, 0.125f);
+                            if (this.transform.position == Point[1].transform.position)
+                            {
+                                StayPoint = Vector2.zero;
+                                Order = 2;
+                                Leave = false;
+                                DoPFix = true;
+                                PosFix = false;
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (ProceedBlocks[0].gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, 0.125f);
+                            if (this.transform.position == Point[2].transform.position)
+                            {
+                                Order = 3;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                        }
+                        else
+                        {
+                            fixX = false;
+                            fixY = false;
+                            StayPoint = Vector2.zero;
+                        }
+                        break;
+                    case 3:
+                        if ((Mathf.Abs(playerObj.transform.position.y) - Mathf.Abs(this.transform.position.y)) > 4.7f)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, 0.125f);
+                            if(this.transform.position == Point[3].transform.position)
+                            {
+                                Order = 4;
+                                Leave = false;
+                                DoPFix = true;
+                                PosFix = false;
+                            }
+                        }
+                        break;
+                    case 4:
+                        if (ProceedBlocks[1].gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                        {
+                            if (ProceedBlocks[2].gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                            {
+                                transform.position = Vector3.MoveTowards(transform.position, Point[4].transform.position, 0.125f);
+                                if (this.transform.position == Point[4].transform.position)
+                                {
+                                    Order = 5;
+                                    Leave = false;
+                                    DoPFix = true;
+                                }
+                            }
+                        }
+                        break;
+                    case 5:
+                        if ((Mathf.Abs(playerObj.transform.position.x) - Mathf.Abs(this.transform.position.x)) < -4f)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, 0.125f);
+                            if (this.transform.position == Point[5].transform.position)
+                            {
+                                Order = 6;
+                                Leave = false;
+                                DoPFix = true;
+                                PosFix = false;
+                            }
+                        }
+                        break;
+                    case 6:
+                        if (ProceedBlocks[3].gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[6].transform.position, 0.125f);
+                            if (this.transform.position == Point[6].transform.position)
+                            {
+                                Order = 7;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                        }
+                        break;
+                    case 7:
+                        if ((Mathf.Abs(playerObj.transform.position.y) - Mathf.Abs(this.transform.position.y)) < -4f)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            if (this.transform.position != Point[7].transform.position)
+                            {
+                                transform.position = Vector3.MoveTowards(transform.position, Point[7].transform.position, 0.125f);
+                            }
                         }
                         break;
 

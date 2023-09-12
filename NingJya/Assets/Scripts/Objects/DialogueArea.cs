@@ -51,23 +51,23 @@ public class DialogueArea : MonoBehaviour
         //        }
         //    }
         //}
-        if (canChat && Input.GetKeyDown("joystick button 0"))
-        {
+        //if (canChat && Input.GetKeyDown("joystick button 0"))
+        //{
 
-            //対話実装したか
-            if (flowchart.HasBlock(chatName))
-            {
-                flowchart.ExecuteBlock(chatName);
-                isSay = true;
-                //endChat = true;
-            }
-        }
+        //    //対話実装したか
+        //    if (flowchart.HasBlock(chatName))
+        //    {
+        //        flowchart.ExecuteBlock(chatName);
+        //        isSay = true;
+        //        //endChat = true;
+        //    }
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
         // プレイヤーの攻撃範囲に入っていて、
-        if (col.CompareTag("Player"))
+        if (col.gameObject.name == "！Player" && !canChat)
         {
             //iconDisplay.SetActive(true);
             //npc1.SetActive(true);
@@ -81,8 +81,8 @@ public class DialogueArea : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             //iconDisplay.SetActive(false);
-            outEnemy = true;
-            canChat = false;
+            //outEnemy = true;
+            //canChat = true;
 
         }
     }

@@ -45842,7 +45842,7 @@ MonoBehaviour:
   playerObj: {fileID: 1904580777}
   moveSpeed: 0.225
   shake: {fileID: 216088065}
-  Process: 1
+  Process: 3
   Point:
   - {fileID: 102561740}
   - {fileID: 1667549171}
