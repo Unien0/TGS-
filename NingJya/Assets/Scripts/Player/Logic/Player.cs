@@ -284,9 +284,21 @@ public class Player : MonoBehaviour
 
                 // 入力に応じて スプライト変更をする
                 // 横方向の回転
-                if (moveCon.x == 1) SpR.flipX = true;
-                else if (moveCon.x == -1) SpR.flipX = false;
-                //if (moveCon.y == 1) SpR.flipX = !SpR.flipX;
+                if (moveCon.x == 1)
+                {
+                    SpR.flipX = true;
+                    anim.SetBool("Side", true);
+                }
+                else if (moveCon.x == -1) 
+                {
+                    SpR.flipX = false;
+                    anim.SetBool("Side", true);
+                }
+                else
+                {
+                    anim.SetBool("Side", false);
+                }
+                
             }
             else
             {moveInput = Vector2.zero; }
