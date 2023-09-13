@@ -285,12 +285,12 @@ public class Player : MonoBehaviour
 
                 // 入力に応じて スプライト変更をする
                 // 横方向の回転
-                if (moveCon.x == 1)
+                if (moveCon.x >= 0.35f)
                 {
                     SpR.flipX = true;
                     anim.SetBool("Side", true);
                 }
-                else if (moveCon.x == -1) 
+                else if (moveCon.x <= -0.35f) 
                 {
                     SpR.flipX = false;
                     anim.SetBool("Side", true);
@@ -299,7 +299,22 @@ public class Player : MonoBehaviour
                 {
                     anim.SetBool("Side", false);
                 }
-                
+                if (moveCon.y >= 0.35f)
+                {
+                    anim.SetBool("Top", true);
+                    anim.SetBool("Bottom", false);
+
+                }
+                else if (moveCon.y <= -0.35f)
+                {
+                    anim.SetBool("Top", false);
+                    anim.SetBool("Bottom", true);
+                }
+                else
+                {
+                    anim.SetBool("Top", false);
+                    anim.SetBool("Bottom", false);
+                }
             }
             else
             {moveInput = Vector2.zero; }
@@ -392,7 +407,6 @@ public class Player : MonoBehaviour
 
     private void PlayerInput()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
         if (inputY <= 0f && TimeInspect)
         {
@@ -407,7 +421,6 @@ public class Player : MonoBehaviour
 
     private void SwitchAnimation()
     {
-       // anim.SetFloat("InputX", inputX);
         anim.SetFloat("InputY", inputY);
     }
 
