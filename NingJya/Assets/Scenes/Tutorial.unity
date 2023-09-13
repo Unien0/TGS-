@@ -10626,7 +10626,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 658.334
     y: 81.05499
-    width: 115.14284
+    width: 114.28569
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10739,7 +10739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 1
-  storyText: "\u3053\u306E\u57CE\u306E\u4E2D\u306E\u304B\u3089\u304F\u308A\u306F\n\u300A\u7BC0(\u30C6\u30F3\u30DD)\u3092\u523B\u3093\u3067\u300B\u52D5\u3044\u3066\u3044\u308B\u3002"
+  storyText: "\u3053\u306E\u57CE\u306E\u4E2D\u306E\u304B\u3089\u304F\u308A\u306F\n\u300A\u7BC0(\u30EA\u30BA\u30E0)\u3092\u523B\u3093\u3067\u300B\u52D5\u3044\u3066\u3044\u308B\u3002"
   description: 
   character: {fileID: 741456783}
   portrait: {fileID: -170410854, guid: ea55a5362bbb49c48bb7b158eba263ed, type: 3}
@@ -10768,7 +10768,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 400.1363
     y: 84.82195
-    width: 78.57142
+    width: 79.99999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10799,7 +10799,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 262.39255
     y: 85.36397
-    width: 78.57142
+    width: 79.99999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10841,8 +10841,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 122.04573
-    y: 71.47635
-    width: 77.42856
+    y: 72.90492
+    width: 78.57142
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10997,7 +10997,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2.5818787
     y: 82.714294
-    width: 76.285706
+    width: 77.14285
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11045,7 +11045,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081816}
+  - {fileID: 678081875}
   selectedCommands: []
   variables:
   - {fileID: 678081826}
@@ -11343,7 +11343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 42
   indentLevel: 0
-  storyText: "\u300CL\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u50BE\u3051\u308B\u3068\u79FB\u52D5\u3059\u308B"
+  storyText: "\u203B\u300CL\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u50BE\u3051\u308B\u3068\u79FB\u52D5\u3059\u308B"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -11426,7 +11426,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 115.32858
     y: 170.7595
-    width: 75.14285
+    width: 72.85713
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11457,7 +11457,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -115.44966
     y: 171.88744
-    width: 75.14285
+    width: 72.85713
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11591,7 +11591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 64
   indentLevel: 1
-  storyText: "BGM\u306E\u30C6\u30F3\u30DD\u306B\u5408\u308F\u305B\u3066\u3001\n\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
+  storyText: "\u203BBGM\u306E\u30EA\u30BA\u30E0\u306B\u5408\u308F\u305B\u3066\u3001\n\u3000\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
   description: 
   character: {fileID: 741456783}
   portrait: {fileID: -170410854, guid: ea55a5362bbb49c48bb7b158eba263ed, type: 3}
@@ -11645,7 +11645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 62
   indentLevel: 1
-  storyText: "\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u3001\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\n\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
+  storyText: "\u203B\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\n\u3000\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -12794,7 +12794,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 744.2445
     y: 179.81552
-    width: 93.42856
+    width: 89.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12827,7 +12827,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 596.4488
     y: 181.08047
-    width: 93.42856
+    width: 89.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12924,7 +12924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 88
   indentLevel: 0
-  storyText: "\u5EA7\u5E03\u56E3\u306A\u3069\u306E\u300C\u5BB6\u5177\u300D\u3092R\u30B9\u30C6\u30A3\u30C3\u30AF\u3092\u5012\u3057\u653B\u6483\u3057\u3066\u5F3E\u304D\u98DB\u3070\u305B\u307E\u3059\u3002"
+  storyText: "\u203B\u5EA7\u5E03\u56E3\u306A\u3069\u306E\u300C\u5BB6\u5177\u300D\u3092R\u30B9\u30C6\u30A3\u30C3\u30AF\u3092\u5012\u3057\u653B\u6483\u3057\u3066\u5F3E\u304D\u98DB\u3070\u305B\u307E\u3059\u3002"
   description: 
   character: {fileID: 741456783}
   portrait: {fileID: -170410854, guid: ea55a5362bbb49c48bb7b158eba263ed, type: 3}
@@ -15600,7 +15600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 115
   indentLevel: 0
-  storyText: "\u300CLB\u300D\u3092\u62BC\u3057\u306A\u304C\u3089\u30C6\u30F3\u30DD\u3088\u304F\n\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5012\u3059\u3068\n\u300E\u624B\u88CF\u5263\u300F\u3092\u6295\u3052\u307E\u3059"
+  storyText: "\u203B\u300CLB\u300D\u3092\u62BC\u3057\u306A\u304C\u3089\u30C6\u30F3\u30DD\u3088\u304F\n\u3000\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5012\u3059\u3068\n\u3000\u300E\u624B\u88CF\u5263\u300F\u3092\u6295\u3052\u307E\u3059"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -15885,7 +15885,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 520.39935
     y: 80.38993
-    width: 77.42856
+    width: 78.57142
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
