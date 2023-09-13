@@ -8,7 +8,8 @@ public class DialogueArea : MonoBehaviour
     public string chatName;
     private bool chated = false;
     private bool canChat = false;
-
+    private bool chatCD;
+    private float time;
     private Flowchart flowchart;
     public GameObject iconDisplay;
     private Collider2D col2D;
@@ -21,10 +22,19 @@ public class DialogueArea : MonoBehaviour
     }
 
     void Update()
-    {        
-        if (chated && Input.GetKeyDown("joystick button 0") && canChat)
-        {
+    {
+        //if (!flowchart.GetBooleanVariable("ChatCD"))
+        //{
+        //    chatCD = true;
+        //    time += Time.deltaTime;
+        //    if (time >=1)
+        //    {
+        //        chatCD = false;
+        //    }
+        //}
 
+        if (chated && Input.GetKeyDown("joystick button 0") && canChat&& !flowchart.GetBooleanVariable("ChatCD"))
+        {
             //ëŒòbé¿ëïÇµÇΩÇ©
             if (flowchart.HasBlock(chatName))
             {
@@ -42,7 +52,11 @@ public class DialogueArea : MonoBehaviour
             
             flowchart.ExecuteBlock(chatName);
         }
-        else if (col.gameObject.name == "ÅIPlayer")
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.name == "ÅIPlayer")
         {
             canChat = true;
         }
