@@ -27,8 +27,8 @@ public class AudioControl : MonoBehaviour
 
     private void Start()
     {
-        BGMSlider.value = BgmVolume;
-        SESlider.value = SeVolume;
+        //BGMSlider.value = BgmVolume;
+        //SESlider.value = SeVolume;
     }
 
     public void BGMVolume()

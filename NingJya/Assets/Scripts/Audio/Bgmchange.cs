@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bgmchange : MonoBehaviour
 {
-    [SerializeField]private bool No;
+    [SerializeField] private bool No;
+    [SerializeField] private int NextAudioNumber;
     void Start()
     {
         

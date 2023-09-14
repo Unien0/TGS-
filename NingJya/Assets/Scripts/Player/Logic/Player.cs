@@ -169,10 +169,11 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             move();
+            SwitchAnimation();
             // UŒ‚“ü—Í
             //Attack();
             //PlayerInput();
-            SwitchAnimation();
+
         }
 
         if (Hit)
@@ -263,20 +264,27 @@ public class Player : MonoBehaviour
 
                 #region roteMax•ÏX
                 // “ü—Í‚É‰ž‚¶‚ÄA‰ñ“]‚ð•ÏX‚·‚é
-                if ((horizontal >= 0.01f) && (vertical >= 0.01f))
+                if ((horizontal >= 0.35f) && (vertical >= 0.35f))
                 { roteMax = 315; moveInput = new Vector2(1, 1); }
+
                 if ((horizontal == 0) && (vertical >= 0.01))
                 { roteMax = 0; moveInput = new Vector2(0, 1); }
-                if ((horizontal <= -0.01f) && (vertical >= 0.01f))
+
+                if ((horizontal <= -0.35f) && (vertical >= 0.35f))
                 { roteMax = 45; moveInput = new Vector2(-1, 1); }
+
                 if ((horizontal <= -0.01f) && (vertical == 0))
                 { roteMax = 90; moveInput = new Vector2(-1, 0); }
-                if ((horizontal <= -0.1f) && (vertical <= -0.01f))
+
+                if ((horizontal <= -0.35f) && (vertical <= -0.35f))
                 { roteMax = 135; moveInput = new Vector2(-1, -1); }
+
                 if ((horizontal == 0) && (vertical <= -0.01f))
                 { roteMax = 180; moveInput = new Vector2(0, -1); }
-                if ((horizontal >= 0.01f) && (vertical <= -0.01f))
+
+                if ((horizontal >= 0.35f) && (vertical <= -0.35f))
                 { roteMax = 225; moveInput = new Vector2(1, -1); }
+
                 if ((horizontal >= 0.01f) && (vertical == 0))
                 { roteMax = 270; moveInput = new Vector2(1, 0); }
                 #endregion

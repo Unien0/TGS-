@@ -16,7 +16,8 @@ public class AudioManager : MonoBehaviour
     // 応急処置
     public bool Ex = false;
     public GameObject PlayerObj;
-    public int AudioNumber = 3;
+    public int AudioNumber;
+    [SerializeField] private AudioSource AudioSourceObj;
 
     private void Awake()
     {
@@ -30,40 +31,54 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
     }
 
     private void Start()
     {
         //ゲームのBGM
-        PlayMusic("BGM");        
+        //PlayMusic("BGM");
+        Ex= true;
     }
 
     // 応急処置
     private void Update()
     {
-        if (AudioNumber == 3)
-        {         
-            if (Ex)
-            {
-                AudioNumber = 4;
-                PlayMusic("BGM2");
-                FindObjectOfType<GameManeger>().BPM = 130;
-                GameManeger.TempoReset = true;
-                Ex = false;
-            }
-        }
-        if (AudioNumber == 4)
+        if (Ex)
         {
-            if (Ex)
+            switch (AudioNumber)
             {
-                AudioNumber = 5;
-                PlayMusic("BGM3");
-                FindObjectOfType<GameManeger>().BPM = 136;
-                GameManeger.TempoReset = true;
-                Ex=false;
-            }
-        }
+                // BGM遷移用ボリュームダウン
+                case 0:
+                    if ()
+                    {
+                        AudioSourceObj.volume -= Time.deltaTime;
+                    }
+                    break;
+                // チュートリアル
+                case 1:
+                    PlayMusic("BGM");
+                    FindObjectOfType<GameManeger>().BPM = 126;
+                    AudioSourceObj.volume = 1;
+                    break;
+                // インゲームBGM1
+                case 2:
+                    PlayMusic("BGM2");
+                    FindObjectOfType<GameManeger>().BPM = 130;
+                    AudioSourceObj.volume = 1;
 
+                    break;
+                // BossBGM1
+                case 3:
+                    PlayMusic("BGM3");
+                    FindObjectOfType<GameManeger>().BPM = 136;
+                    AudioSourceObj.volume = 1;
+                    break;
+            }
+            GameManeger.TempoReset = true;
+            Ex = false;
+        }
     }
 
     public void PlayMusic(string name)
