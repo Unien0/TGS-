@@ -16,7 +16,7 @@ public class TitleLode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Anim.GetCurrentAnimatorStateInfo(0).IsName("End")) || (Input.anyKeyDown))
+        if ((Anim.GetCurrentAnimatorStateInfo(0).IsName("End")) )
         {
             SceneManager.LoadScene(1);
             GameManeger.KillEnemy = 0;
