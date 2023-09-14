@@ -31,9 +31,10 @@ public class EnemyBullet : MonoBehaviour
 
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
-    public bool conductIt;
+    public bool conductIt = false;
     public bool Ready;
     public bool isBlow;
+    public bool isHIT = false;
     [SerializeField] private bool exchange;
     private AudioSource Audio;
     [SerializeField] private AudioClip isBlowSE;
@@ -87,13 +88,8 @@ public class EnemyBullet : MonoBehaviour
         {
             gapPos = Mathf.Atan2((conductObject.transform.position.x - this.transform.position.x), (conductObject.transform.position.y - this.transform.position.y));
             gapfixPos = gapPos * Mathf.Rad2Deg;
-            Debug.Log(conductObject);
-            Debug.Log(gapfixPos);
-
             this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
-
-            // コンダクトマネージャーから最も近い敵をサーチ
-            // その敵の方向に対してZRoteを回転したのちに直線する
+            isHIT = true;
             isBlow = false;
         }
         else
@@ -120,7 +116,7 @@ public class EnemyBullet : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (isBlow)
+            if (isHIT)
             {
                 Destroy(this.gameObject);                
             }
