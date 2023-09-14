@@ -42,6 +42,9 @@ public class EnemyBullet : MonoBehaviour
     private bool inPlayerAttackRange = false;
     [SerializeField] private GameObject Hit_Efect;
 
+    private float gapPos;
+    private float gapfixPos;
+
     void Start()
     {
         Audio = GetComponent<AudioSource>();
@@ -82,6 +85,13 @@ public class EnemyBullet : MonoBehaviour
 
         if (isBlow)
         {
+            gapPos = Mathf.Atan2((conductObject.transform.position.x - this.transform.position.x), (conductObject.transform.position.y - this.transform.position.y));
+            gapfixPos = gapPos * Mathf.Rad2Deg;
+            Debug.Log(conductObject);
+            Debug.Log(gapfixPos);
+
+            this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+
             // コンダクトマネージャーから最も近い敵をサーチ
             // その敵の方向に対してZRoteを回転したのちに直線する
             isBlow = false;
