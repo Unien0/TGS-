@@ -127,6 +127,10 @@ public class ConductManeger : MonoBehaviour
                                 targetObj = ctobj;
                                 MustEnemyobjctDistance = Mathf.Abs(vec);
                             }
+                            else
+                            {
+
+                            }
                         }
                     }
                 }
