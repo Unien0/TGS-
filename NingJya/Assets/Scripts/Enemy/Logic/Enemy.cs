@@ -409,7 +409,6 @@ public class Enemy : MonoBehaviour
                     { shotIt.y = 0; }
                     //åªç›à íuÇ…äÓÇ√Ç¢ÇƒêÅÇ¡îÚÇŒÇ∑ÇÃóÕÇ∆ï€ë∂éûä‘ÇîªífÇµÇ‹Ç∑
                     rb2d.AddForce(shotIt * knockbackPoint);
-                    Debug.Log("[" + this.gameObject.name + "] Go To [" + conductObject.gameObject.name + "]");
                 }
                 else
                 {
@@ -575,14 +574,6 @@ public class Enemy : MonoBehaviour
                     ShakeManeger.ShakeLevel = 1;
                 }
             }
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.name == "ÅIPlayer")
-        {
-            Debug.Log("aaa");
         }
     }
 

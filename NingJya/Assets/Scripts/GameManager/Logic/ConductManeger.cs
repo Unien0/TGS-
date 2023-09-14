@@ -25,6 +25,8 @@ public class ConductManeger : MonoBehaviour
     public static List<GameObject> EnemyList = new List<GameObject>();
     string tagName;
 
+    [SerializeField]private float angle;
+
     void Start()
     {
         MustEnemyobjctDistance = 20;
@@ -41,7 +43,8 @@ public class ConductManeger : MonoBehaviour
         if (conduct)
         {
             gapChack();
-
+           // transform.rotation = Quaternion.Euler(0, 0, FindObjectOfType<Player>().roteMax);
+            //transform.position = new Vector3 (CTobject.transform.position.x, CTobject.transform.position.y, CTobject.transform.position.z);
             #region
             //do
             //{
@@ -66,6 +69,7 @@ public class ConductManeger : MonoBehaviour
         }
         else
         {
+            transform.position = Vector3.zero;
             MustEnemyobjctDistance = 20;
             targetObj = null;
         }
@@ -86,9 +90,23 @@ public class ConductManeger : MonoBehaviour
                 {
                     if (ctobj.GetComponent<Collider2D>().enabled == true)
                     {
-                        if (!(ctobj.GetComponent<Enemy>().actTime >= 0))
+                        if (!(ctobj.GetComponent<Enemy>().actTime > 0))
                         {
                             targetObj = ctobj;
+                        }
+                    }
+                }
+                else if (tagName == "Enemy")
+                {
+                    if (vec < MustEnemyobjctDistance)
+                    {
+                        if (ctobj.GetComponent<Collider2D>().enabled == true)
+                        {
+                            if (!(ctobj.GetComponent<Enemy>().actTime > 0))
+                            {
+                                targetObj = ctobj;
+                                MustEnemyobjctDistance = Mathf.Abs(vec);
+                            }
                         }
                     }
                 }
@@ -98,7 +116,7 @@ public class ConductManeger : MonoBehaviour
                     {
                         if (ctobj.GetComponent<Collider2D>().enabled == true)
                         {
-                            if (!(ctobj.GetComponent<Enemy>().actTime >= 0))
+                            if (!(ctobj.GetComponent<Enemy>().actTime > 0))
                             {
                                 targetObj = ctobj;
                                 MustEnemyobjctDistance = Mathf.Abs(vec);
@@ -112,7 +130,7 @@ public class ConductManeger : MonoBehaviour
 
         if (targetObj == null)
         {
-            targetObj = PlayerObj;
+            //targetObj = PlayerObj;
         }
 
         switch (tagName)
