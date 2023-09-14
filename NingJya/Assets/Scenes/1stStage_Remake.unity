@@ -21094,6 +21094,7 @@ MonoBehaviour:
   CTobject: {fileID: 0}
   targetObj: {fileID: 0}
   PlayerObj: {fileID: 0}
+  angle: 0
 --- !u!1 &475744053
 GameObject:
   m_ObjectHideFlags: 0
@@ -43797,7 +43798,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e5fe41f9727934d4686bb2427dd92d8f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -45848,6 +45849,7 @@ MonoBehaviour:
   - {fileID: 1667549171}
   - {fileID: 1202120596}
   - {fileID: 803973451}
+  ProceedBlocks: []
   DoPObj: {fileID: 1894962454}
   DoP: {fileID: 1894962456}
   BOSSTEXT: {fileID: 1997946622}
