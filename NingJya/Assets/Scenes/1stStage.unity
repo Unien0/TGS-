@@ -26391,7 +26391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d68266da61154fa4cf447315a784f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  No: 1
   NextAudioNumber: 0
 --- !u!1 &949900499
 GameObject:
@@ -35217,7 +35216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034769834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.9, y: 18.93, z: 0}
+  m_LocalPosition: {x: 39.9, y: 20.59, z: 0}
   m_LocalScale: {x: 5.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35262,7 +35261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d68266da61154fa4cf447315a784f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  No: 0
   NextAudioNumber: 3
 --- !u!1001 &1050812417
 PrefabInstance:
@@ -38819,7 +38817,7 @@ GameObject:
   - component: {fileID: 1748207962}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38981,7 +38979,7 @@ GameObject:
   - component: {fileID: 1799469287}
   m_Layer: 0
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40112,6 +40110,7 @@ MonoBehaviour:
   Ex: 1
   PlayerObj: {fileID: 0}
   AudioNumber: 2
+  AudioSourceObj: {fileID: 1852531856}
 --- !u!1 &1914409248
 GameObject:
   m_ObjectHideFlags: 0

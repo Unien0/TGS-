@@ -51,9 +51,10 @@ public class AudioManager : MonoBehaviour
             {
                 // BGM遷移用ボリュームダウン
                 case 0:
-                    if ()
+                    AudioSourceObj.volume -= Time.deltaTime;
+                    if (AudioSourceObj.volume <= 0.1f)
                     {
-                        AudioSourceObj.volume -= Time.deltaTime;
+                        Ex = false;
                     }
                     break;
                 // チュートリアル
@@ -61,23 +62,27 @@ public class AudioManager : MonoBehaviour
                     PlayMusic("BGM");
                     FindObjectOfType<GameManeger>().BPM = 126;
                     AudioSourceObj.volume = 1;
+                    GameManeger.TempoReset = true;
+                    Ex = false;
                     break;
                 // インゲームBGM1
                 case 2:
                     PlayMusic("BGM2");
                     FindObjectOfType<GameManeger>().BPM = 130;
                     AudioSourceObj.volume = 1;
-
+                    GameManeger.TempoReset = true;
+                    Ex = false;
                     break;
                 // BossBGM1
                 case 3:
                     PlayMusic("BGM3");
                     FindObjectOfType<GameManeger>().BPM = 136;
                     AudioSourceObj.volume = 1;
+                    GameManeger.TempoReset = true;
+                    Ex = false;
                     break;
             }
-            GameManeger.TempoReset = true;
-            Ex = false;
+
         }
     }
 

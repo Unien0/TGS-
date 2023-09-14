@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bgmchange : MonoBehaviour
 {
-    [SerializeField] private bool No;
     [SerializeField] private int NextAudioNumber;
     void Start()
     {
@@ -19,19 +18,10 @@ public class Bgmchange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (No)
+        if (collision.gameObject.name == "ÅIPlayer")
         {
-            if (FindObjectOfType<AudioManager>().AudioNumber == 3)
-            {
-                FindObjectOfType<AudioManager>().Ex = true;
-            }
-        }
-        else
-        {
-            if (FindObjectOfType<AudioManager>().AudioNumber == 4)
-            {
-                FindObjectOfType<AudioManager>().Ex = true;
-            }
+            FindObjectOfType<AudioManager>().Ex = true;
+            FindObjectOfType<AudioManager>().AudioNumber = NextAudioNumber;
         }
     }
 }
