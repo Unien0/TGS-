@@ -37,12 +37,12 @@ public class Player : MonoBehaviour
         get { if (playerData != null) return playerData.attackCD; else return 1; }
 
     }
-    private int maxBullet
+    public int maxBullet
     {
         //Player‚ÌCD‚ðŽæ“¾‚·‚é
         get { if (playerData != null) return playerData.maxBullet; else return 1; }
     }
-    private int nowBullet
+    public int nowBullet
     {
         //Player‚ÌCD‚ðŽæ“¾‚·‚é
         get { if (playerData != null) return playerData.nowBullet; else return 1; }

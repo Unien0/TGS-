@@ -5,6 +5,7 @@ using UnityEngine;
 public class Items : MonoBehaviour
 {
     public PlayerData_SO playerData;
+    #region Player•Ï”‚Ìæ“¾
     public int maxHp
     {
         //Player‚ÌMaxHP‚ğƒQƒbƒg‚·‚é
@@ -17,6 +18,18 @@ public class Items : MonoBehaviour
         get { if (playerData != null) return playerData.hp; else return 0; }
         set { playerData.hp = value; }
     }
+    public int maxBullet
+    {
+        //Player‚ÌCD‚ğæ“¾‚·‚é
+        get { if (playerData != null) return playerData.maxBullet; else return 1; }
+    }
+    public int nowBullet
+    {
+        //Player‚ÌCD‚ğæ“¾‚·‚é
+        get { if (playerData != null) return playerData.nowBullet; else return 1; }
+        set { playerData.nowBullet = value; }
+    }
+    #endregion
 
     private enum ItemName
     {
@@ -35,6 +48,8 @@ public class Items : MonoBehaviour
     private float animSpeed;
     private GameObject PlayerObj;
 
+    private bool Fixed;
+
     void Start()
     {
         col2D = GetComponent<Collider2D>();
@@ -50,30 +65,39 @@ public class Items : MonoBehaviour
             switch (itemType)
             {
                 case ItemName.LIFEUP:
-                    if (hp != maxHp)
+                    if (!Fixed)
                     {
-                        hp += 2;
-                    }
-                    if (hp >= maxHp)
-                    {
-                        hp = maxHp;
-                    }
-                    /*
-                    else if(hp == maxHp && maxHp <12)
-                    {
-                        maxHp += 2;
-                        hp += 2;
-                    }
-                    else if(hp ==maxHp && maxHp == 12)
-                    {
-                        hp = maxHp;
-                    }*/                    
+                        Fixed = true;
+                        if (hp != maxHp)
+                        {
+                            hp += 2;
+                        }
+                        if (hp >= maxHp)
+                        {
+                            hp = maxHp;
+                        }
+                    }          
                     break;
                 case ItemName.SCOREUP:
-
+                    if (!Fixed)
+                    {
+                        Fixed = true;
+                    }
                     break;
                 case ItemName.BulletPlus:
-
+                    if (!Fixed)
+                    {
+                        Fixed = true;
+                        if (nowBullet != maxBullet)
+                        {
+                            nowBullet = nowBullet + 1;
+                        }
+                        if (nowBullet >= maxBullet)
+                        {
+                            nowBullet = maxBullet;
+                        }
+                        Debug.Log(nowBullet);
+                    }
                     break;
             }
             SoundSource.clip = GetSound;
