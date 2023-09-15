@@ -293,20 +293,25 @@ public class Player : MonoBehaviour
 
                 // 入力に応じて スプライト変更をする
                 // 横方向の回転
-                if (moveCon.x >= 0.35f)
+                // 攻撃アニメーションをしていないときに限る
+                //if ()
                 {
-                    SpR.flipX = true;
-                    anim.SetBool("Side", true);
+                    if (moveCon.x >= 0.35f)
+                    {
+                        SpR.flipX = true;
+                        anim.SetBool("Side", true);
+                    }
+                    else if (moveCon.x <= -0.35f)
+                    {
+                        SpR.flipX = false;
+                        anim.SetBool("Side", true);
+                    }
+                    else
+                    {
+                        anim.SetBool("Side", false);
+                    }
                 }
-                else if (moveCon.x <= -0.35f) 
-                {
-                    SpR.flipX = false;
-                    anim.SetBool("Side", true);
-                }
-                else
-                {
-                    anim.SetBool("Side", false);
-                }
+
                 if (moveCon.y >= 0.35f)
                 {
                     anim.SetBool("Top", true);
@@ -345,7 +350,6 @@ public class Player : MonoBehaviour
             // 右上
             if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
             {
-                Debug.Log("右上");
                 roteMax = 315;
                 anim.SetBool("Right_R", true);
                 anim.SetBool("Left_R", false);
@@ -356,7 +360,6 @@ public class Player : MonoBehaviour
             // 左上
             if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
             {
-                Debug.Log("左上");
                 roteMax = 45;
                 anim.SetBool("Right_R", false);
                 anim.SetBool("Left_R", true);
@@ -367,7 +370,6 @@ public class Player : MonoBehaviour
             // 上
             if ((hr_R == 0) && (vr_R >= 0.01))
             {
-                Debug.Log("上");
                 roteMax = 0;
                 anim.SetBool("Right_R", false);
                 anim.SetBool("Left_R", false);
@@ -378,7 +380,6 @@ public class Player : MonoBehaviour
             // 左
             if ((hr_R <= -0.01f) && (vr_R == 0))
             {
-                Debug.Log("左");
                 roteMax = 90;
                 anim.SetBool("Right_R", false);
                 anim.SetBool("Left_R", true);
@@ -389,7 +390,6 @@ public class Player : MonoBehaviour
             // 右
             if ((hr_R >= 0.01f) && (vr_R == 0))
             {
-                Debug.Log("右");
                 roteMax = 270;
                 anim.SetBool("Right_R", true);
                 anim.SetBool("Left_R", false);
@@ -400,7 +400,6 @@ public class Player : MonoBehaviour
             // 下
             if ((hr_R == 0) && (vr_R <= -0.01f))
             {
-                Debug.Log("下");
                 roteMax = 180;
                 anim.SetBool("Right_R", false);
                 anim.SetBool("Left_R", false);
@@ -411,7 +410,6 @@ public class Player : MonoBehaviour
             // 左下
             if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
             {
-                Debug.Log("左下");
                 roteMax = 135;
                 anim.SetBool("Right_R", false);
                 anim.SetBool("Left_R", true);
@@ -422,7 +420,6 @@ public class Player : MonoBehaviour
             // 右下
             if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
             {
-                Debug.Log("右下"); 
                 roteMax = 225;
                 anim.SetBool("Right_R", true);
                 anim.SetBool("Left_R", false);
