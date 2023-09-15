@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
                 case 1:
                     PlayMusic("BGM");
                     FindObjectOfType<GameManeger>().BPM = 126;
-                    AudioSourceObj.volume = 1;
+                    AudioSourceObj.volume = 0.8f;
                     GameManeger.TempoReset = true;
                     Ex = false;
                     break;
@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
                 case 2:
                     PlayMusic("BGM2");
                     FindObjectOfType<GameManeger>().BPM = 130;
-                    AudioSourceObj.volume = 1;
+                    AudioSourceObj.volume = 0.8f;
                     GameManeger.TempoReset = true;
                     Ex = false;
                     break;
@@ -77,7 +77,7 @@ public class AudioManager : MonoBehaviour
                 case 3:
                     PlayMusic("BGM3");
                     FindObjectOfType<GameManeger>().BPM = 136;
-                    AudioSourceObj.volume = 1;
+                    AudioSourceObj.volume = 0.8f;
                     GameManeger.TempoReset = true;
                     Ex = false;
                     break;
