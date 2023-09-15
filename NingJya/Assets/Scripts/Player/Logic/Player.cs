@@ -342,22 +342,97 @@ public class Player : MonoBehaviour
         {   // 入力に応じて、攻撃範囲を回転する
             #region roteMax変更
             // 入力に応じて、回転を変更する
+            // 右上
             if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
-            { roteMax = 315; }//moveInput = new Vector2(1, 1); }
-            if ((hr_R == 0) && (vr_R >= 0.01))
-            { roteMax = 0; }//moveInput = new Vector2(0, 1); }
+            {
+                Debug.Log("右上");
+                roteMax = 315;
+                anim.SetBool("Right_R", true);
+                anim.SetBool("Left_R", false);
+                anim.SetBool("Up_R", true);
+                anim.SetBool("Down_R",false);
+            }
+
+            // 左上
             if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
-            { roteMax = 45; }//moveInput = new Vector2(-1, 1); }
+            {
+                Debug.Log("左上");
+                roteMax = 45;
+                anim.SetBool("Right_R", false);
+                anim.SetBool("Left_R", true);
+                anim.SetBool("Up_R", true);
+                anim.SetBool("Down_R", false);
+            }
+
+            // 上
+            if ((hr_R == 0) && (vr_R >= 0.01))
+            {
+                Debug.Log("上");
+                roteMax = 0;
+                anim.SetBool("Right_R", false);
+                anim.SetBool("Left_R", false);
+                anim.SetBool("Up_R", true);
+                anim.SetBool("Down_R", false);
+            }
+
+            // 左
             if ((hr_R <= -0.01f) && (vr_R == 0))
-            { roteMax = 90; }//moveInput = new Vector2(-1, 0); }
-            if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
-            { roteMax = 135; }//moveInput = new Vector2(-1, -1); }
-            if ((hr_R == 0) && (vr_R <= -0.01f))
-            { roteMax = 180; }//moveInput = new Vector2(0, -1); }
-            if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
-            { roteMax = 225; } //moveInput = new Vector2(1, -1); }
+            {
+                Debug.Log("左");
+                roteMax = 90;
+                anim.SetBool("Right_R", false);
+                anim.SetBool("Left_R", true);
+                anim.SetBool("Up_R", false);
+                anim.SetBool("Down_R", false);
+            }
+
+            // 右
             if ((hr_R >= 0.01f) && (vr_R == 0))
-            { roteMax = 270; } //moveInput = new Vector2(1, 0); }
+            {
+                Debug.Log("右");
+                roteMax = 270;
+                anim.SetBool("Right_R", true);
+                anim.SetBool("Left_R", false);
+                anim.SetBool("Up_R", false);
+                anim.SetBool("Down_R", false);
+            }
+
+            // 下
+            if ((hr_R == 0) && (vr_R <= -0.01f))
+            {
+                Debug.Log("下");
+                roteMax = 180;
+                anim.SetBool("Right_R", false);
+                anim.SetBool("Left_R", false);
+                anim.SetBool("Up_R", false);
+                anim.SetBool("Down_R",true);
+            }
+
+            // 左下
+            if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
+            {
+                Debug.Log("左下");
+                roteMax = 135;
+                anim.SetBool("Right_R", false);
+                anim.SetBool("Left_R", true);
+                anim.SetBool("Up_R", false);
+                anim.SetBool("Down_R", true);
+            }
+
+            // 右下
+            if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
+            {
+                Debug.Log("右下"); 
+                roteMax = 225;
+                anim.SetBool("Right_R", true);
+                anim.SetBool("Left_R", false);
+                anim.SetBool("Up_R", false);
+                anim.SetBool("Down_R", true);
+            }
+
+
+
+
             #endregion
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
             InputATK = true;
