@@ -8,12 +8,13 @@ public class BossStartFlag : MonoBehaviour
     public bool ActEnd;
     [SerializeField] private GameObject ENTER_SYOUZI;
     [SerializeField] private GameObject EXIT_SYOUZI;
-
+    [SerializeField] private Collider2D EXIT_SYOUZI_Col2D;
     private void Update()
     {
         if (ActEnd)
         {
-            EXIT_SYOUZI.SetActive(false);
+            EXIT_SYOUZI_Col2D.enabled = false;
+            //EXIT_SYOUZI.SetActive(false);
         }
     }
 

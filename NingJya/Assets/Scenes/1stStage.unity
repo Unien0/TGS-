@@ -1127,6 +1127,7 @@ MonoBehaviour:
   ActEnd: 0
   ENTER_SYOUZI: {fileID: 1748207961}
   EXIT_SYOUZI: {fileID: 1799469286}
+  EXIT_SYOUZI_Col2D: {fileID: 1799469287}
 --- !u!61 &153859823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18268,6 +18269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 521703086}
   - component: {fileID: 521703087}
+  - component: {fileID: 521703088}
   m_Layer: 0
   m_Name: "\u3057\u3087\u3046\u3058 (1)"
   m_TagString: Untagged
@@ -18342,6 +18344,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &521703088
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521703085}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 4}
+    newSize: {x: 2, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &521999344
 GameObject:
   m_ObjectHideFlags: 0
@@ -26341,7 +26369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &946433134
 Transform:
   m_ObjectHideFlags: 0
@@ -37702,6 +37730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579173472}
   - component: {fileID: 1579173473}
+  - component: {fileID: 1579173474}
   m_Layer: 0
   m_Name: "\u3057\u3087\u3046\u3058"
   m_TagString: Untagged
@@ -37776,6 +37805,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1579173474
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579173471}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 4}
+    newSize: {x: 2, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &1590841239
 GameObject:
   m_ObjectHideFlags: 0
@@ -38820,7 +38875,7 @@ GameObject:
   - component: {fileID: 1748207963}
   - component: {fileID: 1748207962}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Door_In
   m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38981,8 +39036,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1799469288}
   - component: {fileID: 1799469287}
+  - component: {fileID: 1799469289}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Door_E
   m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39022,7 +39078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799469286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.99, y: 9.7, z: -0.0735287}
+  m_LocalPosition: {x: 40.99, y: 9.819, z: 0}
   m_LocalScale: {x: 1, y: 0.975, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39031,6 +39087,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1799469289
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799469286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bf127edc3e431146b3ea8454e8f494f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1812805383
 PrefabInstance:
   m_ObjectHideFlags: 0
