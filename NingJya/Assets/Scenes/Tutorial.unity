@@ -325,6 +325,7 @@ MonoBehaviour:
   ActEnd: 0
   ENTER_SYOUZI: {fileID: 1923665128}
   EXIT_SYOUZI: {fileID: 1923665128}
+  EXIT_SYOUZI_Col2D: {fileID: 0}
 --- !u!61 &9775906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2982,6 +2983,7 @@ MonoBehaviour:
   isBlowSE: {fileID: 8300000, guid: ec1e83cc4ac9bab418307855d13d9981, type: 3}
   Hit_Efect: {fileID: 4894317834079027766, guid: e1c325061a6b24f4dbf19f5777e36d41, type: 3}
   DEAD_EFECT: {fileID: 6992273729208221150, guid: 8fa0909713fa8524b9503b42805ba108, type: 3}
+  isDeadFlash: {fileID: 0}
 --- !u!4 &144602098
 Transform:
   m_ObjectHideFlags: 0
@@ -24701,7 +24703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -59.82
+      value: -61.74
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -91977,7 +91979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -59.82
+      value: -61.740005
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.z
