@@ -11,6 +11,7 @@ public class StoryScenes : MonoBehaviour
     [SerializeField] private VideoClip[] Videos;
     [SerializeField] private Sprite[] Images;
     [SerializeField] private SpriteRenderer Back;
+    private AudioSource audioSource;
     public static int NextStageNum;
     private int LodeSceneNum;
     private bool isPlay;
@@ -19,6 +20,7 @@ public class StoryScenes : MonoBehaviour
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         VideoPlayer = GetComponent<VideoPlayer>();
         VideoPlayer.loopPointReached += FinishPlayingVideo;
     }
@@ -53,7 +55,11 @@ public class StoryScenes : MonoBehaviour
         {
             if (FindObjectOfType<TransitionRotate>().animator.GetCurrentAnimatorStateInfo(0).IsName("Close"))
             {
-                SceneManager.LoadScene(LodeSceneNum);
+                audioSource.volume -= Time.deltaTime/2.5f;
+                if (!audioSource.isPlaying)
+                {                    
+                    SceneManager.LoadScene(LodeSceneNum);
+                }
             }
         }
     }
