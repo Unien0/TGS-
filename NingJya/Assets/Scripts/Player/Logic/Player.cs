@@ -333,7 +333,7 @@ public class Player : MonoBehaviour
             {moveInput = Vector2.zero; }
             rb2d.velocity = new Vector2(0, 0);
             attackable = false;
-            KATANA.GetComponent<Animator>().SetBool("ATK", false);
+            //KATANA.GetComponent<Animator>().SetBool("ATK", false);
             anim.SetBool("Attack", false);
         }
     }
