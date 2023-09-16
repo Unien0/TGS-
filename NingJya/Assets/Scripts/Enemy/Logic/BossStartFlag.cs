@@ -14,7 +14,7 @@ public class BossStartFlag : MonoBehaviour
         if (ActEnd)
         {
             EXIT_SYOUZI_Col2D.enabled = false;
-            //EXIT_SYOUZI.SetActive(false);
+            EXIT_SYOUZI.GetComponent<Animator>().SetBool("IsEnd", true);
         }
     }
 

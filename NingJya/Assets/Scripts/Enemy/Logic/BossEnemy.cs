@@ -64,6 +64,7 @@ public class BossEnemy : MonoBehaviour
     private float animSpeed;
 
     private bool isDead;
+    [SerializeField]private GameObject isDeadFlash;
     private bool DeadFix;
 
     private int Ramdom1st;
@@ -115,15 +116,23 @@ public class BossEnemy : MonoBehaviour
                 if (!DeadFix)
                 {
                     DeadFix = true;
+                    GameManeger.shakeTime = 0.25f;
+                    ShakeManeger.ShakeLevel = 4;
+                    isDeadFlash.SetActive(true);
+                    GameManeger.KillBOSS += 5000;
+                }
+                rb2d.velocity = Vector3.zero;
+
+                if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
+                {
+                    
                     FindObjectOfType<BossStartFlag>().ActEnd = true;
                     ActPermission = false;
                     SpR.enabled = false;
                     Col2D.enabled = false;
-                    rb2d.velocity = Vector3.zero;
-                    GameManeger.KillBOSS += 5000;
                     Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
-                    GameManeger.shakeTime = 0.25f;
-                    ShakeManeger.ShakeLevel = 4;
+                    isDead = false;
+
                 }
             }
         }

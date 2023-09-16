@@ -347,25 +347,6 @@ public class Player : MonoBehaviour
         {   // 入力に応じて、攻撃範囲を回転する
             #region roteMax変更
             // 入力に応じて、回転を変更する
-            // 右上
-            if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
-            {
-                roteMax = 315;
-                anim.SetBool("Right_R", true);
-                anim.SetBool("Left_R", false);
-                anim.SetBool("Up_R", true);
-                anim.SetBool("Down_R",false);
-            }
-
-            // 左上
-            if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
-            {
-                roteMax = 45;
-                anim.SetBool("Right_R", false);
-                anim.SetBool("Left_R", true);
-                anim.SetBool("Up_R", true);
-                anim.SetBool("Down_R", false);
-            }
 
             // 上
             if ((hr_R == 0) && (vr_R >= 0.01))
@@ -381,20 +362,41 @@ public class Player : MonoBehaviour
             if ((hr_R <= -0.01f) && (vr_R == 0))
             {
                 roteMax = 90;
-                anim.SetBool("Right_R", false);
-                anim.SetBool("Left_R", true);
-                anim.SetBool("Up_R", false);
-                anim.SetBool("Down_R", false);
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", false);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", false);
+                }
+
             }
 
             // 右
             if ((hr_R >= 0.01f) && (vr_R == 0))
             {
                 roteMax = 270;
-                anim.SetBool("Right_R", true);
-                anim.SetBool("Left_R", false);
-                anim.SetBool("Up_R", false);
-                anim.SetBool("Down_R", false);
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", false);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", false);
+                }
             }
 
             // 下
@@ -407,24 +409,88 @@ public class Player : MonoBehaviour
                 anim.SetBool("Down_R",true);
             }
 
+            // 右上
+            if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
+            {
+                roteMax = 315;
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", true);
+                    anim.SetBool("Down_R", false);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", true);
+                    anim.SetBool("Down_R", false);
+                }
+
+            }
+
+            // 左上
+            if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
+            {
+                roteMax = 45;
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", true);
+                    anim.SetBool("Down_R", false);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", true);
+                    anim.SetBool("Down_R", false);
+                }
+            }
+
+
             // 左下
             if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
             {
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", true);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", true);
+                }
                 roteMax = 135;
-                anim.SetBool("Right_R", false);
-                anim.SetBool("Left_R", true);
-                anim.SetBool("Up_R", false);
-                anim.SetBool("Down_R", true);
+
             }
 
             // 右下
             if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
             {
+                if (SpR.flipX == true)
+                {
+                    anim.SetBool("Right_R", false);
+                    anim.SetBool("Left_R", true);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", true);
+                }
+                else
+                {
+                    anim.SetBool("Right_R", true);
+                    anim.SetBool("Left_R", false);
+                    anim.SetBool("Up_R", false);
+                    anim.SetBool("Down_R", true);
+                }
                 roteMax = 225;
-                anim.SetBool("Right_R", true);
-                anim.SetBool("Left_R", false);
-                anim.SetBool("Up_R", false);
-                anim.SetBool("Down_R", true);
+
             }
 
 
