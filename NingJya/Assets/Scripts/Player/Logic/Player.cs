@@ -296,12 +296,12 @@ public class Player : MonoBehaviour
                 // 攻撃アニメーションをしていないときに限る
                 //if ()
                 {
-                    if (moveCon.x >= 0.35f)
+                    if (moveCon.x >= 0.1f)
                     {
                         SpR.flipX = true;
                         anim.SetBool("Side", true);
                     }
-                    else if (moveCon.x <= -0.35f)
+                    else if (moveCon.x <= -0.1f)
                     {
                         SpR.flipX = false;
                         anim.SetBool("Side", true);
@@ -312,13 +312,13 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                if (moveCon.y >= 0.35f)
+                if (moveCon.y >= 0.1f)
                 {
                     anim.SetBool("Top", true);
                     anim.SetBool("Bottom", false);
 
                 }
-                else if (moveCon.y <= -0.35f)
+                else if (moveCon.y <= -0.1f)
                 {
                     anim.SetBool("Top", false);
                     anim.SetBool("Bottom", true);
