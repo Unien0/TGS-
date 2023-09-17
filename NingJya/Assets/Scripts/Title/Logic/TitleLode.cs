@@ -18,7 +18,7 @@ public class TitleLode : MonoBehaviour
     {
         if ((Anim.GetCurrentAnimatorStateInfo(0).IsName("End")) )
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             GameManeger.KillEnemy = 0;
             GameManeger.KillBOSS = 0;
             GameManeger.hitEnemy = 0;
