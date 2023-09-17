@@ -112,13 +112,21 @@ public class GameManeger : MonoBehaviour
     private void Awake()
     {
         TempoChange();
-    }
-
-    private void Start()
-    {        
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
         Score = 0;
+    }
+
+    private void Start()
+    {
+        // リスポーンの処理確認
+        if (ReStartManeger.CanReSporn == true)
+        {
+            ReStartManeger.CanReSporn = false;
+            // プレイヤーの移動
+            // カメラの移動1
+            // カメラ制御数値の変更
+        }
     }
     private void Update()
     {
