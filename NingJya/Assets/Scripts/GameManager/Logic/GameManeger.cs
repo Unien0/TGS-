@@ -122,10 +122,17 @@ public class GameManeger : MonoBehaviour
         // リスポーンの処理確認
         if (ReStartManeger.CanReSporn == true)
         {
-            ReStartManeger.CanReSporn = false;
+            
             // プレイヤーの移動
-            // カメラの移動1
-            // カメラ制御数値の変更
+            FindObjectOfType<Player>().transform.position = ReStartManeger.ReSpornPoint;
+
+            // カメラの移動(移動処理はカメラ側で行う)
+            // カメラ制御数値の変更(送信された数値を元に変更)
+            // 今回は数値の送信のみ行う
+            Camera.ReStartNumber = ReStartManeger.SaveOrder;
+
+            // リスタート処理の終了
+            ReStartManeger.CanReSporn = false;
         }
     }
     private void Update()

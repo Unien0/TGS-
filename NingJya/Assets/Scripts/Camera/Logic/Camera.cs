@@ -11,6 +11,9 @@ public class Camera : MonoBehaviour
     private Vector3 StartPos;
     [SerializeField] private float moveSpeed;
     private Vector2 input;
+
+    public static float ReStartNumber;
+
     public CameraShake shake;
     public static bool ShakeOrder;
     public enum StageName
@@ -45,6 +48,26 @@ public class Camera : MonoBehaviour
     {
         StartPos = this.transform.position;
         DoPFix = true;
+
+        if (ReStartNumber != 0)
+        {
+            switch (Process)
+            {
+                case StageName.Stage_1:
+                    switch(ReStartNumber)
+                    {
+                        case 1:
+                            Order = 1;
+                            transform.position = Point[0].transform.position;
+                            break;
+                        case 2:
+                            Order = 4;
+                            transform.position = new Vector3(Point[1].transform.position.x, Point[1].transform.position.y - 8, Point[1].transform.position.z);
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
