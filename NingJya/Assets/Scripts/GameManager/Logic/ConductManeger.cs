@@ -5,7 +5,6 @@ using UnityEngine;
 public class ConductManeger : MonoBehaviour
 {
     public GameObject[] Enemys;
-    private int INCount = 0;
     public bool noneCol;
     int Flow;
     Vector2 Gap;
@@ -88,7 +87,14 @@ public class ConductManeger : MonoBehaviour
                 Gap = new Vector2(ctobj.transform.position.x - CTobject.transform.position.x, ctobj.transform.position.y - CTobject.transform.position.y);
                 float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y); ;
 
-                if (tagName == "EnemyBullet")
+                if (tagName == "PlayerBullet")
+                {
+                    if (vec < MustEnemyobjctDistance)
+                    {
+
+                    }
+                }
+                else if (tagName == "EnemyBullet")
                 {
                     if (vec < MustEnemyobjctDistance)
                     {
