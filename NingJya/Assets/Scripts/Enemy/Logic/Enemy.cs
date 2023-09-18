@@ -100,6 +100,10 @@ public class Enemy : MonoBehaviour
         knockback,
         clockup,
         Dummy,
+        Bug,
+        Earthworm,
+        Carp,
+        Shellfish,
         end
     }
     
