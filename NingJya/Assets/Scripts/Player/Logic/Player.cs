@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
     public Vector2 shotrote;
     [SerializeField]private Vector2 moveInput;
 
-    private GameObject Enemyobj;    
+    private bool InputATK; 
     [SerializeField] private GameObject AttackArea;    
     public  GameObject KATANA;
     [SerializeField] private GameObject MoveEfect;
@@ -121,7 +121,8 @@ public class Player : MonoBehaviour
     private AudioSource Audio;
     [SerializeField] private AudioClip DamageSE;
     [SerializeField] private GameObject Bullet;
-    private bool InputATK;
+    [SerializeField] private GameObject BulletRote;
+    public bool Maked = true;
 
     private void Awake()
     {
@@ -513,8 +514,8 @@ public class Player : MonoBehaviour
                 {
                     if (InputATK)
                     {
-                        Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
                         nowBullet--;
+
                     }
                 }
             }
@@ -528,6 +529,11 @@ public class Player : MonoBehaviour
                     IsAttack = true;
                 }
             }
+        }
+
+        if (!Maked)
+        {
+            Instantiate(Bullet, this.transform.position, BulletRote.transform.rotation);
         }
     }
 

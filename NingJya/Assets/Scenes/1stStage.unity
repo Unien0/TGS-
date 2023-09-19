@@ -17937,7 +17937,7 @@ MonoBehaviour:
   CTobject: {fileID: 0}
   targetObj: {fileID: 0}
   PlayerObj: {fileID: 4917033767259655843}
-  angle: 45
+  PlayerRoteObject: {fileID: 2245989633300738381}
 --- !u!58 &468601848
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -41540,6 +41540,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: BulletRote
+      value: 
+      objectReference: {fileID: 2245989633300738381}
     - target: {fileID: 6563868376941559791, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
       propertyPath: m_Name
       value: "\uFF01Player"
@@ -41590,6 +41594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+--- !u!1 &2245989633300738381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7946071330130729279, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+  m_PrefabInstance: {fileID: 2245989633300738380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4917033767259655843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6563868376941559791, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}

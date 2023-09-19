@@ -24,7 +24,10 @@ public class ConductManeger : MonoBehaviour
     public static List<GameObject> EnemyList = new List<GameObject>();
     string tagName;
 
-    [SerializeField]private float angle;
+    private float gapPos;
+    private float gapfixPos;
+    private int ConductCount;
+    [SerializeField] private GameObject  PlayerRoteObject;
 
     void Start()
     {
@@ -42,31 +45,6 @@ public class ConductManeger : MonoBehaviour
         if (conduct)
         {
             gapChack();
-            // ç°å„ÇÃÇΩÇﬂÇ…écÇ∑
-            // transform.rotation = Quaternion.Euler(0, 0, FindObjectOfType<Player>().roteMax);
-            //transform.position = new Vector3 (CTobject.transform.position.x, CTobject.transform.position.y, CTobject.transform.position.z);
-
-            #region
-            //do
-            //{
-            //    Vector2 Gap = new Vector2(Enemys[CTcount - 1].transform.position.x - CTobject.transform.position.x, Enemys[CTcount - 1].transform.position.y - CTobject.transform.position.y);
-            //    EnemyobjctDistance = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
-
-            //    if (EnemyobjctDistance < MustEnemyobjctDistance)
-            //    {
-            //        targetObj = Enemys[CTcount - 1].gameObject;
-            //        MustEnemyobjctDistance = EnemyobjctDistance;
-            //    }
-            //    CTcount--;
-            //} while (CTcount < 0);
-
-            /*if (CTcount < 0)
-            {
-                MustEnemyobjctDistance = 5;
-                conduct = false;
-                reday = true;
-            }*/
-            #endregion
         }
         else
         {
@@ -89,9 +67,26 @@ public class ConductManeger : MonoBehaviour
 
                 if (tagName == "PlayerBullet")
                 {
-                    if (vec < MustEnemyobjctDistance)
+                    if (vec < 10)
                     {
-
+                        gapPos = Mathf.Atan2((PlayerObj.transform.position.x - ctobj.transform.position.x), (PlayerObj.transform.position.y - ctobj.transform.position.y));
+                        gapfixPos = gapPos * Mathf.Rad2Deg;
+                        if (gapfixPos < 10)
+                        {
+                            gapfixPos += 360;
+                        }
+                        PlayerRoteObject.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+                        ConductCount++;
+                        
+                        if (ConductCount >= 5)
+                        {
+                            ConductCount = 0;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break ;
                     }
                 }
                 else if (tagName == "EnemyBullet")
