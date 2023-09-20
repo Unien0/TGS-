@@ -721,6 +721,45 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 2:
+                        fixX = false;
+                        fixY = true;
+                        StayPoint = new Vector2(transform.position.x, transform.position.y + 2f);
+                        // à⁄ìÆèàóù
+                        if (this.transform.position != Point[1].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * -input.y);
+                        }
+                        else
+                        {
+                            Order = 3;
+                            StayPoint = Vector2.zero;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 3:
+                        fixX = true;
+                        fixY = false;
+                        StayPoint = new Vector2(transform.position.x + 3, transform.position.y);
+                        // à⁄ìÆèàóù
+                        if (this.transform.position != Point[2].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * -input.y);
+                        }
+                        else
+                        {
+                            Order = 4;
+                            StayPoint = Vector2.zero;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 4:
+                        fixX = false;
+                        fixY = false;
+                        // à⁄ìÆèàóù
+                        if (this.transform.position != Point[3].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed *1);
+                        }
                         break;
 
                 }
