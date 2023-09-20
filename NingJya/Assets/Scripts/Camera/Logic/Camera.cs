@@ -43,6 +43,7 @@ public class Camera : MonoBehaviour
     private Vector2 StayPoint;
     private bool fixX;
     private bool fixY;
+    private bool fix_now;
 
     void Start()
     {
@@ -357,7 +358,10 @@ public class Camera : MonoBehaviour
                                 input.y = 0;
                             }
                         }
-                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position,moveSpeed * input.y);
+                        if (fix_now)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
+                        }
 
                         if (Leave)
                         {
@@ -493,11 +497,17 @@ public class Camera : MonoBehaviour
         {
             if ((playerObj.transform.position.x - StayPoint.x) > 1)
             {
+                fix_now= true;
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + (playerObj.transform.position.x - StayPoint.x), transform.position.y, transform.position.z), moveSpeed);
             }
-            if ((playerObj.transform.position.x - StayPoint.x) < -1)
+            else if ((playerObj.transform.position.x - StayPoint.x) < -1)
             {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - (playerObj.transform.position.x - StayPoint.x), transform.position.y, transform.position.z),moveSpeed);
+                fix_now = true;
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + (playerObj.transform.position.x - StayPoint.x), transform.position.y, transform.position.z),moveSpeed);
+            }
+            else
+            {
+                fix_now = false;
             }
         }
 
@@ -505,11 +515,17 @@ public class Camera : MonoBehaviour
         {
             if ((playerObj.transform.position.y - StayPoint.y) > 1)
             {
+                fix_now = true;
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + (playerObj.transform.position.y - StayPoint.y), transform.position.z),moveSpeed);
             }
-            if ((playerObj.transform.position.y - StayPoint.y) < -1)
+            else if ((playerObj.transform.position.y - StayPoint.y) < -1)
             {
+                fix_now = true;
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + (playerObj.transform.position.y - StayPoint.y), transform.position.z), moveSpeed);
+            }
+            else
+            {
+                fix_now = false;
             }
         }
     }
