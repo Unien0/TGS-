@@ -447,7 +447,7 @@ public class Enemy : MonoBehaviour
         switch (enemyAct)
         {
             case enemyActSet.Earthworm:
-                if ((GameManeger.Tempo == 3) || (GameManeger.Tempo == 4))
+                if ((GameManeger.Tempo == 3) || (GameManeger.Tempo == 0))
                 {
                     HideMobe = true;
                 }

@@ -115,7 +115,7 @@ MonoBehaviour:
   conductObject: {fileID: 0}
   HitEfect: {fileID: 6473819552231644624, guid: b0d7fc4c4ad00f7489e2290e75a02a74, type: 3}
   DEADEfect: {fileID: 8242268725105712320, guid: 3d396cc73a4904841ad0f08b5b4e1b37, type: 3}
-  EnemyBullet: {fileID: 1773284206530875610, guid: e5415529538a5db4a9eef0c9390bfdf8, type: 3}
+  EnemyBullet: {fileID: 1115170879358560577, guid: 2d5e3c48b67a9d541adfcc70f7838e4b, type: 3}
   ShotRote: {fileID: 3987955458123088716}
   knockbackRote: {x: 0, y: 0}
   shotIt: {x: 0, y: 0}
@@ -125,6 +125,8 @@ MonoBehaviour:
   DeadSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
   MakeComboCount: 0
   ComboEfect: {fileID: 8831881229920725353, guid: be8f2a0b235ed0e48ba4a39c44231459, type: 3}
+  Enter: 0
+  HideTime: 0
 --- !u!95 &3987955457617191908
 Animator:
   serializedVersion: 5
