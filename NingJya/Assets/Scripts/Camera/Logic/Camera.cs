@@ -616,7 +616,7 @@ public class Camera : MonoBehaviour
                     case 6:
                         fixX = false;
                         fixY = false;
-                        StayPoint = playerObj.transform.position;
+                        StayPoint = new Vector2(transform.position.x, transform.position.y + 7f);
 
                         // à⁄ìÆèàóù
                         transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed * -input.y);
@@ -674,7 +674,7 @@ public class Camera : MonoBehaviour
                         else if ((playerObj.transform.position.y - this.transform.position.y) < -3)
                         {
                             transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, moveSpeed * -input.y);
-                            StayPoint = new Vector2(this.transform.position.x, this.transform.position.y + 2);
+                            StayPoint = new Vector2(this.transform.position.x, this.transform.position.y + 1);
                             if (this.transform.position == Point[5].transform.position)
                             {
                                 Order = 9;

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: -647100389
   m_SortingLayer: 4
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 6ecc66b0959f48b49a740de8e3d42d6a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c2b2d25e7d2c449ad892c8131aa624, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,6 +146,8 @@ MonoBehaviour:
   DeadSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
   MakeComboCount: 0
   ComboEfect: {fileID: 8831881229920725353, guid: be8f2a0b235ed0e48ba4a39c44231459, type: 3}
+  Enter: 0
+  HideTime: 0
 --- !u!70 &8626687984411793782
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

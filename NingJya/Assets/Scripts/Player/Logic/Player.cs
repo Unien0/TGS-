@@ -514,8 +514,8 @@ public class Player : MonoBehaviour
                 {
                     if (InputATK)
                     {
+                        Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
                         nowBullet--;
-
                     }
                 }
             }

@@ -42,6 +42,9 @@ public class StoryScenes : MonoBehaviour
                         break;                    
                     case 1:
                         LodeSceneNum = 5;
+                        break;                    
+                    case 2:
+                        LodeSceneNum = 6;
                         break;
                 }
 

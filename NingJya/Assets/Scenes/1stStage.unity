@@ -1034,7 +1034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836579830910389182, guid: f870512a6262010429ccb6f5af7c2089, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2836579830910389182, guid: f870512a6262010429ccb6f5af7c2089, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21338,7 +21338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204558, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204558, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25781,7 +25781,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &820956736
 PrefabInstance:
@@ -41286,6 +41286,7 @@ MonoBehaviour:
   - {fileID: 1202120596}
   - {fileID: 803973451}
   ProceedBlocks: []
+  Smoke: {fileID: 0}
   DoPObj: {fileID: 1894962454}
   DoP: {fileID: 1894962456}
   BOSSTEXT: {fileID: 1997946622}
