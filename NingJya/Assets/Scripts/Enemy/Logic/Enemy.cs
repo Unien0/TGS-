@@ -103,7 +103,6 @@ public class Enemy : MonoBehaviour
         Bug,
         Earthworm,
         Carp,
-        Shellfish,
         end
     }
     
@@ -170,6 +169,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject ComboEfect;
     private bool AlphaExchange;
+
+    private bool HideMobe;
 
 
     private void Awake()
@@ -240,6 +241,10 @@ public class Enemy : MonoBehaviour
                         break;
                     case enemyActSet.Dummy:
                         rb2d.velocity = Vector2.zero;
+                        break;
+                    case enemyActSet.Earthworm:
+                        Move();
+
                         break;
 
                 }
@@ -385,6 +390,34 @@ public class Enemy : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
+        }
+    }
+
+    private void Hide()
+    {
+        switch (enemyAct)
+        {
+            case enemyActSet.Earthworm:
+                if ((GameManeger.Tempo == 3) || (GameManeger.Tempo == 4))
+                {
+                    HideMobe = true;
+                }
+                else
+                {
+                    HideMobe = false;
+                }
+                break;
+        }
+
+        if (HideMobe)
+        {
+            col2d.enabled = false;
+            SpR.enabled = false;
+        }
+        else
+        {
+            col2d.enabled = true;
+            SpR.enabled = true;
         }
     }
 
