@@ -75,6 +75,7 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Order);
         MoveProcess();
         ShakeProcess();
         Degreeofprogress();
@@ -298,7 +299,7 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 5:
-                        if ((Mathf.Abs(playerObj.transform.position.x) - Mathf.Abs(this.transform.position.x)) < -4f)
+                        if ((Mathf.Abs(playerObj.transform.position.x) - Mathf.Abs(this.transform.position.x)) < -6f)
                         {
                             PosFix = true;
                         }
@@ -383,7 +384,7 @@ public class Camera : MonoBehaviour
                         fixX = false;
                         fixY = false;
                         StayPoint = Vector2.zero;
-                        if ((playerObj.transform.position.x - this.transform.position.x) > 8)
+                        if ((playerObj.transform.position.x - this.transform.position.x) > 7)
                         {
                             PosFix = true;
                         }
@@ -404,7 +405,7 @@ public class Camera : MonoBehaviour
                     case 2:
                         fixX = true;
                         fixY = false;
-                        StayPoint = new Vector2(transform.position.x - 6, transform.position.y);
+                        StayPoint = new Vector2(transform.position.x - 5, transform.position.y);
                         // ˆÚ“®ˆ—
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.x);
 
@@ -524,7 +525,7 @@ public class Camera : MonoBehaviour
                         fixX = false;
                         fixY = false;
                         StayPoint = Vector2.zero;
-                        if ((playerObj.transform.position.y - this.transform.position.y) > 4)
+                        if ((playerObj.transform.position.y - this.transform.position.y) > 2)
                         {
                             PosFix = true;
                         }
@@ -624,6 +625,7 @@ public class Camera : MonoBehaviour
                         {
                             if (this.transform.position == Point[3].transform.position)
                             {
+                                Debug.Log("Ex");
                                 Order = 7;
                                 Leave = false;
                                 DoPFix = true;
@@ -642,11 +644,44 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 7:
-                        fixX = true;
+                        fixX = false;
                         fixY = false;
-                        StayPoint = playerObj.transform.position;
+                        StayPoint =Vector2.zero;
+
+                        if ((playerObj.transform.position.x - this.transform.position.x) < -7)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            DoPFix = true;
+                            Order = 8;
+                            PosFix = false;
+                            Leave = false;
+                            StayPoint = new Vector2(transform.position.x + 7f, transform.position.y);
+                        }
                         break;
                     case 8:
+                        fixX = false;
+                        fixY = false;
+                        StayPoint = Vector2.zero;
+                        if (this.transform.position != Point[4].transform.position)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[4].transform.position, moveSpeed * -input.x);
+                            StayPoint = new Vector2(Point[4].transform.position.x, Point[4].transform.position.y + 2);
+
+                        }
+                        else if ((playerObj.transform.position.y - this.transform.position.y) < -3)
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, moveSpeed * -input.y);
+                            StayPoint = new Vector2(this.transform.position.x, this.transform.position.y + 2);
+                            if (this.transform.position == Point[5].transform.position)
+                            {
+                                Order = 9;
+                            }
+                        }
+                        break;
+                    case 9:
                         fixX = false;
                         fixY = false;
                         StayPoint = Vector2.zero;
