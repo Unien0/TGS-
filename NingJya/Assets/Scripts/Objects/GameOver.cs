@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public static bool GAMECLEAR;
     public static bool GAMEOVER;
     [SerializeField]private int NextScene;
+    [SerializeField] private bool GAmeClear;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -33,8 +34,18 @@ public class GameOver : MonoBehaviour
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("imageStay")) && (Input.anyKeyDown))
         {
-            SceneManager.LoadScene(NextScene);
-            GAMECLEAR = false;
+            if (GAmeClear)
+            {
+                SceneManager.LoadScene(2);
+                GAMECLEAR = false;
+            }
+            else
+            {
+                StoryScenes.NextStageNum = NextScene;
+                SceneManager.LoadScene(3);
+                GAMECLEAR = false;
+            }
+
         }
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("GameOver")) && (Input.anyKeyDown))

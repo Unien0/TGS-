@@ -70,6 +70,7 @@ public class BossEnemy : MonoBehaviour
     private int Ramdom1st;
     private int Ramdom2nd;
     private bool Shot3pt;
+    private bool move;
 
     void Start()
     {
@@ -78,7 +79,7 @@ public class BossEnemy : MonoBehaviour
         Col2D = GetComponent<Collider2D>();
         Audio = GetComponent<AudioSource>();
         PlayerObject = FindObjectOfType<Player>().gameObject;
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -98,6 +99,9 @@ public class BossEnemy : MonoBehaviour
             {
                 case BossNumber.No1:
                     FirstBoss();
+                    break;
+                case BossNumber.No2:
+                    SecondBoss();
                     break;
             }
             Damage();
@@ -130,6 +134,7 @@ public class BossEnemy : MonoBehaviour
                     ActPermission = false;
                     SpR.enabled = false;
                     Col2D.enabled = false;
+                    anim.enabled = false;
                     Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
                     isDead = false;
 
@@ -314,7 +319,97 @@ public class BossEnemy : MonoBehaviour
                 }
             }
         }
+    }
 
+    void SecondBoss()
+    {
+
+        // 行動許可が降りているのか
+        if (ActPermission)
+        {
+            animSpeed = GameManeger.AnimSpeed;
+            anim.SetFloat("AnimSpeed", animSpeed);
+            // アクションタイミングに入ったら
+            if (ExChange)
+            {
+                fix = false;
+                ExChange = false;
+
+                switch (ActCounter)
+                {
+                    case 1:
+                        anim.SetBool("Hide", true);
+                        if (!move)
+                        {
+                            move = true;
+                            switch (RandumCount)
+                            {
+                                case 1:
+                                    transform.position = new Vector2(-21.47f, -57.95f);
+
+                                    break;
+                                case 2:
+                                    transform.position = new Vector2(-16.47f, -57.95f);
+                                    break;
+                                case 3:
+                                    transform.position = new Vector2(-11.47f, -57.95f);
+                                    break;
+                            }
+                        }
+                        break;
+                    case 2:
+                        move = false; 
+                        anim.SetBool("Hide", false);
+                        switch (RandumCount)
+                        {
+                            case 1:
+                                Instantiate(EnemyBullet[Ramdom2nd], this.transform.position, ShotRote.transform.rotation);
+                                anim.SetBool("Shot", true);
+                                break;
+                            case 2:
+                                // 近接攻撃
+                                //anim.SetBool("ATK", true);
+                                break;
+                            case 3:
+                                Instantiate(EnemyBullet[Ramdom2nd], this.transform.position, ShotRote.transform.rotation);
+                                anim.SetBool("Shot", true);
+                                break;
+                        }
+                        rb2d.velocity = Vector2.zero;
+
+                        break;
+                    case 3:
+                        rb2d.velocity = Vector2.zero;
+                        break;
+                    case 4:
+                        rb2d.velocity = Vector2.zero;
+                        break;
+                }
+            }
+            else
+            {
+                // 初期化・値の再設定
+                if (!fix)
+                {
+                    anim.SetBool("ATK", false);
+                    anim.SetBool("Shot", false);
+
+
+                    // アクションカウントを上昇させる
+                    ActCounter++;
+                    if (ActCounter == 5)
+                    {
+                        ActCounter = 1;
+                        LoopCounter++;
+                    }
+                    fix = true;
+
+                    // 移動先を変える
+                    RandumCount = Random.Range(1, 4);
+
+                }
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)

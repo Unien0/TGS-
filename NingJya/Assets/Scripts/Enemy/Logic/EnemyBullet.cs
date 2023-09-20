@@ -86,11 +86,23 @@ public class EnemyBullet : MonoBehaviour
 
         if (isBlow)
         {
-            gapPos = Mathf.Atan2((conductObject.transform.position.x - this.transform.position.x), (conductObject.transform.position.y - this.transform.position.y));
-            gapfixPos = gapPos * Mathf.Rad2Deg;
-            this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
-            isHIT = true;
-            isBlow = false;
+            if (conductObject != null)
+            {
+                gapPos = Mathf.Atan2((conductObject.transform.position.x - this.transform.position.x), (conductObject.transform.position.y - this.transform.position.y));
+                gapfixPos = gapPos * Mathf.Rad2Deg;
+                this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+                isHIT = true;
+                isBlow = false;
+            }
+            else
+            {
+                gapPos = Mathf.Atan2((this.transform.position.x - objectPL.transform.position.x), (this.transform.position.y - objectPL.transform.position.y));
+                gapfixPos = gapPos * Mathf.Rad2Deg;
+                this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+                isHIT = true;
+                isBlow = false;
+            }
+
         }
         else
         {

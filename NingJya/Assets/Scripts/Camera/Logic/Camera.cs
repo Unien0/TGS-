@@ -663,7 +663,7 @@ public class Camera : MonoBehaviour
                         }
                         break;
                     case 8:
-                        fixX = true;
+                        fixX = false;
                         fixY = false;
                         StayPoint = new Vector2(transform.position.x - 7f, transform.position.y);
                         if (this.transform.position != Point[4].transform.position)
