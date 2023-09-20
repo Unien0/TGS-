@@ -170,7 +170,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject ComboEfect;
     private bool AlphaExchange;
 
+    private bool AssaultMode;
     private bool HideMobe;
+    [SerializeField]
+    private bool Enter;
+    [SerializeField]
+    private float HideTime;
+    
 
 
     private void Awake()
@@ -244,6 +250,10 @@ public class Enemy : MonoBehaviour
                         break;
                     case enemyActSet.Earthworm:
                         Move();
+                        Hide();
+                        break;
+                    case enemyActSet.Carp:
+                        Assault();
                         Hide();
                         break;
 
@@ -393,6 +403,45 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Assault()
+    {
+        if (AssaultMode)
+        {
+            if (objctDistance <= 10)
+            {
+                rb2d.velocity = transform.up * enemySpeed;
+            }
+        }
+        else
+        {
+            if (HideMobe)
+            {
+                gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
+                gapfixPos = gapPos * Mathf.Rad2Deg;
+                if (gapfixPos < 0)
+                {
+                    gapfixPos += 360;
+                }
+                this.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+            }
+        }
+
+        switch (enemyAct)
+        {
+            case enemyActSet.Carp:
+                if (GameManeger.Tempo == 1)
+                {
+                    AssaultMode = true;
+                }
+                else
+                {
+
+                    AssaultMode = false;
+                }
+                break;
+        }
+    }
+
     private void Hide()
     {
         switch (enemyAct)
@@ -407,6 +456,21 @@ public class Enemy : MonoBehaviour
                     HideMobe = false;
                 }
                 break;
+        }
+
+        if (Enter)
+        {
+            HideTime += Time.deltaTime;
+            if (HideTime > 0.25f)
+            {
+                HideMobe = true;
+                rb2d.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            HideMobe = false;
+            HideTime = 0;
         }
 
         if (HideMobe)
@@ -616,6 +680,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("EnemyBullet"))
@@ -662,7 +727,7 @@ public class Enemy : MonoBehaviour
                 GameManeger.shakeTime = 0.125f;
                 ShakeManeger.ShakeLevel = 1;
             }
-        }
+        }        
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -673,13 +738,28 @@ public class Enemy : MonoBehaviour
             inPlayerAttackRange = true;
             PlayerObject = FindObjectOfType<Player>().gameObject;
         }
+        if (col.gameObject.name == "pond")
+        {
+            if (enemyAct == enemyActSet.Carp)
+            {
+                Enter = true;
+            }
+        }
     }
+
 
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {            
             inPlayerAttackRange = false;
+        }
+        if (col.gameObject.name == "pond")
+        {
+            if (enemyAct == enemyActSet.Carp)
+            {
+                Enter = false;
+            }
         }
     }
 }

@@ -81,6 +81,13 @@ public class AudioManager : MonoBehaviour
                     GameManeger.TempoReset = true;
                     Ex = false;
                     break;
+                case 4:
+                    PlayMusic("BGM4");
+                    FindObjectOfType<GameManeger>().BPM = 150;
+                    AudioSourceObj.volume = 0.8f;
+                    GameManeger.TempoReset = true;
+                    Ex = false;
+                    break;
             }
 
         }

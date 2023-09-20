@@ -31,6 +31,7 @@ public class Camera : MonoBehaviour
     public static float Ordermax;
     [SerializeField] private GameObject[] Point;
     [SerializeField] private GameObject[] ProceedBlocks;
+    [SerializeField] private GameObject Smoke;
     private bool Leave;
 
 
@@ -484,6 +485,7 @@ public class Camera : MonoBehaviour
                 break;
 
             case StageName.Stage_1_New:
+                Ordermax = 9;
                 switch (Order)
                 {
                     case 0:
@@ -558,7 +560,11 @@ public class Camera : MonoBehaviour
                         fixX = false;
                         fixY = false;
                         StayPoint = Vector2.zero;
-                        if ((playerObj.transform.position.x - this.transform.position.x) > 4)
+                        foreach (var Eventobj in ProceedBlocks)
+                        {
+                            Eventobj.SetActive(false);
+                        }
+                        if ((playerObj.transform.position.x - this.transform.position.x) > 7)
                         {
                             PosFix = true;
                         }
@@ -568,17 +574,23 @@ public class Camera : MonoBehaviour
                             Order = 4;
                             PosFix = false;
                             Leave = false;
-                            StayPoint = new Vector2(transform.position.x - 3f, transform.position.y );
+                            StayPoint = new Vector2(transform.position.x - 7f, transform.position.y );
                         }
                         break;
                     case 4:
                         fixX = true;
                         fixY = false;
-                        StayPoint = new Vector2(transform.position.x - 3f, transform.position.y);
-                        transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+                        StayPoint = new Vector2(transform.position.x - 7f, transform.position.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.x);
 
                         if (this.transform.position == Point[2].transform.position)
                         {
+                            foreach (var Eventobj in ProceedBlocks)
+                            {
+                                Eventobj.SetActive(true);
+                                Instantiate(Smoke, Eventobj.transform.position, Eventobj.transform.rotation);
+                            }
+
                             StayPoint = Vector2.zero;
                             Order = 5;
                             Leave = false;
@@ -587,8 +599,56 @@ public class Camera : MonoBehaviour
 
                         break;
                     case 5:
+                        // イベントエリア
+                        if ((ProceedBlocks[0].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[1].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[2].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[3].gameObject.GetComponent<SpriteRenderer>().enabled == false))
+                        {
+                            Debug.Log("NICE");
+                            Order = 6;
+                        }
+                        else
+                        {
+                            fixX = false;
+                            fixY = false;
+                        }
+
+                        break;
+                    case 6:
                         fixX = false;
-                        fixY = false; 
+                        fixY = false;
+                        StayPoint = playerObj.transform.position;
+
+                        // 移動処理
+                        transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed * -input.y);
+
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[3].transform.position)
+                            {
+                                Order = 7;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                            if (this.transform.position == Point[2].transform.position)
+                            {
+                                input.y = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[2].transform.position)
+                            {
+                                Leave = true;
+                            }
+                        }
+                        break;
+                    case 7:
+                        fixX = true;
+                        fixY = false;
+                        StayPoint = playerObj.transform.position;
+                        break;
+                    case 8:
+                        fixX = false;
+                        fixY = false;
                         StayPoint = Vector2.zero;
                         break;
                 }

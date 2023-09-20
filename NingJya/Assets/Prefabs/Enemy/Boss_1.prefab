@@ -154,6 +154,7 @@ MonoBehaviour:
   isBlowSE: {fileID: 8300000, guid: 273b90a3f1a861e47aa35c2297720686, type: 3}
   Hit_Efect: {fileID: 4894317834079027766, guid: e1c325061a6b24f4dbf19f5777e36d41, type: 3}
   DEAD_EFECT: {fileID: 6992273729208221150, guid: 8fa0909713fa8524b9503b42805ba108, type: 3}
+  isDeadFlash: {fileID: 0}
 --- !u!50 &6758980481141204557
 Rigidbody2D:
   serializedVersion: 4
@@ -187,13 +188,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
