@@ -2377,6 +2377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fc53dfdb862b84caaf5f3d5d252fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextScene: 0
 --- !u!95 &124076803
 Animator:
   serializedVersion: 5
@@ -9652,6 +9653,7 @@ MonoBehaviour:
   - {fileID: 436772968}
   - {fileID: 2138646973}
   - {fileID: 1943312675}
+  Smoke: {fileID: 0}
   DoPObj: {fileID: 16827276}
   DoP: {fileID: 16827278}
   BOSSTEXT: {fileID: 798855498}
@@ -91369,7 +91371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.95
+      value: -19.32
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -104703,7 +104705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.95
+      value: -19.32
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_LocalPosition.y

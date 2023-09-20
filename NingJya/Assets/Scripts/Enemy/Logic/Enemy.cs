@@ -615,7 +615,7 @@ public class Enemy : MonoBehaviour
                             IsSound = false;
                             shoted = false;
                             Ready = false;
-                            GameManeger.ComboMax--;
+                            //GameManeger.ComboMax--;
                             inPlayerAttackRange = false;
                         }
                     }
