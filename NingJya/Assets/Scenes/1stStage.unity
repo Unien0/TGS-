@@ -26388,8 +26388,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -37934,8 +37934,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 2076915360}
-    m_SelectOnRight: {fileID: 2076915360}
+    m_SelectOnLeft: {fileID: 1598795616}
+    m_SelectOnRight: {fileID: 1598795616}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -38029,8 +38029,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 67}
-  m_SizeDelta: {x: 185, y: 75}
+  m_AnchoredPosition: {x: 80, y: 66.327}
+  m_SizeDelta: {x: 378.3597, y: 153.3891}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1660415830
 GameObject:
@@ -39140,7 +39140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1841724829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41323,7 +41323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2076915360
 MonoBehaviour:
   m_ObjectHideFlags: 0
