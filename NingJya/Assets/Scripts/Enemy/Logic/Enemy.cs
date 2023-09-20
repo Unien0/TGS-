@@ -411,7 +411,6 @@ public class Enemy : MonoBehaviour
 
         if (HideMobe)
         {
-            Debug.Log("Hide");
             col2d.enabled = false;
             SpR.enabled = false;
             anim.SetBool("Hide", true);

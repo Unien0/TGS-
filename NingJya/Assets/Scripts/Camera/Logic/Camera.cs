@@ -358,10 +358,7 @@ public class Camera : MonoBehaviour
                                 input.y = 0;
                             }
                         }
-                        if (fix_now)
-                        {
-                            transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
-                        }
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.y);
 
                         if (Leave)
                         {
@@ -486,6 +483,116 @@ public class Camera : MonoBehaviour
                 }
                 break;
 
+            case StageName.Stage_1_New:
+                switch (Order)
+                {
+                    case 0:
+                        fixX = true;
+                        fixY = false;
+                        StayPoint = new Vector2(this.transform.position.x - 7f, this.transform.position.y);
+                        // ˆÚ“®ˆ—
+                        if (this.transform.position == StartPos)
+                        {
+                            if (input.y == -1)
+                            {
+                                input.y = 0;
+                            }
+                        }
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.x);
+
+                        if (Leave)
+                        {
+                            if (this.transform.position == Point[0].transform.position)
+                            {
+                                StayPoint = Vector2.zero;
+                                Order = 1;
+                                Leave = false;
+                                DoPFix = true;
+                            }
+                        }
+                        else
+                        {
+                            if (this.transform.position != Point[0].transform.position)
+                            {
+                                Leave = true;
+                            }
+                        }
+                        break;
+                    case 1:
+                        fixX = false;
+                        fixY = false;
+                        StayPoint = Vector2.zero;
+                        if ((playerObj.transform.position.y - this.transform.position.y) > 4)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            StayPoint = new Vector2(Point[0].transform.position.x , Point[0].transform.position.y -4);
+                            Order = 2;
+                            PosFix = false;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 2:
+                        fixX = false;
+                        fixY = true;
+                        StayPoint = new Vector2(transform.position.x, transform.position.y - 4);
+                        // ˆÚ“®ˆ—
+                        transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
+
+                        if (this.transform.position == Point[1].transform.position)
+                        {
+                            StayPoint = Vector2.zero;
+                            Order = 3;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+                        if (this.transform.position == Point[0].transform.position)
+                        {
+                            input.x = 0;
+                        }
+                        break;
+                    case 3:
+                        fixX = false;
+                        fixY = false;
+                        StayPoint = Vector2.zero;
+                        if ((playerObj.transform.position.x - this.transform.position.x) > 4)
+                        {
+                            PosFix = true;
+                        }
+                        if (PosFix)
+                        {
+                            DoPFix = true;
+                            Order = 4;
+                            PosFix = false;
+                            Leave = false;
+                            StayPoint = new Vector2(transform.position.x - 3f, transform.position.y );
+                        }
+                        break;
+                    case 4:
+                        fixX = true;
+                        fixY = false;
+                        StayPoint = new Vector2(transform.position.x - 3f, transform.position.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[2].transform.position, moveSpeed * input.y);
+
+                        if (this.transform.position == Point[2].transform.position)
+                        {
+                            StayPoint = Vector2.zero;
+                            Order = 5;
+                            Leave = false;
+                            DoPFix = true;
+                        }
+
+                        break;
+                    case 5:
+                        fixX = false;
+                        fixY = false; 
+                        StayPoint = Vector2.zero;
+                        break;
+                }
+                break;
             case StageName.Stage_2:
                 transform.position = new Vector3 (playerObj.transform.position.x, playerObj.transform.position.y, this.transform.position.z);
                 break;
