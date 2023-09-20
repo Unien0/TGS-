@@ -496,9 +496,9 @@ public class Camera : MonoBehaviour
                         // 移動処理
                         if (this.transform.position == StartPos)
                         {
-                            if (input.y == -1)
+                            if (input.x == -1)
                             {
-                                input.y = 0;
+                                input.x = 0;
                             }
                         }
                         transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.x);
@@ -601,10 +601,12 @@ public class Camera : MonoBehaviour
                         break;
                     case 5:
                         // イベントエリア
-                        if ((ProceedBlocks[0].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[1].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[2].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[3].gameObject.GetComponent<SpriteRenderer>().enabled == false))
+                        if ((ProceedBlocks[0].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[1].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[2].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[3].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[4].gameObject.GetComponent<SpriteRenderer>().enabled == false))
                         {
                             Debug.Log("NICE");
                             Order = 6;
+                            DoPFix = true;
+                            StayPoint = new Vector2(transform.position.x, transform.position.y + 2f);
                         }
                         else
                         {
@@ -615,8 +617,8 @@ public class Camera : MonoBehaviour
                         break;
                     case 6:
                         fixX = false;
-                        fixY = false;
-                        StayPoint = new Vector2(transform.position.x, transform.position.y + 7f);
+                        fixY = true;
+                        StayPoint = new Vector2(transform.position.x, transform.position.y + 2f);
 
                         // 移動処理
                         transform.position = Vector3.MoveTowards(transform.position, Point[3].transform.position, moveSpeed * -input.y);
@@ -658,13 +660,12 @@ public class Camera : MonoBehaviour
                             Order = 8;
                             PosFix = false;
                             Leave = false;
-                            StayPoint = new Vector2(transform.position.x + 7f, transform.position.y);
                         }
                         break;
                     case 8:
-                        fixX = false;
+                        fixX = true;
                         fixY = false;
-                        StayPoint = Vector2.zero;
+                        StayPoint = new Vector2(transform.position.x - 7f, transform.position.y);
                         if (this.transform.position != Point[4].transform.position)
                         {
                             transform.position = Vector3.MoveTowards(transform.position, Point[4].transform.position, moveSpeed * -input.x);
@@ -673,23 +674,56 @@ public class Camera : MonoBehaviour
                         }
                         else if ((playerObj.transform.position.y - this.transform.position.y) < -3)
                         {
-                            transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, moveSpeed * -input.y);
-                            StayPoint = new Vector2(this.transform.position.x, this.transform.position.y + 1);
-                            if (this.transform.position == Point[5].transform.position)
-                            {
-                                Order = 9;
-                            }
+                            Order = 9;
+                            DoPFix = true;
                         }
                         break;
                     case 9:
                         fixX = false;
                         fixY = false;
                         StayPoint = Vector2.zero;
+                        transform.position = Vector3.MoveTowards(transform.position, Point[5].transform.position, moveSpeed * 2);
+                        StayPoint = new Vector2(this.transform.position.x, this.transform.position.y + 1);
                         break;
                 }
                 break;
             case StageName.Stage_2:
-                transform.position = new Vector3 (playerObj.transform.position.x, playerObj.transform.position.y, this.transform.position.z);
+                switch (Order)
+                {
+                    case 0:
+                        fixX = true;
+                        fixY = false;
+                        StayPoint = new Vector2(transform.position.x - 5, transform.position.y);
+                        transform.position = Vector3.MoveTowards(transform.position, Point[0].transform.position, moveSpeed * input.x);
+                        if (this.transform.position == StartPos)
+                        {
+                            if (input.x == -1)
+                            {
+                                input.x = 0;
+                            }
+                        }
+                        if(this.transform.position == Point[0].transform.position)
+                        {
+                            StayPoint = Vector2.zero;
+                            Order = 1;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 1:
+                        fixX = false;
+                        fixY = false;
+                        StayPoint = Vector2.zero;
+                        if ((playerObj.transform.position.y - this.transform.position.y) < -2)
+                        {
+                            StayPoint = Vector2.zero;
+                            Order = 2;
+                            DoPFix = true;
+                        }
+                        break;
+                    case 2:
+                        break;
+
+                }
                 break;
         }
 
