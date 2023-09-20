@@ -8745,8 +8745,8 @@ MonoBehaviour:
   MustEnemyobjctDistance: 0
   CTobject: {fileID: 0}
   targetObj: {fileID: 0}
-  PlayerObj: {fileID: 0}
-  PlayerRoteObject: {fileID: 0}
+  PlayerObj: {fileID: 958856848}
+  PlayerRoteObject: {fileID: 958856847}
 --- !u!1 &584417262
 GameObject:
   m_ObjectHideFlags: 0
@@ -9634,7 +9634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d348ca0ced67645800799cce7634a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 958856848}
   moveSpeed: 0.225
   shake: {fileID: 2044924671}
   Process: 1
@@ -21917,6 +21917,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+--- !u!1 &958856847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7946071330130729279, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+  m_PrefabInstance: {fileID: 958856846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &958856848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6563868376941559791, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+  m_PrefabInstance: {fileID: 958856846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959498260
 GameObject:
   m_ObjectHideFlags: 0
