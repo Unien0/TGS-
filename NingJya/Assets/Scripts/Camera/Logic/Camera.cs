@@ -481,6 +481,10 @@ public class Camera : MonoBehaviour
                         break;
                 }
                 break;
+
+            case StageName.Stage_2:
+                transform.position = new Vector3 (playerObj.transform.position.x, playerObj.transform.position.y, this.transform.position.z);
+                break;
         }
 
         // プレイヤーがカメラから離れていた場合
