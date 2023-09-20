@@ -456,17 +456,17 @@ public class GameManeger : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.F12))
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 SceneManager.LoadScene("1stStage");
             }
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 SceneManager.LoadScene("2ndStage");
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                SceneManager.LoadScene("3rdStage");
+                SceneManager.LoadScene("1stStage_Remake");
             }
         }
 

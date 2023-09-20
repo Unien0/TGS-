@@ -46420,6 +46420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 572858741}
     - target: {fileID: 2830062540462658209, guid: fc4266d2a8bbc0549a7fd3fe97e3452a, type: 3}
+      propertyPath: AudioNumber
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830062540462658209, guid: fc4266d2a8bbc0549a7fd3fe97e3452a, type: 3}
       propertyPath: musicSounrce
       value: 
       objectReference: {fileID: 1852531856}
