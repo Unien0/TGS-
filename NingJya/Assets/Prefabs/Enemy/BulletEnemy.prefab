@@ -178,6 +178,8 @@ MonoBehaviour:
   DeadSE2: {fileID: 8300000, guid: dd9f773cf9a9e804c8dc49e8b3493f21, type: 3}
   MakeComboCount: 0
   ComboEfect: {fileID: 8831881229920725353, guid: be8f2a0b235ed0e48ba4a39c44231459, type: 3}
+  Enter: 0
+  HideTime: 0
 --- !u!70 &2494285840340976854
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -314,7 +316,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
