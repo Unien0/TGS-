@@ -11476,9 +11476,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081842}
+  - {fileID: 678081874}
   selectedCommands:
-  - {fileID: 678081943}
+  - {fileID: 678081945}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -18441,7 +18441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 146
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 6a4c6708c7425bf4caae04d935f17d6f, type: 3}
+  soundClip: {fileID: 8300000, guid: 940b8ac1dc050504bae3e46d9f19ac50, type: 3}
   volume: 1
   waitUntilFinished: 0
 --- !u!114 &678081944
@@ -18458,7 +18458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 145
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 6a4c6708c7425bf4caae04d935f17d6f, type: 3}
+  soundClip: {fileID: 8300000, guid: 940b8ac1dc050504bae3e46d9f19ac50, type: 3}
   volume: 1
   waitUntilFinished: 0
 --- !u!114 &678081945
@@ -18475,7 +18475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 148
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 6a4c6708c7425bf4caae04d935f17d6f, type: 3}
+  soundClip: {fileID: 8300000, guid: 940b8ac1dc050504bae3e46d9f19ac50, type: 3}
   volume: 1
   waitUntilFinished: 0
 --- !u!114 &678081946
@@ -18492,7 +18492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 147
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 6a4c6708c7425bf4caae04d935f17d6f, type: 3}
+  soundClip: {fileID: 8300000, guid: 940b8ac1dc050504bae3e46d9f19ac50, type: 3}
   volume: 1
   waitUntilFinished: 0
 --- !u!1 &682977750
@@ -21619,7 +21619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &937726981
 RectTransform:
   m_ObjectHideFlags: 0
@@ -104323,7 +104323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1958087382
 MonoBehaviour:
   m_ObjectHideFlags: 0
