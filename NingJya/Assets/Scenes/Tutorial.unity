@@ -11484,9 +11484,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081842}
+  - {fileID: 678081824}
   selectedCommands:
-  - {fileID: 678081943}
+  - {fileID: 678081857}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -12034,7 +12034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 64
   indentLevel: 1
-  storyText: "\u203BBGM\u306E\u30EA\u30BA\u30E0\u306B\u5408\u308F\u305B\u3066\u3001\n\u3000\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
+  storyText: "\u203B\u30CB\u30F3\u30B8\u30E3\u304F\u3093\u306E\u52D5\u304D\u306B\u5408\u308F\u305B\u3066\u3001\n\u3000\u300CR\u30B9\u30C6\u30A3\u30C3\u30AF\u300D\u3092\u5F3E\u304D\u5012\u3057\u3066\u653B\u6483"
   description: 
   character: {fileID: 741456783}
   portrait: {fileID: -170410854, guid: ea55a5362bbb49c48bb7b158eba263ed, type: 3}
