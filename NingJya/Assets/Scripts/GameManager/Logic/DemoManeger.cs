@@ -11,18 +11,24 @@ public class DemoManeger : MonoBehaviour
     [SerializeField] private VideoClip[] Videos;
     private bool isClose;
     private int RunbumInt;
-    private bool itTime; 
+    private bool itTime;
+    private bool isPlay;
     void Start()
     {
         VideoPlayer = GetComponent<VideoPlayer>();
         VideoPlayer.loopPointReached += FinishPlayingVideo;
-        RunbumInt = Random.Range(0, Videos.Length + 1);
-        VideoPlayer.clip = Videos[RunbumInt];
-        VideoPlayer.Play();
     }
 
     void Update()
     {
+        if (!isPlay)
+        {
+            RunbumInt = Random.Range(0, Videos.Length + 1);
+            VideoPlayer.clip = Videos[RunbumInt];
+            VideoPlayer.Play();
+            isPlay = true;
+        }
+
         if (Input.anyKeyDown)
         {
             itTime = true;
@@ -33,6 +39,7 @@ public class DemoManeger : MonoBehaviour
         {
             TransitionRotate.isRotate = true;
             isClose = true;
+            itTime = false;
         }
 
         if (isClose)

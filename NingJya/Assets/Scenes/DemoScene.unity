@@ -203,7 +203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "DEMO\n\n Pless Any Key"
+  m_text: "DEMO\n\n Pless Any Button"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
   m_sharedMaterial: {fileID: -2312083323382716168, guid: 5b50d70bbb10bc94aac40b6314ab3605, type: 2}
