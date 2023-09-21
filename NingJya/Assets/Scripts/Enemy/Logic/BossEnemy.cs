@@ -434,7 +434,7 @@ public class BossEnemy : MonoBehaviour
     {
         if (col.gameObject.CompareTag("EnemyBullet"))
         {
-            if (col.gameObject.GetComponent<EnemyBullet>().isBlow == true)
+            if (col.gameObject.GetComponent<EnemyBullet>().isHIT == true)
             {
                 // クールダウンが回復したかどうか
                 if (CoolDownTime <= time)
