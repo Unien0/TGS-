@@ -17,6 +17,8 @@ public class Title : MonoBehaviour
     [SerializeField]private AudioClip startClip;
     private bool LoadIt;
 
+    private float DemoLodeTime;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -44,6 +46,13 @@ public class Title : MonoBehaviour
                 StoryScenes.NextStageNum = 0;
                 SceneManager.LoadScene("StoryScene");
             }
+        }
+
+        DemoLodeTime += Time.deltaTime;
+        if (DemoLodeTime >= 20)
+        {
+            Debug.Log("aaa");
+            SceneManager.LoadScene("DemoScene");
         }
     }
 

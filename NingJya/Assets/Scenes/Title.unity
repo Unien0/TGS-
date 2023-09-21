@@ -1996,6 +1996,7 @@ MonoBehaviour:
   Ex: 0
   PlayerObj: {fileID: 0}
   AudioNumber: 3
+  AudioSourceObj: {fileID: 0}
 --- !u!4 &844332287
 Transform:
   m_ObjectHideFlags: 0
