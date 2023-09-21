@@ -410,11 +410,13 @@ public class GameManeger : MonoBehaviour
             time = 0;
             TempoReset = false;
         }
+
         if (Input.GetKeyDown(KeyCode.F2))
         {// 誘導挙動の再設定を行う            
             FindObjectOfType<ConductManeger>().Enemys = new GameObject[0];
             FindObjectOfType<ConductManeger>().Enemys = GameObject.FindGameObjectsWithTag("Enemy");
         }
+
         if (Input.GetKeyDown(KeyCode.F3))
         {// プレイヤーの当たり判定を解除・再設定する
             FindObjectOfType<Player>().PlayerCol2D.enabled = !enabled;
@@ -423,6 +425,8 @@ public class GameManeger : MonoBehaviour
         {// シーンのリロード
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        /*
         if (Input.GetKey(KeyCode.F5))
         {
             if ((Input.GetKeyDown(KeyCode.C)))
@@ -436,7 +440,9 @@ public class GameManeger : MonoBehaviour
 
             }
         }
-        if(Input.GetKeyUp(KeyCode.F5))
+        */
+
+        /*if(Input.GetKeyUp(KeyCode.F5))
         {
             switch (ScanLineLevel)
             {
@@ -453,20 +459,24 @@ public class GameManeger : MonoBehaviour
                     ScanLineObj.GetComponent<Animator>().SetFloat("Level", 2.2f);
                     break;
             }
-        }
+        }*/
         if (Input.GetKey(KeyCode.F12))
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                SceneManager.LoadScene("1stStage");
+                SceneManager.LoadScene("Title");
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                SceneManager.LoadScene("2ndStage");
+                SceneManager.LoadScene("Tutorial");
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 SceneManager.LoadScene("1stStage_Remake");
+            }            
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("2ndStage");
             }
         }
 
