@@ -27,6 +27,7 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] private GameObject ShotRote;
     private float gapPos;
     private float gapfixPos;
+    [SerializeField] private GameObject[] DestoyObj;
     private enum BossNumber
     {
         No1,
@@ -112,7 +113,6 @@ public class BossEnemy : MonoBehaviour
             {
                 gapfixPos += 360;
             }
-            ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
 
             // éÄñSèàóù
             if (isDead)
@@ -129,6 +129,17 @@ public class BossEnemy : MonoBehaviour
                 if (BossType == BossNumber.No2)
                 {
                     anim.SetBool("Hide", false);
+                    foreach (GameObject child in DestoyObj)
+                    {
+                        if (child != null)
+                        {
+                            GameObject.Destroy(child.gameObject);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
 
                 if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
@@ -143,6 +154,10 @@ public class BossEnemy : MonoBehaviour
                     isDead = false;
 
                 }
+            }
+            else
+            {
+                ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
             }
         }
     }
@@ -373,7 +388,7 @@ public class BossEnemy : MonoBehaviour
                                 break;
                             case 2:
                                 // ãﬂê⁄çUåÇ
-                                //anim.SetBool("ATK", true);
+                                anim.SetBool("ATK", true);
                                 break;
                             case 3:
                                 Instantiate(EnemyBullet[Ramdom2nd], this.transform.position, ShotRote.transform.rotation);

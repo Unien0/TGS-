@@ -571,6 +571,10 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        if (col.gameObject.CompareTag("EnemyBullet"))
+        {
+            Hit = true;
+        }
         if (col.gameObject.name == "END")
         {
             rb2d.velocity = Vector2.zero;
