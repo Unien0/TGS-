@@ -75,6 +75,7 @@ public class Items : MonoBehaviour
                         if (hp >= maxHp)
                         {
                             hp = maxHp;
+                            GameManeger.SKillScore = +1000;
                         }
                     }          
                     break;
@@ -95,6 +96,7 @@ public class Items : MonoBehaviour
                         if (nowBullet >= maxBullet)
                         {
                             nowBullet = maxBullet;
+                            GameManeger.SKillScore = +300;
                         }
                         Debug.Log(nowBullet);
                     }
