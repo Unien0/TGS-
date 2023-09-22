@@ -126,6 +126,10 @@ public class BossEnemy : MonoBehaviour
                     GameManeger.KillBOSS += 5000;
                 }
                 rb2d.velocity = Vector3.zero;
+                if (BossType == BossNumber.No2)
+                {
+                    anim.SetBool("Hide", false);
+                }
 
                 if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
                 {
@@ -160,6 +164,7 @@ public class BossEnemy : MonoBehaviour
                         // クールダウンが回復したかどうか
                         if (CoolDownTime <= time)
                         {
+                            FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
                             //方向
                             shotrote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
                             if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
@@ -334,7 +339,7 @@ public class BossEnemy : MonoBehaviour
             {
                 fix = false;
                 ExChange = false;
-
+                Debug.Log("ActCounter = " + ActCounter);
                 switch (ActCounter)
                 {
                     case 1:
@@ -394,7 +399,10 @@ public class BossEnemy : MonoBehaviour
                     anim.SetBool("ATK", false);
                     anim.SetBool("Shot", false);
 
-
+                    if (ActCounter == 1)
+                    {
+                        anim.SetBool("Hide", true);
+                    }
                     // アクションカウントを上昇させる
                     ActCounter++;
                     if (ActCounter == 5)

@@ -75,7 +75,7 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Order);
+        // Debug.Log(Order);
         MoveProcess();
         ShakeProcess();
         Degreeofprogress();
