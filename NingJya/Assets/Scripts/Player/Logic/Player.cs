@@ -102,7 +102,10 @@ public class Player : MonoBehaviour
     private float animSpeed;
 
     public Vector2 shotrote;
-    [SerializeField]private Vector2 moveInput;
+    private Vector2 moveInput;
+   [SerializeField] private Vector2 TemporaryInput;
+    private float inputFixH;
+    private float inputFixV;
 
     private bool InputATK; 
     [SerializeField] private GameObject AttackArea;    
@@ -241,7 +244,34 @@ public class Player : MonoBehaviour
         // ˆÚ“®“ü—Í 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-                
+        
+        if(Input.GetAxis("Horizontal") == 0)
+        {
+            inputFixH += Time.deltaTime;
+            if ((inputFixH > 1f) || removable)
+            {
+                TemporaryInput.x = 0;
+            }
+        }
+        else
+        {
+            inputFixH = 0;
+            TemporaryInput.x = horizontal;
+        }
+        if(Input.GetAxis("Vertical") == 0)
+        {
+            inputFixV += Time.deltaTime;
+            if ((inputFixV > 1f) || removable)
+            {
+                TemporaryInput.y = 0;
+            }
+        }
+        else
+        {
+            inputFixV = 0;
+            TemporaryInput.y = vertical;
+        }
+        
         if (removable && !taking)
         {
             if (!maked)
@@ -260,33 +290,33 @@ public class Player : MonoBehaviour
         {
             IsAttack = false; 
             maked = false;
-            if ((horizontal != 0) || (vertical != 0))
+            if ((TemporaryInput.x != 0) || (TemporaryInput.y != 0))
             {   // “ü—Í‚É‰ž‚¶‚ÄAUŒ‚”ÍˆÍ‚ð‰ñ“]‚·‚é
 
                 #region roteMax•ÏX
                 // “ü—Í‚É‰ž‚¶‚ÄA‰ñ“]‚ð•ÏX‚·‚é
-                //if ((horizontal >= 0.01f) && (vertical >= 0.01f))
+                //if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y >= 0.01f))
                 //{ roteMax = 315; moveInput = new Vector2(1, 1); }
 
-                if ((horizontal == 0) && (vertical >= 0.01))
+                if ((TemporaryInput.x == 0) && (TemporaryInput.y >= 0.01))
                 { roteMax = 0; moveInput = new Vector2(0, 1); }
 
-                //if ((horizontal <= -0.01f) && (vertical >= 0.01f))
+                //if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y >= 0.01f))
                 //{ roteMax = 45; moveInput = new Vector2(-1, 1); }
 
-                if ((horizontal <= -0.01f) && (vertical == 0))
+                if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y == 0))
                 { roteMax = 90; moveInput = new Vector2(-1, 0); }
 
-                //if ((horizontal <= -0.01f) && (vertical <= -0.01f))
+                //if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y <= -0.01f))
                 //{ roteMax = 135; moveInput = new Vector2(-1, -1); }
 
-                if ((horizontal == 0) && (vertical <= -0.01f))
+                if ((TemporaryInput.x == 0) && (TemporaryInput.y <= -0.01f))
                 { roteMax = 180; moveInput = new Vector2(0, -1); }
 
-                //if ((horizontal >= 0.01f) && (vertical <= -0.01f))
+                //if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y <= -0.01f))
                 //{ roteMax = 225; moveInput = new Vector2(1, -1); }
-                
-                if ((horizontal >= 0.01f) && (vertical == 0))
+
+                if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y == 0))
                 { roteMax = 270; moveInput = new Vector2(1, 0); }
                 #endregion
 
@@ -297,12 +327,12 @@ public class Player : MonoBehaviour
                 // UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚ð‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÉŒÀ‚é
                 //if ()
                 {
-                    if (moveCon.x >= 0.1f)
+                    if (moveInput.x >= 0.1f)
                     {
                         SpR.flipX = true;
                         anim.SetBool("Side", true);
                     }
-                    else if (moveCon.x <= -0.1f)
+                    else if (moveInput.x <= -0.1f)
                     {
                         SpR.flipX = false;
                         anim.SetBool("Side", true);
@@ -313,13 +343,13 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                if (moveCon.y >= 0.1f)
+                if (moveInput.y >= 0.1f)
                 {
                     anim.SetBool("Top", true);
                     anim.SetBool("Bottom", false);
 
                 }
-                else if (moveCon.y <= -0.1f)
+                else if (moveInput.y <= -0.1f)
                 {
                     anim.SetBool("Top", false);
                     anim.SetBool("Bottom", true);
