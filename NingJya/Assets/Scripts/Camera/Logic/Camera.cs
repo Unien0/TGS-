@@ -541,7 +541,7 @@ public class Camera : MonoBehaviour
                     case 2:
                         fixX = false;
                         fixY = true;
-                        StayPoint = new Vector2(transform.position.x, transform.position.y - 4);
+                        StayPoint = new Vector2(transform.position.x, transform.position.y - 2);
                         // à⁄ìÆèàóù
                         transform.position = Vector3.MoveTowards(transform.position, Point[1].transform.position, moveSpeed * input.y);
 
