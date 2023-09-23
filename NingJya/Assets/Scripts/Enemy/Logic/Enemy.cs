@@ -458,7 +458,7 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        if (Enter)
+        /*if (Enter)
         {
             HideTime += Time.deltaTime;
             if (HideTime > 0.25f)
@@ -471,13 +471,14 @@ public class Enemy : MonoBehaviour
         {
             HideMobe = false;
             HideTime = 0;
-        }
+        }*/
 
         if (HideMobe)
         {
             col2d.enabled = false;
             SpR.enabled = false;
             anim.SetBool("Hide", true);
+            Debug.Log("Hide");
         }
         else
         {
