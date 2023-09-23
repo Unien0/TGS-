@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StoryScene.unity
     guid: 491704e2838b187488835258c4dcfb30
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/0_Tutorial.unity
     guid: afa365c78f9d3964682d8176ab4ad500
   - enabled: 1
     path: Assets/Scenes/1stStage_Remake.unity

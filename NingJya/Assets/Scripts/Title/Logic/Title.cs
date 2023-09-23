@@ -35,6 +35,7 @@ public class Title : MonoBehaviour
     {
         if (LoadIt)
         {
+            DemoLodeTime = 0;
             lodeTime += Time.deltaTime;
             if (lodeTime >= 3)
             {
@@ -47,12 +48,13 @@ public class Title : MonoBehaviour
                 SceneManager.LoadScene("StoryScene");
             }
         }
-
-        DemoLodeTime += Time.deltaTime;
-        if (DemoLodeTime >= 20)
+        else
         {
-            Debug.Log("aaa");
-            SceneManager.LoadScene("DemoScene");
+            DemoLodeTime += Time.deltaTime;
+            if (DemoLodeTime >= 20)
+            {
+                SceneManager.LoadScene("DemoScene");
+            }
         }
     }
 
