@@ -538,7 +538,7 @@ public class Player : MonoBehaviour
 
         if (removable)
         {
-            if ((Input.GetKeyDown(KeyCode.Q)) || Input.GetKey("joystick button 4"))
+            if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0))
             {
                 if (nowBullet > 0)
                 {
