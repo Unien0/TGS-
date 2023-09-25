@@ -52,7 +52,7 @@ public class GameOver : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GAMEOVER = false;
-            ReStartManeger.CanReSporn = true;
+            //ReStartManeger.CanReSporn = true;
         }
     }
 }

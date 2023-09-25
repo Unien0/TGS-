@@ -13,8 +13,8 @@ public class ReStartPoint : MonoBehaviour
         if(col.gameObject.name == "！Player")
         {
             // 親機(ReStartManeger)にこのオブジェクトの情報を送信する
-            ReStartManeger.ReSpornPoint = transform.position;
-            ReStartManeger.SaveOrder = SaveOrderNumber;
+            //ReStartManeger.ReSpornPoint = transform.position;
+            //ReStartManeger.SaveOrder = SaveOrderNumber;
         }
     }
 }

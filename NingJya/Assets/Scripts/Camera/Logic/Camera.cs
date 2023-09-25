@@ -50,7 +50,7 @@ public class Camera : MonoBehaviour
     {
         StartPos = this.transform.position;
         DoPFix = true;
-
+        /*
         if (ReStartNumber != 0)
         {
             switch (Process)
@@ -69,7 +69,7 @@ public class Camera : MonoBehaviour
                     }
                     break;
             }
-        }
+        }*/
     }
 
     // Update is called once per frame
