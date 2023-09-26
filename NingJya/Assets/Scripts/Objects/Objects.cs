@@ -69,7 +69,9 @@ public class Objects : MonoBehaviour
     private bool Motion;
 
     // ギミック用変数(A,B,X,Yボタンを多様)
+    [SerializeField] private GameObject GimmickObj;
     [SerializeField]private int GimmickInput;
+    private int roteMax;
 
     public enum ObjectType
     {
@@ -161,23 +163,70 @@ public class Objects : MonoBehaviour
                     if (Input.GetKeyDown("joystick button 0"))
                     { // Aの場合
                         Debug.Log("A");
-                        GimmickInput = 0;
+
+                        // B → A 
+                        if (GimmickInput == 1)
+                        {
+                            roteMax -= 15;
+                            GimmickInput = 0;
+                        }
+                        // X → A 
+                        if (GimmickInput == 2)
+                        {
+                            roteMax += 15;
+                            GimmickInput = 0;
+                        }
                     }
                     if (Input.GetKeyDown("joystick button 1"))
                     { // Bの場合
                         Debug.Log("B");
-                        GimmickInput = 1;
+                        // Y → B
+                        if (GimmickInput == 3)
+                        {
+                            roteMax -= 15;
+                            GimmickInput = 1;
+                        }
+                        // A → B
+                        if (GimmickInput == 0)
+                        {
+                            roteMax += 15;
+                            GimmickInput = 1;
+                        }
                     }
                     if (Input.GetKeyDown("joystick button 2"))
                     { // Xの場合
                         Debug.Log("X");
-                        GimmickInput = 2;
+                        // A → X
+                        if (GimmickInput == 0)
+                        {
+                            roteMax -= 15;
+                            GimmickInput = 2;
+                        }
+                        // Y → X
+                        if (GimmickInput == 3)
+                        {
+                            roteMax += 15;
+                            GimmickInput = 2;
+                        }
                     }
                     if (Input.GetKeyDown("joystick button 3"))
                     { // Yの場合
                         Debug.Log("Y");
-                        GimmickInput = 3;
+
+                        // X → Y 
+                        if (GimmickInput == 2)
+                        {
+                            roteMax -= 15;
+                            GimmickInput = 3;
+                        }
+                        // B → Y 
+                        if (GimmickInput == 1)
+                        {
+                            roteMax += 15;
+                            GimmickInput = 3;
+                        }
                     }
+                    GimmickObj.transform.rotation = Quaternion.Euler(0, 0, roteMax);
                     break;
             }
         }
