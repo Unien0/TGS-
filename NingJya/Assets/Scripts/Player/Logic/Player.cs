@@ -244,7 +244,7 @@ public class Player : MonoBehaviour
         // ˆÚ“®“ü—Í 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        
+        Debug.Log("X = " + horizontal + ", Y = " + vertical);
         if(Input.GetAxis("Horizontal") == 0)
         {
             inputFixH += Time.deltaTime;
@@ -295,26 +295,26 @@ public class Player : MonoBehaviour
 
                 #region roteMax•ÏX
                 // “ü—Í‚É‰ž‚¶‚ÄA‰ñ“]‚ð•ÏX‚·‚é
-                //if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y >= 0.01f))
-                //{ roteMax = 315; moveInput = new Vector2(1, 1); }
+                if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y >= 0.01f))
+                { roteMax = 315; moveInput = new Vector2(1, 1); }
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y >= 0.01))
                 { roteMax = 0; moveInput = new Vector2(0, 1); }
 
-                //if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y >= 0.01f))
-                //{ roteMax = 45; moveInput = new Vector2(-1, 1); }
+                if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y >= 0.01f))
+                { roteMax = 45; moveInput = new Vector2(-1, 1); }
 
                 if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y == 0))
                 { roteMax = 90; moveInput = new Vector2(-1, 0); }
 
-                //if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y <= -0.01f))
-                //{ roteMax = 135; moveInput = new Vector2(-1, -1); }
+                if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y <= -0.01f))
+                { roteMax = 135; moveInput = new Vector2(-1, -1); }
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y <= -0.01f))
                 { roteMax = 180; moveInput = new Vector2(0, -1); }
 
-                //if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y <= -0.01f))
-                //{ roteMax = 225; moveInput = new Vector2(1, -1); }
+                if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y <= -0.01f))
+                { roteMax = 225; moveInput = new Vector2(1, -1); }
 
                 if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y == 0))
                 { roteMax = 270; moveInput = new Vector2(1, 0); }
