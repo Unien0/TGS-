@@ -68,11 +68,15 @@ public class Objects : MonoBehaviour
     public bool Activate;
     private bool Motion;
 
+    // ギミック用変数(A,B,X,Yボタンを多様)
+    [SerializeField]private int GimmickInput;
+
     public enum ObjectType
     {
         Cushion,
         Table,
         BambooTrap,
+        RotatingFloor,
         end
     }
     public ObjectType ObjNAME;
@@ -94,7 +98,7 @@ public class Objects : MonoBehaviour
             case ObjectType.Cushion:
                 ForcePoint = 800; break;
             case ObjectType.Table:
-                ForcePoint = 400; break;
+                ForcePoint = 100; break;
         }
     }
 
@@ -109,7 +113,6 @@ public class Objects : MonoBehaviour
             {
                 if (IsAttack)
                 {
-                    Debug.Log("Get E");
                     shoted = true;
                     BlowAway();
                     actTime = 0;
@@ -127,7 +130,10 @@ public class Objects : MonoBehaviour
         }
         else
         {
-            ToStop();
+            if (ObjNAME != ObjectType.RotatingFloor)
+            {
+                ToStop();
+            }
         }
 
         if (Activate)
@@ -149,6 +155,28 @@ public class Objects : MonoBehaviour
                             Motion = false;
                             animator.SetBool("Boot", false);
                         }
+                    }
+                    break;
+                case ObjectType.RotatingFloor:
+                    if (Input.GetKeyDown("joystick button 0"))
+                    { // Aの場合
+                        Debug.Log("A");
+                        GimmickInput = 0;
+                    }
+                    if (Input.GetKeyDown("joystick button 1"))
+                    { // Bの場合
+                        Debug.Log("B");
+                        GimmickInput = 1;
+                    }
+                    if (Input.GetKeyDown("joystick button 2"))
+                    { // Xの場合
+                        Debug.Log("X");
+                        GimmickInput = 2;
+                    }
+                    if (Input.GetKeyDown("joystick button 3"))
+                    { // Yの場合
+                        Debug.Log("Y");
+                        GimmickInput = 3;
                     }
                     break;
             }
@@ -249,12 +277,15 @@ public class Objects : MonoBehaviour
         }
         if (col.CompareTag("Enemy"))
         {
-            col2d.isTrigger = false;
+            if (ObjNAME != ObjectType.RotatingFloor)
+            {
+                col2d.isTrigger = false;
+            }
         }
         if (col.gameObject.name == "！Player")
         {
 
-            if (ObjNAME == ObjectType.BambooTrap)
+            if ((ObjNAME == ObjectType.BambooTrap) || (ObjNAME == ObjectType.RotatingFloor))
             {
                 Activate = true;
             }
@@ -279,6 +310,13 @@ public class Objects : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             col2d.isTrigger = true;
+        }
+        if (col.gameObject.name == "！Player")
+        {
+            if (ObjNAME == ObjectType.RotatingFloor)
+            {
+                Activate = false;
+            }
         }
     }
 }

@@ -244,7 +244,7 @@ public class Player : MonoBehaviour
         // ˆÚ“®“ü—Í 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Debug.Log("X = " + horizontal + ", Y = " + vertical);
+        //Debug.Log("X = " + horizontal + ", Y = " + vertical);
         if(Input.GetAxis("Horizontal") == 0)
         {
             inputFixH += Time.deltaTime;
