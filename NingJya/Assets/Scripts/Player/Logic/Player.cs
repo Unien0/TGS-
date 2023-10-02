@@ -91,53 +91,60 @@ public class Player : MonoBehaviour
     }
     #endregion 
 
-    private float time;
-    public float roteMax;
-    private float inputX;
-    private float inputY;
-    private float MutekiTime;
-    public bool Hit;
-    public bool ATK;
-    private bool maked;
-    private float animSpeed;
-
-    public Vector2 shotrote;
-    private Vector2 moveInput;
-   [SerializeField] private Vector2 TemporaryInput;
-    private float inputFixH;
-    private float inputFixV;
-
-    private bool InputATK; 
-    [SerializeField] private GameObject AttackArea;    
-    public  GameObject KATANA;
+    private float inputX;                   // 横軸の移動入力を確認する変数
+    private float inputY;                   // 縦軸の移動入力を確認する変数
+    private Vector2 TemporaryInput;         // 一時的に移動入力を保存する変数
+    private float inputFixH;                // TemporaryInput.xの値を初期化するまでの時間
+    private float inputFixV;                // TemporaryInput.yの値を初期化するまでの時間
+    private Vector2 moveInput;              // 1テンポ毎事の移動入力を保存する変数
+    private bool maked;                     // 移動エフェクトの生成を確認する変数
+    // 移動エフェクトを保存する変数
     [SerializeField] private GameObject MoveEfect;
 
-    private Rigidbody2D rb2d;
-    private Animator anim;
-    private SpriteRenderer SpR;
-    public Collider2D PlayerCol2D;
+    private float MutekiTime;               // ダメージ時後の無敵時間を管理する変数
+    public bool Hit;                        // ダメージを食らった時の確認用変数
 
-    private PlayerInputActions controls;
-    private Vector2 moveCon;
+    // 攻撃範囲オブジェクトを保存する変数
+    [SerializeField] private GameObject AttackArea;
+    private bool InputATK;                  // 攻撃入力の確認用変数
+    public float roteMax;                   // 攻撃範囲の回転数を保存する変数
+
+    private float animSpeed;                // アニメーション速度の値を保存する変数
+
+    private Rigidbody2D rb2d;               // Rigidbody2Dコンポーネントを保存する変数
+    private Animator anim;                  // Animatorコンポーネントを保存する変数
+    private SpriteRenderer SpR;             // SpriteRendererコンポーネントを保存する変数
+    public Collider2D PlayerCol2D;          // Collider2Dコンポーネントを保存する変数
+    private PlayerInputActions controls;    // PlayerInputActionsを使用するための変数
+    private Vector2 moveCon;                // コントローラーのスティック操作を認識するための変数
     private bool AlphaExchange;
 
     private AudioSource Audio;
     [SerializeField] private AudioClip DamageSE;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject BulletRote;
-    public bool Maked = true;
 
     private void Awake()
     {
-        PlayerCol2D = GetComponent<Collider2D>();
+
+        // Rigidbody2Dコンポーネントを保存する
         rb2d = GetComponent<Rigidbody2D>();
+        // Animatorコンポーネントを保存する
         anim = GetComponent<Animator>();
+        // SpriteRendererコンポーネントを保存する
         SpR = GetComponentInChildren<SpriteRenderer>();
+        // Collider2Dコンポーネントを保存する
+        PlayerCol2D = GetComponent<Collider2D>();
+
+        // マウスカーソルを非表示にする
         Cursor.visible = false;
+
+        // コントローラーのスティック操作に応じて処理を行うように初期化する
         controls = new PlayerInputActions();
+        // 操作入力に応じてmoveConに値を保存するように初期化する
         controls.GamePlay.Move.performed += ctx => moveCon = ctx.ReadValue<Vector2>();
         controls.GamePlay.Move.canceled += ctx => moveCon = Vector2.zero;
-
+        // 攻撃入力に応じて攻撃処理を行うように初期化する
         controls.GamePlay.Attack.started += ctx => Attack();
     }
 
@@ -174,10 +181,6 @@ public class Player : MonoBehaviour
         {
             move();
             SwitchAnimation();
-            // 攻撃入力
-            //Attack();
-            //PlayerInput();
-
         }
 
         if (Hit)
@@ -244,7 +247,6 @@ public class Player : MonoBehaviour
         // 移動入力 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        //Debug.Log("X = " + horizontal + ", Y = " + vertical);
         if(Input.GetAxis("Horizontal") == 0)
         {
             inputFixH += Time.deltaTime;
@@ -284,7 +286,6 @@ public class Player : MonoBehaviour
             }
             // 移動処理
             rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-            //rb2d.velocity = new Vector2(moveCon.x * speed, moveCon.y * speed);
         }
         else
         {
@@ -296,53 +297,47 @@ public class Player : MonoBehaviour
                 #region roteMax変更
                 // 入力に応じて、回転を変更する
                 if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y >= 0.01f))
-                { roteMax = 315; moveInput = new Vector2(1, 1); }
+                { moveInput = new Vector2(1, 1); }
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y >= 0.01))
-                { roteMax = 0; moveInput = new Vector2(0, 1); }
+                { moveInput = new Vector2(0, 1); }
 
                 if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y >= 0.01f))
-                { roteMax = 45; moveInput = new Vector2(-1, 1); }
+                { moveInput = new Vector2(-1, 1); }
 
                 if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y == 0))
-                { roteMax = 90; moveInput = new Vector2(-1, 0); }
+                { moveInput = new Vector2(-1, 0); }
 
                 if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y <= -0.01f))
-                { roteMax = 135; moveInput = new Vector2(-1, -1); }
+                { moveInput = new Vector2(-1, -1); }
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y <= -0.01f))
-                { roteMax = 180; moveInput = new Vector2(0, -1); }
+                { moveInput = new Vector2(0, -1); }
 
                 if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y <= -0.01f))
-                { roteMax = 225; moveInput = new Vector2(1, -1); }
+                { moveInput = new Vector2(1, -1); }
 
                 if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y == 0))
-                { roteMax = 270; moveInput = new Vector2(1, 0); }
+                { moveInput = new Vector2(1, 0); }
                 #endregion
 
-                //AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
-
-                // 入力に応じて スプライト変更をする
-                // 横方向の回転
-                // 攻撃アニメーションをしていないときに限る
-                //if ()
+                // 入力に応じてアニメーションを変更する
+                // 横軸入力
+                if (moveInput.x >= 0.1f)
                 {
-                    if (moveInput.x >= 0.1f)
-                    {
-                        SpR.flipX = true;
-                        anim.SetBool("Side", true);
-                    }
-                    else if (moveInput.x <= -0.1f)
-                    {
-                        SpR.flipX = false;
-                        anim.SetBool("Side", true);
-                    }
-                    else
-                    {
-                        anim.SetBool("Side", false);
-                    }
+                    SpR.flipX = true;
+                    anim.SetBool("Side", true);
                 }
-
+                else if (moveInput.x <= -0.1f)
+                {
+                    SpR.flipX = false;
+                    anim.SetBool("Side", true);
+                }
+                else
+                {
+                    anim.SetBool("Side", false);
+                }
+                // 縦軸入力
                 if (moveInput.y >= 0.1f)
                 {
                     anim.SetBool("Top", true);
@@ -364,7 +359,6 @@ public class Player : MonoBehaviour
             {moveInput = Vector2.zero; }
             rb2d.velocity = new Vector2(0, 0);
             attackable = false;
-            //KATANA.GetComponent<Animator>().SetBool("ATK", false);
             anim.SetBool("Attack", false);
         }
     }
@@ -375,11 +369,9 @@ public class Player : MonoBehaviour
         float vr_R = Input.GetAxis("Vertical_Right");
 
         if ((hr_R != 0) || (vr_R != 0))
-        {   // 入力に応じて、攻撃範囲を回転する
+        {   // 入力に応じて、攻撃範囲を回転、攻撃アニメーションを再生する
             #region roteMax変更
-            // 入力に応じて、回転を変更する
-
-            // 上
+            // 上入力
             if ((hr_R == 0) && (vr_R >= 0.01))
             {
                 roteMax = 0;
@@ -388,11 +380,11 @@ public class Player : MonoBehaviour
                 anim.SetBool("Up_R", true);
                 anim.SetBool("Down_R", false);
             }
-
-            // 左
+            // 左入力
             if ((hr_R <= -0.01f) && (vr_R == 0))
             {
                 roteMax = 90;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", true);
@@ -409,11 +401,11 @@ public class Player : MonoBehaviour
                 }
 
             }
-
-            // 右
+            // 右入力
             if ((hr_R >= 0.01f) && (vr_R == 0))
             {
                 roteMax = 270;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", false);
@@ -429,8 +421,7 @@ public class Player : MonoBehaviour
                     anim.SetBool("Down_R", false);
                 }
             }
-
-            // 下
+            // 下入力
             if ((hr_R == 0) && (vr_R <= -0.01f))
             {
                 roteMax = 180;
@@ -439,11 +430,11 @@ public class Player : MonoBehaviour
                 anim.SetBool("Up_R", false);
                 anim.SetBool("Down_R",true);
             }
-
-            // 右上
+            // 右上入力
             if ((hr_R >= 0.01f) && (vr_R >= 0.01f))
             {
                 roteMax = 315;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", false);
@@ -460,11 +451,11 @@ public class Player : MonoBehaviour
                 }
 
             }
-
-            // 左上
+            // 左上入力
             if ((hr_R <= -0.01f) && (vr_R >= 0.01f))
             {
                 roteMax = 45;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", true);
@@ -480,11 +471,11 @@ public class Player : MonoBehaviour
                     anim.SetBool("Down_R", false);
                 }
             }
-
-
-            // 左下
+            // 左下入力
             if ((hr_R <= -0.1f) && (vr_R <= -0.01f))
             {
+                roteMax = 135;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", true);
@@ -499,13 +490,12 @@ public class Player : MonoBehaviour
                     anim.SetBool("Up_R", false);
                     anim.SetBool("Down_R", true);
                 }
-                roteMax = 135;
-
             }
-
             // 右下
             if ((hr_R >= 0.01f) && (vr_R <= -0.01f))
             {
+                roteMax = 225;
+                // フリップの状態に合わせてSetBoolを変更する
                 if (SpR.flipX == true)
                 {
                     anim.SetBool("Right_R", false);
@@ -520,14 +510,9 @@ public class Player : MonoBehaviour
                     anim.SetBool("Up_R", false);
                     anim.SetBool("Down_R", true);
                 }
-                roteMax = 225;
-
             }
-
-
-
-
             #endregion
+            // 攻撃範囲を回転させる
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
             InputATK = true;
         }
@@ -554,16 +539,10 @@ public class Player : MonoBehaviour
                 if (InputATK)
                 {
                     attackable = true;
-                    KATANA.GetComponent<Animator>().SetBool("ATK", true);
                     anim.SetBool("Attack", true);
                     IsAttack = true;
                 }
             }
-        }
-
-        if (!Maked)
-        {
-            Instantiate(Bullet, this.transform.position, BulletRote.transform.rotation);
         }
     }
 
@@ -573,7 +552,6 @@ public class Player : MonoBehaviour
         if (inputY <= 0f && TimeInspect)
         {
             anim.SetBool("TimeInspect", true);
-            //Debug.Log("back");
         }
         else
         {
