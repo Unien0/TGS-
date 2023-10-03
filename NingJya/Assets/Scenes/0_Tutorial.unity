@@ -8967,7 +8967,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemys: []
-  noneCol: 0
   conductObjGap: {x: 0, y: 0}
   conduct: 0
   chackObj: {fileID: 0}
@@ -11648,9 +11647,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 678081831}
+  - {fileID: 678081875}
   selectedCommands:
-  - {fileID: 678081815}
+  - {fileID: 678081893}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -19720,7 +19719,6 @@ MonoBehaviour:
   BPM: 128
   OneTempo: 0
   MetronomeSE: {fileID: 8300000, guid: b5cfa4b1e7a12354a865299d3fc31eae, type: 3}
-  PlusScore: 0
   Score: 0
   ScorePlusTMPui: {fileID: 567734167}
   ScoreBordTMPui: {fileID: 1090595031}
@@ -19740,10 +19738,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc8f05b7d083dbf4b9ef5e02fd23fb63, type: 3}
   - {fileID: 21300000, guid: 6639db8b13bfe1647ae66afe1d14ea95, type: 3}
   - {fileID: 21300000, guid: f9e7a1f0f5ef3c64f93aa38cab2a3825, type: 3}
-  ComboLimit: 0
   shakeManeger: {fileID: 754888808}
   ScanLineObj: {fileID: 1049291189}
-  ScanLineLevel: 1
 --- !u!114 &754888807
 MonoBehaviour:
   m_ObjectHideFlags: 0
