@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ConductManeger : MonoBehaviour
 {
-    public GameObject[] Enemys;
-    public bool noneCol;
-    int Flow;
-    Vector2 Gap;
-    Vector2 GapSign;
+
+    public GameObject[] Enemys;     // 全敵オブジェクトの情報をを保存する変数
+
+    private Vector2 Gap;            // 目標オブジェクトと対象オブジェクトの距離差を保存する変数
     public Vector2 conductObjGap;
     public bool conduct;
     public GameObject chackObj;

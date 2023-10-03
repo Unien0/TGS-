@@ -51,66 +51,76 @@ public class GameManeger : MonoBehaviour
     #endregion
 
 
-    public float BPM;
-    public static int Tempo;
-    private double time;
-    public double OneTempo;
-    // 全スクリプトが参照にするテンポ変化確認
-    public static bool TempoExChange;
-    // 全スクリプトが参照にするアニメーション速度
-    public static float AnimSpeed;
+    public float BPM;                           // BGM数の設定
+    public static int Tempo;                    // 拍数の取得
+    private float time;                         // 経過秒数
+    public float OneTempo;                      // 1テンポ間の秒数を取得
+    public static bool TempoExChange;           // テンポの変化を確認する変数(全スクリプトが参照)
+    public static float AnimSpeed;              // BPMに応じたアニメーション速度(全スクリプトが参照)
 
-    private AudioSource Audio;
+    private AudioSource Audio;                  // AudioSourceコンポーネントを保存する変数
+    private bool isSound;                       // サウンドを鳴らしたか確認する変数
+    // メトロノームの音声を保存する変数
     [SerializeField] private AudioClip MetronomeSE;
-    bool isSound;
 
+    // =================
     // スコア関係
-    private bool isFix;
-    [SerializeField] private int PlusScore;
-    public int Score = 000;
+    // =================
+    private bool isFix;                         // スコアを修正したかどうか確認する変数
+    private int PlusScore;                      // 加算するスコアの値
+    public int Score = 000;                     // 現在のスコアを保存する変数
+
+    // 加算スコアを記載するテキストオブジェクトを保存する変数
     [SerializeField] private TextMeshProUGUI ScorePlusTMPui;
+    // 最終スコアを記載するオブジェクトを保存する変数
     [SerializeField] private TextMeshProUGUI ScoreBordTMPui;
+    //  現在スコアを記載するオブジェクトを保存する変数
     [SerializeField] private TextMeshProUGUI TMPui;
 
-    // 倒した敵の数
-    public static int KillEnemy;
-    // ぶつけて倒した敵の数
-    public static int hitEnemy;
-    // 倒したボスの点数
-    public static int KillBOSS;
-    // スキルボーナス
-    public static int SKillScore;
 
-    //コンボオブジェクト
+    public static int KillEnemy;                // 倒した敵の数
+    public static int hitEnemy;                 // ぶつけて倒した敵の数
+    public static int KillBOSS;                 // 倒したボスの点数
+    public static int SKillScore;               // スキルボーナス
+
+
+    // =================
+    // コンボ関係
+    // =================
+    // コンボ表記オブジェクトを保存する変数
     [SerializeField] private GameObject CombosObjct;
-    // コンボゲージオブジェクト
+    // コンボゲージ(制限時間)オブジェクトを保存する変数
     [SerializeField] private Slider ComboGaugeObjct;
-    // コンボテキスト
+    // コンボ数を表記するオブジェクトを保存する変数
+    // 1の桁のオブジェクト
     [SerializeField] private Image ComboText_1;
+    // 10の桁のオブジェクト
     [SerializeField] private Image ComboText_2;
+    // コンボ数スプライトを保存する変数
     [SerializeField] private Sprite[] Numbers;
-   // コンボの確認
-   public  static bool ComboCheck;
-    // コンボ中(ステータス)
-    private bool isCombo;
-    // コンボの制限時間
-    [SerializeField]private float ComboLimit;
-    // 現在コンボ数
-    public static int ComboCount;
-    // 最大コンボ数
-    public static int ComboMax;
-    public static bool TempoReset;
-    public ShakeManeger shakeManeger;
-    public static float shakeTime;
 
-    // スキャンラインオブジェクト
+
+    public static bool ComboCheck;              // コンボ処理を確認する変数
+    private bool isCombo;                       // コンボ状態であることを確認する変数
+    private float ComboLimit;                   // コンボの継続時間
+    public static int ComboCount;               // 現在のコンボ数
+    public static int ComboMax;                 // 最大コンボ数
+
+
+    public static bool TempoReset;              // テンポのリセット処理を受け付けるための変数
+    public ShakeManeger shakeManeger;           // ゲーム画面を揺らすスクリプトの取得
+    public static float shakeTime;              // ゲーム画面を揺らし続ける継続時間
+
+    // スキャンラインオブジェクトを取得する変数
     [SerializeField] private GameObject ScanLineObj;
-    [SerializeField] private int ScanLineLevel = 1;
+    // スキャンラインオブジェクトの色の濃さを変更する変数
+    private int ScanLineLevel = 1;
 
 
 
     private void Awake()
     {
+        // テンポ数を初期化する
         TempoChange();
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;

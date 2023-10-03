@@ -521,6 +521,7 @@ public class Player : MonoBehaviour
             InputATK = false;
         }
 
+        // 
         if (removable)
         {
             if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0))
