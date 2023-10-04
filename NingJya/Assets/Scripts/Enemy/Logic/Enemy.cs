@@ -106,6 +106,7 @@ public class Enemy : MonoBehaviour
         end
     }
     
+    [SerializeField]private bool DontSporn;
     public float actTime;// s“®‚Ü‚Å‚Ì‘Ò‹@ŽžŠÔ    
     [SerializeField] private float objctDistance;
     [SerializeField]private float hp;
@@ -604,20 +605,23 @@ public class Enemy : MonoBehaviour
 
                     if (enemyAct == enemyActSet.Dummy)
                     {
-                        if (actTime > blowTime + 1)
+                        if (!DontSporn)
                         {
-                            // ‰Šú‰»‚·‚é
-                            SpR.enabled = true;
-                            col2d.enabled = true;
-                            hp = 1;
-                            transform.position = ReSponePoint;
-                            anim.SetBool("DEAD", false);
-                            AlphaExchange = false;                            
-                            IsSound = false;
-                            shoted = false;
-                            Ready = false;
-                            //GameManeger.ComboMax--;
-                            inPlayerAttackRange = false;
+                            if (actTime > blowTime + 1)
+                            {
+                                // ‰Šú‰»‚·‚é
+                                SpR.enabled = true;
+                                col2d.enabled = true;
+                                hp = 1;
+                                transform.position = ReSponePoint;
+                                anim.SetBool("DEAD", false);
+                                AlphaExchange = false;
+                                IsSound = false;
+                                shoted = false;
+                                Ready = false;
+                                //GameManeger.ComboMax--;
+                                inPlayerAttackRange = false;
+                            }
                         }
                     }
                     else if (actTime > blowTime + 1)

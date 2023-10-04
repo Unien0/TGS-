@@ -2111,6 +2111,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyData
       value: 
       objectReference: {fileID: 11400000, guid: 6ee7f38fbe7ce534b9d02cb5ac8ce24d, type: 2}
@@ -4529,6 +4533,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -19413,7 +19421,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 109
+  itemId: 158
   blockName: npc6
   description: 
   eventHandler: {fileID: 0}
@@ -23519,6 +23527,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -26611,6 +26623,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -46742,6 +46758,16 @@ Tilemap:
       m_TileIndex: 22
       m_TileSpriteIndex: 22
       m_TileMatrixIndex: 11
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 22
+      m_TileSpriteIndex: 22
+      m_TileMatrixIndex: 8
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -87552,7 +87578,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b28c79d98cd08be4686c210310af66af, type: 2}
   - m_RefCount: 45
     m_Data: {fileID: 11400000, guid: ba321fa43b2bf384d9941a5af9d13539, type: 2}
-  - m_RefCount: 165
+  - m_RefCount: 166
     m_Data: {fileID: 11400000, guid: fdefe9b71637ffb448daf738f7355793, type: 2}
   - m_RefCount: 33
     m_Data: {fileID: 11400000, guid: f380df54f24e23e4c83cb17fdb1f5ebb, type: 2}
@@ -87601,7 +87627,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 5003cf4f20a01e2488c98f09fdabae69, type: 3}
   - m_RefCount: 5521
     m_Data: {fileID: 21300000, guid: 3b12f4ad69dd5b149a74893cbbb7cee4, type: 3}
-  - m_RefCount: 165
+  - m_RefCount: 166
     m_Data: {fileID: 21300000, guid: baa57059c64f13c448784ccc7e4a9302, type: 3}
   - m_RefCount: 33
     m_Data: {fileID: 21300000, guid: 72407dee80966284dae49ececb12bd76, type: 3}
@@ -87698,21 +87724,21 @@ Tilemap:
       e33: 1
   - m_RefCount: 0
     m_Data:
-      e00: -309802500
-      e01: 7e-45
-      e02: -1332.5625
+      e00: 178976.75
+      e01: 0
+      e02: 1.696302e-16
       e03: 0
-      e10: 2.21e-43
-      e11: 1.8e-44
+      e10: 7.6e-44
+      e11: 0
       e12: 4.5904e-41
       e13: 0
-      e20: 4.6655e-41
+      e20: 4.6344e-41
       e21: 0
-      e22: -309802000
+      e22: 178976.5
       e23: 0
       e30: 0
       e31: 7.34684e-40
-      e32: 2.21e-43
+      e32: 7.6e-44
       e33: 1
   - m_RefCount: 24
     m_Data:
@@ -87750,14 +87776,14 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 34
+  - m_RefCount: 35
     m_Data:
-      e00: 0
-      e01: -1
+      e00: 0.000000059604645
+      e01: -0.99999994
       e02: 0
       e03: 0
-      e10: 1
-      e11: 0
+      e10: 0.99999994
+      e11: 0.000000059604645
       e12: 0
       e13: 0
       e20: 0
@@ -87859,7 +87885,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 5974
+  - m_RefCount: 5975
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 0.9
@@ -88267,6 +88293,10 @@ PrefabInstance:
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyData
@@ -107347,6 +107377,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -109210,6 +109244,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyData
       value: 
       objectReference: {fileID: 11400000, guid: 6ee7f38fbe7ce534b9d02cb5ac8ce24d, type: 2}
@@ -109690,6 +109728,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: enemyAct
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+      propertyPath: DontSporn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996116, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
