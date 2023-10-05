@@ -117,7 +117,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(this.gameObject);
             FindObjectOfType<Player>().Hit = true;
         }
-        if ((collision.gameObject.name == "Tilemap_outside_wall") ||(collision.gameObject.name == "Tilemap_wall") || (collision.gameObject.CompareTag("wall")))
+        if ((collision.gameObject.name == "Tilemap_outside_wall") ||(collision.gameObject.name == "Tilemap_wall") || (collision.gameObject.CompareTag("wall")) || (collision.gameObject.name == "Collider"))
         {
             Destroy(this.gameObject);
         }

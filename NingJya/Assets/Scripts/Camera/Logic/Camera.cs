@@ -190,7 +190,7 @@ public class Camera : MonoBehaviour
                 break;
 
             case StageName.Tutorial_New:
-                Ordermax = 7;
+                Ordermax = 9;
                 switch (Order)
                 {
                     case 0:
@@ -337,6 +337,35 @@ public class Camera : MonoBehaviour
                             if (this.transform.position != Point[7].transform.position)
                             {
                                 transform.position = Vector3.MoveTowards(transform.position, Point[7].transform.position, 0.125f);
+                            }
+                            else
+                            {
+                                Order = 8;
+                                Leave = false;
+                                DoPFix = true;
+                                PosFix = false;
+                            }
+                        }
+                        break;
+                    case 8:
+                        if ((ProceedBlocks[4].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[5].gameObject.GetComponent<SpriteRenderer>().enabled == false))
+                        {
+                            transform.position = Vector3.MoveTowards(transform.position, Point[8].transform.position, 0.125f);
+                            if (this.transform.position == Point[8].transform.position)
+                            {
+                                Order = 9;
+                                Leave = false;
+                                DoPFix = true;
+                                PosFix = false;
+                            }
+                        }
+                        break;
+                    case 9:
+                        if ((ProceedBlocks[6].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[7].gameObject.GetComponent<SpriteRenderer>().enabled == false) && (ProceedBlocks[8].gameObject.GetComponent<SpriteRenderer>().enabled == false))
+                        {
+                            if (this.transform.position != Point[9].transform.position)
+                            {
+                                transform.position = Vector3.MoveTowards(transform.position, Point[9].transform.position, 0.125f);
                             }
                         }
                         break;
