@@ -538,13 +538,13 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void BlowAway()
     {
-        // プレイヤーの攻撃範囲にいるとき
+        // プレイヤーの攻撃範囲にいる場合
         if (inPlayerAttackRange)
         {
             // ConductManeger.csから計算結果が返された時
             if (Ready)
             {                
-                // 誘導先オブジェクトが設定されている場合
+                // かつ誘導先オブジェクトが設定されている場合
                 if (conductObject != null)
                 {
                     //誘導先オブジェクトの座標と自身の座標をもとに、吹っ飛ばされる方向を求める
