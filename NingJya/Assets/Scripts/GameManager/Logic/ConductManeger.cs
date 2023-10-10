@@ -44,6 +44,7 @@ public class ConductManeger : MonoBehaviour
         // 他オブジェクトへの吹っ飛ばし処理の誘導を求められたら
         if (conduct)
         {
+            // 全オブジェクトとの距離差の計算を行う
             gapChack();
         }
         else
