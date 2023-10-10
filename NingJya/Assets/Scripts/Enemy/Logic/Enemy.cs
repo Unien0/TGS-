@@ -205,55 +205,81 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // 現在のテンポ数に応じたアニメーション速度に変更する
         animSpeed = GameManeger.AnimSpeed;
         anim.SetFloat("AnimSpeed", animSpeed);
 
+        // 停止指示が出されていない場合
         if (!isEnd)
         {
+            // 経過時間を算出する
             time += Time.deltaTime;
 
+            // ノックバック状態になった場合
             if (isBlow)
-            {                
+            {
+                // ノックバック処理を行う
                 BlowAway();
                 isBlow = false;
             }
 
-            //吹っ飛ばすしない状態に移動する
+            //ノックバック状態じゃない場合
             if (!shoted)
             {
+                // 敵の種類に応じて処理を変更する
                 switch (enemyAct)
                 {
                     case enemyActSet.move:
+                        // 移動処理を呼び出す
                         Move();
                         break;
+
                     case enemyActSet.notMove:
+                        // 停止状態にさせる
                         rb2d.velocity = Vector3.zero;
                         break;
+
                     case enemyActSet.cannonball:
-                        shotOk = true;
+                        // 停止状態にさせた上
                         rb2d.velocity = Vector3.zero;
-                        gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
+                        
+                        // 射撃処理を許可し
+                        shotOk = true;
+                        // プレイヤーのいる方角を取得し続ける
+                        // ラジアン数を算出し
+                        gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), 
+                                              (PlayerObject.transform.position.y - this.transform.position.y));
+                        // 度数に変換する
                         gapfixPos = gapPos * Mathf.Rad2Deg;
+                        // マイナスの計算結果が出た場合、プラスの結果として算出する
                         if (gapfixPos < 0)
                         {
                             gapfixPos += 360;
                         }
+                        // その方角に向けて発射口を回転させる
                         ShotRote.transform.rotation = Quaternion.Euler(0, 0,-1* gapfixPos);
                         break;
+
                     case enemyActSet.knockback:
+                        // 移動処理を呼び出す
                         Move();                        
                         break;
+
                     case enemyActSet.Dummy:
+                        // 停止状態にさせる
                         rb2d.velocity = Vector2.zero;
                         break;
+
                     case enemyActSet.Earthworm:
+                        // 移動処理と潜伏処理を呼び出す
                         Move();
                         Hide();
                         break;
+
                     case enemyActSet.Carp:
+                        // 潜伏処理と突撃処理を呼び出す
                         Assault();
                         Hide();
                         break;
@@ -273,31 +299,49 @@ public class Enemy : MonoBehaviour
                 ShakeManeger.ShakeLevel = 1;
             }
 
-            //攻撃入力
+            // 攻撃範囲に敵がいて
             if (inPlayerAttackRange)
             {
-                // クールダウンが回復したかどうか
+                // クールダウンが回復している状態で、かつ
                 if (CoolDownTime <= time)
                 {
+                    // 攻撃入力を受け付けた時
                     if (IsAttack)
                     {
-                        // ジャストアタックのタイミングなら
+                        // ジャストアタックのタイミングなら吹っ飛ばし処理を呼び出す
                         if (blowable)
                         {
+                            // ダメージエフェクトを発生させる
                             Instantiate(HitEfect, this.transform.position, this.transform.rotation);
+                            // ダメージSEを再生させる
                             Audio.clip = HITSE;
                             Audio.Play();
+
+                            // 射撃機能を停止させる
                             shoted = true;
+                            // 体力を1減らす
                             hp = -1;
+                            // ノックバック状態にする
                             isBlow = true;
-                            conductIt = true;
-                            FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
+
+                            // ConductManeger.csに誘導処理の計算を行わせる
                             FindObjectOfType<ConductManeger>().conduct = true;
+                            // ConductManeger.csに自身のデータ(吹っ飛ばし対象オブジェクト)を送る
+                            FindObjectOfType<ConductManeger>().CTobject = this.gameObject;
+                            // ノックバック待機状態にする
+                            conductIt = true;
+
+                            // 経過時間の加算を止める
                             time = 0;
+                            // Camera.csの画面シェイク機能を処理させる
                             Camera.ShakeOrder = true;
-                            KillCombo();
+
+                            // 画面シェイクの時間・度合いを送信する
                             GameManeger.shakeTime = 0.125f;
                             ShakeManeger.ShakeLevel = 2;
+
+                            // ダメージ時のスコア加算処理を呼び出す
+                            KillCombo();
                         }
                         else
                         {
@@ -490,44 +534,69 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// 吹っ飛ばすに関するプログラム
+    /// 吹っ飛ばす処理
     /// </summary>
     private void BlowAway()
     {
         // プレイヤーの攻撃範囲にいるとき
         if (inPlayerAttackRange)
         {
+            // ConductManeger.csから計算結果が返された時
             if (Ready)
             {                
+                // 誘導先オブジェクトが設定されている場合
                 if (conductObject != null)
                 {
-                    //方向
-                    knockbackRote = new Vector2(conductObject.transform.position.x - this.transform.position.x, conductObject.transform.position.y - this.transform.position.y);
+                    //誘導先オブジェクトの座標と自身の座標をもとに、吹っ飛ばされる方向を求める
+                    knockbackRote = new Vector2(conductObject.transform.position.x - this.transform.position.x, 
+                                                conductObject.transform.position.y - this.transform.position.y);
 
+                    // Rotetion.xの値が0.5 ~ -0.5以内なら、その値をそのまま代入する
+                    // それ以外の場合は0として算出する
                     if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
-                    { shotIt.x = Mathf.Sign(knockbackRote.x); }
+                    {
+                        shotIt.x = Mathf.Sign(knockbackRote.x); 
+                    }
                     else
-                    { shotIt.x = 0; }
+                    {   
+                        shotIt.x = 0;
+                    }
+
+                    // Rotetion.yの値が0.5 ~ -0.5以内なら、その値をそのまま代入する
+                    // それ以外の場合は0として算出する
                     if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
-                    { shotIt.y = Mathf.Sign(knockbackRote.y); }
+                    {
+                        shotIt.y = Mathf.Sign(knockbackRote.y); 
+                    }
                     else
-                    { shotIt.y = 0; }
-                    //現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                    rb2d.AddForce(shotIt * knockbackPoint);
+                    {   
+                        shotIt.y = 0; 
+                    }
+
+                     // 誘導先オブジェクトの方向に向かって、このオブジェクトを弾き飛ばします
+                     rb2d.AddForce(shotIt * knockbackPoint);
                 }
+                // 誘導先オブジェクトが設定されていない場合
                 else
                 {
-                    //方向
-                    knockbackRote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, this.transform.position.y - PlayerObject.transform.position.y);
+                    // 自身の座標とPlayerの座標ををもとに、真後ろの方向を算出する
+                    knockbackRote = new Vector2(this.transform.position.x - PlayerObject.transform.position.x, 
+                                                this.transform.position.y - PlayerObject.transform.position.y);
+
+                    // Rotetion.xの値が0.5 ~ -0.5以内なら、その値をそのまま代入する
+                    // それ以外の場合は0として算出する
                     if (knockbackRote.x <= -0.5f || knockbackRote.x >= 0.5f)
                     { shotIt.x = Mathf.Sign(knockbackRote.x); }
                     else
                     { shotIt.x = 0; }
+                    // Rotetion.yの値が0.5 ~ -0.5以内なら、その値をそのまま代入する
+                    // それ以外の場合は0として算出する
                     if (knockbackRote.y <= -0.5f || knockbackRote.y >= 0.5f)
                     { shotIt.y = Mathf.Sign(knockbackRote.y); }
                     else
                     { shotIt.y = 0; }
-                    //4、現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+
+                    // 計算結果をもとに、その方向に向かってこのオブジェクトを弾き飛ばします
                     rb2d.AddForce(shotIt * knockbackPoint);
                 }
             }
