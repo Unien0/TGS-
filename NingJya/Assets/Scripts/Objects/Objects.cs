@@ -68,9 +68,14 @@ public class Objects : MonoBehaviour
     public bool Activate;
     private bool Motion;
 
-    // ギミック用変数(A,B,X,Yボタンを多様)
+    // ギミック対応オブジェクト(単個)
     [SerializeField] private GameObject GimmickObj;
+    // ギミック対応オブジェクト(複数)
+    [SerializeField] private GameObject[] GimmickObjSeries;
+    // ギミック入力確認変数(A,B,X,Yボタンを押すと変わる)
     [SerializeField]private int GimmickInput;
+    // ギミック処理段階を確認する変数
+    [SerializeField]private int GimmickOrder;
     private int roteMax;
 
     public enum ObjectType
@@ -79,6 +84,7 @@ public class Objects : MonoBehaviour
         Table,
         BambooTrap,
         RotatingFloor,
+        MovableBridge,
         end
     }
     public ObjectType ObjNAME;
@@ -157,6 +163,52 @@ public class Objects : MonoBehaviour
                             animator.SetBool("Boot", false);
                         }
                     }
+                    break;
+                case ObjectType.MovableBridge:
+                    // 時計回りにボタンを押させる
+                    if (Input.GetKeyDown("joystick button 0"))
+                    { // Aの場合
+                        Debug.Log("A");
+
+                        // B → A 
+                        if (GimmickInput == 1)
+                        {
+                            GimmickInput = 0;
+                        }
+                    }
+                    if (Input.GetKeyDown("joystick button 1"))
+                    { // Bの場合
+                        Debug.Log("B");
+                        // Y → B
+                        if (GimmickInput == 3)
+                        {
+                            GimmickInput = 1;
+                        }
+                    }
+                    if (Input.GetKeyDown("joystick button 2"))
+                    { // Xの場合
+                        Debug.Log("X");
+                        // A → X
+                        if (GimmickInput == 0)
+                        {
+                            GimmickInput = 2;
+                        }
+                    }
+                    if (Input.GetKeyDown("joystick button 3"))
+                    { // Yの場合
+                        Debug.Log("Y");
+
+                        // X → Y 
+                        if (GimmickInput == 2)
+                        {
+                            GimmickOrder++;
+                            GimmickInput = 3;
+                        }
+                    }
+
+                    // 回転させた回数に応じて橋を出現させる
+                    GimmickObjSeries[GimmickOrder-1].gameObject.SetActive(true);
+
                     break;
                 case ObjectType.RotatingFloor:
                     if (Input.GetKeyDown("joystick button 0"))
@@ -332,11 +384,7 @@ public class Objects : MonoBehaviour
         }
         if (col.gameObject.name == "！Player")
         {
-
-            if ((ObjNAME == ObjectType.BambooTrap) || (ObjNAME == ObjectType.RotatingFloor))
-            {
-                Activate = true;
-            }
+            Activate = true;
         }
     }
 
