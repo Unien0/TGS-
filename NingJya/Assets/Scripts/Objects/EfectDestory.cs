@@ -35,7 +35,7 @@ public class EfectDestory : MonoBehaviour
         switch (EfectName)
         {
             case EfectType.Move:
-                switch (FindObjectOfType<Player>().roteMax)
+                switch (FindObjectOfType<Player>().moveDirection)
                 {
                     #region
                     case 0:

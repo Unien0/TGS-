@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
     private float inputFixH;                // TemporaryInput.xの値を初期化するまでの時間
     private float inputFixV;                // TemporaryInput.yの値を初期化するまでの時間
     private Vector2 moveInput;              // 1テンポ毎事の移動入力を保存する変数
+    public float moveDirection;             // 移動方向の保存
     private bool maked;                     // 移動エフェクトの生成を確認する変数
     // 移動エフェクトを保存する変数
     [SerializeField] private GameObject MoveEfect;
@@ -297,28 +298,36 @@ public class Player : MonoBehaviour
                 #region roteMax変更
                 // 入力に応じて、回転を変更する
                 if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y >= 0.01f))
-                { moveInput = new Vector2(1, 1); }
+                { moveInput = new Vector2(1, 1);
+                  moveDirection = 315;}
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y >= 0.01))
-                { moveInput = new Vector2(0, 1); }
+                { moveInput = new Vector2(0, 1);
+                  moveDirection = 0; }
 
                 if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y >= 0.01f))
-                { moveInput = new Vector2(-1, 1); }
+                { moveInput = new Vector2(-1, 1); 
+                    moveDirection = 45; }
 
                 if ((TemporaryInput.x <= -0.01f) && (TemporaryInput.y == 0))
-                { moveInput = new Vector2(-1, 0); }
+                { moveInput = new Vector2(-1, 0); 
+                  moveDirection = 90; }
 
                 if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y <= -0.01f))
-                { moveInput = new Vector2(-1, -1); }
+                { moveInput = new Vector2(-1, -1); 
+                  moveDirection = 135; }
 
                 if ((TemporaryInput.x == 0) && (TemporaryInput.y <= -0.01f))
-                { moveInput = new Vector2(0, -1); }
+                { moveInput = new Vector2(0, -1); 
+                  moveDirection = 180; }
 
                 if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y <= -0.01f))
-                { moveInput = new Vector2(1, -1); }
+                { moveInput = new Vector2(1, -1); 
+                  moveDirection = 225; }
 
                 if ((TemporaryInput.x >= 0.01f) && (TemporaryInput.y == 0))
-                { moveInput = new Vector2(1, 0); }
+                { moveInput = new Vector2(1, 0);
+                  moveDirection = 270; }
                 #endregion
 
                 // 入力に応じてアニメーションを変更する

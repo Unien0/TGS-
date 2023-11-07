@@ -21068,7 +21068,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemys: []
-  noneCol: 0
   conductObjGap: {x: 0, y: 0}
   conduct: 0
   chackObj: {fileID: 0}
@@ -42024,7 +42023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1015218096
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48410,7 +48409,6 @@ MonoBehaviour:
   BPM: 128
   OneTempo: 0
   MetronomeSE: {fileID: 8300000, guid: b5cfa4b1e7a12354a865299d3fc31eae, type: 3}
-  PlusScore: 0
   Score: 0
   ScorePlusTMPui: {fileID: 1989096024}
   ScoreBordTMPui: {fileID: 2003135570}
@@ -48430,10 +48428,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc8f05b7d083dbf4b9ef5e02fd23fb63, type: 3}
   - {fileID: 21300000, guid: 6639db8b13bfe1647ae66afe1d14ea95, type: 3}
   - {fileID: 21300000, guid: f9e7a1f0f5ef3c64f93aa38cab2a3825, type: 3}
-  ComboLimit: 0
   shakeManeger: {fileID: 2056143885}
   ScanLineObj: {fileID: 189247065}
-  ScanLineLevel: 0
 --- !u!114 &2056143888
 MonoBehaviour:
   m_ObjectHideFlags: 0
