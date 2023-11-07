@@ -196,7 +196,7 @@ public class GameManeger : MonoBehaviour
 
         //ジャストアタック
         if ((time > (OneTempo - (OneTempo / 3))) || 
-            (time < (OneTempo / 3)))
+            (time < (OneTempo / 2f)))
         {
             removable = true;
             // Enemyのフットバシ処理を許可する
