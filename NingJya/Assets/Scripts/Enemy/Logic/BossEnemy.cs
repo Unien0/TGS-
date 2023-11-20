@@ -1,3 +1,4 @@
+using Fungus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,6 +66,9 @@ public class BossEnemy : MonoBehaviour
     private float animSpeed;
 
     private bool isDead;
+    [SerializeField]
+    private int MakeEfectCount;
+    private Vector2 MakePoint;
     [SerializeField]private GameObject isDeadFlash;
     private bool DeadFix;
 
@@ -117,15 +121,26 @@ public class BossEnemy : MonoBehaviour
             // 死亡処理
             if (isDead)
             {
+                // 一度だけ処理する内容を入れる
                 if (!DeadFix)
                 {
-                    DeadFix = true;
+                    // ボスを停止状態にする
+                    ActPermission = false;
+                    // 画面を揺らす
                     GameManeger.shakeTime = 0.25f;
                     ShakeManeger.ShakeLevel = 4;
+                    // 白飛びアニメーションを発生させる
                     isDeadFlash.SetActive(true);
+                    // スコアを足す
                     GameManeger.KillBOSS += 5000;
+                    // 処理が完了したことを記録する
+                    DeadFix = true;
                 }
+
+                // 位置固定
                 rb2d.velocity = Vector3.zero;
+                
+                // 子オブジェクトの削除
                 if (BossType == BossNumber.No2)
                 {
                     anim.SetBool("Hide", false);
@@ -142,17 +157,30 @@ public class BossEnemy : MonoBehaviour
                     }
                 }
 
+                // 白飛びアニメーションが終わったら
                 if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
                 {
-                    
-                    FindObjectOfType<BossStartFlag>().ActEnd = true;
-                    ActPermission = false;
-                    SpR.enabled = false;
-                    Col2D.enabled = false;
-                    anim.enabled = false;
-                    Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
-                    isDead = false;
-
+                    // エフェクトを10回生成するまでループする
+                    if(MakeEfectCount < 10)
+                    {
+                        MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1) ;
+                        MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1) ;
+                        // ループ処理 (ダメージエフェクトの生成)
+                        Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
+                        MakeEfectCount += 1;
+                    }
+                    else
+                    {
+                        Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                        // ボスを非表示にする
+                        SpR.enabled = false;
+                        Col2D.enabled = false;
+                        //anim.enabled = false;
+                        // 扉を開ける
+                        FindObjectOfType<BossStartFlag>().ActEnd = true;
+                        // 死亡処理を終了する
+                        isDead = false;
+                    }
                 }
             }
             else
