@@ -69,12 +69,12 @@ public class ConductManeger : MonoBehaviour
             {
                 // そのオブジェクトとの距離差を求める
                 Gap = new Vector2(ctobj.transform.position.x - CTobject.transform.position.x, ctobj.transform.position.y - CTobject.transform.position.y);
-                float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y); ;
+                float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y); 
 
                 // ふっとばし対象のオブジェクトがPlayerBulletの場合
                 if (tagName == "PlayerBullet")
                 {
-                    // 距離差が10いないと場合
+                    // 距離差が10以内の場合
                     if (vec < 10)
                     {
                         // 対象オブジェクトの居る座標とふっとばし対象の座標をもとに、方角を求める

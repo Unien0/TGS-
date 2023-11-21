@@ -16,7 +16,7 @@ public class PlayerBullet : MonoBehaviour
     {
         // RigidBody2D‚Ìî•ñŠi”[E‘ã“ü
         rb2d = GetComponent<Rigidbody2D>();
-        transform.rotation = Quaternion.Euler(0,0,FindObjectOfType<Player>().roteMax);
+        //transform.rotation = Quaternion.Euler(0,0,FindObjectOfType<Player>().roteMax);
         animObj = transform.GetChild(0).gameObject;
         anim = animObj.GetComponent<Animator>();
         col2d = GetComponent<Collider2D>();

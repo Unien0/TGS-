@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -124,9 +125,16 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip DamageSE;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject BulletRote;
+    [SerializeField] private GameObject[] NearEnemys;
+    private Vector2 Gap;
+    [SerializeField] private GameObject[] TargetEnemys;
+    private float RotePass;
+    private float TargetRote;
 
     private void Awake()
     {
+        // 全敵の情報を取得
+        NearEnemys = GameObject.FindGameObjectsWithTag("Enemy");
 
         // Rigidbody2Dコンポーネントを保存する
         rb2d = GetComponent<Rigidbody2D>();
@@ -539,7 +547,37 @@ public class Player : MonoBehaviour
                 {
                     if (InputATK)
                     {
-                        Instantiate(Bullet, this.transform.position, Bullet.transform.rotation);
+                        // 情報登録
+                        // 全敵の情報から
+                        foreach (var ctobj in NearEnemys)
+                        {
+                            // 一定範囲に居るオブジェクトを確認する
+                            Gap = new Vector2(ctobj.transform.position.x - this.transform.position.x, ctobj.transform.position.y - this.transform.position.y);
+                            float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
+                            // 一定範囲内にいる敵が
+                            if (vec < 25)
+                            {
+                                // ノックバック or 死亡状態じゃないなら
+                                if(ctobj.GetComponent<Collider2D>().enabled == true)
+                                {
+                                    // 攻撃対象に追加する
+                                    Array.Resize(ref TargetEnemys, TargetEnemys.Length + 1);
+                                    TargetEnemys[TargetEnemys.Length - 1] = ctobj.gameObject;
+                                }
+
+                            }
+                        }
+
+                        // 攻撃対象にバレットを発射する
+                        foreach (var Atobj in TargetEnemys)
+                        {
+                            RotePass = Mathf.Atan2((Atobj.transform.position.x - this.transform.position.x), (Atobj.transform.position.y - this.transform.position.y));
+                            TargetRote = RotePass * Mathf.Rad2Deg;
+                            AttackArea.transform.rotation = Quaternion.Euler(0, 0, TargetRote * -1);
+                            Instantiate(Bullet, this.transform.position, AttackArea.transform.rotation);
+                        }
+                        Array.Resize(ref TargetEnemys, 0);
+
                         nowBullet--;
                     }
                 }
