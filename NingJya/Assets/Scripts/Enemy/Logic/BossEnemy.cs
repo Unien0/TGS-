@@ -483,9 +483,49 @@ public class BossEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("EnemyBullet"))
+        // 行動状態かつ
+        if (ActPermission)
         {
-            if (col.gameObject.GetComponent<EnemyBullet>().isHIT == true)
+            // エネミーバレットがぶつかったら
+            if (col.gameObject.CompareTag("EnemyBullet"))
+            {
+                // 反射状態を確認する
+                if (col.gameObject.GetComponent<EnemyBullet>().isHIT == true)
+                {
+                    // クールダウンが回復したかどうか
+                    if (CoolDownTime <= time)
+                    {
+                        //方向
+                        shotrote = new Vector2(this.transform.position.x - col.gameObject.transform.position.x, this.transform.position.y - col.gameObject.transform.position.y);
+                        if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
+                        { shotIt.x = Mathf.Sign(shotrote.x); }
+                        else
+                        { shotIt.x = 0; }
+                        if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
+                        { shotIt.y = Mathf.Sign(shotrote.y); }
+                        else
+                        { shotIt.y = 0; }
+                        // 現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
+                        rb2d.AddForce(shotIt * ForcePoint);
+
+                        Audio.clip = isBlowSE;
+                        Audio.Play();
+                        Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
+                        BossHP = BossHP - 1;
+                        time = 0;
+                        MutekiTime = 0;
+                        Camera.ShakeOrder = true;
+                        GameManeger.KillBOSS += 1000;
+                        if (BossHP <= 0)
+                        {
+                            isDead = true;
+                        }
+                    }
+                }
+            }
+
+            // プレイヤーバレットが当たったら
+            if (col.gameObject.CompareTag("PlayerBullet"))
             {
                 // クールダウンが回復したかどうか
                 if (CoolDownTime <= time)
@@ -509,6 +549,7 @@ public class BossEnemy : MonoBehaviour
                     BossHP = BossHP - 1;
                     time = 0;
                     MutekiTime = 0;
+                    Camera.ShakeOrder = true;
                     GameManeger.KillBOSS += 1000;
                     if (BossHP <= 0)
                     {
@@ -516,39 +557,6 @@ public class BossEnemy : MonoBehaviour
                     }
 
                 }
-            }
-        }
-
-        if (col.gameObject.CompareTag("PlayerBullet"))
-        {
-            // クールダウンが回復したかどうか
-            if (CoolDownTime <= time)
-            {
-                //方向
-                shotrote = new Vector2(this.transform.position.x - col.gameObject.transform.position.x, this.transform.position.y - col.gameObject.transform.position.y);
-                if (shotrote.x <= -0.5f || shotrote.x >= 0.5f)
-                { shotIt.x = Mathf.Sign(shotrote.x); }
-                else
-                { shotIt.x = 0; }
-                if (shotrote.y <= -0.5f || shotrote.y >= 0.5f)
-                { shotIt.y = Mathf.Sign(shotrote.y); }
-                else
-                { shotIt.y = 0; }
-                // 現在位置に基づいて吹っ飛ばすの力と保存時間を判断します
-                rb2d.AddForce(shotIt * ForcePoint);
-
-                Audio.clip = isBlowSE;
-                Audio.Play();
-                Instantiate(Hit_Efect, this.transform.position, this.transform.rotation);
-                BossHP = BossHP - 1;
-                time = 0;
-                MutekiTime = 0;
-                GameManeger.KillBOSS += 1000;
-                if (BossHP <= 0)
-                {
-                    isDead = true;
-                }
-
             }
         }
     }
