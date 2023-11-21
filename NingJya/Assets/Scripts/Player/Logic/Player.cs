@@ -248,10 +248,10 @@ public class Player : MonoBehaviour
         // ˆÚ“®“ü—Í 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if(Input.GetAxis("Horizontal") == 0)
+        if(horizontal == 0)
         {
             inputFixH += Time.deltaTime;
-            if ((inputFixH > 1f) || removable)
+            if ((inputFixH > 10f) || removable)
             {
                 TemporaryInput.x = 0;
             }
@@ -261,10 +261,10 @@ public class Player : MonoBehaviour
             inputFixH = 0;
             TemporaryInput.x = horizontal;
         }
-        if(Input.GetAxis("Vertical") == 0)
+        if(vertical == 0)
         {
             inputFixV += Time.deltaTime;
-            if ((inputFixV > 1f) || removable)
+            if ((inputFixV > 10f) || removable)
             {
                 TemporaryInput.y = 0;
             }
@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
         {
             if (!maked)
             {
-                if ((horizontal != 0) || (vertical != 0))
+                if ((moveInput.x != 0) || (moveInput.y != 0))
                 {
                     maked = true;
                     Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
