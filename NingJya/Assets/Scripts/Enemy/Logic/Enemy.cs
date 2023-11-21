@@ -793,6 +793,7 @@ public class Enemy : MonoBehaviour
         {
             if (!ishit)
             {
+                col2d.enabled = false;
                 ishit = true;
                 hit = true;
                 GameManeger.hitEnemy++;

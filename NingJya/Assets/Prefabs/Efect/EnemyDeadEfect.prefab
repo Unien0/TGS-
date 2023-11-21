@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -647100389
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 369d08f7fb009bb4e949b927b1b3277c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,7 +102,10 @@ MonoBehaviour:
   DeadTime: 3
   EfectName: 2
   ComboPoint: 0
-  ComboText: {fileID: 0}
+  No1Number: {fileID: 0}
+  No2Number: {fileID: 0}
+  Numbers: []
+  NeedanimSpeed: 0
 --- !u!50 &1816904707076034149
 Rigidbody2D:
   serializedVersion: 4

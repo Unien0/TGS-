@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 942281153}
   m_Layer: 0
   m_Name: Boss_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   enemyData: {fileID: 11400000, guid: 6ee7f38fbe7ce534b9d02cb5ac8ce24d, type: 2}
   ShotRote: {fileID: 2288533771647115840}
+  DestoyObj: []
   BossType: 0
   BossHP: 5
   shotIt: {x: 0, y: 0}
@@ -154,6 +155,7 @@ MonoBehaviour:
   isBlowSE: {fileID: 8300000, guid: 273b90a3f1a861e47aa35c2297720686, type: 3}
   Hit_Efect: {fileID: 4894317834079027766, guid: e1c325061a6b24f4dbf19f5777e36d41, type: 3}
   DEAD_EFECT: {fileID: 6992273729208221150, guid: 8fa0909713fa8524b9503b42805ba108, type: 3}
+  MakeEfectCount: 0
   isDeadFlash: {fileID: 0}
 --- !u!50 &6758980481141204557
 Rigidbody2D:
