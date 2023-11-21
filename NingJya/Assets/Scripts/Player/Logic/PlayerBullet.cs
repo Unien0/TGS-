@@ -7,6 +7,7 @@ public class PlayerBullet : MonoBehaviour
     private Rigidbody2D rb2d;               // Rigidbody2Dの取得・格納
     private GameObject animObj;
     private Animator anim;                  // Animatorコンポーネントを保存する変数
+    private Collider2D col2d;
     [SerializeField] private float speed;
     private float time;
     private bool Stop;
@@ -18,6 +19,7 @@ public class PlayerBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0,FindObjectOfType<Player>().roteMax);
         animObj = transform.GetChild(0).gameObject;
         anim = animObj.GetComponent<Animator>();
+        col2d = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,7 @@ public class PlayerBullet : MonoBehaviour
     {
         if ((collision.gameObject.name == "Tilemap_outside_wall") || (collision.gameObject.name == "Tilemap_wall") || (collision.gameObject.CompareTag("Enemy")))
         {
+            col2d.enabled = false;
             Stop = true;
             time = 0;
             TagName = collision.gameObject.tag;

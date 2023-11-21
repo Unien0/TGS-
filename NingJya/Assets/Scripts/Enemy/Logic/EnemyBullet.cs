@@ -24,10 +24,15 @@ public class EnemyBullet : MonoBehaviour
     #endregion
 
     private Rigidbody2D rb2d;               // Rigidbody2Dの取得・格納
+    private Collider2D col2d;
+    private GameObject animObj;
+    private Animator anim;                  // Animatorコンポーネントを保存する変数
     public float BulletSpeed;
     private GameObject objectPL;            // 目的地(Player)の情報を格納
     private float targetPL;
     float time;
+
+    private bool Stop;
 
     public Vector2 shotrote;
     [SerializeField] private Vector2 shotIt;
@@ -53,8 +58,10 @@ public class EnemyBullet : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         // Playerオブジェクトを検索 → objectPLに情報格納
         objectPL = FindObjectOfType<Player>().gameObject;
-        // objectPLからtransform.position.x,yの情報を取得、
-        // このオブジェクトとの位置の差をtargetPLに代入
+
+        animObj = transform.GetChild(0).gameObject;
+        anim = animObj.GetComponent<Animator>();
+        col2d = GetComponent<Collider2D>();
 
     }
 
@@ -106,7 +113,18 @@ public class EnemyBullet : MonoBehaviour
         }
         else
         {
-            rb2d.velocity = transform.up * BulletSpeed;
+            if (Stop)
+            {
+                anim.speed = 0;
+                col2d.enabled = false;
+                rb2d.velocity = Vector2.zero;
+                Destroy(this.gameObject,0.2f);
+            }
+            else
+            {
+                rb2d.velocity = transform.up * BulletSpeed;
+            }
+            
         }
     }
 
@@ -119,7 +137,7 @@ public class EnemyBullet : MonoBehaviour
         }
         if ((collision.gameObject.name == "Tilemap_outside_wall") ||(collision.gameObject.name == "Tilemap_wall") || (collision.gameObject.CompareTag("wall")) || (collision.gameObject.name == "Collider"))
         {
-            Destroy(this.gameObject);
+            Stop = true;
         }
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -130,14 +148,14 @@ public class EnemyBullet : MonoBehaviour
         {
             if (isHIT)
             {
-                Destroy(this.gameObject);                
+                Stop = true;
             }
         }
         if (collision.gameObject.CompareTag("HitObj"))
         {
             if (collision.gameObject.GetComponent<Objects>().ObjNAME == ObjectType.Table)
             {
-                Destroy(this.gameObject);
+                Stop = true;
             }
         }
     }
