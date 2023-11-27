@@ -259,26 +259,28 @@ public class Player : MonoBehaviour
         if(horizontal == 0)
         {
             inputFixH += Time.deltaTime;
-            if ((inputFixH > 10f) || removable)
+            if ((inputFixH > 2f) || removable)
             {
                 TemporaryInput.x = 0;
             }
         }
         else
         {
+            // “ü—Í‚ð‹L˜^‚·‚é
             inputFixH = 0;
             TemporaryInput.x = horizontal;
         }
         if(vertical == 0)
         {
             inputFixV += Time.deltaTime;
-            if ((inputFixV > 10f) || removable)
+            if ((inputFixV > 2f) || removable)
             {
                 TemporaryInput.y = 0;
             }
         }
         else
-        {
+        {   
+            // “ü—Í‚ð‹L˜^‚·‚é
             inputFixV = 0;
             TemporaryInput.y = vertical;
         }
