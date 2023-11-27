@@ -86314,6 +86314,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: gameManegerCS
+      value: 
+      objectReference: {fileID: 544897563}
     - target: {fileID: 6563868376941559791, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
       propertyPath: m_Name
       value: "\uFF01Player"
