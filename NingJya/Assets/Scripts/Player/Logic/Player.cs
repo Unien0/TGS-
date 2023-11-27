@@ -555,7 +555,7 @@ public class Player : MonoBehaviour
                             Gap = new Vector2(ctobj.transform.position.x - this.transform.position.x, ctobj.transform.position.y - this.transform.position.y);
                             float vec = Mathf.Sqrt(Gap.x * Gap.x + Gap.y * Gap.y);
                             // ˆê’è”ÍˆÍ“à‚É‚¢‚é“G‚ª
-                            if (vec < 25)
+                            if (vec < 9)
                             {
                                 // ƒmƒbƒNƒoƒbƒN or Ž€–Só‘Ô‚¶‚á‚È‚¢‚È‚ç
                                 if(ctobj.GetComponent<Collider2D>().enabled == true)
