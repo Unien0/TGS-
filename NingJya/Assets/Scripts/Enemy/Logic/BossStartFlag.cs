@@ -9,6 +9,7 @@ public class BossStartFlag : MonoBehaviour
     [SerializeField] private GameObject ENTER_SYOUZI;
     [SerializeField] private GameObject EXIT_SYOUZI;
     [SerializeField] private Collider2D EXIT_SYOUZI_Col2D;
+    [SerializeField] private GameObject PlayerMovePos;
     private void Update()
     {
         if (ActEnd)
@@ -24,6 +25,7 @@ public class BossStartFlag : MonoBehaviour
         {
             ActStart = true;
             ENTER_SYOUZI.SetActive(true);
+            collision.gameObject.transform.position = PlayerMovePos.transform.position;
         }
     }
 }

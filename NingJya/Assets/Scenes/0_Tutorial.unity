@@ -10904,9 +10904,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 411.7588
-    y: 87.84559
-    width: 114.999954
+    x: 421.1338
+    y: 81.59559
+    width: 110.937454
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11049,7 +11049,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 190.4263
     y: -120.7005
-    width: 79.99998
+    width: 76.562485
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11082,7 +11082,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 262.39255
     y: 85.36397
-    width: 79.99998
+    width: 76.562485
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11129,7 +11129,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 120.61716
     y: 72.90492
-    width: 79.99998
+    width: 74.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11284,9 +11284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 4.0104494
+    x: 0.8854513
     y: 82.714294
-    width: 78.749985
+    width: 74.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -13087,7 +13087,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 508.62836
     y: 174.33607
-    width: 92.49997
+    width: 93.74997
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -13121,7 +13121,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 319.57104
     y: 180.30127
-    width: 92.49997
+    width: 93.74997
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -16180,7 +16180,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 290.85037
     y: -115.18198
-    width: 79.99998
+    width: 74.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -18730,7 +18730,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 406.7567
     y: -116.14005
-    width: 79.99998
+    width: 74.999985
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -18828,7 +18828,7 @@ MonoBehaviour:
     gameObjectVal: {fileID: 1407759476}
   activeState:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &678081959
 MonoBehaviour:
@@ -22130,7 +22130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &937726981
 RectTransform:
   m_ObjectHideFlags: 0

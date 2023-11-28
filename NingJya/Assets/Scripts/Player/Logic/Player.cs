@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
     private AudioSource Audio;
     [SerializeField] private AudioClip DamageSE;
     [SerializeField] private GameObject Bullet;
-    [SerializeField] private GameObject BulletRote;
     [SerializeField] private GameObject[] NearEnemys;
     private Vector2 Gap;
     [SerializeField] private GameObject[] TargetEnemys;
@@ -172,8 +171,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        hp = maxHp;
-        nowBullet = 3;
+        // 第一ステージなら
+        if (SceneManager.GetActiveScene().name == "1stStage_Remake")
+        {
+            nowBullet = maxBullet;
+            hp = maxHp;
+        }
         anim.SetBool("DEAD",false);
         Audio = GetComponent<AudioSource>();
         isDead = false;
@@ -181,6 +184,12 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        // チュートリアルステージなら
+        if (SceneManager.GetActiveScene().name == "0_Tutorial")
+        {
+            hp = maxHp;
+        }
+
         animSpeed = GameManeger.AnimSpeed;
         anim.SetFloat("AnimSpeed", animSpeed);
 
@@ -194,6 +203,10 @@ public class Player : MonoBehaviour
             if (!taking)
             {
                 move();
+            }
+            else
+            {
+                rb2d.velocity = Vector2.zero;
             }
             
             SwitchAnimation();
@@ -585,7 +598,7 @@ public class Player : MonoBehaviour
         // 
         if (removable)
         {
-            if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0))
+            if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
             {
                 if (nowBullet > 0)
                 {

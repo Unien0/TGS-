@@ -68,7 +68,7 @@ public class GameManeger : MonoBehaviour
     // =================
     private bool isFix;                         // スコアを修正したかどうか確認する変数
     private int PlusScore;                      // 加算するスコアの値
-    public int Score = 000;                     // 現在のスコアを保存する変数
+    public static int Score ;                     // 現在のスコアを保存する変数
 
     // 加算スコアを記載するテキストオブジェクトを保存する変数
     [SerializeField] private TextMeshProUGUI ScorePlusTMPui;
@@ -124,7 +124,6 @@ public class GameManeger : MonoBehaviour
         TempoChange();
         Audio = GetComponent<AudioSource>();
         enemyRemovable = false;
-        Score = 0;
     }
 
     private void Start()
@@ -478,7 +477,7 @@ public class GameManeger : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                SceneManager.LoadScene("Tutorial");
+                SceneManager.LoadScene("0_Tutorial");
             }
             if (Input.GetKeyDown(KeyCode.E))
             {

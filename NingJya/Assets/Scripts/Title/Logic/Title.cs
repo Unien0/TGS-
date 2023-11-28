@@ -45,6 +45,7 @@ public class Title : MonoBehaviour
             if (!audioSource.isPlaying)
             {
                 StoryScenes.NextStageNum = 0;
+                GameManeger.Score = 0;
                 SceneManager.LoadScene("StoryScene");
             }
         }

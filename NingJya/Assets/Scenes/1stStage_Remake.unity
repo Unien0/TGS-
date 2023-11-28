@@ -1063,6 +1063,7 @@ MonoBehaviour:
   ENTER_SYOUZI: {fileID: 1748207961}
   EXIT_SYOUZI: {fileID: 670102615}
   EXIT_SYOUZI_Col2D: {fileID: 670102617}
+  PlayerMovePos: {fileID: 1679524515}
 --- !u!61 &153859823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24465,7 +24466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &612001435
 GameObject:
@@ -24758,7 +24759,7 @@ Transform:
   - {fileID: 129123373}
   - {fileID: 1389465891}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &670277293
 PrefabInstance:
@@ -42205,7 +42206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1096101848
 GameObject:
@@ -43583,7 +43584,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1382210748
 PrefabInstance:
@@ -45471,6 +45472,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
   m_PrefabInstance: {fileID: 1669901907}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1679524515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679524516}
+  m_Layer: 0
+  m_Name: PLMovePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679524516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679524515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 40.04, y: 18.09, z: -0.0735287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1688782712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46774,7 +46806,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1873020327
 PrefabInstance:
@@ -48520,7 +48552,6 @@ MonoBehaviour:
   BPM: 128
   OneTempo: 0
   MetronomeSE: {fileID: 8300000, guid: b5cfa4b1e7a12354a865299d3fc31eae, type: 3}
-  Score: 0
   ScorePlusTMPui: {fileID: 1989096024}
   ScoreBordTMPui: {fileID: 2003135570}
   TMPui: {fileID: 186679311}
