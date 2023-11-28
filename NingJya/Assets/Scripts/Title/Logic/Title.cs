@@ -19,6 +19,9 @@ public class Title : MonoBehaviour
 
     private float DemoLodeTime;
 
+    [SerializeField] private GameObject Text1;
+    [SerializeField] private GameObject Text2;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -75,6 +78,9 @@ public class Title : MonoBehaviour
         audioSource.clip = startClip;
         audioSource.Play();
         LoadIt = true;
+        // テキストアニメーションの変化
+        Text1.GetComponent<Animator>().SetBool("Select", true);
+        Text2.GetComponent<Animator>().SetBool("Select", true);
     }
 
     public void Option()
