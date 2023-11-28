@@ -31,16 +31,22 @@ public class BulletUI : MonoBehaviour
         {
             case 0:
                 BulletIcon[0].gameObject.SetActive(false);
+                BulletIcon[1].gameObject.SetActive(false);
+                BulletIcon[2].gameObject.SetActive(false);
                 break;
             case 1:
                 BulletIcon[0].gameObject.SetActive(true);
                 BulletIcon[1].gameObject.SetActive(false);
+                BulletIcon[2].gameObject.SetActive(false);
                 break;
             case 2:
+                BulletIcon[0].gameObject.SetActive(true);
                 BulletIcon[1].gameObject.SetActive(true);
                 BulletIcon[2].gameObject.SetActive(false);
                 break;
             case 3:
+                BulletIcon[0].gameObject.SetActive(true);
+                BulletIcon[1].gameObject.SetActive(true);
                 BulletIcon[2].gameObject.SetActive(true);
                 break;
         }

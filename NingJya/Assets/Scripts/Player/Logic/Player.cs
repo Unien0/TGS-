@@ -625,17 +625,19 @@ public class Player : MonoBehaviour
                             }
                         }
 
-                        // 攻撃対象にバレットを発射する
-                        foreach (var Atobj in TargetEnemys)
+                        if (TargetEnemys.Length != 0)
                         {
-                            RotePass = Mathf.Atan2((Atobj.transform.position.x - this.transform.position.x), (Atobj.transform.position.y - this.transform.position.y));
-                            TargetRote = RotePass * Mathf.Rad2Deg;
-                            AttackArea.transform.rotation = Quaternion.Euler(0, 0, TargetRote * -1);
-                            Instantiate(Bullet, this.transform.position, AttackArea.transform.rotation);
-                        }
-                        Array.Resize(ref TargetEnemys, 0);
-
-                        nowBullet--;
+                            // 攻撃対象にバレットを発射する
+                            foreach (var Atobj in TargetEnemys)
+                            {
+                                RotePass = Mathf.Atan2((Atobj.transform.position.x - this.transform.position.x), (Atobj.transform.position.y - this.transform.position.y));
+                                TargetRote = RotePass * Mathf.Rad2Deg;
+                                AttackArea.transform.rotation = Quaternion.Euler(0, 0, TargetRote * -1);
+                                Instantiate(Bullet, this.transform.position, AttackArea.transform.rotation);
+                            }
+                            nowBullet--;
+                            Array.Resize(ref TargetEnemys, 0);
+                        }                  
                     }
                 }
             }
