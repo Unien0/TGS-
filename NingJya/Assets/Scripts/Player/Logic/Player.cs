@@ -191,7 +191,11 @@ public class Player : MonoBehaviour
        
         if (!isDead)
         {
-            move();
+            if (!taking)
+            {
+                move();
+            }
+            
             SwitchAnimation();
         }
 
