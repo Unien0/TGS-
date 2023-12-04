@@ -596,7 +596,7 @@ public class Player : MonoBehaviour
         }
 
         // 
-        if (removable)
+        if (removable && !taking)
         {
             if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
             {

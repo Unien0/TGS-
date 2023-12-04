@@ -35,7 +35,7 @@ public class NPCDialgoue : MonoBehaviour
     {
         foreach (var Iconobj in anim)
         {
-            //Iconobj.GetComponent<Animator>().SetFloat("AnimSpeed", GameManeger.AnimSpeed);
+            Iconobj.GetComponent<Animator>().SetFloat("AnimSpeed", GameManeger.AnimSpeed);
         }
 
         if (fc.GetBooleanVariable("WellOpen"))
