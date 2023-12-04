@@ -137,8 +137,7 @@ public class GameManeger : MonoBehaviour
 
             // カメラの移動(移動処理はカメラ側で行う)
             // カメラ制御数値の変更(送信された数値を元に変更)
-            // 今回は数値の送信のみ行う
-            Camera.ReStartNumber = ReStartManeger.SaveOrder;
+
 
             // リスタート処理の終了
             ReStartManeger.CanReSporn = false;

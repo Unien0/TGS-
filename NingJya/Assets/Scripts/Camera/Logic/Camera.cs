@@ -7,49 +7,37 @@ using UnityEngine.UI;
 public class Camera : MonoBehaviour
 {
     [SerializeField] private GameObject playerObj;
-    private Vector3 playerBeforePos;
-    private Vector3 StartPos;
-    [SerializeField] private float moveSpeed;
-    private Vector2 input;
-
-    public static float ReStartNumber;
 
     public CameraShake shake;
     public static bool ShakeOrder;
+    // ステージ名ステータスの作成
     public enum StageName
     {
         Tutorial,
-        Tutorial_New,
         Stage_1,
-        Stage_1_New,
         Stage_2,
         Stage_3,
         end
     }
+    // 現ステージの設定
     [SerializeField] private StageName Process;
+    // 現在地
     public static float Order;
+    // 最大値
     public static float Ordermax;
-    [SerializeField] private GameObject[] Point;
-    [SerializeField] private GameObject[] ProceedBlocks;
-    [SerializeField] private GameObject Smoke;
-    private bool Leave;
-
 
     [SerializeField] private GameObject DoPObj;
     [SerializeField] private Slider DoP;
-    private bool DoPFix;
-    private bool PosFix = false;
     [SerializeField] private GameObject BOSSTEXT;
-   
-    private Vector2 StayPoint;
-    private bool fixX;
-    private bool fixY;
-    private bool fix_now;
 
     void Start()
     {
-        StartPos = this.transform.position;
-        DoPFix = true;
+        switch (Process)
+        {
+            case StageName.Tutorial:
+                Ordermax = 5;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -62,11 +50,7 @@ public class Camera : MonoBehaviour
     void Degreeofprogress()
     {
         // 進行度の取得・更新
-        if (DoPFix)
-        {
-            DoP.value = Order / Ordermax;
-            DoPFix = false;
-        }
+        DoP.value = Order / Ordermax;
 
         if (DoP.value == 1)
         {
