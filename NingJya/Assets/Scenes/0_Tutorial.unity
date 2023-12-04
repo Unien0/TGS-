@@ -1274,6 +1274,37 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Story text
+--- !u!1 &58361719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 58361720}
+  m_Layer: 0
+  m_Name: PalyerCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &58361720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58361719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 958856849}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &67574963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4954,7 +4985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301733731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43, y: -75.07, z: -10}
+  m_LocalPosition: {x: -43, y: -73.77, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4998,7 +5029,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 958856849}
+  m_Follow: {fileID: 58361720}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5.4
@@ -6830,7 +6861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &455922921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6843,7 +6874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6d856ca4301cd4f85a6350b723111a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: RemakeScene
+  sceneName: 1stStage_Remake
 --- !u!4 &455922922
 Transform:
   m_ObjectHideFlags: 0
@@ -10827,7 +10858,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 421.1338
     y: 81.59559
-    width: 112.680405
+    width: 112.11763
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10943,7 +10974,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 190.4263
     y: -120.7005
-    width: 78.04124
+    width: 78.23529
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10976,7 +11007,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 262.39255
     y: 85.36397
-    width: 78.04124
+    width: 78.23529
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11023,7 +11054,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 120.61716
     y: 72.90492
-    width: 76.391754
+    width: 76.352936
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11183,7 +11214,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0.8854513
     y: 82.714294
-    width: 75.56701
+    width: 75.41176
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11219,19 +11250,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 384.60403, y: 167.30843}
+  scrollPos: {x: 290.9229, y: 101.96814}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 395.8
-  zoom: 0.97
+  zoom: 0.85000014
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 678081874}
+  selectedCommands:
+  - {fileID: 678081867}
   variables:
   - {fileID: 678081826}
   - {fileID: 678081818}
@@ -11611,7 +11644,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 106.75715
     y: 176.47377
-    width: 74.74226
+    width: 74.47058
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11646,7 +11679,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -116.878235
     y: 173.31601
-    width: 74.74226
+    width: 74.47058
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12957,7 +12990,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 508.62836
     y: 174.33607
-    width: 92.8866
+    width: 93.29411
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12991,7 +13024,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 319.57104
     y: 180.30127
-    width: 92.8866
+    width: 93.29411
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -16050,7 +16083,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 290.85037
     y: -115.18198
-    width: 76.391754
+    width: 76.352936
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -18600,7 +18633,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 407.78763
     y: -116.14005
-    width: 76.391754
+    width: 76.352936
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23625,7 +23658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054016360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43, y: -75.07, z: -10}
+  m_LocalPosition: {x: -43, y: -73.77, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
