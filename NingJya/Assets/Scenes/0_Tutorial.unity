@@ -2547,7 +2547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: 0
-  GAmeClear: 0
+  GameClear: 0
+  TransitionObj: {fileID: 846286358}
 --- !u!95 &124076803
 Animator:
   serializedVersion: 5

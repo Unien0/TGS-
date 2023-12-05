@@ -27,8 +27,12 @@ public class GameOver : MonoBehaviour
         }
         else if (GAMEOVER)
         {
-            anim.SetBool("isEnd", true);
+            
             TransitionObj.GetComponent<Animator>().SetBool("isRotate", false);
+            if (TransitionObj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Close"))
+            {
+                anim.SetBool("isEnd", true);
+            }
         }
         else
         {
