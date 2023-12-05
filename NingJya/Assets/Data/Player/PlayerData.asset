@@ -26,5 +26,5 @@ MonoBehaviour:
   attackable: 0
   taking: 0
   removable: 1
-  mutekki: 0
+  mutekki: 1
   isAttack: 0

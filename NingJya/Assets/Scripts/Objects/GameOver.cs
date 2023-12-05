@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     private Animator anim;
-    public static bool GAMECLEAR;
+    public static bool StageCLEAR;
     public static bool GAMEOVER;
     [SerializeField]private int NextScene;
-    [SerializeField] private bool GAmeClear;
+    // É^ÉCÉgÉãÇ…ñﬂÇÈÇ©Ç«Ç§Ç©ÇÃèàóù
+    [SerializeField] private bool GameClear;
+    [SerializeField] private GameObject TransitionObj;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -18,13 +20,14 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GAMECLEAR)
+        if (StageCLEAR)
         {
             anim.SetBool("isClear", true);
         }
         else if (GAMEOVER)
         {
             anim.SetBool("isEnd", true);
+            TransitionObj.GetComponent<Animator>().SetBool("isRotate", false);
         }
         else
         {
@@ -34,16 +37,16 @@ public class GameOver : MonoBehaviour
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("imageStay")) && (Input.anyKeyDown))
         {
-            if (GAmeClear)
+            if (GameClear)
             {
                 SceneManager.LoadScene(2);
-                GAMECLEAR = false;
+                StageCLEAR = false;
             }
             else
             {
                 StoryScenes.NextStageNum = NextScene;
                 SceneManager.LoadScene(3);
-                GAMECLEAR = false;
+                StageCLEAR = false;
             }
 
         }

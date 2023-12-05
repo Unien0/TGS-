@@ -694,7 +694,7 @@ public class Player : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             PlayerCol2D.enabled = false;
-            GameOver.GAMECLEAR = true;
+            GameOver.StageCLEAR = true;
         }
            
     }

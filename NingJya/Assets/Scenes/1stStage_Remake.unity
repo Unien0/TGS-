@@ -1237,6 +1237,7 @@ RectTransform:
   - {fileID: 1859977012}
   - {fileID: 592735321}
   - {fileID: 1015218096}
+  - {fileID: 1261787250}
   - {fileID: 189247066}
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -1489,7 +1490,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 159359473}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -24560,7 +24561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -622, y: -127}
+  m_AnchoredPosition: {x: -407, y: -120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &592735322
@@ -43358,8 +43359,8 @@ RectTransform:
   - {fileID: 365495273}
   - {fileID: 1932878963}
   - {fileID: 1224576249}
-  m_Father: {fileID: 1923749721}
-  m_RootOrder: 10
+  m_Father: {fileID: 159359473}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -43379,7 +43380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: 2
-  GAmeClear: 0
+  GameClear: 0
+  TransitionObj: {fileID: 592735320}
 --- !u!95 &1261787252
 Animator:
   serializedVersion: 5
@@ -48133,7 +48135,6 @@ Transform:
   - {fileID: 1997946623}
   - {fileID: 1703104362}
   - {fileID: 2003135569}
-  - {fileID: 1261787250}
   m_Father: {fileID: 159359473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

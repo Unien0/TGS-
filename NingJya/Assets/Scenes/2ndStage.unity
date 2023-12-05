@@ -41227,7 +41227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: 0
-  GAmeClear: 1
+  GameClear: 0
+  TransitionObj: {fileID: 0}
 --- !u!95 &1176705859
 Animator:
   serializedVersion: 5
@@ -43393,7 +43394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1510051825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -84805,7 +84806,7 @@ Tilemap:
   - m_RefCount: 2988
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 2.142
+  m_AnimationFrameRate: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -28, y: -68, z: 0}
   m_Size: {x: 106, y: 82, z: 1}
