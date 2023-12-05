@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameOver : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class GameOver : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             GAMEOVER = false;
-            //ReStartManeger.CanReSporn = true;
+            GameManeger.Score = GameManeger.Score / 2;
         }
     }
 }

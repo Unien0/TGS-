@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -118,7 +119,7 @@ public class Enemy : MonoBehaviour
     private bool isEnemyClash = false;
     private bool shotOk;
     private bool isShot;
-    private bool shoted;//êÅÇ¡îÚÇŒÇ∑ÇÃèÛë‘
+    public bool shoted;//êÅÇ¡îÚÇŒÇ∑ÇÃèÛë‘
     private bool hit;
     private bool ishit;
     private double CoolDownTime;
@@ -130,6 +131,7 @@ public class Enemy : MonoBehaviour
     public bool conductIt;
     public bool Ready;
     private bool isBlow;
+    public bool isAtk;
 
     private Rigidbody2D rb2d;
     private SpriteRenderer SpR;
@@ -413,36 +415,29 @@ public class Enemy : MonoBehaviour
     private void Move()
     {
         if (removable)
-        {
+        {            
             PlayerObject = FindObjectOfType<Player>().gameObject;
             moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
             PosCheck = new Vector2(Mathf.Abs(moveint.x), Mathf.Abs(moveint.y));   
             objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
             if (objctDistance <= 10)
             {
-                /*if (enemyAct == enemyActSet.move)
+                moveit.x = Mathf.Sign(moveint.x);
+                moveit.y = Mathf.Sign(moveint.y);
+
+                if (!isAtk)
                 {
-                    if (PosCheck.x >= PosCheck.y)
-                    {
-                        moveit.x = Mathf.Sign(moveint.x);
-                        moveit.y = 0;
-                    }
-                    else if (PosCheck.x <= PosCheck.y)
-                    {
-                        moveit.x = 0;
-                        moveit.y = Mathf.Sign(moveint.y); ;
-                    }
+                    rb2d.velocity = moveit * enemySpeed;
                 }
-                else*/
+                else
                 {
-                    moveit.x = Mathf.Sign(moveint.x);
-                    moveit.y = Mathf.Sign(moveint.y);
+                    rb2d.velocity = Vector2.zero;
                 }
-                rb2d.velocity = moveit * enemySpeed;
             }
         }
         else
         {
+            isAtk = false;
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
         }
@@ -722,6 +717,10 @@ public class Enemy : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
+            if (col.gameObject.GetComponent<Enemy>().isAtk)
+            {
+                isAtk = true;
+            }
             if (col.gameObject.GetComponent<Enemy>().shoted)
             {
                 if (!ishit)
@@ -751,6 +750,10 @@ public class Enemy : MonoBehaviour
                     ShakeManeger.ShakeLevel = 1;
                 }
             }
+        }
+        if (col.gameObject.name == "ÅIPlayer")
+        {
+            isAtk = true;
         }
     }
 
