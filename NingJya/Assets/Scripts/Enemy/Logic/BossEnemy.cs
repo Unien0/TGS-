@@ -144,7 +144,7 @@ public class BossEnemy : MonoBehaviour
                 if (BossType == BossNumber.No2)
                 {
                     anim.SetBool("Hide", false);
-                    foreach (GameObject child in DestoyObj)
+                    foreach (GameObject child in DestoyObjDestoyObj)
                     {
                         if (child != null)
                         {

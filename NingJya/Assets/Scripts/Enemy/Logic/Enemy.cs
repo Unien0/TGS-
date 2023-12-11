@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
         Carp,
         end
     }
-    
+    [SerializeField] private GameObject[] DestoyObj;
     [SerializeField]private bool DontSporn;
     public float actTime;// çsìÆÇ‹Ç≈ÇÃë“ã@éûä‘    
     [SerializeField] private float objctDistance;
@@ -639,6 +639,18 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void ToStop()
     {
+        foreach (GameObject child in DestoyObj)
+        {
+            if (child != null)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            else
+            {
+                break;
+            }
+        }
+
         anim.SetBool("DEAD", true);
         shotOk = false;
         actTime += Time.deltaTime;
@@ -666,6 +678,8 @@ public class Enemy : MonoBehaviour
 
                     SpR.enabled = false;
                     col2d.enabled = false;
+
+
 
                     if (enemyAct == enemyActSet.Dummy)
                     {
