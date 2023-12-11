@@ -37,6 +37,9 @@ public class Camera : MonoBehaviour
             case StageName.Tutorial:
                 Ordermax = 5;
                 break;
+                case StageName.Stage_1:
+                Ordermax = 8;
+                break;
         }
     }
 

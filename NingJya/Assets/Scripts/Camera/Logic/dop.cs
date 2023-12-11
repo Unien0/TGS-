@@ -57,7 +57,8 @@ public class dop : MonoBehaviour
                 {
                     // カメラの移動を止める
                     FindObjectOfType<Camera>().GetComponent<CinemachineBrain>().enabled = false;
-
+                    // カメラの位置を変更する
+                    FindObjectOfType<Camera>().GetComponent<Transform>().transform.position = StopPoint.transform.position;
                     // 敵の撃破数を確認する
                     foreach (var Eventobj in ProceedBlocks)
                     {
