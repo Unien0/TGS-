@@ -106,7 +106,6 @@ public class Enemy : MonoBehaviour
         Carp,
         end
     }
-    [SerializeField] private GameObject[] DestoyObj;
     [SerializeField]private bool DontSporn;
     public float actTime;// çsìÆÇ‹Ç≈ÇÃë“ã@éûä‘    
     [SerializeField] private float objctDistance;
@@ -139,7 +138,6 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     public enemyActSet enemyAct;
 
-    private GameObject ClashEnemyObj;
     private GameObject PlayerObject;
     public GameObject conductObject;
     [SerializeField] private GameObject HitEfect;
@@ -149,9 +147,6 @@ public class Enemy : MonoBehaviour
     private float gapPos;
     private float gapfixPos;
 
-
-    private Vector2 clashRote;
-    private Vector2 clashshotIt;
     private Vector2 moveint;
     private Vector2 PosCheck;
     private Vector2 moveit;// moveintÇÃåãâ Çê≥ïâÇÃÇ›ÇÃílÇ…Ç∑ÇÈ
@@ -639,18 +634,6 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void ToStop()
     {
-        foreach (GameObject child in DestoyObj)
-        {
-            if (child != null)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-            else
-            {
-                break;
-            }
-        }
-
         anim.SetBool("DEAD", true);
         shotOk = false;
         actTime += Time.deltaTime;

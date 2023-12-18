@@ -85,6 +85,7 @@ public class Objects : MonoBehaviour
         BambooTrap,
         RotatingFloor,
         MovableBridge,
+        CloseDoor,
         end
     }
     public ObjectType ObjNAME;
@@ -106,7 +107,7 @@ public class Objects : MonoBehaviour
             case ObjectType.Cushion:
                 ForcePoint = 800; break;
             case ObjectType.Table:
-                ForcePoint = 100; break;
+                ForcePoint = 300; break;
         }
     }
 
@@ -278,6 +279,18 @@ public class Objects : MonoBehaviour
                         }
                     }
                     GimmickObj.transform.rotation = Quaternion.Euler(0, 0, roteMax);
+                    break;
+            }
+        }
+        else
+        {
+            switch (ObjNAME)
+            {
+                case ObjectType.CloseDoor:
+                    if (GimmickObj.gameObject.GetComponent<SpriteRenderer>().enabled == true)
+                    {
+                        animator.SetBool("Boot", false);
+                    }
                     break;
             }
         }
