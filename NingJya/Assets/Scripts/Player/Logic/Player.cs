@@ -602,7 +602,7 @@ public class Player : MonoBehaviour
             {
                 if (nowBullet > 0)
                 {
-                    if (InputATK)
+                    if (InputATK && !IsAttack)
                     {
                         // î•ñ“o˜^
                         // ‘S“G‚Ìî•ñ‚©‚ç
@@ -637,6 +637,7 @@ public class Player : MonoBehaviour
                             }
                             nowBullet--;
                             Array.Resize(ref TargetEnemys, 0);
+                            IsAttack = true;
                         }                  
                     }
                 }

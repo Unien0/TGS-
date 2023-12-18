@@ -21,6 +21,7 @@ public class Title : MonoBehaviour
 
     [SerializeField] private GameObject Text1;
     [SerializeField] private GameObject Text2;
+    [SerializeField] private GameObject[] Giars;
 
     private void Awake()
     {
@@ -40,6 +41,11 @@ public class Title : MonoBehaviour
         {
             DemoLodeTime = 0;
             lodeTime += Time.deltaTime;
+            foreach (var Eventobj in Giars)
+            {
+               // Eventobj.GetComponent<Animator>().SetBool("MOVE", true);
+            }
+
             if (lodeTime >= 3)
             {
                 lodeTime = 0;
@@ -61,7 +67,6 @@ public class Title : MonoBehaviour
             }
         }
     }
-
     private void OnEnable()
     {
         controls.GamePlay.Enable();

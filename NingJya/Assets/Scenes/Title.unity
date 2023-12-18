@@ -2807,6 +2807,17 @@ MonoBehaviour:
   startClip: {fileID: 8300000, guid: dff24226ab6a250448137362a481b84c, type: 3}
   Text1: {fileID: 861920925}
   Text2: {fileID: 986891764}
+  Giars:
+  - {fileID: 884759163}
+  - {fileID: 1080885755}
+  - {fileID: 497510958}
+  - {fileID: 2000467443}
+  - {fileID: 391920025}
+  - {fileID: 1799424242}
+  - {fileID: 1165353098}
+  - {fileID: 1948677836}
+  - {fileID: 2101409826}
+  - {fileID: 1863881698}
 --- !u!82 &1002679330
 AudioSource:
   m_ObjectHideFlags: 0

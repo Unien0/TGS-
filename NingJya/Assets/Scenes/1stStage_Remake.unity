@@ -2360,7 +2360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472055, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
@@ -19225,7 +19225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996119, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -24452,7 +24452,7 @@ PrefabInstance:
     - target: {fileID: 5751831919115472052, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: DestoyObj.Array.data[0]
       value: 
-      objectReference: {fileID: 755496682}
+      objectReference: {fileID: 1458421708}
     - target: {fileID: 5751831919115472055, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: m_Name
       value: BulletEnemy (2)
@@ -31969,11 +31969,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1943233292472996112, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
   m_PrefabInstance: {fileID: 753705271}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &755496682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5751831919115472055, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
-  m_PrefabInstance: {fileID: 670277293}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &763795817
 GameObject:
   m_ObjectHideFlags: 0
@@ -32321,7 +32316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472055, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
@@ -44186,7 +44181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996119, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
@@ -47079,7 +47074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943233292472996119, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
