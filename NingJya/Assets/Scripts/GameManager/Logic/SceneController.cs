@@ -24,5 +24,9 @@ public class SceneController : MonoBehaviour
     public void SceneChange()
     {
         SceneManager.LoadScene(sceneName);
+        if (sceneName == "StoryScene")
+        {
+            StoryScenes.NextStageNum = 1;
+        }
     }
 }

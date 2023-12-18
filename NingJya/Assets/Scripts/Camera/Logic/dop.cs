@@ -97,6 +97,17 @@ public class dop : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            // 敵のジャンプスケアがONになっている場合
+            if (JumpScare)
+            {
+                foreach (var Eventobj in ProceedBlocks)
+                {
+                    Eventobj.SetActive(false);
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
