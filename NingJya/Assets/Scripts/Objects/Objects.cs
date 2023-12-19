@@ -287,9 +287,10 @@ public class Objects : MonoBehaviour
             switch (ObjNAME)
             {
                 case ObjectType.CloseDoor:
-                    if (GimmickObj.gameObject.GetComponent<SpriteRenderer>().enabled == true)
+                    if (GimmickObj.gameObject.GetComponent<SpriteRenderer>().enabled == false)
                     {
-                        animator.SetBool("Boot", false);
+                        Debug.Log("Open");
+                        animator.SetBool("Boot", true);
                     }
                     break;
             }

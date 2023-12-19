@@ -139,22 +139,23 @@ public class BossEnemy : MonoBehaviour
 
                 // 位置固定
                 rb2d.velocity = Vector3.zero;
-                
+
                 // 子オブジェクトの削除
+                foreach (GameObject child in DestoyObj)
+                {
+                    if (child != null)
+                    {
+                        GameObject.Destroy(child.gameObject);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 if (BossType == BossNumber.No2)
                 {
                     anim.SetBool("Hide", false);
-                    foreach (GameObject child in DestoyObj)
-                    {
-                        if (child != null)
-                        {
-                            GameObject.Destroy(child.gameObject);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
+
                 }
 
                 // 白飛びアニメーションが終わったら
@@ -275,6 +276,7 @@ public class BossEnemy : MonoBehaviour
             // アクションタイミングに入ったら
             if (ExChange)
             {
+                EnemyBullet[4].GetComponent<Animator>().SetBool("Act", true);
                 fix = false;
                 ExChange = false;
 

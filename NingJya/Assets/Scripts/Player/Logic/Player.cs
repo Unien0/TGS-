@@ -345,7 +345,7 @@ public class Player : MonoBehaviour
                 {   // “ü—Í‚É‰ž‚¶‚ÄAUŒ‚”ÍˆÍ‚ð‰ñ“]‚·‚é
                     #region roteMax•ÏX
                     // “ü—Í‚É‰ž‚¶‚ÄA‰ñ“]‚ð•ÏX‚·‚é
-                    if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y >= 0.01f))
+                    if (((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y >= 0.01f)) || ((TemporaryInput.x == 1) && (TemporaryInput.y == 1)))
                     {
                         moveInput = new Vector2(1, 1);
                         moveDirection = 315;
@@ -357,7 +357,7 @@ public class Player : MonoBehaviour
                         moveDirection = 0;
                     }
 
-                    if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y >= 0.01f))
+                    if (((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y >= 0.01f)) || ((TemporaryInput.x == -1) && (TemporaryInput.y == 1)))
                     {
                         moveInput = new Vector2(-1, 1);
                         moveDirection = 45;
@@ -369,7 +369,7 @@ public class Player : MonoBehaviour
                         moveDirection = 90;
                     }
 
-                    if ((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y <= -0.01f))
+                    if (((TemporaryInput.x <= -0.425f) && (TemporaryInput.x >= -0.8f) && (TemporaryInput.y <= -0.01f)) ||  ((TemporaryInput.x == -1) && (TemporaryInput.y == -1)))
                     {
                         moveInput = new Vector2(-1, -1);
                         moveDirection = 135;
@@ -381,7 +381,7 @@ public class Player : MonoBehaviour
                         moveDirection = 180;
                     }
 
-                    if ((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y <= -0.01f))
+                    if (((TemporaryInput.x >= 0.425f) && (TemporaryInput.x <= 0.8f) && (TemporaryInput.y <= -0.01f)) || ((TemporaryInput.x == 1) && (TemporaryInput.y == -1)))
                     {
                         moveInput = new Vector2(1, -1);
                         moveDirection = 225;
@@ -598,7 +598,7 @@ public class Player : MonoBehaviour
         // 
         if (removable && !taking)
         {
-            if ((Input.GetKeyDown(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
+            if ((Input.GetKey(KeyCode.E)) || (Input.GetKey(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
             {
                 if (nowBullet > 0)
                 {
@@ -637,12 +637,11 @@ public class Player : MonoBehaviour
                             }
                             nowBullet--;
                             Array.Resize(ref TargetEnemys, 0);
-                            IsAttack = true;
                         }                  
                     }
                 }
             }
-            else if (!attackable && removable)
+            else if (!attackable)
             {
                 if (InputATK)
                 {
