@@ -598,7 +598,7 @@ public class Player : MonoBehaviour
         // 
         if (removable && !taking)
         {
-            if ((Input.GetKey(KeyCode.E)) || (Input.GetKey(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
+            if ((Input.GetKey(KeyCode.E)) || (Input.GetKey(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0.1) || (Input.GetAxis("L_R_Trigger") < 0.1))
             {
                 if (nowBullet > 0)
                 {
