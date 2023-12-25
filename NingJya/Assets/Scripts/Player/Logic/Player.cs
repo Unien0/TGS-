@@ -133,6 +133,8 @@ public class Player : MonoBehaviour
     private float RotePass;
     private float TargetRote;
 
+    [SerializeField] private GameObject LineObj;
+
     private void Awake()
     {
         // ‘S“G‚Ìî•ñ‚ðŽæ“¾
@@ -399,11 +401,13 @@ public class Player : MonoBehaviour
                     // ‰¡Ž²“ü—Í
                     if (moveInput.x >= 0.1f)
                     {
+                        LineObj.GetComponent<SpriteRenderer>().flipX = true;
                         SpR.flipX = true;
                         anim.SetBool("Side", true);
                     }
                     else if (moveInput.x <= -0.1f)
                     {
+                        LineObj.GetComponent<SpriteRenderer>().flipX = false;
                         SpR.flipX = false;
                         anim.SetBool("Side", true);
                     }
@@ -598,7 +602,7 @@ public class Player : MonoBehaviour
         // 
         if (removable && !taking)
         {
-            if ((Input.GetKey(KeyCode.E)) || (Input.GetKey(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0.1) || (Input.GetAxis("L_R_Trigger") < 0.1))
+            if ((Input.GetKey(KeyCode.E)) || (Input.GetKey(KeyCode.Q)) || (Input.GetAxis("L_R_Trigger") > 0) || (Input.GetAxis("L_R_Trigger") < 0))
             {
                 if (nowBullet > 0)
                 {

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5274289856677963764}
   - component: {fileID: 5099263580520726994}
   m_Layer: 0
-  m_Name: Side-Flame
+  m_Name: lineobj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   Bullet: {fileID: 1773284206530875610, guid: f6b2fa9f3d7663e4fb6814af3cd6de04, type: 3}
   NearEnemys: []
   TargetEnemys: []
+  LineObj: {fileID: 1661228441968658026}
 --- !u!61 &6563868376941559787
 BoxCollider2D:
   m_ObjectHideFlags: 0

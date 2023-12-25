@@ -174,8 +174,8 @@ public class Enemy : MonoBehaviour
     private bool Enter;
     [SerializeField]
     private float HideTime;
-    
 
+    [SerializeField] private GameObject[] DestoyObj;
 
     private void Awake()
     {
@@ -657,6 +657,18 @@ public class Enemy : MonoBehaviour
                         Instantiate(DEADEfect, this.transform.position, this.transform.rotation);
                         GameObject instance = Instantiate(ComboEfect, this.transform.position, this.transform.rotation);
                         instance.GetComponent<EfectDestory>().ComboPoint = MakeComboCount;
+                    }
+
+                    foreach (GameObject child in DestoyObj)
+                    {
+                        if (child != null)
+                        {
+                            GameObject.Destroy(child.gameObject);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
 
                     SpR.enabled = false;

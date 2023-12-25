@@ -17,6 +17,9 @@ public class dop : MonoBehaviour
     // 出現させる敵のオブジェクトを保存する変数
     [SerializeField] 
     private GameObject[] ProceedBlocks;
+    // 出現させる障害物
+    [SerializeField] 
+    private GameObject[] ProceedObjs;
     // 出現時エフェクトを保存する変数
     [SerializeField] 
     private GameObject Smoke;
@@ -42,7 +45,12 @@ public class dop : MonoBehaviour
                 // 敵のジャンプスケアがONになっている場合
                 if (JumpScare)
                 {
-                    foreach (var Eventobj in ProceedBlocks)
+                    foreach (var EventEnemy in ProceedBlocks)
+                    {
+                        EventEnemy.SetActive(true);
+                        Instantiate(Smoke, EventEnemy.transform.position, EventEnemy.transform.rotation);
+                    }                    
+                    foreach (var Eventobj in ProceedObjs)
                     {
                         Eventobj.SetActive(true);
                         Instantiate(Smoke, Eventobj.transform.position, Eventobj.transform.rotation);
@@ -80,6 +88,11 @@ public class dop : MonoBehaviour
                     {
                         // このイベントを終了する
                         JumpScare = false;
+                        foreach (var Eventobj in ProceedObjs)
+                        {
+                            Eventobj.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                            Eventobj.gameObject.GetComponent<Collider2D>().enabled = false;
+                        }
                         // カメラの移動を再開させる
                         FindObjectOfType<Camera>().GetComponent<CinemachineBrain>().enabled = true;
                     }
@@ -102,11 +115,16 @@ public class dop : MonoBehaviour
             // 敵のジャンプスケアがONになっている場合
             if (JumpScare)
             {
-                foreach (var Eventobj in ProceedBlocks)
+                foreach (var EventEnemy in ProceedBlocks)
+                {
+                    EventEnemy.SetActive(false);
+                }
+                foreach (var Eventobj in ProceedObjs)
                 {
                     Eventobj.SetActive(false);
                 }
             }
+
         }
     }
 
