@@ -73,9 +73,13 @@ public class Objects : MonoBehaviour
     // ギミック対応オブジェクト(複数)
     [SerializeField] private GameObject[] GimmickObjSeries;
     // ギミック入力確認変数(A,B,X,Yボタンを押すと変わる)
-    [SerializeField]private int GimmickInput;
+    private int GimmickInput;
     // ギミック処理段階を確認する変数
-    [SerializeField]private int GimmickOrder;
+    private int GimmickOrder;
+    // 複数ギミックオブジェクトからアクションするときに使う変数
+    private static int MultipleGimmickOrder;
+    // 指定回数の記録
+    [SerializeField] private int ActivateCount;
     private int roteMax;
 
     public enum ObjectType
@@ -86,6 +90,7 @@ public class Objects : MonoBehaviour
         RotatingFloor,
         MovableBridge,
         CloseDoor,
+        Detonator,
         end
     }
     public ObjectType ObjNAME;
@@ -148,6 +153,23 @@ public class Objects : MonoBehaviour
         {
             switch (ObjNAME)
             {
+                case ObjectType.Detonator:
+                    if (!Motion)
+                    {
+                        MultipleGimmickOrder++;
+                        Motion = true;
+                    }
+
+                    if (MultipleGimmickOrder >= ActivateCount)
+                    {
+                        foreach (var EventObj in GimmickObjSeries)
+                        {
+                            EventObj.SetActive(false);
+                        }
+                    }
+
+                    
+                    break;
                 case ObjectType.BambooTrap:
                     if (!Motion)
                     {
@@ -292,6 +314,9 @@ public class Objects : MonoBehaviour
                         Debug.Log("Open");
                         animator.SetBool("Boot", true);
                     }
+                    break;
+                case ObjectType.Detonator:
+                    Motion = false;
                     break;
             }
         }

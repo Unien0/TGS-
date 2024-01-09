@@ -90,8 +90,7 @@ public class dop : MonoBehaviour
                         JumpScare = false;
                         foreach (var Eventobj in ProceedObjs)
                         {
-                            Eventobj.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                            Eventobj.gameObject.GetComponent<Collider2D>().enabled = false;
+                            Eventobj.SetActive(false);
                         }
                         // ƒJƒƒ‰‚ÌˆÚ“®‚ğÄŠJ‚³‚¹‚é
                         FindObjectOfType<Camera>().GetComponent<CinemachineBrain>().enabled = true;
