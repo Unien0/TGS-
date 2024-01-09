@@ -24592,7 +24592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472052, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: DestoyObj.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5751831919115472052, guid: 531b5a91efc151646967d4cf1003b270, type: 3}
       propertyPath: DestoyObj.Array.data[0]
