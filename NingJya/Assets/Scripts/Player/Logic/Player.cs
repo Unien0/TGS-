@@ -133,7 +133,6 @@ public class Player : MonoBehaviour
     private float RotePass;
     private float TargetRote;
 
-    [SerializeField] private GameObject LineObj;
 
     private void Awake()
     {
@@ -401,13 +400,11 @@ public class Player : MonoBehaviour
                     // ‰¡Ž²“ü—Í
                     if (moveInput.x >= 0.1f)
                     {
-                        LineObj.GetComponent<SpriteRenderer>().flipX = true;
                         SpR.flipX = true;
                         anim.SetBool("Side", true);
                     }
                     else if (moveInput.x <= -0.1f)
                     {
-                        LineObj.GetComponent<SpriteRenderer>().flipX = false;
                         SpR.flipX = false;
                         anim.SetBool("Side", true);
                     }

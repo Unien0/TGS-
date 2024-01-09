@@ -1110,11 +1110,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &64535785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2775603037321211148, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
-  m_PrefabInstance: {fileID: 606907043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &65066409
 GameObject:
   m_ObjectHideFlags: 0
@@ -25367,7 +25362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -406.95, y: -120.09}
+  m_AnchoredPosition: {x: -406.95, y: -120.13}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &592735322
@@ -25556,11 +25551,11 @@ PrefabInstance:
     - target: {fileID: 6758980481141204552, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: DestoyObj.Array.data[0]
       value: 
-      objectReference: {fileID: 64535785}
+      objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204552, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: EnemyBullet.Array.data[4]
       value: 
-      objectReference: {fileID: 64535785}
+      objectReference: {fileID: 0}
     - target: {fileID: 6758980481141204553, guid: 0a0cb30d096e87b43b4dad85649dc458, type: 3}
       propertyPath: m_Name
       value: Boss_1
@@ -33722,7 +33717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742244750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.39228, y: 2.2801907, z: -10}
+  m_LocalPosition: {x: -30.792229, y: 2.2914634, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35332,11 +35327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836579830910389182, guid: f870512a6262010429ccb6f5af7c2089, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.05
+      value: 40.01
       objectReference: {fileID: 0}
     - target: {fileID: 2836579830910389182, guid: f870512a6262010429ccb6f5af7c2089, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.42
+      value: 14.38
       objectReference: {fileID: 0}
     - target: {fileID: 2836579830910389182, guid: f870512a6262010429ccb6f5af7c2089, type: 3}
       propertyPath: m_LocalPosition.z
