@@ -171,6 +171,7 @@ public class GameManeger : MonoBehaviour
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
             TempoExChange = true;
+            Debug.Log("Tempo" + Tempo);
         }
         else
         {

@@ -117,6 +117,8 @@ public class Enemy : MonoBehaviour
     private bool inPlayerAttackRange = false;
     private bool isEnemyClash = false;
     private bool shotOk;
+    // 0~3‚ÌŠÔ‚Ì”’l‚ğ“ü—Í‚·‚é
+    [SerializeField] private int ShotTempo;
     private bool isShot;
     public bool shoted;//‚Á”ò‚Î‚·‚Ìó‘Ô
     private bool hit;
@@ -380,7 +382,7 @@ public class Enemy : MonoBehaviour
                 if (enemyAct == enemyActSet.cannonball)
                 {
                     #region
-                    if (GameManeger.Tempo == 0)
+                    if (GameManeger.Tempo == ShotTempo)
                     {
                         if (!isShot)
                         {
