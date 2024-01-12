@@ -321,15 +321,18 @@ public class Player : MonoBehaviour
 
             // 移動処理
             rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             ActFix = false;
+
         }
         else
         {
+
             if (!ActFix)
             {
                 ActFix = true;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 
                 // 再度アクション処理ができるように初期化する
                 IsAttack = false;                             // 攻撃処理の初期化
