@@ -65,7 +65,8 @@ public class Objects : MonoBehaviour
 
     // トラップ用変数
     private float ResetTime;
-    public bool Activate;
+    public static bool Activate;
+    public static GameObject ActivateObj;
     private bool Motion;
 
     // ギミック対応オブジェクト(単個)
@@ -156,19 +157,27 @@ public class Objects : MonoBehaviour
                 case ObjectType.Detonator:
                     if (!Motion)
                     {
-                        MultipleGimmickOrder++;
+                        foreach(var EventObj in GimmickObjSeries)
+                        {
+                            if (EventObj.gameObject.name == ActivateObj.gameObject.name)
+                            {
+                                MultipleGimmickOrder += 1;
+                                ActivateObj.GetComponent<Collider2D>().enabled = false;
+                                Debug.Log(MultipleGimmickOrder);
+                            }
+                        }
                         Motion = true;
                     }
 
                     if (MultipleGimmickOrder >= ActivateCount)
                     {
-                        foreach (var EventObj in GimmickObjSeries)
-                        {
-                            EventObj.SetActive(false);
-                        }
+                        this.gameObject.SetActive(false);
                     }
 
-                    
+                    Activate = false;
+
+
+
                     break;
                 case ObjectType.BambooTrap:
                     if (!Motion)
@@ -316,7 +325,10 @@ public class Objects : MonoBehaviour
                     }
                     break;
                 case ObjectType.Detonator:
-                    Motion = false;
+                    if (Motion)
+                    {
+                        Motion = false;
+                    }
                     break;
             }
         }
