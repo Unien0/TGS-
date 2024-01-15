@@ -17,6 +17,7 @@ public class EfectDestory : MonoBehaviour
         Move,
         Combo,
         Any,
+        AfterImage,
         End
     }
     [SerializeField] private EfectType EfectName;
@@ -67,6 +68,48 @@ public class EfectDestory : MonoBehaviour
                 break;
             case EfectType.Combo:
                 rd2d.AddForce(new Vector2(ShotPoint, 5) * 80);
+                break;
+            case EfectType.AfterImage:
+                switch (FindObjectOfType<Player>().moveDirection)
+                {
+                    #region
+                    case 0:
+                        // è„
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(0);
+                        break;
+                    case 45:
+                        // ç∂è„
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
+                        break;
+                    case 90:
+                        // ç∂
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
+                        break;
+                    case 135:
+                        // ç∂â∫
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
+                        break;
+                    case 180:
+                        // â∫
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(1);
+                        break;
+                    case 225:
+                        // âEâ∫
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
+                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 270:
+                        // âE
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
+                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                    case 315:
+                        // âEè„
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
+                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                        break;
+                        #endregion
+                }
                 break;
         }
     }

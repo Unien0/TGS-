@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
     // 移動エフェクトを保存する変数
     [SerializeField] private GameObject MoveEfect;
     [SerializeField] private GameObject PointerEfect;
+    [SerializeField] private GameObject AfterImage;
     private bool ActFix;
 
     private float MutekiTime;               // ダメージ時後の無敵時間を管理する変数
@@ -119,6 +120,8 @@ public class Player : MonoBehaviour
     public float roteMax;                   // 攻撃範囲の回転数を保存する変数
 
     private float animSpeed;                // アニメーション速度の値を保存する変数
+
+    public bool Stay;
 
     private Rigidbody2D rb2d;               // Rigidbody2Dコンポーネントを保存する変数
     private Animator anim;                  // Animatorコンポーネントを保存する変数
@@ -150,7 +153,7 @@ public class Player : MonoBehaviour
         // SpriteRendererコンポーネントを保存する
         SpR = GetComponentInChildren<SpriteRenderer>();
         // Collider2Dコンポーネントを保存する
-        PlayerCol2D = GetComponent<Collider2D>();
+        PlayerCol2D = this.gameObject.GetComponent<Collider2D>();
 
         // マウスカーソルを非表示にする
         Cursor.visible = false;
@@ -318,7 +321,7 @@ public class Player : MonoBehaviour
                 if ((moveInput.x != 0) || (moveInput.y != 0))
                 {
                     Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
-
+                    Instantiate(AfterImage, this.transform.position, this.transform.rotation);
                     maked = true;
                     Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
                 }
@@ -326,7 +329,10 @@ public class Player : MonoBehaviour
             }
 
             // 移動処理
-            rb2d.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
+            if (!Stay)
+            {
+                rb2d.velocity = new Vector2(moveInput.x * speed * 2, moveInput.y * speed * 2);
+            }
             rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             ActFix = false;
@@ -601,8 +607,6 @@ public class Player : MonoBehaviour
             // 攻撃範囲を回転させる
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
             InputATK = true;
-            Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
-
         }
         else
         {
@@ -659,6 +663,7 @@ public class Player : MonoBehaviour
             {
                 if (InputATK)
                 {
+                    Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
                     attackable = true;
                     anim.SetBool("Attack", true);
                     IsAttack = true;
@@ -713,13 +718,26 @@ public class Player : MonoBehaviour
            
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Pointer")
         {
             Debug.Log("Move");
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb2d.velocity = Vector2.zero;
+
         }
     }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.name == "Pointer")
+        {
+            Debug.Log("Ready");
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }*/
 
 
 }
