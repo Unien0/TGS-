@@ -104,8 +104,10 @@ public class Player : MonoBehaviour
     private Vector2 moveInput;              // 1テンポ毎事の移動入力を保存する変数
     public float moveDirection;             // 移動方向の保存
     private bool maked;                     // 移動エフェクトの生成を確認する変数
+    private bool maked_2;                     // 移動エフェクトの生成を確認する変数
     // 移動エフェクトを保存する変数
     [SerializeField] private GameObject MoveEfect;
+    [SerializeField] private GameObject PointerEfect;
     private bool ActFix;
 
     private float MutekiTime;               // ダメージ時後の無敵時間を管理する変数
@@ -315,6 +317,8 @@ public class Player : MonoBehaviour
             {
                 if ((moveInput.x != 0) || (moveInput.y != 0))
                 {
+                    Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
+
                     maked = true;
                     Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
                 }
@@ -347,6 +351,7 @@ public class Player : MonoBehaviour
             else
             {
                 MovePointer.transform.position = this.transform.position;
+
                 #region 移動入力の処理 　
                 if ((TemporaryInput.x != 0) || (TemporaryInput.y != 0))
                 {   // 入力に応じて、攻撃範囲を回転する
@@ -596,6 +601,8 @@ public class Player : MonoBehaviour
             // 攻撃範囲を回転させる
             AttackArea.transform.rotation = Quaternion.Euler(0, 0, roteMax);
             InputATK = true;
+            Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
+
         }
         else
         {
@@ -705,5 +712,14 @@ public class Player : MonoBehaviour
         }
            
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name == "Pointer")
+        {
+            Debug.Log("Move");
+        }
+    }
+
 
 }

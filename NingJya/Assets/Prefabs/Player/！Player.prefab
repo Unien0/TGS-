@@ -106,8 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 36d70707227f4af488ba56532dc2b687, type: 2}
   gameManegerCS: {fileID: 0}
+  MovePointer: {fileID: 0}
   moveDirection: 0
   MoveEfect: {fileID: 4483416700207499399, guid: 0e6a8fad3419d1c429531d0418d2da48, type: 3}
+  PointerEfect: {fileID: 519947526202948985, guid: df900f6164853eb458d1ec9219b8dad1, type: 3}
   Hit: 0
   AttackArea: {fileID: 6563868377558342732}
   roteMax: 0

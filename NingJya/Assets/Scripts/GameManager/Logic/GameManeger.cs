@@ -58,6 +58,8 @@ public class GameManeger : MonoBehaviour
     public static bool TempoExChange;           // テンポの変化を確認する変数(全スクリプトが参照)
     public static float AnimSpeed;              // BPMに応じたアニメーション速度(全スクリプトが参照)
 
+    [SerializeField] private GameObject[] animSet;
+
     private AudioSource Audio;                  // AudioSourceコンポーネントを保存する変数
     private bool isSound;                       // サウンドを鳴らしたか確認する変数
     // メトロノームの音声を保存する変数
@@ -150,6 +152,11 @@ public class GameManeger : MonoBehaviour
         ComboChecker();
         Function();
         ShakeCheck();
+
+        foreach (var Setobj in animSet)
+        {
+            Setobj.GetComponent<Animator>().SetFloat("AnimSpeed", GameManeger.AnimSpeed);
+        }
     }
 
     void TempoChange()

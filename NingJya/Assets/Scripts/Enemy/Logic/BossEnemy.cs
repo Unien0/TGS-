@@ -276,7 +276,6 @@ public class BossEnemy : MonoBehaviour
             // アクションタイミングに入ったら
             if (ExChange)
             {
-                EnemyBullet[4].GetComponent<Animator>().SetBool("Act", true);
                 fix = false;
                 ExChange = false;
 
