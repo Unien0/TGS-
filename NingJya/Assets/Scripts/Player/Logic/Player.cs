@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameManeger gameManegerCS;
 
+    [SerializeField] private GameObject MovePointer;
+
     private float inputX;                   // 横軸の移動入力を確認する変数
     private float inputY;                   // 縦軸の移動入力を確認する変数
     private Vector2 TemporaryInput;         // 一時的に移動入力を保存する変数
@@ -344,6 +346,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                MovePointer.transform.position = this.transform.position;
                 #region 移動入力の処理 　
                 if ((TemporaryInput.x != 0) || (TemporaryInput.y != 0))
                 {   // 入力に応じて、攻撃範囲を回転する

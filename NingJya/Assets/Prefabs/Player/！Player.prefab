@@ -116,7 +116,6 @@ MonoBehaviour:
   Bullet: {fileID: 1773284206530875610, guid: f6b2fa9f3d7663e4fb6814af3cd6de04, type: 3}
   NearEnemys: []
   TargetEnemys: []
-  LineObj: {fileID: 0}
 --- !u!61 &6563868376941559787
 BoxCollider2D:
   m_ObjectHideFlags: 0
