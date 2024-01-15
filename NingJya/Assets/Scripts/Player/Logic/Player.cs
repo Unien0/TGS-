@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
     private float inputFixV;                // TemporaryInput.yの値を初期化するまでの時間
     private Vector2 moveInput;              // 1テンポ毎事の移動入力を保存する変数
     public float moveDirection;             // 移動方向の保存
+    private Vector2 PosFix;
     private bool maked;                     // 移動エフェクトの生成を確認する変数
     private bool maked_2;                     // 移動エフェクトの生成を確認する変数
     // 移動エフェクトを保存する変数
@@ -353,6 +354,25 @@ public class Player : MonoBehaviour
                 attackable = false;                           // 攻撃許可の取り消し
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
+
+                if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
+                {
+                    PosFix.x = Mathf.Ceil(this.transform.position.x);
+                }
+                else
+                {
+                    PosFix.x = Mathf.Floor(this.transform.position.x);
+                }
+
+                if (this.transform.position.y - Mathf.FloorToInt(this.transform.position.y) > 0.5f)
+                {
+                    PosFix.y = Mathf.Ceil(this.transform.position.y);
+                }
+                else
+                {
+                    PosFix.y = Mathf.Floor(this.transform.position.y);
+                }
+                this.transform.position = PosFix;
             }
             else
             {
