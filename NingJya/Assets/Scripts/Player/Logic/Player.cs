@@ -123,6 +123,7 @@ public class Player : MonoBehaviour
     private float animSpeed;                // アニメーション速度の値を保存する変数
 
     public bool Stay;
+    private float MoveFix;
 
     private Rigidbody2D rb2d;               // Rigidbody2Dコンポーネントを保存する変数
     private Animator anim;                  // Animatorコンポーネントを保存する変数
@@ -332,7 +333,7 @@ public class Player : MonoBehaviour
             // 移動処理
             if (!Stay)
             {
-                rb2d.velocity = new Vector2(moveInput.x * speed * 2, moveInput.y * speed * 2);
+                rb2d.velocity = new Vector2(moveInput.x * speed * 2 * MoveFix, moveInput.y * speed * 2 * MoveFix);
             }
             rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -354,7 +355,8 @@ public class Player : MonoBehaviour
                 attackable = false;                           // 攻撃許可の取り消し
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
-
+                MoveFix = 1;
+                // X軸の矯正
                 if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
                 {
                     PosFix.x = Mathf.Ceil(this.transform.position.x);
@@ -363,7 +365,7 @@ public class Player : MonoBehaviour
                 {
                     PosFix.x = Mathf.Floor(this.transform.position.x);
                 }
-
+                // Y軸の矯正
                 if (this.transform.position.y - Mathf.FloorToInt(this.transform.position.y) > 0.5f)
                 {
                     PosFix.y = Mathf.Ceil(this.transform.position.y);
@@ -735,7 +737,11 @@ public class Player : MonoBehaviour
             PlayerCol2D.enabled = false;
             GameOver.StageCLEAR = true;
         }
-           
+
+        if (col.gameObject.CompareTag("wall"))
+        {
+            MoveFix = -0.25f;
+        }
     }
 
     /*

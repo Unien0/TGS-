@@ -438,6 +438,7 @@ public class Enemy : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
 
+            // XŽ²‚Ì‹¸³
             if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
             {
                 moveit.x = Mathf.Ceil(this.transform.position.x);
@@ -447,6 +448,7 @@ public class Enemy : MonoBehaviour
                 moveit.x = Mathf.Floor(this.transform.position.x);
             }
 
+            // YŽ²‚Ì‹¸³
             if (this.transform.position.y - Mathf.FloorToInt(this.transform.position.y) > 0.5f)
             {
                 moveit.y = Mathf.Ceil(this.transform.position.y);

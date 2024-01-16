@@ -21057,7 +21057,7 @@ GameObject:
   - component: {fileID: 530342275}
   m_Layer: 0
   m_Name: Tilemap_outside_wall
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36031,7 +36031,7 @@ GameObject:
   - component: {fileID: 959968411}
   m_Layer: 0
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36248,7 +36248,7 @@ GameObject:
   - component: {fileID: 971454017}
   m_Layer: 0
   m_Name: Tilemap_wall
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55254,7 +55254,7 @@ GameObject:
   - component: {fileID: 1924487001}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
