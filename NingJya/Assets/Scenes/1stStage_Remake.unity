@@ -48053,6 +48053,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf74c6c4aae767e4e931d23899c4f4e4, type: 3}
+--- !u!1 &1241051311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1943233292472996119, guid: 6ef7db418d6ed2643b6aa4ca1f8f09d5, type: 3}
+  m_PrefabInstance: {fileID: 671529986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1261367357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58046,6 +58051,18 @@ PrefabInstance:
     - target: {fileID: 8569814437146219773, guid: 1e8bb72b597727b46a8b353b04ca3b3b, type: 3}
       propertyPath: GimmickObj
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569814437146219773, guid: 1e8bb72b597727b46a8b353b04ca3b3b, type: 3}
+      propertyPath: GimmickObjSeries.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569814437146219773, guid: 1e8bb72b597727b46a8b353b04ca3b3b, type: 3}
+      propertyPath: GimmickObjSeries.Array.data[0]
+      value: 
       objectReference: {fileID: 898215272}
+    - target: {fileID: 8569814437146219773, guid: 1e8bb72b597727b46a8b353b04ca3b3b, type: 3}
+      propertyPath: GimmickObjSeries.Array.data[1]
+      value: 
+      objectReference: {fileID: 1241051311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e8bb72b597727b46a8b353b04ca3b3b, type: 3}

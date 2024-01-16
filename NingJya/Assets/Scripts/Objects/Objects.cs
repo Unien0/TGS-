@@ -318,12 +318,20 @@ public class Objects : MonoBehaviour
             switch (ObjNAME)
             {
                 case ObjectType.CloseDoor:
-                    if (GimmickObj.gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                    foreach (var EventObj in GimmickObjSeries)
                     {
-                        Debug.Log("Open");
-                        animator.SetBool("Boot", true);
+                        if (EventObj.gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                        {
+                            MultipleGimmickOrder += 1;
+                        }
+
+                        if (MultipleGimmickOrder >= GimmickObjSeries.Length)
+                        {
+                            Debug.Log("Open");
+                            animator.SetBool("Boot", true);
+                        }
                     }
-                    break;
+                        break;
                 case ObjectType.Detonator:
                     if (Motion)
                     {

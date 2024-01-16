@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
     private bool Enter;
     [SerializeField]
     private float HideTime;
-
+    private float MoveFix;
     [SerializeField] private GameObject[] DestoyObj;
 
     private void Awake()
@@ -389,7 +389,7 @@ public class Enemy : MonoBehaviour
                             PlayerObject = FindObjectOfType<Player>().gameObject;
                             moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
                             objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
-                            if (objctDistance <= 10)
+                            if (objctDistance <= 6)
                             {
                                 Instantiate(EnemyBullet, this.transform.position, ShotRote.transform.rotation);
                             }
@@ -417,14 +417,14 @@ public class Enemy : MonoBehaviour
             moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
             PosCheck = new Vector2(Mathf.Abs(moveint.x), Mathf.Abs(moveint.y));   
             objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
-            if (objctDistance <= 10)
+            if (objctDistance <= 6)
             {
                 moveit.x = Mathf.Sign(moveint.x);
                 moveit.y = Mathf.Sign(moveint.y);
 
                 if (!isAtk)
                 {
-                    rb2d.velocity = moveit * enemySpeed;
+                    rb2d.velocity = moveit * enemySpeed * MoveFix;
                 }
                 else
                 {
@@ -434,6 +434,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            MoveFix = 1;
             isAtk = false;
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
@@ -787,6 +788,11 @@ public class Enemy : MonoBehaviour
         if (col.gameObject.name == "IPlayer")
         {
             isAtk = true;
+        }
+
+        if (col.gameObject.CompareTag("wall"))
+        {
+            MoveFix = -0.25f;
         }
     }
 
