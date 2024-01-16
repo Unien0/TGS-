@@ -27,6 +27,8 @@ public class EfectDestory : MonoBehaviour
     [SerializeField] private Sprite[] Numbers;
     private float ShotPoint;
     [SerializeField] private bool NeedanimSpeed;
+    [SerializeField] private bool KeyBool;
+    private int RumdumNum;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -70,46 +72,60 @@ public class EfectDestory : MonoBehaviour
                 rd2d.AddForce(new Vector2(ShotPoint, 5) * 80);
                 break;
             case EfectType.AfterImage:
-                switch (FindObjectOfType<Player>().moveDirection)
+                // 通常
+                if (!KeyBool)
                 {
-                    #region
-                    case 0:
-                        // 上
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(0);
-                        break;
-                    case 45:
-                        // 左上
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
-                        break;
-                    case 90:
-                        // 左
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
-                        break;
-                    case 135:
-                        // 左下
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
-                        break;
-                    case 180:
-                        // 下
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(1);
-                        break;
-                    case 225:
-                        // 右下
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
-                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                    case 270:
-                        // 右
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
-                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                    case 315:
-                        // 右上
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
-                        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-                        break;
-                        #endregion
+                    switch (FindObjectOfType<Player>().moveDirection)
+                    {
+                        #region
+                        case 0:
+                            // 上
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(0);
+                            break;
+                        case 45:
+                            // 左上
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
+                            break;
+                        case 90:
+                            // 左
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
+                            break;
+                        case 135:
+                            // 左下
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
+                            break;
+                        case 180:
+                            // 下
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(1);
+                            break;
+                        case 225:
+                            // 右下
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(3);
+                            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                            break;
+                        case 270:
+                            // 右
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(2);
+                            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                            break;
+                        case 315:
+                            // 右上
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(4);
+                            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                            break;
+                            #endregion
+                    }
                 }
+                else
+                {
+                    // おふざけ
+                    RumdumNum = Random.Range(0, Numbers.Length);
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(RumdumNum);
+                }
+
+
+
+
                 break;
         }
     }

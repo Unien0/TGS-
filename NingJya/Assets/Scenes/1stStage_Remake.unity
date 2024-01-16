@@ -45955,6 +45955,10 @@ PrefabInstance:
       value: -1222801253
       objectReference: {fileID: 0}
     - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: AfterImage
+      value: 
+      objectReference: {fileID: 1240226245772046749, guid: 5228fadd69a4be74284eead6d75017a9, type: 3}
+    - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
       propertyPath: MovePointer
       value: 
       objectReference: {fileID: 1337610828950536575}
