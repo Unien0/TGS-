@@ -150,7 +150,6 @@ public class Enemy : MonoBehaviour
     private float gapfixPos;
 
     private Vector2 moveint;
-    private Vector2 PosCheck;
     private Vector2 moveit;// moveintÇÃåãâ Çê≥ïâÇÃÇ›ÇÃílÇ…Ç∑ÇÈ
     public Vector2 knockbackRote;
     [SerializeField] private Vector2 shotIt;
@@ -414,8 +413,7 @@ public class Enemy : MonoBehaviour
         if (removable)
         {            
             PlayerObject = FindObjectOfType<Player>().gameObject;
-            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);
-            PosCheck = new Vector2(Mathf.Abs(moveint.x), Mathf.Abs(moveint.y));   
+            moveint = new Vector2(PlayerObject.transform.position.x - transform.position.x, PlayerObject.transform.position.y - transform.position.y);  
             objctDistance = Mathf.Sqrt(moveint.x * moveint.x + moveint.y * moveint.y);
             if (objctDistance <= 6)
             {
@@ -439,6 +437,7 @@ public class Enemy : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0;
 
+            /*
             // Xé≤ÇÃã∏ê≥
             if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
             {
@@ -458,7 +457,7 @@ public class Enemy : MonoBehaviour
             {
                 moveit.y = Mathf.Floor(this.transform.position.y);
             }
-            this.transform.position = moveit;
+            this.transform.position = moveit;*/
 
         }
     }

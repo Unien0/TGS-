@@ -103,7 +103,10 @@ public class Player : MonoBehaviour
     private float inputFixV;                // TemporaryInput.yの値を初期化するまでの時間
     private Vector2 moveInput;              // 1テンポ毎事の移動入力を保存する変数
     public float moveDirection;             // 移動方向の保存
-    private Vector2 PosFix;
+    [SerializeField] private Vector2 PosFix;
+    private Vector2 PosFit; 
+    private Vector2 FitCheck;
+    private float FitDistance;
     private bool maked;                     // 移動エフェクトの生成を確認する変数
     private bool maked_2;                     // 移動エフェクトの生成を確認する変数
     // 移動エフェクトを保存する変数
@@ -356,6 +359,8 @@ public class Player : MonoBehaviour
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 MoveFix = 1;
+
+                /*
                 // X軸の矯正
                 if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
                 {
@@ -374,7 +379,17 @@ public class Player : MonoBehaviour
                 {
                     PosFix.y = Mathf.Floor(this.transform.position.y);
                 }
-                this.transform.position = PosFix;
+
+                PosFit = new Vector2(PosFix.x - this.transform.position.x, PosFix.y - this.transform.position.y);
+                FitCheck = new Vector2(Mathf.Sign(PosFit.x), Mathf.Sign(PosFit.y));
+
+                if (PosFix.x != this.transform.position.x)
+                {
+                    if (PosFix.y != this.transform.position.y)
+                    {
+                        rb2d.velocity = FitCheck * speed * 3 * MoveFix;
+                    }
+                }*/
             }
             else
             {
