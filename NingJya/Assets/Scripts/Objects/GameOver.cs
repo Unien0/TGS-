@@ -50,7 +50,9 @@ public class GameOver : MonoBehaviour
             else
             {
                 StoryScenes.NextStageNum = NextScene;
+                SceneMovement.MoveStageNum = NextScene;
                 SceneManager.LoadScene(3);
+                //SceneManager.LoadScene("SceneMovement");
                 StageCLEAR = false;
             }
 

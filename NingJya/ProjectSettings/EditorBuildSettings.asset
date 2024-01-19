@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DemoScene.unity
     guid: 0545cc22967eb9e40b6091f5bfaab1f7
+  - enabled: 1
+    path: Assets/Scenes/SceneMovement.unity
+    guid: b856e3b19c4f53040b314eb691a5ee75
   m_configObjects: {}
