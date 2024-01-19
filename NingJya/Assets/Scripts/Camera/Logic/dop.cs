@@ -20,6 +20,8 @@ public class dop : MonoBehaviour
     // 出現させる障害物
     [SerializeField] 
     private GameObject[] ProceedObjs;
+    [SerializeField]
+    private GameObject[] PopObjs;
     // 出現時エフェクトを保存する変数
     [SerializeField] 
     private GameObject Smoke;
@@ -88,10 +90,15 @@ public class dop : MonoBehaviour
                     {
                         // このイベントを終了する
                         JumpScare = false;
+                        foreach (var Eventobj_ in PopObjs)
+                        {
+                            Eventobj_.SetActive(true);
+                        }
                         foreach (var Eventobj in ProceedObjs)
                         {
                             Eventobj.SetActive(false);
                         }
+                        
                         // カメラの移動を再開させる
                         FindObjectOfType<Camera>().GetComponent<CinemachineBrain>().enabled = true;
                     }

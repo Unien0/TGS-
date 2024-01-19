@@ -78,7 +78,7 @@ public class Objects : MonoBehaviour
     // ギミック処理段階を確認する変数
     private int GimmickOrder;
     // 複数ギミックオブジェクトからアクションするときに使う変数
-    private static int MultipleGimmickOrder;
+    private int MultipleGimmickOrder;
     // 指定回数の記録
     [SerializeField] private int ActivateCount;
     private int roteMax;
@@ -155,29 +155,36 @@ public class Objects : MonoBehaviour
             switch (ObjNAME)
             {
                 case ObjectType.Detonator:
-                    if (!Motion)
+                    if (!isBlow)
                     {
-                        foreach(var EventObj in GimmickObjSeries)
+                        if (!Motion)
                         {
-                            if (EventObj.gameObject.name == ActivateObj.gameObject.name)
+                            foreach (var EventObj in GimmickObjSeries)
                             {
-                                MultipleGimmickOrder += 1;
-                                ActivateObj.GetComponent<Collider2D>().enabled = false;
-                                Debug.Log(MultipleGimmickOrder);
+                                if (EventObj.gameObject.name == ActivateObj.gameObject.name)
+                                {
+                                    MultipleGimmickOrder += 1;
+                                    ActivateObj.GetComponent<Collider2D>().enabled = false;
+                                    Debug.Log(MultipleGimmickOrder);
+                                }
                             }
+                            Motion = true;
                         }
-                        Motion = true;
+                        if (MultipleGimmickOrder >= ActivateCount)
+                        {
+                            this.gameObject.SetActive(false);
+                            // Camera.csの画面シェイク機能を処理させる
+                            Camera.ShakeOrder = true;
+
+                            // 画面シェイクの時間・度合いを送信する
+                            GameManeger.shakeTime = 0.25f;
+                            ShakeManeger.ShakeLevel = 4;
+                            Instantiate(GimmickObj,this.transform.position,this.transform.rotation);
+                            Instantiate(GimmickObj,this.transform.position,this.transform.rotation);
+                            isBlow = true;
+                        }
+                        Activate = false;
                     }
-
-                    if (MultipleGimmickOrder >= ActivateCount)
-                    {
-                        this.gameObject.SetActive(false);
-                    }
-
-                    Activate = false;
-
-
-
                     break;
                 case ObjectType.BambooTrap:
                     if (!Motion)

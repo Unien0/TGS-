@@ -401,10 +401,6 @@ public class GameManeger : MonoBehaviour
 
     void ShakeCheck()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            shakeTime = 1;
-        }
         shakeTime -= Time.deltaTime;
         if (shakeTime > 0)
         {
