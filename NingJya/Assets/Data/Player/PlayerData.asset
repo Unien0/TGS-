@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   maxHp: 10
-  hp: 7
+  hp: 8
   speed: 4.25
   damage: 1
   attackCD: 0.2
   maxBullet: 3
-  nowBullet: 3
+  nowBullet: 0
   beatLengh: 0
   levelling: 0
   force: 500
   isDead: 0
   attackable: 0
   taking: 0
-  removable: 0
+  removable: 1
   mutekki: 0
   isAttack: 0

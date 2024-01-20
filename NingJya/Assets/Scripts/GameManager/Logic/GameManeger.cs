@@ -431,7 +431,15 @@ public class GameManeger : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F3))
         {// プレイヤーの当たり判定を解除・再設定する
-            FindObjectOfType<Player>().PlayerCol2D.enabled = !enabled;
+            if (FindObjectOfType<Player>().PlayerCol2D.enabled == true)
+            {
+                FindObjectOfType<Player>().PlayerCol2D.enabled = false;
+            }
+            else
+            {
+                FindObjectOfType<Player>().PlayerCol2D.enabled = true;
+            }
+
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {// シーンのリロード
