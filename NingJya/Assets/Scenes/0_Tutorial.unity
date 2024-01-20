@@ -20841,8 +20841,8 @@ RectTransform:
   - {fileID: 937726981}
   - {fileID: 1952092343}
   - {fileID: 455922922}
-  - {fileID: 798855499}
   - {fileID: 1049291190}
+  - {fileID: 798855499}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22824,6 +22824,14 @@ PrefabInstance:
       propertyPath: gameManegerCS
       value: 
       objectReference: {fileID: 754888806}
+    - target: {fileID: 6563868376941559785, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563868376941559785, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6563868376941559791, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
       propertyPath: m_Name
       value: "\uFF01Player"
@@ -23739,7 +23747,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 795628275}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
