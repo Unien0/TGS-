@@ -329,9 +329,10 @@ public class Player : MonoBehaviour
                     Instantiate(AfterImage, this.transform.position, this.transform.rotation);
                     maked = true;
                     Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
-                }
-                TemporaryInput = Vector2.zero;
+                }               
             }
+
+            TemporaryInput = Vector2.zero;
 
             // ˆÚ“®ˆ—
             if (!Stay)
