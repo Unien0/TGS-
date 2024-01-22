@@ -65,8 +65,8 @@ public class Objects : MonoBehaviour
 
     // トラップ用変数
     private float ResetTime;
-    public static bool Activate;
-    public static GameObject ActivateObj;
+    public bool Activate;
+    public GameObject ActivateObj;
     private bool Motion;
 
     // ギミック対応オブジェクト(単個)
@@ -146,7 +146,10 @@ public class Objects : MonoBehaviour
         {
             if (ObjNAME != ObjectType.RotatingFloor)
             {
-                ToStop();
+                if (ObjNAME != ObjectType.CloseDoor)
+                {
+                    ToStop();
+                }
             }
         }
 
@@ -330,15 +333,22 @@ public class Objects : MonoBehaviour
                         if (EventObj.gameObject.GetComponent<SpriteRenderer>().enabled == false)
                         {
                             MultipleGimmickOrder += 1;
-                        }
-
-                        if (MultipleGimmickOrder >= GimmickObjSeries.Length)
-                        {
-                            Debug.Log("Open");
-                            animator.SetBool("Boot", true);
+                            Debug.Log("OK");
+                            Debug.Log("Length = " + GimmickObjSeries.Length);
                         }
                     }
-                        break;
+
+                    if (MultipleGimmickOrder >= GimmickObjSeries.Length)
+                    {
+                        Debug.Log("Open");
+                        animator.SetBool("Boot", true);
+                    }
+                    else
+                    {
+                        MultipleGimmickOrder = 0;
+                    }
+
+                    break;
                 case ObjectType.Detonator:
                     if (Motion)
                     {

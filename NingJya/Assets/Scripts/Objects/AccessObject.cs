@@ -6,7 +6,7 @@ public class AccessObject : MonoBehaviour
 {
     private Collider2D col2D;
     [SerializeField] private GameObject[] AccessEfect;
-
+    [SerializeField] private Objects cs;
     private void Start()
     {
         col2D = GetComponent<Collider2D>();
@@ -41,8 +41,8 @@ public class AccessObject : MonoBehaviour
             {
                 Act.GetComponent<Animator>().SetBool("Access", true);
             }
-            Objects.Activate = true;
-            Objects.ActivateObj = this.gameObject;
+            cs.Activate = true;
+            cs.ActivateObj = this.gameObject;
         }
     }
 
