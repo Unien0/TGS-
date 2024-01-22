@@ -19,7 +19,6 @@ public class Pointer : MonoBehaviour
     {
         if (col.gameObject.name == "ÅIPlayer")
         {
-            Debug.Log("Do");
             FindObjectOfType<Player>().Stay = true;
             col.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             col.GetComponent<Rigidbody2D>().velocity = Vector3.zero;

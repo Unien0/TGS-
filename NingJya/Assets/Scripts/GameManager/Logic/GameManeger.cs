@@ -175,10 +175,10 @@ public class GameManeger : MonoBehaviour
             TimeInspect = true;
             //Audio.clip = MetronomeSE;
             //Audio.Play();
+            //Debug.Log("Tempo" + Tempo);
             isDead = true;
             FindObjectOfType<BossEnemy>().ExChange = true;
             TempoExChange = true;
-            Debug.Log("Tempo" + Tempo);
         }
         else
         {
