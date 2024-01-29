@@ -47,6 +47,12 @@ public class GameManeger : MonoBehaviour
         //プレイヤーが攻撃できるかどうかを判断する
         get { if (playerData != null) return playerData.levelling; else return false; }
         set { playerData.levelling = value; }
+    } 
+    public bool Mutekki
+    {
+        //プレイヤーが攻撃できるかどうかを判断する
+        get { if (playerData != null) return playerData.mutekki; else return false; }
+        set { playerData.mutekki = value; }
     }
     #endregion
 
@@ -117,6 +123,8 @@ public class GameManeger : MonoBehaviour
     [SerializeField] private GameObject ScanLineObj;
     // スキャンラインオブジェクトの色の濃さを変更する変数
     private int ScanLineLevel = 1;
+
+    private bool HP_Hold;
 
 
 
@@ -446,40 +454,18 @@ public class GameManeger : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        /*
-        if (Input.GetKey(KeyCode.F5))
-        {
-            if ((Input.GetKeyDown(KeyCode.C)))
-            {
-                ScanLineLevel = ScanLineLevel + 1;
-            }
-            else if ((Input.GetKeyDown(KeyCode.V)))
-            {
-
-                    ScanLineLevel = ScanLineLevel - 1;
-
-            }
+       
+        if (Input.GetKeyDown(KeyCode.F5))
+        {            
+            HP_Hold = !HP_Hold;
+            Debug.Log(HP_Hold);
         }
-        */
 
-        /*if(Input.GetKeyUp(KeyCode.F5))
+        if (HP_Hold)
         {
-            switch (ScanLineLevel)
-            {
-                case 0:
-                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", -1.1f);
-                    break;
-                case 1:
-                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 0.0f);
-                    break;
-                case 2:
-                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 1.1f);
-                    break;
-                case 3:
-                    ScanLineObj.GetComponent<Animator>().SetFloat("Level", 2.2f);
-                    break;
-            }
-        }*/
+            Mutekki = true;
+        }
+
         if (Input.GetKey(KeyCode.F12))
         {
             if (Input.GetKeyDown(KeyCode.Q))
