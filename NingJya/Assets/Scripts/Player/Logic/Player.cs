@@ -304,7 +304,7 @@ public class Player : MonoBehaviour
             inputFixH = 0;
             TemporaryInput.x = horizontal;
         }
-        if(vertical == 0)
+        if (vertical == 0)
         {
             inputFixV += Time.deltaTime;
             if (inputFixV > gameManegerCS.OneTempo)
@@ -313,12 +313,12 @@ public class Player : MonoBehaviour
             }
         }
         else
-        {   
+        {
             // 入力を記録する
             inputFixV = 0;
             TemporaryInput.y = vertical;
         }
-        
+
         if (removable && !taking)
         {
             if (!maked)
@@ -332,7 +332,7 @@ public class Player : MonoBehaviour
                 }               
             }
 
-            TemporaryInput = Vector2.zero;
+            //TemporaryInput = Vector2.zero;
 
             // 移動処理
             if (!Stay)
@@ -347,9 +347,9 @@ public class Player : MonoBehaviour
         else
         {
 
+
             if (!ActFix)
             {
-                ActFix = true;
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 
                 // 再度アクション処理ができるように初期化する
@@ -360,7 +360,7 @@ public class Player : MonoBehaviour
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 anim.SetBool("Attack", false);                // 攻撃アニメーションの停止
                 MoveFix = 1;
-
+                ActFix = true;
                 /*
                 // X軸の矯正
                 if (this.transform.position.x - Mathf.FloorToInt(this.transform.position.x) > 0.5f)
