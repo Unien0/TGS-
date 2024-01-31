@@ -7,6 +7,7 @@ public class EfectDestory : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rd2d;
+    private SpriteRenderer SpR;
 
     [SerializeField] private float DeadTime;
     private float animSpeed;
@@ -34,6 +35,8 @@ public class EfectDestory : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rd2d = GetComponent<Rigidbody2D>();
+        SpR =   GetComponent<SpriteRenderer>();
+
 
         ShotPoint = Random.Range(-1.5f,1.5f);
         switch (EfectName)
@@ -129,32 +132,37 @@ public class EfectDestory : MonoBehaviour
                 {
                     #region
                     case 0:
-                        // 上
-                        this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        // 上(黄)
+                        SpR.color = new Color(255,253,0,255);
                         break;
                     case 45:
-                        // 右上
-                        this.transform.rotation = Quaternion.Euler(0, 0, 45);
+                        // 左上
+
                         break;
                     case 90:
-                        this.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        // 左(青)
+                        SpR.color = new Color(0, 104, 183, 255);
                         break;
                     case 135:
-                        this.transform.rotation = Quaternion.Euler(0, 0, 135);
+                        // 左下
+
                         break;
                     case 180:
-                        this.transform.rotation = Quaternion.Euler(0, 0, 180);
+                        //下(みどり)
+                        Debug.Log(FindObjectOfType<Player>().moveDirection);
+                        SpR.color = new Color(0,255,0,255); 
                         break;
                     case 225:
-                        this.transform.rotation = Quaternion.Euler(0, 0, 225);
+                        // 右下
+
                         break;
                     case 270:
-                        // 左
-                        this.transform.rotation = Quaternion.Euler(0, 0, 270);
+                        // 右（赤）
+                        SpR.color = new Color(255,0,0,255);
                         break;
                     case 315:
-                        // 左上
-                        this.transform.rotation = Quaternion.Euler(0, 0, 315);
+                        // 右上
+
                         break;
                         #endregion
                 }
