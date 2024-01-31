@@ -46324,6 +46324,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
+      propertyPath: MoveEfect
+      value: 
+      objectReference: {fileID: 2784010456635754984, guid: 87d806121a547dd4080c0aa883d4f50f, type: 3}
+    - target: {fileID: 6563868376941559784, guid: fa994465480a49e4ba64e3af5f388fa6, type: 3}
       propertyPath: MovePointer
       value: 
       objectReference: {fileID: 1233444025}

@@ -18,6 +18,7 @@ public class EfectDestory : MonoBehaviour
         Combo,
         Any,
         AfterImage,
+        AfterArrow,
         End
     }
     [SerializeField] private EfectType EfectName;
@@ -122,10 +123,41 @@ public class EfectDestory : MonoBehaviour
                     RumdumNum = Random.Range(0, Numbers.Length);
                     this.gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite(RumdumNum);
                 }
-
-
-
-
+                break;
+            case EfectType.AfterArrow:
+                switch (FindObjectOfType<Player>().moveDirection)
+                {
+                    #region
+                    case 0:
+                        // è„
+                        this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        break;
+                    case 45:
+                        // âEè„
+                        this.transform.rotation = Quaternion.Euler(0, 0, 45);
+                        break;
+                    case 90:
+                        this.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        break;
+                    case 135:
+                        this.transform.rotation = Quaternion.Euler(0, 0, 135);
+                        break;
+                    case 180:
+                        this.transform.rotation = Quaternion.Euler(0, 0, 180);
+                        break;
+                    case 225:
+                        this.transform.rotation = Quaternion.Euler(0, 0, 225);
+                        break;
+                    case 270:
+                        // ç∂
+                        this.transform.rotation = Quaternion.Euler(0, 0, 270);
+                        break;
+                    case 315:
+                        // ç∂è„
+                        this.transform.rotation = Quaternion.Euler(0, 0, 315);
+                        break;
+                        #endregion
+                }
                 break;
         }
     }
