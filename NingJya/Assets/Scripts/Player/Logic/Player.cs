@@ -287,8 +287,11 @@ public class Player : MonoBehaviour
     void move()
     {
         // 移動入力 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        // 旧(左入力)
+        //float horizontal = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal_Button");
+        float vertical = Input.GetAxis("Vertical_Button");
 
         if (horizontal == 0)
         {
@@ -497,6 +500,8 @@ public class Player : MonoBehaviour
     {
         float hr_R = Input.GetAxis("Horizontal_Right");
         float vr_R = Input.GetAxis("Vertical_Right");
+        //float hr_R = Input.GetAxis("Horizontal");
+        //float vr_R = Input.GetAxis("Vertical");
 
         if ((hr_R != 0) || (vr_R != 0))
         {   // 入力に応じて、攻撃範囲を回転、攻撃アニメーションを再生する
