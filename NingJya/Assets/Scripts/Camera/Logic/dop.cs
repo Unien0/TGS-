@@ -9,7 +9,7 @@ public class dop : MonoBehaviour
     // プレイヤーが侵入したかどうか確認する変数
     private bool Check;
     // 侵入時処理が終わったかどうか確認する変数
-    private bool Fixed; 
+    [SerializeField] private bool Fixed; 
     
     // 敵キャラを出すイベントを行うかどうか確認する変数 
     [SerializeField]
@@ -20,7 +20,7 @@ public class dop : MonoBehaviour
     [SerializeField]
     private float DelayTime;
     // 経過時間
-    private float Times;
+    [SerializeField] private float Times;
     // 出現させる敵のオブジェクトを保存する変数
     [SerializeField] 
     private GameObject[] ProceedBlocks;
@@ -56,7 +56,6 @@ public class dop : MonoBehaviour
                     foreach (var Eventobj in ProceedObjs)
                     {
                         Eventobj.SetActive(true);
-                        Instantiate(Smoke, Eventobj.transform.position, Eventobj.transform.rotation);
                     }
                 }
                 // 複数回処理を行わないようにこのif文を非成立にさせる
@@ -68,7 +67,7 @@ public class dop : MonoBehaviour
                 {                    
                     if (Times > DelayTime)
                     {
-                        if (SpawnCount >= ProceedBlocks.Length)
+                        if (!(SpawnCount >= ProceedBlocks.Length))
                         {
                             foreach (var EventEnemy in ProceedBlocks)
                             {
