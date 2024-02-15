@@ -49,6 +49,9 @@ public class AudioManager : MonoBehaviour
         {
             switch (AudioNumber)
             {
+                case -1:
+                    AudioSourceObj.volume = 0;
+                    break;
                 // BGM遷移用ボリュームダウン
                 case 0:
                     AudioSourceObj.volume -= Time.deltaTime;

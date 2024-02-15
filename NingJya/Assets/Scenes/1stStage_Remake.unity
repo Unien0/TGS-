@@ -1554,8 +1554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 0
   DelayTime: 0
+  Times: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -25671,8 +25673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 0
   DelayTime: 0
+  Times: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -34317,7 +34321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742244750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.392738, y: 2.182869, z: -10}
+  m_LocalPosition: {x: -30.792686, y: 2.1941435, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35120,8 +35124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 1
   DelayTime: 0
+  Times: 0
   ProceedBlocks:
   - {fileID: 1816202519}
   ProceedObjs: []
@@ -35768,8 +35774,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 0
   DelayTime: 0
+  Times: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -35960,8 +35968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 0
   DelayTime: 0
+  Times: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -46988,7 +46998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034769834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.9, y: 20.2, z: 0}
+  m_LocalPosition: {x: 39.9, y: 25.39, z: 0}
   m_LocalScale: {x: 5.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47008,7 +47018,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.16083255, y: -0.39903688}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -47019,7 +47029,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3216648, y: 6.9412327}
   m_EdgeRadius: 0
 --- !u!114 &1034769837
 MonoBehaviour:
@@ -47414,8 +47424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 1
   DelayTime: 2
+  Times: 0
   ProceedBlocks:
   - {fileID: 478376663}
   - {fileID: 1267650949}
@@ -58253,8 +58265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49825b648ea89bf4ebeba7deeef6a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fixed: 0
   JumpScare: 0
   DelayTime: 0
+  Times: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []

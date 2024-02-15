@@ -131,7 +131,8 @@ public class BossEnemy : MonoBehaviour
                 }
                 else
                 {
-
+                    FindObjectOfType<AudioManager>().AudioNumber = 0;
+                    FindObjectOfType<AudioManager>().Ex = true;
                 }
             }
             else
