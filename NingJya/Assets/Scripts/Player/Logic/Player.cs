@@ -288,10 +288,11 @@ public class Player : MonoBehaviour
     {
         // ˆÚ“®“ü—Í 
         // ‹Œ(¶“ü—Í)
-        //float horizontal = Input.GetAxis("Horizontal");
-        //float vertical = Input.GetAxis("Vertical");
-        float horizontal = Input.GetAxis("Horizontal_Button");
-        float vertical = Input.GetAxis("Vertical_Button");
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        //float horizontal = Input.GetAxis("Horizontal_Button");
+        //float vertical = Input.GetAxis("Vertical_Button");
 
         if (horizontal == 0)
         {

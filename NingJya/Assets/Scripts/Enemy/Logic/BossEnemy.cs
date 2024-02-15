@@ -115,6 +115,7 @@ public class BossEnemy : MonoBehaviour
                     if (waittime >= 1.5f)
                     {
                         doStart = true;
+                        SpR.enabled = true;
                     }
                     else if(waittime >= 1.2f) 
                     {
@@ -130,8 +131,7 @@ public class BossEnemy : MonoBehaviour
                 }
             }
             else
-            {
-                SpR.enabled = true;
+            {                
                 CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;
                 time += Time.deltaTime;
                 if (time == -1)
