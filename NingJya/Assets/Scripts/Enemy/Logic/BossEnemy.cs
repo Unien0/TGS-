@@ -111,6 +111,7 @@ public class BossEnemy : MonoBehaviour
                     doStart = true;
                     SpR.enabled = true;
                     FindObjectOfType<AudioManager>().AudioNumber = 3;
+                    FindObjectOfType<AudioManager>().Ex = true;
                 }
                 else if (waittime >= 2.0f)
                 {
