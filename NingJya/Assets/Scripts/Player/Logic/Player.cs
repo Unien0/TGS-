@@ -500,8 +500,9 @@ public class Player : MonoBehaviour
     {
         float hr_R = Input.GetAxis("Horizontal_Right");
         float vr_R = Input.GetAxis("Vertical_Right");
-        //float hr_R = Input.GetAxis("Horizontal");
-        //float vr_R = Input.GetAxis("Vertical");
+        //float hr_R = Input.GetAxis("Horizontal_Left");
+        //float vr_R = Input.GetAxis("Vertical_Left");
+
 
         if ((hr_R != 0) || (vr_R != 0))
         {   // 入力に応じて、攻撃範囲を回転、攻撃アニメーションを再生する

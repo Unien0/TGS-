@@ -72,6 +72,12 @@ public class BossEnemy : MonoBehaviour
     [SerializeField]private GameObject isDeadFlash;
     private bool DeadFix;
 
+    [SerializeField] private GameObject SpawnFlash;
+    private bool doStart;
+    private float waittime;
+    private bool isSpawn;
+
+
     private int Ramdom1st;
     private int Ramdom2nd;
     private bool Shot3pt;
@@ -94,100 +100,133 @@ public class BossEnemy : MonoBehaviour
 
         if (FindObjectOfType<BossStartFlag>().ActStart)
         {
-            CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;
-            time += Time.deltaTime;
-            if (time == -1)
-            {
-                time = 10;
-            }         
-            switch (BossType)
-            {
-                case BossNumber.No1:
-                    FirstBoss();
-                    break;
-                case BossNumber.No2:
-                    SecondBoss();
-                    break;
-            }
-            Damage();
-
-            gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
-            gapfixPos = gapPos * Mathf.Rad2Deg;
-            if (gapfixPos < 0)
-            {
-                gapfixPos += 360;
-            }
-
-            // 死亡処理
-            if (isDead)
-            {
-                // 一度だけ処理する内容を入れる
-                if (!DeadFix)
-                {
-                    // ボスを停止状態にする
-                    ActPermission = false;
-                    // 画面を揺らす
-                    GameManeger.shakeTime = 0.25f;
-                    ShakeManeger.ShakeLevel = 4;
-                    // 白飛びアニメーションを発生させる
-                    isDeadFlash.SetActive(true);
-                    // スコアを足す
-                    GameManeger.KillBOSS += 5000;
-                    // 処理が完了したことを記録する
-                    DeadFix = true;
-                }
-
-                // 位置固定
+            if (!doStart)
+            {  
                 rb2d.velocity = Vector3.zero;
-
-                // 子オブジェクトの削除
-                foreach (GameObject child in DestoyObj)
+                if (!isSpawn)
                 {
-                    if (child != null)
-                    {
-                        GameObject.Destroy(child.gameObject);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    Instantiate(SpawnFlash, MakePoint, this.transform.rotation);
+                    isSpawn = true;
+                    SpR.enabled = false;
                 }
-                if (BossType == BossNumber.No2)
+                else
                 {
-                    anim.SetBool("Hide", false);
-
-                }
-
-                // 白飛びアニメーションが終わったら
-                if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
-                {
-                    // エフェクトを10回生成するまでループする
-                    if(MakeEfectCount < 10)
+                    waittime += Time.deltaTime;
+                    if (waittime >= 1.5f)
                     {
-                        MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1) ;
-                        MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1) ;
+                        doStart = true;
+                    }
+                    else if(waittime >= 1.2f) 
+                    {
+                        
+                    }
+                    else if (waittime >= 0.5f)
+                    {
+                        MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1);
+                        MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1);
                         // ループ処理 (ダメージエフェクトの生成)
                         Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
-                        MakeEfectCount += 1;
-                    }
-                    else
-                    {
-                        Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
-                        // ボスを非表示にする
-                        SpR.enabled = false;
-                        Col2D.enabled = false;
-                        //anim.enabled = false;
-                        // 扉を開ける
-                        FindObjectOfType<BossStartFlag>().ActEnd = true;
-                        // 死亡処理を終了する
-                        isDead = false;
                     }
                 }
             }
             else
             {
-                ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
-            }
+                SpR.enabled = true;
+                CoolDownTime = FindObjectOfType<GameManeger>().OneTempo * 2;
+                time += Time.deltaTime;
+                if (time == -1)
+                {
+                    time = 10;
+                }
+                switch (BossType)
+                {
+                    case BossNumber.No1:
+                        FirstBoss();
+                        break;
+                    case BossNumber.No2:
+                        SecondBoss();
+                        break;
+                }
+                Damage();
+
+                gapPos = Mathf.Atan2((PlayerObject.transform.position.x - this.transform.position.x), (PlayerObject.transform.position.y - this.transform.position.y));
+                gapfixPos = gapPos * Mathf.Rad2Deg;
+                if (gapfixPos < 0)
+                {
+                    gapfixPos += 360;
+                }
+
+                // 死亡処理
+                if (isDead)
+                {
+                    // 一度だけ処理する内容を入れる
+                    if (!DeadFix)
+                    {
+                        // ボスを停止状態にする
+                        ActPermission = false;
+                        // 画面を揺らす
+                        GameManeger.shakeTime = 0.25f;
+                        ShakeManeger.ShakeLevel = 4;
+                        // 白飛びアニメーションを発生させる
+                        isDeadFlash.SetActive(true);
+                        // スコアを足す
+                        GameManeger.KillBOSS += 5000;
+                        // 処理が完了したことを記録する
+                        DeadFix = true;
+                    }
+
+                    // 位置固定
+                    rb2d.velocity = Vector3.zero;
+
+                    // 子オブジェクトの削除
+                    foreach (GameObject child in DestoyObj)
+                    {
+                        if (child != null)
+                        {
+                            GameObject.Destroy(child.gameObject);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (BossType == BossNumber.No2)
+                    {
+                        anim.SetBool("Hide", false);
+
+                    }
+
+                    // 白飛びアニメーションが終わったら
+                    if (isDeadFlash.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("FlashEND"))
+                    {
+                        // エフェクトを10回生成するまでループする
+                        if (MakeEfectCount < 10)
+                        {
+                            MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1);
+                            MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1);
+                            // ループ処理 (ダメージエフェクトの生成)
+                            Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
+                            MakeEfectCount += 1;
+                        }
+                        else
+                        {
+                            Instantiate(DEAD_EFECT, this.transform.position, this.transform.rotation);
+                            // ボスを非表示にする
+                            SpR.enabled = false;
+                            Col2D.enabled = false;
+                            //anim.enabled = false;
+                            // 扉を開ける
+                            FindObjectOfType<BossStartFlag>().ActEnd = true;
+                            // 死亡処理を終了する
+                            isDead = false;
+                        }
+                    }
+                }
+                else
+                {
+                    ShotRote.transform.rotation = Quaternion.Euler(0, 0, -1 * gapfixPos);
+                }
+            }            
         }
     }
 

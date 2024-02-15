@@ -137,7 +137,7 @@ public class EfectDestory : MonoBehaviour
                         break;
                     case 45:
                         // 左上
-
+                        SpR.color = new Color(128, 200, 128, 255);
                         break;
                     case 90:
                         // 左(青)
@@ -145,7 +145,7 @@ public class EfectDestory : MonoBehaviour
                         break;
                     case 135:
                         // 左下
-
+                        SpR.color = new Color(0, 217, 128, 255);
                         break;
                     case 180:
                         //下(みどり)
@@ -154,15 +154,15 @@ public class EfectDestory : MonoBehaviour
                         break;
                     case 225:
                         // 右下
-
+                        SpR.color = new Color(128, 128, 0, 255);
                         break;
                     case 270:
                         // 右（赤）
                         SpR.color = new Color(255,0,0,255);
                         break;
                     case 315:
-                        // 右上
-
+                        // 右上(オレンジ)
+                        SpR.color = new Color(255, 124, 0, 255);
                         break;
                         #endregion
                 }
