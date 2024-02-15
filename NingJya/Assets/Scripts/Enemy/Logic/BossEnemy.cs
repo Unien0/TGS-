@@ -103,31 +103,34 @@ public class BossEnemy : MonoBehaviour
             if (!doStart)
             {  
                 rb2d.velocity = Vector3.zero;
-                if (!isSpawn)
+                transform.position = transform.position;
+
+                waittime += Time.deltaTime;
+                if (waittime >= 2.5f)
                 {
-                    Instantiate(SpawnFlash, MakePoint, this.transform.rotation);
-                    isSpawn = true;
-                    SpR.enabled = false;
+                    doStart = true;
+                    SpR.enabled = true;
+                    FindObjectOfType<AudioManager>().AudioNumber = 3;
+                }
+                else if (waittime >= 2.0f)
+                {
+                    MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1);
+                    MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1);
+                    // ループ処理 (ダメージエフェクトの生成)
+                    Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
+                }
+                else if(waittime >= 1.0f)
+                {
+                    if (!isSpawn)
+                    {
+                        Instantiate(SpawnFlash, MakePoint, this.transform.rotation);
+                        isSpawn = true;
+                        SpR.enabled = false;
+                    }
                 }
                 else
                 {
-                    waittime += Time.deltaTime;
-                    if (waittime >= 1.5f)
-                    {
-                        doStart = true;
-                        SpR.enabled = true;
-                    }
-                    else if(waittime >= 1.2f) 
-                    {
-                        
-                    }
-                    else if (waittime >= 0.5f)
-                    {
-                        MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1);
-                        MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1);
-                        // ループ処理 (ダメージエフェクトの生成)
-                        Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
-                    }
+
                 }
             }
             else

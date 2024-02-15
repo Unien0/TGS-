@@ -332,7 +332,7 @@ public class Player : MonoBehaviour
                     Instantiate(PointerEfect, this.transform.position, this.transform.rotation, this.transform);
                     Instantiate(AfterImage, this.transform.position, this.transform.rotation);
                     maked = true;
-                    Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
+                    //Instantiate(MoveEfect, this.transform.position, MoveEfect.transform.rotation);
                 }               
             }
 

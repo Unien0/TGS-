@@ -14,6 +14,13 @@ public class dop : MonoBehaviour
     // 敵キャラを出すイベントを行うかどうか確認する変数 
     [SerializeField]
     private bool JumpScare;
+    // 処理済み
+    private int SpawnCount;
+    // 出現遅延秒数
+    [SerializeField]
+    private float DelayTime;
+    // 経過時間
+    private float Times;
     // 出現させる敵のオブジェクトを保存する変数
     [SerializeField] 
     private GameObject[] ProceedBlocks;
@@ -43,15 +50,9 @@ public class dop : MonoBehaviour
             {
                 // 進行度を更新する
                 Camera.Order += 1;
-
                 // 敵のジャンプスケアがONになっている場合
                 if (JumpScare)
-                {
-                    foreach (var EventEnemy in ProceedBlocks)
-                    {
-                        EventEnemy.SetActive(true);
-                        Instantiate(Smoke, EventEnemy.transform.position, EventEnemy.transform.rotation);
-                    }                    
+                {                    
                     foreach (var Eventobj in ProceedObjs)
                     {
                         Eventobj.SetActive(true);
@@ -64,7 +65,24 @@ public class dop : MonoBehaviour
             else
             {
                 if (JumpScare)
-                {
+                {                    
+                    if (Times > DelayTime)
+                    {
+                        if (SpawnCount >= ProceedBlocks.Length)
+                        {
+                            foreach (var EventEnemy in ProceedBlocks)
+                            {
+                                EventEnemy.SetActive(true);
+                                Instantiate(Smoke, EventEnemy.transform.position, EventEnemy.transform.rotation);
+                                SpawnCount = SpawnCount + 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Times += Time.deltaTime;
+                    }
+
                     // カメラの移動を止める
                     FindObjectOfType<Camera>().GetComponent<CinemachineBrain>().enabled = false;
                     // カメラの位置を変更する

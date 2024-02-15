@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 0
+  DelayTime: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -25671,6 +25672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 0
+  DelayTime: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -35119,6 +35121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 1
+  DelayTime: 0
   ProceedBlocks:
   - {fileID: 1816202519}
   ProceedObjs: []
@@ -35766,6 +35769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 0
+  DelayTime: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -35957,6 +35961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 0
+  DelayTime: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
@@ -47028,7 +47033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4d68266da61154fa4cf447315a784f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextAudioNumber: 3
+  NextAudioNumber: 0
 --- !u!1 &1055075474
 GameObject:
   m_ObjectHideFlags: 0
@@ -47410,6 +47415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 1
+  DelayTime: 2
   ProceedBlocks:
   - {fileID: 478376663}
   - {fileID: 1267650949}
@@ -58248,6 +58254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpScare: 0
+  DelayTime: 0
   ProceedBlocks: []
   ProceedObjs: []
   PopObjs: []
