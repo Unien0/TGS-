@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   maxHp: 10
-  hp: 8
+  hp: 9
   speed: 4.25
   damage: 1
   attackCD: 0.2
   maxBullet: 3
-  nowBullet: 0
+  nowBullet: 3
   beatLengh: 0
   levelling: 0
   force: 500

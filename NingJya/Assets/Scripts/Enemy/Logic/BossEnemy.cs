@@ -108,22 +108,25 @@ public class BossEnemy : MonoBehaviour
                 waittime += Time.deltaTime;
                 if (waittime >= 2.5f)
                 {
+                    // 出現
                     doStart = true;
                     SpR.enabled = true;
                     FindObjectOfType<AudioManager>().AudioNumber = 3;
                     FindObjectOfType<AudioManager>().Ex = true;
+                    FindObjectOfType<Player>().taking = false;
                 }
                 else if (waittime >= 2.0f)
                 {
+                    // ループ処理 (ダメージエフェクトの生成)
                     MakePoint.x = Random.Range(this.transform.position.x - 1, this.transform.position.x + 1);
                     MakePoint.y = Random.Range(this.transform.position.y - 1, this.transform.position.y + 1);
-                    // ループ処理 (ダメージエフェクトの生成)
                     Instantiate(DEAD_EFECT, MakePoint, this.transform.rotation);
                 }
                 else if(waittime >= 1.0f)
                 {
                     if (!isSpawn)
                     {
+                        // 画面赤点滅
                         Instantiate(SpawnFlash, MakePoint, this.transform.rotation);
                         isSpawn = true;
                         SpR.enabled = false;
@@ -131,6 +134,7 @@ public class BossEnemy : MonoBehaviour
                 }
                 else
                 {
+                    // 無音化
                     FindObjectOfType<AudioManager>().AudioNumber = 0;
                     FindObjectOfType<AudioManager>().Ex = true;
                 }

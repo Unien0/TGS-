@@ -23,6 +23,8 @@ public class BossStartFlag : MonoBehaviour
     {
         if (collision.gameObject.name == "！Player")
         {
+            //プレイヤー停止
+            FindObjectOfType<Player>().taking = true;
             ActStart = true;
             ENTER_SYOUZI.SetActive(true);
             collision.gameObject.transform.position = PlayerMovePos.transform.position;
